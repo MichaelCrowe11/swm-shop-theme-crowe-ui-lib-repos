@@ -1,0 +1,256 @@
+{{ 'section-crowe-logic.css' | asset_url | stylesheet_tag }}
+
+<div class="crowe-logic-page">
+  <div class="page-width">
+    <div class="crowe-logic__header">
+      <h1 class="crowe-logic__title">Crowe Logic™</h1>
+      <p class="crowe-logic__subtitle">
+        Your myco-intelligent commerce interface for mushroom cultivation guidance
+      </p>
+    </div>
+
+    <div class="crowe-logic__interface">
+      <!-- Chat Interface -->
+      <div class="crowe-logic__chat">
+        <div class="chat-container">
+          <div class="chat-messages" id="chat-messages">
+            <div class="chat-message chat-message--assistant">
+              <div class="message-content">
+                <div class="message-avatar">
+                  <img src="{{ 'CroweLogic_Avatar_Exact 2.svg' | asset_url }}" alt="Crowe Logic" class="avatar-image" width="40" height="40">
+                </div>
+                <div class="message-body">
+                  <p>Welcome to Crowe Logic™! I'm your myco-intelligent assistant, here to help you with mushroom cultivation guidance, product recommendations, and growing techniques.</p>
+                  <p>What would you like to know about mushroom cultivation today?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input-container">
+            <form class="chat-form" id="chat-form">
+              <div class="chat-input-wrapper">
+                <textarea 
+                  id="chat-input" 
+                  class="chat-input" 
+                  placeholder="Ask about growing conditions, substrate formulas, or product recommendations..."
+                  rows="1"
+                ></textarea>
+                <button type="submit" class="chat-submit" id="chat-submit">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Recommendations Sidebar -->
+      <div class="crowe-logic__recommendations">
+        <div class="recommendations-header">
+          <h3>Recommended Products</h3>
+          <p>Based on our conversation</p>
+        </div>
+
+        <div class="recommendations-list" id="recommendations-list">
+          <!-- Placeholder recommendations -->
+          <div class="recommendation-card">
+            <div class="recommendation-image">
+              <img src="https://via.placeholder.com/100x100" alt="Blue Oyster Kit" width="100" height="100" />
+            </div>
+            <div class="recommendation-content">
+              <h4>Blue Oyster Starter Kit</h4>
+              <p class="recommendation-price">$32.00</p>
+              <p class="recommendation-description">Perfect for beginners</p>
+              <button class="recommendation-button">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="recommendation-card">
+            <div class="recommendation-image">
+              <img src="https://via.placeholder.com/100x100" alt="Lions Mane Kit" width="100" height="100" />
+            </div>
+            <div class="recommendation-content">
+              <h4>Lions Mane Block</h4>
+              <p class="recommendation-price">$45.00</p>
+              <p class="recommendation-description">Gourmet medicinal</p>
+              <button class="recommendation-button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="recommendations-footer">
+          <a href="{{ routes.collections_url }}" class="view-all-link">
+            View All Products
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="crowe-logic__quick-actions">
+      <h3>Quick Actions</h3>
+      <div class="quick-actions-grid">
+        <button class="quick-action" data-prompt="I'm a beginner, what mushroom kit should I start with?">
+          <span class="quick-action-icon">🌱</span>
+          <span class="quick-action-text">Beginner Guide</span>
+        </button>
+        
+        <button class="quick-action" data-prompt="What are the optimal growing conditions for oyster mushrooms?">
+          <span class="quick-action-icon">🌡️</span>
+          <span class="quick-action-text">Growing Conditions</span>
+        </button>
+        
+        <button class="quick-action" data-prompt="How do I prepare substrate for shiitake cultivation?">
+          <span class="quick-action-icon">🍄</span>
+          <span class="quick-action-text">Substrate Prep</span>
+        </button>
+        
+        <button class="quick-action" data-prompt="What's the difference between hardwood and straw substrates?">
+          <span class="quick-action-icon">🌾</span>
+          <span class="quick-action-text">Substrate Types</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input');
+  const chatMessages = document.getElementById('chat-messages');
+  const chatSubmit = document.getElementById('chat-submit');
+  const quickActions = document.querySelectorAll('.quick-action');
+
+  // Auto-resize textarea
+  chatInput.addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + 'px';
+  });
+
+  // Handle form submission
+  chatForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const message = chatInput.value.trim();
+    if (message) {
+      sendMessage(message);
+      chatInput.value = '';
+      chatInput.style.height = 'auto';
+    }
+  });
+
+  // Handle quick actions
+  quickActions.forEach(button => {
+    button.addEventListener('click', function() {
+      const prompt = this.dataset.prompt;
+      sendMessage(prompt);
+    });
+  });
+
+  function sendMessage(message) {
+    // Add user message
+    addMessage(message, 'user');
+    
+    // Show typing indicator
+    showTypingIndicator();
+    
+    // Simulate AI response (in production, this would call your AI API)
+    setTimeout(() => {
+      hideTypingIndicator();
+      addMessage(generateResponse(message), 'assistant');
+    }, 1500);
+  }
+
+  function addMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message chat-message--${sender}`;
+    
+    const avatar = sender === 'assistant' 
+      ? '<img src="{{ \'CroweLogic_Avatar_Exact 2.svg\' | asset_url }}" alt="Crowe Logic" class="avatar-image">'
+      : '<span class="avatar-icon">👤</span>';
+    
+    messageDiv.innerHTML = `
+      <div class="message-content">
+        <div class="message-avatar">
+          ${avatar}
+        </div>
+        <div class="message-body">
+          <p>${text}</p>
+        </div>
+      </div>
+    `;
+    
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function showTypingIndicator() {
+    const typingDiv = document.createElement('div');
+    typingDiv.id = 'typing-indicator';
+    typingDiv.className = 'chat-message chat-message--assistant typing';
+    typingDiv.innerHTML = `
+      <div class="message-content">
+        <div class="message-avatar">
+          <img src="{{ 'CroweLogic_Avatar_Exact 2.svg' | asset_url }}" alt="Crowe Logic" class="avatar-image">
+        </div>
+        <div class="message-body">
+          <div class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    `;
+    chatMessages.appendChild(typingDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function hideTypingIndicator() {
+    const typingIndicator = document.getElementById('typing-indicator');
+    if (typingIndicator) {
+      typingIndicator.remove();
+    }
+  }
+
+  function generateResponse(message) {
+    // Simple response generation - in production, this would be handled by your AI service
+    const responses = [
+      "Based on your question about mushroom cultivation, I'd recommend starting with our Blue Oyster Kit. It's perfect for beginners and fruits in just 7-10 days!",
+      "For optimal growing conditions, you'll want to maintain 65-75°F temperature, 85-95% humidity, and ensure CO₂ levels stay below 600 ppm.",
+      "Great question! The substrate choice depends on your mushroom variety. Hardwood substrates work excellently for shiitake and oyster mushrooms.",
+      "I'd suggest checking out our growing guides and starter kits. Would you like me to recommend specific products based on your experience level?"
+    ];
+    
+    return responses[Math.floor(Math.random() * responses.length)];
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Crowe Logic Interface",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Interface Settings"
+    },
+    {
+      "type": "text",
+      "id": "page_title",
+      "default": "Crowe Logic™",
+      "label": "Page Title"
+    },
+    {
+      "type": "textarea",
+      "id": "page_description",
+      "default": "Your myco-intelligent commerce interface for mushroom cultivation guidance",
+      "label": "Page Description"
+    }
+  ]
+}
+{% endschema %}
