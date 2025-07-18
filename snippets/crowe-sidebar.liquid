@@ -119,6 +119,14 @@
             script.async = true;
             script.type = 'module';
             script.src = 'https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js';
+            script.onerror = function() {
+              console.log('Zapier chatbot script failed to load');
+              // Hide chatbot container if script fails
+              const container = document.querySelector('.chat-embed-container');
+              if (container) {
+                container.style.display = 'none';
+              }
+            };
             document.head.appendChild(script);
             window.zapierInterfacesLoaded = true;
           }
@@ -229,13 +237,24 @@
       }
     });
     
-    // Handle window resize
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 768 && sidebar.classList.contains('open')) {
-        // Don't auto-close on desktop, just adjust layout
+    // Handle window resize and initial load
+    function handleLayout() {
+      if (window.innerWidth >= 992) {
+        // Desktop: Show sidebar by default
+        sidebar.classList.add('open');
         body.classList.add('sidebar-open-desktop');
+        hamburgerButton.style.display = 'none';
+      } else {
+        // Mobile: Hide sidebar by default
+        body.classList.remove('sidebar-open-desktop');
+        hamburgerButton.style.display = 'block';
       }
-    });
+    }
+    
+    // Initial layout setup
+    handleLayout();
+    
+    window.addEventListener('resize', handleLayout);
     
     // Update cart count
     function updateCartCount() {

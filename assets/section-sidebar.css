@@ -13,31 +13,24 @@
   --quantum-cream: #FFF5DC;
 }
 
-/* Sidebar Hamburger Button with Glass Effect */
+/* Sidebar Hamburger Button with Simplified Glass Effect */
 .sidebar-hamburger {
   position: fixed;
   top: 20px;
   left: 20px;
   z-index: 1001;
-  /* Enhanced Glass Button */
-  background: linear-gradient(
-    135deg,
-    rgba(26, 26, 26, 0.8) 0%,
-    rgba(10, 10, 10, 0.9) 100%
-  );
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  /* Simplified Glass Button */
+  background: rgba(26, 26, 26, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 2px solid rgba(192, 192, 192, 0.3);
   border-radius: 12px;
   padding: 12px;
   cursor: pointer;
   transition: all var(--quantum-transition-base, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
   box-shadow: 
-    0 8px 24px rgba(192, 192, 192, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
-  position: relative;
-  overflow: hidden;
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-hamburger::before {
@@ -103,7 +96,8 @@
   left: 0;
   width: var(--sidebar-width);
   height: 100vh;
-  /* Enhanced Glass Effect Background */
+  /* Simplified background with fallback */
+  background: rgba(26, 26, 26, 0.95);
   background: linear-gradient(
     145deg,
     rgba(26, 26, 26, 0.85) 0%,
@@ -115,16 +109,14 @@
   transform: translateX(-100%);
   transition: transform var(--quantum-transition-base, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
   overflow-y: auto;
-  /* Glass Effects */
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  /* Reduced glass effects for better compatibility */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 
-    0 16px 48px rgba(192, 192, 192, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
-  /* Add subtle inner glow */
   position: relative;
 }
 
@@ -152,16 +144,21 @@
     transform: translateX(0);
   }
   
-  /* Push main content when sidebar is visible */
-  body {
+  /* Only push main content when sidebar is open on desktop */
+  body.sidebar-open-desktop {
     margin-left: var(--sidebar-width);
     transition: margin-left var(--quantum-transition-base);
   }
   
-  #MainContent,
-  .shopify-section-group-header-group,
-  .shopify-section-group-footer-group {
+  body.sidebar-open-desktop #MainContent,
+  body.sidebar-open-desktop .shopify-section-group-header-group,
+  body.sidebar-open-desktop .shopify-section-group-footer-group {
     margin-left: 0;
+  }
+  
+  /* Hide hamburger on desktop when sidebar is persistent */
+  .sidebar-hamburger {
+    display: none;
   }
 }
 
@@ -173,21 +170,14 @@
 .sidebar-header {
   padding: var(--quantum-space-lg, 1.5rem);
   border-bottom: 1px solid rgba(192, 192, 192, 0.2);
-  /* Glass Header Effect */
-  background: linear-gradient(
-    135deg,
-    rgba(192, 192, 192, 0.1) 0%,
-    rgba(10, 10, 10, 0.8) 50%,
-    rgba(26, 26, 26, 0.6) 100%
-  );
-  backdrop-filter: blur(15px) saturate(150%);
-  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  /* Simplified Glass Header Effect */
+  background: rgba(192, 192, 192, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   position: relative;
-  /* Frosted glass border */
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-    0 4px 12px rgba(0, 0, 0, 0.3);
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar-header::before {
@@ -612,20 +602,19 @@
 .chat-embed-container {
   padding: var(--quantum-space-sm, 0.5rem);
   min-height: 300px;
-  /* Glass container background */
-  background: linear-gradient(
-    145deg,
-    rgba(10, 10, 10, 0.9) 0%,
-    rgba(26, 26, 26, 0.8) 50%,
-    rgba(15, 15, 15, 0.85) 100%
-  );
-  backdrop-filter: blur(15px) saturate(120%);
-  -webkit-backdrop-filter: blur(15px) saturate(120%);
+  max-height: 400px;
+  overflow: hidden;
+  /* Simplified glass container background */
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   position: relative;
   z-index: 1;
+  border-radius: 12px;
+  border: 1px solid rgba(192, 192, 192, 0.2);
 }
 
-/* Loading state for chat with glass effect */
+/* Loading state for chat */
 .chat-embed-container::before {
   content: "Loading Crowe Logic AI...";
   position: absolute;
@@ -633,20 +622,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: var(--quantum-cream, #FFF5DC);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   opacity: 0.7;
   pointer-events: none;
   transition: opacity 0.3s ease;
-  /* Glass text effect */
-  text-shadow: 
-    0 0 10px rgba(192, 192, 192, 0.3),
-    0 1px 2px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  padding: 1rem 2rem;
+  padding: 1rem;
   border-radius: 8px;
-  background: rgba(26, 26, 26, 0.3);
+  background: rgba(26, 26, 26, 0.5);
   border: 1px solid rgba(192, 192, 192, 0.2);
+  text-align: center;
 }
 
 .chat-embed-container:has(zapier-interfaces-chatbot-embed)::before {
@@ -900,4 +884,50 @@
 
 .crowe-sidebar::-webkit-scrollbar-thumb:hover {
   background: var(--quantum-gold-dark, #B8943F);
+}
+
+/* ===== Browser Compatibility Fallbacks ===== */
+
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+  .crowe-sidebar {
+    background: rgba(26, 26, 26, 0.98) !important;
+    border-right: 2px solid rgba(192, 192, 192, 0.5);
+  }
+  
+  .sidebar-hamburger {
+    background: rgba(26, 26, 26, 0.95) !important;
+    border: 2px solid rgba(192, 192, 192, 0.5);
+  }
+  
+  .sidebar-header {
+    background: rgba(10, 10, 10, 0.9) !important;
+  }
+  
+  .nav-link,
+  .sidebar-chat-section {
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .crowe-sidebar {
+    background: #000 !important;
+    border-right: 2px solid #fff;
+  }
+  
+  .nav-link {
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
 }
