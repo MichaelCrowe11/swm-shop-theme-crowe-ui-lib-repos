@@ -30,7 +30,7 @@
 
 .quantum-chat-trigger:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: var(--quantum-shadow-xl), 0 0 20px var(--quantum-gold);
+  box-shadow: var(--quantum-shadow-xl), 0 0 20px var(--quantum-silver, #C0C0C0);
 }
 
 .quantum-chat-trigger.quantum-activated {

@@ -1,0 +1,67 @@
+/* ===== Alternative Color Schemes for Quantum Theme ===== */
+
+/* Option 1: Deep Space Black with Silver Accents */
+:root {
+  /* Replace gold variables with sophisticated blacks and silvers */
+  --quantum-obsidian: #0a0a0a;
+  --quantum-charcoal: #1a1a1a;
+  --quantum-void: #000000;         /* NEW: Pure black */
+  --quantum-silver: #C0C0C0;       /* NEW: Classic silver */
+  --quantum-silver-dark: #A8A8A8;  /* NEW: Darker silver */
+  --quantum-platinum: #E5E4E2;     /* NEW: Platinum white */
+  --quantum-graphite: #2F2F2F;     /* NEW: Graphite gray */
+  
+  /* Updated gradients */
+  --quantum-gradient-primary: linear-gradient(135deg, var(--quantum-silver), var(--quantum-silver-dark));
+  --quantum-gradient-dark: linear-gradient(180deg, var(--quantum-void) 0%, var(--quantum-charcoal) 100%);
+  --quantum-gradient-shimmer: linear-gradient(45deg, var(--quantum-silver), var(--quantum-platinum), var(--quantum-silver));
+}
+
+/* Option 2: Matte Black with White Accents */
+.quantum-theme-matte {
+  --quantum-obsidian: #0a0a0a;
+  --quantum-charcoal: #1a1a1a;
+  --quantum-matte-black: #1C1C1C;    /* NEW: Matte black */
+  --quantum-pure-white: #FFFFFF;      /* NEW: Pure white */
+  --quantum-off-white: #F8F8F8;       /* NEW: Off white */
+  --quantum-light-gray: #D3D3D3;      /* NEW: Light gray */
+  
+  --quantum-gradient-primary: linear-gradient(135deg, var(--quantum-pure-white), var(--quantum-light-gray));
+  --quantum-gradient-dark: linear-gradient(180deg, var(--quantum-matte-black) 0%, var(--quantum-charcoal) 100%);
+}
+
+/* Option 3: Charcoal with Electric Blue Accents */
+.quantum-theme-electric {
+  --quantum-obsidian: #0a0a0a;
+  --quantum-charcoal: #1a1a1a;
+  --quantum-electric-blue: #00BFFF;   /* NEW: Electric blue */
+  --quantum-electric-dark: #0099CC;   /* NEW: Darker electric blue */
+  --quantum-ice-blue: #B0E0E6;        /* NEW: Ice blue */
+  
+  --quantum-gradient-primary: linear-gradient(135deg, var(--quantum-electric-blue), var(--quantum-electric-dark));
+  --quantum-gradient-shimmer: linear-gradient(45deg, var(--quantum-electric-blue), var(--quantum-ice-blue), var(--quantum-electric-blue));
+}
+
+/* Option 4: Jet Black with Crimson Red Accents */
+.quantum-theme-crimson {
+  --quantum-obsidian: #0a0a0a;
+  --quantum-charcoal: #1a1a1a;
+  --quantum-crimson: #DC143C;         /* NEW: Crimson red */
+  --quantum-crimson-dark: #B22222;    /* NEW: Dark crimson */
+  --quantum-burgundy: #800020;        /* NEW: Burgundy */
+  
+  --quantum-gradient-primary: linear-gradient(135deg, var(--quantum-crimson), var(--quantum-crimson-dark));
+  --quantum-gradient-dark: linear-gradient(180deg, var(--quantum-obsidian) 0%, var(--quantum-burgundy) 20%, var(--quantum-charcoal) 100%);
+}
+
+/* Option 5: Midnight Black with Emerald Green Accents */
+.quantum-theme-emerald {
+  --quantum-obsidian: #0a0a0a;
+  --quantum-charcoal: #1a1a1a;
+  --quantum-emerald: #50C878;         /* NEW: Emerald green */
+  --quantum-emerald-dark: #228B22;    /* NEW: Forest green */
+  --quantum-mint: #98FB98;            /* NEW: Mint green */
+  
+  --quantum-gradient-primary: linear-gradient(135deg, var(--quantum-emerald), var(--quantum-emerald-dark));
+  --quantum-gradient-shimmer: linear-gradient(45deg, var(--quantum-emerald), var(--quantum-mint), var(--quantum-emerald));
+}

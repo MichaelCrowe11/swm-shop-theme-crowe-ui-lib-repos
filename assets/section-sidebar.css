@@ -4,6 +4,13 @@
 :root {
   --sidebar-width: 320px;
   --sidebar-mobile-width: 280px;
+  /* Silver theme colors */
+  --quantum-silver: #C0C0C0;
+  --quantum-silver-dark: #A8A8A8;
+  --quantum-platinum: #E5E4E2;
+  --quantum-charcoal: #1a1a1a;
+  --quantum-obsidian: #0a0a0a;
+  --quantum-cream: #FFF5DC;
 }
 
 /* Sidebar Hamburger Button */
@@ -23,10 +30,10 @@
 }
 
 .sidebar-hamburger:hover {
-  background: var(--quantum-gold, #D4AF37);
-  border-color: var(--quantum-gold, #D4AF37);
+  background: var(--quantum-silver, #C0C0C0);
+  border-color: var(--quantum-silver, #C0C0C0);
   transform: scale(1.05);
-  box-shadow: var(--quantum-shadow-lg, 0 8px 24px rgba(212, 175, 55, 0.2));
+  box-shadow: var(--quantum-shadow-lg, 0 8px 24px rgba(192, 192, 192, 0.2));
 }
 
 .sidebar-hamburger svg {
@@ -41,8 +48,8 @@
 }
 
 .sidebar-hamburger.active {
-  background: var(--quantum-gold, #D4AF37);
-  border-color: var(--quantum-gold, #D4AF37);
+  background: var(--quantum-silver, #C0C0C0);
+  border-color: var(--quantum-silver, #C0C0C0);
 }
 
 .sidebar-hamburger.active svg {
@@ -137,13 +144,14 @@
 .crowe-logo {
   width: 32px;
   height: 32px;
-  filter: brightness(0) saturate(100%) invert(85%) sepia(15%) saturate(1000%) hue-rotate(35deg);
   transition: all var(--quantum-transition-base);
+  /* Remove color filters to show original SVG colors */
 }
 
 .sidebar-brand-link:hover .crowe-logo {
-  filter: brightness(0) saturate(100%) invert(70%) sepia(50%) saturate(1000%) hue-rotate(35deg);
   transform: scale(1.1);
+  /* Add subtle glow effect instead of color change */
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
 }
 
 .brand-text {
@@ -151,11 +159,12 @@
   font-family: var(--quantum-font-display, 'Inter', sans-serif);
   font-weight: 700;
   font-size: 1.8rem;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.3);
 }
 
 .sidebar-brand-link:hover .brand-text {
-  color: var(--quantum-gold, #D4AF37);
+  color: var(--quantum-silver, #C0C0C0);
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.3);
 }
 
 .sidebar-toggle {
@@ -215,10 +224,10 @@
 }
 
 .nav-link:hover {
-  background: rgba(212, 175, 55, 0.1);
-  color: var(--quantum-gold, #D4AF37);
+  background: rgba(192, 192, 192, 0.1);
+  color: var(--quantum-silver, #C0C0C0);
   transform: translateX(8px);
-  box-shadow: inset 4px 0 0 var(--quantum-gold, #D4AF37);
+  box-shadow: inset 4px 0 0 var(--quantum-silver, #C0C0C0);
 }
 
 .nav-link.active {
