@@ -1,0 +1,241 @@
+/* ===== Quantum AI Chat Widget Styling ===== */
+
+.quantum-chat-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--quantum-space-sm, 0.5rem);
+}
+
+.quantum-chat-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--quantum-space-md, 1rem);
+  padding: var(--quantum-space-md, 1rem) var(--quantum-space-lg, 1.5rem);
+  background: var(--quantum-gradient-primary);
+  color: var(--quantum-obsidian, #0a0a0a);
+  border-radius: 50px;
+  box-shadow: var(--quantum-shadow-lg);
+  cursor: pointer;
+  transition: all var(--quantum-transition-base);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.quantum-chat-trigger:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--quantum-shadow-xl), 0 0 20px var(--quantum-gold);
+}
+
+.quantum-chat-trigger.quantum-activated {
+  animation: quantum-activation 0.6s ease-out;
+}
+
+@keyframes quantum-activation {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); box-shadow: 0 0 30px var(--quantum-gold); }
+  100% { transform: scale(1); }
+}
+
+.chat-trigger-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-icon {
+  width: 100%;
+  height: 100%;
+  color: var(--quantum-obsidian, #0a0a0a);
+  animation: quantum-float 3s ease-in-out infinite;
+}
+
+@keyframes quantum-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
+
+.chat-trigger-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chat-label {
+  font-family: var(--quantum-font-display, 'Inter', sans-serif);
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--quantum-obsidian, #0a0a0a);
+}
+
+.chat-sublabel {
+  font-family: var(--quantum-font-primary, 'Inter', sans-serif);
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: rgba(10, 10, 10, 0.7);
+}
+
+.quantum-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--quantum-gold) 0%, transparent 70%);
+  border-radius: 50px;
+  opacity: 0.3;
+  animation: quantum-pulse 2s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+@keyframes quantum-pulse {
+  0%, 100% { 
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.1;
+  }
+}
+
+.quantum-chat-status {
+  display: flex;
+  align-items: center;
+  gap: var(--quantum-space-xs, 0.25rem);
+  padding: var(--quantum-space-xs, 0.25rem) var(--quantum-space-sm, 0.5rem);
+  background: rgba(26, 26, 26, 0.9);
+  color: var(--quantum-cream, #FFF5DC);
+  border-radius: 20px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--quantum-success, #4CAF50);
+  border-radius: 50%;
+  animation: quantum-heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes quantum-heartbeat {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.status-text {
+  font-family: var(--quantum-font-primary, 'Inter', sans-serif);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* ElevenLabs Widget Customization */
+.quantum-elevenlabs-widget {
+  --elevenlabs-primary-color: var(--quantum-gold, #D4AF37) !important;
+  --elevenlabs-background-color: var(--quantum-charcoal, #1a1a1a) !important;
+  --elevenlabs-text-color: var(--quantum-cream, #FFF5DC) !important;
+  --elevenlabs-border-color: var(--quantum-border-color, rgba(212, 175, 55, 0.2)) !important;
+}
+
+/* Override ElevenLabs default styling */
+elevenlabs-convai {
+  --primary-color: var(--quantum-gold) !important;
+  --background-color: var(--quantum-charcoal) !important;
+  --text-color: var(--quantum-cream) !important;
+  --border-radius: 12px !important;
+  --shadow: var(--quantum-shadow-xl) !important;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .quantum-chat-container {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .quantum-chat-trigger {
+    padding: var(--quantum-space-sm, 0.5rem) var(--quantum-space-md, 1rem);
+    gap: var(--quantum-space-sm, 0.5rem);
+  }
+  
+  .chat-trigger-text {
+    display: none;
+  }
+  
+  .chat-trigger-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .quantum-chat-trigger {
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    justify-content: center;
+  }
+}
+
+/* Quantum Glow Effects */
+.quantum-chat-trigger::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--quantum-gold), var(--quantum-cream), var(--quantum-gold));
+  border-radius: 52px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--quantum-transition-base);
+}
+
+.quantum-chat-trigger:hover::before {
+  opacity: 0.6;
+  animation: quantum-border-glow 2s ease-in-out infinite;
+}
+
+@keyframes quantum-border-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.9; }
+}
+
+/* Integration with existing sidebar */
+@media screen and (min-width: 768px) {
+  .crowe-sidebar.open ~ .quantum-chat-container {
+    right: 350px; /* Adjust based on sidebar width */
+    transition: right var(--quantum-transition-base);
+  }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .quantum-chat-trigger {
+    backdrop-filter: blur(20px);
+    background: var(--quantum-gradient-primary);
+  }
+  
+  .quantum-chat-status {
+    background: rgba(10, 10, 10, 0.95);
+  }
+}
