@@ -1,0 +1,403 @@
+/* =========================================
+   CROWE LOGIC™ COMPLETE THEME INTEGRATION
+   Myco-intelligent commerce interface
+   ========================================= */
+
+/* Enhanced Design Tokens - Production Ready */
+:root {
+  /* Primary Crowe Logic Brand Colors */
+  --clr-bg-dark: #17141E;      /* Obsidian Charcoal */
+  --clr-fg-light: #F4F4F2;     /* Mycelium White */
+  --clr-accent: #C6A351;       /* Cultivar Gold */
+  --clr-secondary: #C9B88A;    /* Golden Clay */
+  --clr-text: #E0E0E0;         /* Light text */
+  --clr-black: #0D0D0D;        /* Rich Contrast */
+  
+  /* Typography System */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --text-base: 16px;
+  --text-sm: 14px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+  --text-5xl: 48px;
+  --line-height-base: 1.6;
+  --line-height-tight: 1.25;
+  --line-height-relaxed: 1.75;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Layout & Spacing System */
+  --spacing-section: 2rem;
+  --spacing-component: 1.5rem;
+  --spacing-element: 1rem;
+  --spacing-tight: 0.5rem;
+  --sidebar-width: 260px;
+  
+  /* Border Radius System */
+  --radius-sm: 6px;
+  --radius-base: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+  
+  /* Shadows & Effects */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+
+  /* Override Dawn's default colors for seamless integration */
+  --color-background: 244, 244, 242; /* --clr-fg-light in RGB */
+  --color-foreground: 13, 13, 13;    /* --clr-black in RGB */
+  --color-base-accent-1: 198, 163, 81; /* --clr-accent in RGB */
+  --color-base-accent-2: 201, 184, 138; /* --clr-secondary in RGB */
+}
+
+/* =========================================
+   GLOBAL THEME OVERRIDES
+   ========================================= */
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--clr-fg-light);
+  color: var(--clr-black);
+  line-height: var(--line-height-base);
+}
+
+/* Enhanced Typography System */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--clr-accent);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.025em;
+  line-height: var(--line-height-tight);
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); }
+
+/* Link Styles */
+a {
+  color: var(--clr-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--clr-secondary);
+}
+
+/* =========================================
+   ENHANCED BUTTON SYSTEM
+   ========================================= */
+
+.btn,
+.button,
+button,
+input[type="submit"],
+.shopify-payment-button__button {
+  background: var(--clr-accent);
+  color: var(--clr-black);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-base);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-base);
+}
+
+.btn:hover,
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+.shopify-payment-button__button:hover {
+  background: var(--clr-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--clr-accent);
+  border: 2px solid var(--clr-accent);
+}
+
+.btn--secondary:hover {
+  background: var(--clr-accent);
+  color: var(--clr-black);
+}
+
+/* =========================================
+   HEADER ENHANCEMENTS
+   ========================================= */
+
+.header {
+  background: rgba(244, 244, 242, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--clr-accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.header__heading-logo {
+  transition: transform var(--transition-base);
+}
+
+.header__heading-logo:hover {
+  transform: scale(1.05);
+}
+
+/* =========================================
+   PRODUCT CARD SYSTEM
+   ========================================= */
+
+.card-wrapper {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-base);
+  transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.card-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.card__content {
+  padding: var(--spacing-component);
+}
+
+.card__information {
+  padding: var(--spacing-element);
+}
+
+.price {
+  color: var(--clr-accent);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-lg);
+}
+
+/* =========================================
+   SIDEBAR LAYOUT SYSTEM
+   ========================================= */
+
+.crowe-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--clr-bg-dark);
+  color: var(--clr-text);
+  padding: var(--spacing-section);
+  z-index: 1000;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform var(--transition-base);
+}
+
+.crowe-sidebar.is-open {
+  transform: translateX(0);
+}
+
+.crowe-sidebar__nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.crowe-sidebar__nav-item {
+  margin-bottom: var(--spacing-element);
+}
+
+.crowe-sidebar__nav-link {
+  display: block;
+  color: var(--clr-text);
+  padding: var(--spacing-tight) var(--spacing-element);
+  border-radius: var(--radius-base);
+  transition: all var(--transition-fast);
+}
+
+.crowe-sidebar__nav-link:hover,
+.crowe-sidebar__nav-link.is-active {
+  background: var(--clr-accent);
+  color: var(--clr-black);
+}
+
+/* =========================================
+   CROWE LOGIC PANEL INTEGRATION
+   ========================================= */
+
+.crowe-logic-wrapper {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  background: var(--clr-bg-dark);
+  margin: var(--spacing-section) 0;
+}
+
+.crowe-logic-iframe {
+  width: 100%;
+  height: 750px;
+  border: none;
+  border-radius: var(--radius-lg);
+}
+
+/* =========================================
+   METAFIELD CALLOUT STYLES
+   ========================================= */
+
+.metafield-callout {
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-secondary));
+  color: var(--clr-black);
+  padding: var(--spacing-component);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-element) 0;
+  box-shadow: var(--shadow-base);
+}
+
+.metafield-callout__title {
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-tight);
+}
+
+.metafield-callout__content {
+  opacity: 0.9;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN SYSTEM
+   ========================================= */
+
+@media screen and (max-width: 768px) {
+  :root {
+    --spacing-section: 1.5rem;
+    --spacing-component: 1rem;
+    --sidebar-width: 280px;
+  }
+  
+  .crowe-logic-iframe {
+    height: 600px;
+  }
+  
+  .header__heading-logo {
+    height: 40px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  :root {
+    --spacing-section: 1rem;
+    --spacing-component: 0.75rem;
+  }
+  
+  .crowe-logic-iframe {
+    height: 500px;
+  }
+  
+  .btn,
+  .button,
+  button {
+    padding: 0.5rem 1rem;
+    font-size: var(--text-sm);
+  }
+}
+
+/* =========================================
+   UTILITY CLASSES
+   ========================================= */
+
+.text-crowe-accent { color: var(--clr-accent) !important; }
+.text-crowe-secondary { color: var(--clr-secondary) !important; }
+.text-crowe-dark { color: var(--clr-bg-dark) !important; }
+.text-crowe-light { color: var(--clr-fg-light) !important; }
+
+.bg-crowe-accent { background-color: var(--clr-accent) !important; }
+.bg-crowe-secondary { background-color: var(--clr-secondary) !important; }
+.bg-crowe-dark { background-color: var(--clr-bg-dark) !important; }
+.bg-crowe-light { background-color: var(--clr-fg-light) !important; }
+
+.border-crowe-accent { border-color: var(--clr-accent) !important; }
+.border-crowe-secondary { border-color: var(--clr-secondary) !important; }
+
+.crowe-shadow { box-shadow: var(--shadow-base) !important; }
+.crowe-shadow-lg { box-shadow: var(--shadow-lg) !important; }
+.crowe-shadow-xl { box-shadow: var(--shadow-xl) !important; }
+
+.crowe-radius { border-radius: var(--radius-base) !important; }
+.crowe-radius-lg { border-radius: var(--radius-lg) !important; }
+.crowe-radius-xl { border-radius: var(--radius-xl) !important; }
+
+/* =========================================
+   ANIMATION SYSTEM
+   ========================================= */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+/* =========================================
+   DARK MODE SUPPORT
+   ========================================= */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: 23, 20, 30;    /* Dark mode background */
+    --color-foreground: 224, 224, 224; /* Dark mode text */
+  }
+  
+  body {
+    background-color: var(--clr-bg-dark);
+    color: var(--clr-text);
+  }
+  
+  .card-wrapper {
+    background: rgba(244, 244, 242, 0.05);
+    border: 1px solid var(--clr-accent);
+  }
+}

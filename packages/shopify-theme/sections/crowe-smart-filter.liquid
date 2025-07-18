@@ -1,0 +1,974 @@
+{%- comment -%}
+🎯 Crowe Logic™ Smart Filter System
+Advanced filtering with animations and intelligent suggestions
+{%- endcomment -%}
+
+<style>
+/* 🔍 Smart Filter Container */
+.crowe-smart-filter {
+  background: linear-gradient(135deg, 
+    rgba(244, 244, 242, 0.95) 0%,
+    rgba(244, 244, 242, 0.98) 100%
+  );
+  border: 1px solid rgba(198, 163, 81, 0.1);
+  border-radius: 24px;
+  padding: 32px;
+  margin: 32px 0;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 0 40px rgba(198, 163, 81, 0.05);
+  position: sticky;
+  top: 100px;
+  z-index: 100;
+}
+
+/* 🎨 Filter Header */
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(198, 163, 81, 0.1);
+}
+
+.filter-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--clr-accent);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.filter-title svg {
+  width: 28px;
+  height: 28px;
+}
+
+.filter-count {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  background: rgba(198, 163, 81, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.filter-clear {
+  color: rgba(239, 68, 68, 0.8);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-clear:hover {
+  background: rgba(239, 68, 68, 0.2);
+  transform: translateY(-2px);
+}
+
+/* 🎛️ Filter Controls */
+.filter-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.filter-group {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(198, 163, 81, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.filter-group:hover {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(198, 163, 81, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--clr-accent);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-group-title svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 🎚️ Range Slider */
+.price-range-container {
+  margin-bottom: 16px;
+}
+
+.price-range-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(to right, 
+    rgba(198, 163, 81, 0.3) 0%,
+    rgba(198, 163, 81, 0.8) 100%
+  );
+  outline: none;
+  margin: 16px 0;
+}
+
+.price-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--clr-accent);
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(198, 163, 81, 0.3);
+  transition: all 0.3s ease;
+}
+
+.price-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 6px 20px rgba(198, 163, 81, 0.4);
+}
+
+.price-range-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--clr-accent);
+}
+
+/* 🏷️ Filter Tags */
+.filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-tag {
+  padding: 8px 16px;
+  border: 2px solid rgba(198, 163, 81, 0.2);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--clr-accent);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(198, 163, 81, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.filter-tag:hover::before {
+  left: 100%;
+}
+
+.filter-tag:hover {
+  background: rgba(198, 163, 81, 0.1);
+  border-color: rgba(198, 163, 81, 0.4);
+  transform: translateY(-2px);
+}
+
+.filter-tag.active {
+  background: var(--clr-accent);
+  color: var(--clr-bg-dark);
+  border-color: var(--clr-accent);
+}
+
+.filter-tag.active:hover {
+  background: var(--clr-secondary);
+}
+
+/* 🔘 Custom Checkboxes */
+.filter-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 12px;
+}
+
+.filter-checkbox:hover {
+  background: rgba(198, 163, 81, 0.05);
+}
+
+.filter-checkbox input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(198, 163, 81, 0.3);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.filter-checkbox input[type="checkbox"]:checked {
+  background: var(--clr-accent);
+  border-color: var(--clr-accent);
+}
+
+.filter-checkbox input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--clr-bg-dark);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.filter-checkbox-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+  flex: 1;
+}
+
+.filter-checkbox-count {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+  background: rgba(198, 163, 81, 0.1);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+/* 🎯 Smart Suggestions */
+.smart-suggestions {
+  background: linear-gradient(135deg, 
+    rgba(198, 163, 81, 0.05) 0%,
+    rgba(201, 184, 138, 0.05) 100%
+  );
+  border: 1px solid rgba(198, 163, 81, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.suggestions-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--clr-accent);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.suggestions-title svg {
+  width: 20px;
+  height: 20px;
+}
+
+.suggestion-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.suggestion-item {
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(198, 163, 81, 0.2);
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--clr-accent);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.suggestion-item:hover {
+  background: rgba(198, 163, 81, 0.1);
+  border-color: rgba(198, 163, 81, 0.3);
+  transform: translateY(-2px);
+}
+
+/* 🎮 Filter Actions */
+.filter-actions {
+  display: flex;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(198, 163, 81, 0.1);
+  margin-top: 24px;
+}
+
+.filter-apply {
+  flex: 1;
+  padding: 14px 24px;
+  background: var(--clr-accent);
+  color: var(--clr-bg-dark);
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-apply::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.filter-apply:hover::before {
+  left: 100%;
+}
+
+.filter-apply:hover {
+  background: var(--clr-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(198, 163, 81, 0.3);
+}
+
+.filter-reset {
+  padding: 14px 24px;
+  background: transparent;
+  color: var(--clr-accent);
+  border: 2px solid var(--clr-accent);
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-reset:hover {
+  background: var(--clr-accent);
+  color: var(--clr-bg-dark);
+  transform: translateY(-2px);
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .crowe-smart-filter {
+    position: relative;
+    top: 0;
+    padding: 24px;
+    margin: 16px 0;
+  }
+  
+  .filter-controls {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .filter-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .filter-actions {
+    flex-direction: column;
+  }
+  
+  .filter-title {
+    font-size: 20px;
+  }
+}
+
+/* 🎨 Loading States */
+.filter-loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.filter-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(198, 163, 81, 0.1),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+</style>
+
+<div class="crowe-smart-filter" id="croweSmartFilter">
+  <!-- Filter Header -->
+  <div class="filter-header">
+    <h3 class="filter-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46 22,3"></polygon>
+      </svg>
+      Smart Filter
+    </h3>
+    <div class="filter-count" id="filterCount">
+      {{ collection.products_count }} products
+    </div>
+    <button class="filter-clear" id="filterClear" onclick="clearAllFilters()">
+      Clear All
+    </button>
+  </div>
+
+  <!-- Filter Controls -->
+  <div class="filter-controls">
+    
+    <!-- Price Range -->
+    <div class="filter-group">
+      <div class="filter-group-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <line x1="12" y1="1" x2="12" y2="23"></line>
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        </svg>
+        Price Range
+      </div>
+      <div class="price-range-container">
+        <input 
+          type="range" 
+          class="price-range-slider" 
+          id="priceRange"
+          min="0" 
+          max="1000" 
+          value="500"
+          oninput="updatePriceRange(this.value)"
+        />
+        <div class="price-range-values">
+          <span>$0</span>
+          <span id="priceValue">$500</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Difficulty Level -->
+    <div class="filter-group">
+      <div class="filter-group-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon>
+        </svg>
+        Difficulty Level
+      </div>
+      <div class="filter-tags">
+        <span class="filter-tag" data-filter="difficulty" data-value="beginner" onclick="toggleFilter(this)">
+          Beginner
+        </span>
+        <span class="filter-tag" data-filter="difficulty" data-value="intermediate" onclick="toggleFilter(this)">
+          Intermediate
+        </span>
+        <span class="filter-tag" data-filter="difficulty" data-value="advanced" onclick="toggleFilter(this)">
+          Advanced
+        </span>
+      </div>
+    </div>
+
+    <!-- Product Type -->
+    <div class="filter-group">
+      <div class="filter-group-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 2L2 7v10c0 5.55 3.84 10 9 10s9-4.45 9-10V7L12 2z"></path>
+        </svg>
+        Product Type
+      </div>
+      <div class="filter-checkbox-group">
+        <label class="filter-checkbox">
+          <input type="checkbox" data-filter="type" data-value="growing-kit" onchange="toggleCheckboxFilter(this)">
+          <span class="filter-checkbox-label">Growing Kits</span>
+          <span class="filter-checkbox-count">{{ collection.products | where: 'type', 'growing-kit' | size }}</span>
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" data-filter="type" data-value="substrate" onchange="toggleCheckboxFilter(this)">
+          <span class="filter-checkbox-label">Substrates</span>
+          <span class="filter-checkbox-count">{{ collection.products | where: 'type', 'substrate' | size }}</span>
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" data-filter="type" data-value="spores" onchange="toggleCheckboxFilter(this)">
+          <span class="filter-checkbox-label">Spores</span>
+          <span class="filter-checkbox-count">{{ collection.products | where: 'type', 'spores' | size }}</span>
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" data-filter="type" data-value="equipment" onchange="toggleCheckboxFilter(this)">
+          <span class="filter-checkbox-label">Equipment</span>
+          <span class="filter-checkbox-count">{{ collection.products | where: 'type', 'equipment' | size }}</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Growing Season -->
+    <div class="filter-group">
+      <div class="filter-group-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        Growing Season
+      </div>
+      <div class="filter-tags">
+        <span class="filter-tag" data-filter="season" data-value="spring" onclick="toggleFilter(this)">
+          Spring
+        </span>
+        <span class="filter-tag" data-filter="season" data-value="summer" onclick="toggleFilter(this)">
+          Summer
+        </span>
+        <span class="filter-tag" data-filter="season" data-value="fall" onclick="toggleFilter(this)">
+          Fall
+        </span>
+        <span class="filter-tag" data-filter="season" data-value="winter" onclick="toggleFilter(this)">
+          Winter
+        </span>
+        <span class="filter-tag" data-filter="season" data-value="year-round" onclick="toggleFilter(this)">
+          Year-Round
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Smart Suggestions -->
+  <div class="smart-suggestions">
+    <div class="suggestions-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M9 11H1v12h8V11z"></path>
+        <path d="M23 11h-8v12h8V11z"></path>
+        <path d="M15 7h-6v4h6V7z"></path>
+        <path d="M9 3H1v4h8V3z"></path>
+      </svg>
+      Smart Suggestions
+    </div>
+    <div class="suggestion-items">
+      <span class="suggestion-item" onclick="applySuggestion('beginner-friendly')">
+        Beginner Friendly
+      </span>
+      <span class="suggestion-item" onclick="applySuggestion('high-yield')">
+        High Yield
+      </span>
+      <span class="suggestion-item" onclick="applySuggestion('fast-growing')">
+        Fast Growing
+      </span>
+      <span class="suggestion-item" onclick="applySuggestion('exotic-varieties')">
+        Exotic Varieties
+      </span>
+      <span class="suggestion-item" onclick="applySuggestion('organic-certified')">
+        Organic Certified
+      </span>
+    </div>
+  </div>
+
+  <!-- Filter Actions -->
+  <div class="filter-actions">
+    <button class="filter-apply" onclick="applyFilters()">
+      Apply Filters
+    </button>
+    <button class="filter-reset" onclick="resetFilters()">
+      Reset
+    </button>
+  </div>
+</div>
+
+<script>
+// 🎯 Smart Filter System JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+  let activeFilters = {
+    price: { min: 0, max: 1000 },
+    difficulty: [],
+    type: [],
+    season: []
+  };
+
+  let products = [];
+  let filteredProducts = [];
+
+  // Initialize filter system
+  function initializeFilters() {
+    // Get all products from the page
+    const productElements = document.querySelectorAll('.crowe-product-card-ultra');
+    products = Array.from(productElements).map(element => ({
+      element: element,
+      id: element.dataset.productId,
+      price: parseFloat(element.querySelector('.card-price').textContent.replace(/[^0-9.-]+/g,"")),
+      difficulty: element.dataset.difficulty || 'beginner',
+      type: element.dataset.type || 'growing-kit',
+      season: element.dataset.season || 'year-round'
+    }));
+    
+    filteredProducts = [...products];
+    updateFilterCount();
+  }
+
+  // Update price range
+  window.updatePriceRange = function(value) {
+    const priceValue = document.getElementById('priceValue');
+    priceValue.textContent = '$' + value;
+    activeFilters.price.max = parseInt(value);
+  };
+
+  // Toggle filter tags
+  window.toggleFilter = function(element) {
+    const filterType = element.dataset.filter;
+    const filterValue = element.dataset.value;
+    
+    element.classList.toggle('active');
+    
+    if (element.classList.contains('active')) {
+      if (!activeFilters[filterType].includes(filterValue)) {
+        activeFilters[filterType].push(filterValue);
+      }
+    } else {
+      activeFilters[filterType] = activeFilters[filterType].filter(item => item !== filterValue);
+    }
+    
+    updateFilterPreview();
+  };
+
+  // Toggle checkbox filters
+  window.toggleCheckboxFilter = function(element) {
+    const filterType = element.dataset.filter;
+    const filterValue = element.dataset.value;
+    
+    if (element.checked) {
+      if (!activeFilters[filterType].includes(filterValue)) {
+        activeFilters[filterType].push(filterValue);
+      }
+    } else {
+      activeFilters[filterType] = activeFilters[filterType].filter(item => item !== filterValue);
+    }
+    
+    updateFilterPreview();
+  };
+
+  // Apply suggestion
+  window.applySuggestion = function(suggestion) {
+    clearAllFilters();
+    
+    switch(suggestion) {
+      case 'beginner-friendly':
+        activeFilters.difficulty = ['beginner'];
+        break;
+      case 'high-yield':
+        activeFilters.type = ['growing-kit'];
+        break;
+      case 'fast-growing':
+        activeFilters.difficulty = ['beginner', 'intermediate'];
+        break;
+      case 'exotic-varieties':
+        activeFilters.difficulty = ['advanced'];
+        break;
+      case 'organic-certified':
+        activeFilters.type = ['growing-kit', 'substrate'];
+        break;
+    }
+    
+    updateFilterUI();
+    applyFilters();
+  };
+
+  // Update filter UI based on active filters
+  function updateFilterUI() {
+    // Update tags
+    document.querySelectorAll('.filter-tag').forEach(tag => {
+      const filterType = tag.dataset.filter;
+      const filterValue = tag.dataset.value;
+      
+      if (activeFilters[filterType] && activeFilters[filterType].includes(filterValue)) {
+        tag.classList.add('active');
+      } else {
+        tag.classList.remove('active');
+      }
+    });
+
+    // Update checkboxes
+    document.querySelectorAll('.filter-checkbox input').forEach(checkbox => {
+      const filterType = checkbox.dataset.filter;
+      const filterValue = checkbox.dataset.value;
+      
+      checkbox.checked = activeFilters[filterType] && activeFilters[filterType].includes(filterValue);
+    });
+  }
+
+  // Update filter preview
+  function updateFilterPreview() {
+    const tempFiltered = filterProducts(activeFilters);
+    const count = tempFiltered.length;
+    
+    document.getElementById('filterCount').textContent = count + ' products';
+    
+    // Add loading state
+    const filterContainer = document.getElementById('croweSmartFilter');
+    filterContainer.classList.add('filter-loading');
+    
+    setTimeout(() => {
+      filterContainer.classList.remove('filter-loading');
+    }, 500);
+  }
+
+  // Apply filters
+  window.applyFilters = function() {
+    filteredProducts = filterProducts(activeFilters);
+    
+    // Hide all products first
+    products.forEach(product => {
+      product.element.style.display = 'none';
+      product.element.style.opacity = '0';
+      product.element.style.transform = 'translateY(20px)';
+    });
+    
+    // Show filtered products with animation
+    filteredProducts.forEach((product, index) => {
+      setTimeout(() => {
+        product.element.style.display = 'block';
+        product.element.style.opacity = '1';
+        product.element.style.transform = 'translateY(0)';
+      }, index * 50);
+    });
+    
+    updateFilterCount();
+    showNotification(`Found ${filteredProducts.length} products`, 'success');
+  };
+
+  // Filter products based on criteria
+  function filterProducts(filters) {
+    return products.filter(product => {
+      // Price filter
+      if (product.price > filters.price.max) return false;
+      
+      // Difficulty filter
+      if (filters.difficulty.length > 0 && !filters.difficulty.includes(product.difficulty)) return false;
+      
+      // Type filter
+      if (filters.type.length > 0 && !filters.type.includes(product.type)) return false;
+      
+      // Season filter
+      if (filters.season.length > 0 && !filters.season.includes(product.season)) return false;
+      
+      return true;
+    });
+  }
+
+  // Clear all filters
+  window.clearAllFilters = function() {
+    activeFilters = {
+      price: { min: 0, max: 1000 },
+      difficulty: [],
+      type: [],
+      season: []
+    };
+    
+    // Reset UI
+    document.querySelectorAll('.filter-tag').forEach(tag => {
+      tag.classList.remove('active');
+    });
+    
+    document.querySelectorAll('.filter-checkbox input').forEach(checkbox => {
+      checkbox.checked = false;
+    });
+    
+    document.getElementById('priceRange').value = 1000;
+    document.getElementById('priceValue').textContent = '$1000';
+    
+    applyFilters();
+  };
+
+  // Reset filters
+  window.resetFilters = function() {
+    clearAllFilters();
+    showNotification('Filters reset', 'info');
+  };
+
+  // Update filter count
+  function updateFilterCount() {
+    document.getElementById('filterCount').textContent = filteredProducts.length + ' products';
+  }
+
+  // Show notification
+  function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.className = `crowe-notification crowe-notification--${type}`;
+    notification.textContent = message;
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    `;
+    
+    if (type === 'success') {
+      notification.style.background = 'linear-gradient(135deg, rgba(34, 197, 94, 0.9), rgba(21, 128, 61, 0.9))';
+    } else if (type === 'error') {
+      notification.style.background = 'linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(185, 28, 28, 0.9))';
+    } else {
+      notification.style.background = 'linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(37, 99, 235, 0.9))';
+    }
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.style.opacity = '1';
+      notification.style.transform = 'translateY(0)';
+    }, 10);
+    
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      notification.style.transform = 'translateY(-10px)';
+      setTimeout(() => {
+        document.body.removeChild(notification);
+      }, 300);
+    }, 3000);
+  }
+  
+  // Initialize on page load
+  initializeFilters();
+});
+</script>
+
+{% schema %}
+{
+  "name": "Smart Filter System",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "🎯 Filter Configuration"
+    },
+    {
+      "type": "range",
+      "id": "max_price",
+      "min": 100,
+      "max": 5000,
+      "step": 100,
+      "unit": "$",
+      "label": "Maximum price range",
+      "default": 1000
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_price_filter",
+      "label": "Enable price filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_difficulty_filter",
+      "label": "Enable difficulty filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_type_filter",
+      "label": "Enable product type filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_season_filter",
+      "label": "Enable season filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_suggestions",
+      "label": "Show smart suggestions",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_filter",
+      "label": "Make filter sticky",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "🎨 Display Settings"
+    },
+    {
+      "type": "color",
+      "id": "filter_background",
+      "label": "Filter background color",
+      "default": "#F4F4F2"
+    },
+    {
+      "type": "color",
+      "id": "filter_accent",
+      "label": "Filter accent color",
+      "default": "#C6A351"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Smart Filter System"
+    }
+  ]
+}
+{% endschema %}

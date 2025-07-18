@@ -1,0 +1,639 @@
+{%- comment -%}
+🏆 Crowe Logic™ Premium Collection Showcase
+High-converting collection grid with glass morphism design
+{%- endcomment -%}
+
+<style>
+/* 🌟 Premium Collection Showcase */
+.crowe-collection-showcase {
+  background: linear-gradient(135deg, 
+    rgba(23, 20, 30, 0.95) 0%,
+    rgba(198, 163, 81, 0.02) 25%,
+    rgba(23, 20, 30, 0.98) 50%,
+    rgba(201, 184, 138, 0.015) 75%,
+    rgba(23, 20, 30, 0.95) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(198, 163, 81, 0.15);
+  border-radius: 24px;
+  padding: 40px;
+  margin: 40px 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(198, 163, 81, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.crowe-collection-showcase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(198, 163, 81, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(201, 184, 138, 0.08) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 0%, rgba(198, 163, 81, 0.02) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 📖 Section Header */
+.collection-header {
+  text-align: center;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.collection-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--clr-fg-light);
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, 
+    var(--clr-accent) 0%,
+    #E4CC88 50%,
+    var(--clr-accent) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(198, 163, 81, 0.3);
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.collection-subtitle {
+  font-size: 18px;
+  color: rgba(244, 244, 242, 0.8);
+  max-width: 600px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+
+.collection-badges {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.collection-badge {
+  padding: 8px 16px;
+  background: rgba(198, 163, 81, 0.1);
+  border: 1px solid rgba(198, 163, 81, 0.3);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--clr-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(198, 163, 81, 0.1);
+  transition: all 0.3s ease;
+}
+
+.collection-badge:hover {
+  background: rgba(198, 163, 81, 0.15);
+  border-color: rgba(198, 163, 81, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(198, 163, 81, 0.2);
+}
+
+/* 🎯 Product Grid */
+.premium-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+/* 🏅 Featured Product Card */
+.featured-product {
+  grid-column: span 2;
+  background: linear-gradient(135deg, 
+    rgba(198, 163, 81, 0.1) 0%,
+    rgba(23, 20, 30, 0.8) 50%,
+    rgba(201, 184, 138, 0.05) 100%
+  );
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(198, 163, 81, 0.3);
+  border-radius: 24px;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(198, 163, 81, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.featured-product::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(198, 163, 81, 0.1) 45deg,
+    transparent 90deg,
+    rgba(201, 184, 138, 0.08) 135deg,
+    transparent 180deg,
+    rgba(198, 163, 81, 0.1) 225deg,
+    transparent 270deg,
+    rgba(201, 184, 138, 0.08) 315deg,
+    transparent 360deg
+  );
+  animation: rotate 10s linear infinite;
+  z-index: -1;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.featured-product:hover {
+  transform: translateY(-8px) scale(1.01);
+  border-color: rgba(198, 163, 81, 0.5);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(198, 163, 81, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* 🎨 Featured Product Layout */
+.featured-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 400px;
+  position: relative;
+  z-index: 2;
+}
+
+.featured-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px 0 0 20px;
+}
+
+.featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease;
+  filter: contrast(1.1) saturate(1.2);
+}
+
+.featured-product:hover .featured-image img {
+  transform: scale(1.05);
+  filter: contrast(1.2) saturate(1.3) brightness(1.1);
+}
+
+.featured-info {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.featured-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, 
+    rgba(198, 163, 81, 0.9) 0%,
+    rgba(201, 184, 138, 0.8) 100%
+  );
+  border: 1px solid rgba(198, 163, 81, 0.4);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--clr-bg-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(198, 163, 81, 0.3);
+}
+
+.featured-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--clr-fg-light);
+  margin-bottom: 12px;
+  line-height: 1.3;
+  text-shadow: 0 0 20px rgba(198, 163, 81, 0.3);
+}
+
+.featured-description {
+  font-size: 16px;
+  color: rgba(244, 244, 242, 0.8);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.featured-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--clr-accent);
+  margin-bottom: 24px;
+  text-shadow: 0 0 15px rgba(198, 163, 81, 0.4);
+}
+
+.featured-cta {
+  background: linear-gradient(135deg, 
+    rgba(198, 163, 81, 0.9) 0%,
+    rgba(201, 184, 138, 0.8) 100%
+  );
+  border: 1px solid rgba(198, 163, 81, 0.4);
+  color: var(--clr-bg-dark);
+  padding: 16px 32px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 25px rgba(198, 163, 81, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  align-self: flex-start;
+}
+
+.featured-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.featured-cta:hover::before {
+  left: 100%;
+}
+
+.featured-cta:hover {
+  background: linear-gradient(135deg, 
+    rgba(198, 163, 81, 1) 0%,
+    rgba(201, 184, 138, 0.9) 100%
+  );
+  box-shadow: 
+    0 12px 35px rgba(198, 163, 81, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+/* 🎲 Regular Product Cards */
+.regular-product {
+  background: linear-gradient(135deg, 
+    rgba(23, 20, 30, 0.8) 0%,
+    rgba(198, 163, 81, 0.03) 50%,
+    rgba(23, 20, 30, 0.85) 100%
+  );
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(198, 163, 81, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(198, 163, 81, 0.08);
+}
+
+.regular-product:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(198, 163, 81, 0.4);
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(198, 163, 81, 0.15);
+}
+
+/* 🔥 Interactive Elements */
+.view-all-cta {
+  text-align: center;
+  margin-top: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(23, 20, 30, 0.8);
+  border: 2px solid rgba(198, 163, 81, 0.3);
+  color: var(--clr-accent);
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(15px);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(198, 163, 81, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.view-all-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(198, 163, 81, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.view-all-btn:hover::before {
+  left: 100%;
+}
+
+.view-all-btn:hover {
+  background: rgba(198, 163, 81, 0.1);
+  border-color: rgba(198, 163, 81, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(198, 163, 81, 0.2);
+}
+
+.view-all-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.view-all-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 1024px) {
+  .featured-product {
+    grid-column: span 1;
+  }
+  
+  .featured-content {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .featured-image {
+    height: 250px;
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .featured-info {
+    padding: 30px;
+  }
+  
+  .featured-title {
+    font-size: 24px;
+  }
+  
+  .featured-price {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .crowe-collection-showcase {
+    padding: 24px;
+    margin: 24px 0;
+    border-radius: 20px;
+  }
+  
+  .collection-title {
+    font-size: 32px;
+  }
+  
+  .premium-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .featured-content {
+    height: auto;
+  }
+  
+  .featured-image {
+    height: 200px;
+  }
+  
+  .featured-info {
+    padding: 24px;
+  }
+  
+  .featured-title {
+    font-size: 20px;
+  }
+  
+  .collection-badges {
+    gap: 8px;
+  }
+  
+  .collection-badge {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+}
+</style>
+
+<section class="crowe-collection-showcase">
+  <!-- Collection Header -->
+  <div class="collection-header">
+    <h2 class="collection-title">{{ section.settings.title | default: 'Premium Collection' }}</h2>
+    
+    {%- if section.settings.subtitle -%}
+      <p class="collection-subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+    
+    <div class="collection-badges">
+      <span class="collection-badge">🌱 Organic Certified</span>
+      <span class="collection-badge">🤖 AI Curated</span>
+      <span class="collection-badge">🚀 High Yield</span>
+      <span class="collection-badge">⭐ Expert Recommended</span>
+    </div>
+  </div>
+  
+  <!-- Product Grid -->
+  <div class="premium-grid">
+    
+    {%- assign collection = collections[section.settings.collection] -%}
+    {%- if collection == blank -%}
+      {%- assign collection = collections.all -%}
+    {%- endif -%}
+    
+    {%- for product in collection.products limit: section.settings.products_to_show -%}
+      
+      {%- if forloop.first and section.settings.featured_first -%}
+        <!-- Featured Product -->
+        <article class="featured-product">
+          <div class="featured-content">
+            <div class="featured-image">
+              {%- if product.featured_media -%}
+                <img 
+                  src="{{ product.featured_media | image_url: width: 600 }}"
+                  alt="{{ product.featured_media.alt | escape }}"
+                  loading="lazy"
+                  width="600"
+                  height="400"
+                />
+              {%- endif -%}
+            </div>
+            
+            <div class="featured-info">
+              <div class="featured-badge">⭐ Featured</div>
+              
+              <h3 class="featured-title">{{ product.title | escape }}</h3>
+              
+              {%- if product.description -%}
+                <p class="featured-description">
+                  {{ product.description | strip_html | truncate: 120 }}
+                </p>
+              {%- endif -%}
+              
+              <div class="featured-price">
+                {{ product.price | money }}
+                {%- if product.compare_at_price > product.price -%}
+                  <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                {%- endif -%}
+              </div>
+              
+              <a href="{{ product.url }}" class="featured-cta">
+                Explore This Product
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+        
+      {%- else -%}
+        <!-- Regular Product -->
+        <div class="regular-product">
+          {%- render 'crowe-product-card-premium', product: product -%}
+        </div>
+        
+      {%- endif -%}
+      
+    {%- endfor -%}
+    
+  </div>
+  
+  <!-- View All CTA -->
+  {%- if section.settings.show_view_all -%}
+    <div class="view-all-cta">
+      <a href="{{ collection.url }}" class="view-all-btn">
+        <span>View Full Collection</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Premium Collection",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Premium Collection",
+      "label": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtitle",
+      "label": "Subheading",
+      "info": "Optional description text"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 6,
+      "label": "Maximum products to show"
+    },
+    {
+      "type": "checkbox",
+      "id": "featured_first",
+      "default": true,
+      "label": "Show first product as featured"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "Show 'View all' button"
+    },
+    {
+      "type": "header",
+      "content": "🎨 Design Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#17141E"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#C6A351"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium Collection"
+    }
+  ]
+}
+{% endschema %}

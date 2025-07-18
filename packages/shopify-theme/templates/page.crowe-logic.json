@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "crowe-logic": {
+      "type": "crowe-logic"
+    }
+  },
+  "order": ["crowe-logic"]
+}
