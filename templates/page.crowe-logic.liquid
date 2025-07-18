@@ -1,0 +1,121 @@
+{%- comment -%}
+🤖 Crowe Logic AI Assistant Page Template
+This template renders the AI assistant page with iframe integration
+{%- endcomment -%}
+
+<div class="crowe-logic-page">
+  <!-- Enhanced AI Panel Section -->
+  {% section 'crowe-logic-enhanced' %}
+  
+  <!-- Premium Collection Showcase -->
+  {% section 'crowe-collection-premium' %}
+  
+  <!-- Features Grid -->
+  <section class="features-grid">
+    <div class="container">
+      <h2>AI-Powered Growing Assistant</h2>
+      <div class="features">
+        <div class="feature">
+          <h3>🧠 Smart Recommendations</h3>
+          <p>Get personalized growing advice based on your experience level and environment.</p>
+        </div>
+        <div class="feature">
+          <h3>🎙️ Voice Assistant</h3>
+          <p>Ask questions and get instant audio responses powered by ElevenLabs AI.</p>
+        </div>
+        <div class="feature">
+          <h3>📊 Growth Tracking</h3>
+          <p>Monitor your cultivation progress with AI-powered insights and analytics.</p>
+        </div>
+        <div class="feature">
+          <h3>🌱 Strain Database</h3>
+          <p>Access comprehensive information about mushroom varieties and growing conditions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+.crowe-logic-page {
+  min-height: 100vh;
+  background: var(--clr-bg-dark);
+}
+
+.features-grid {
+  padding: 80px 0;
+  background: linear-gradient(135deg, 
+    rgba(23, 20, 30, 0.95) 0%,
+    rgba(198, 163, 81, 0.02) 50%,
+    rgba(23, 20, 30, 0.95) 100%
+  );
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.features-grid h2 {
+  text-align: center;
+  font-size: 48px;
+  color: var(--clr-fg-light);
+  margin-bottom: 60px;
+  background: linear-gradient(135deg, var(--clr-accent) 0%, #E4CC88 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+.feature {
+  background: rgba(23, 20, 30, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(198, 163, 81, 0.2);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-8px);
+  border-color: rgba(198, 163, 81, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.feature h3 {
+  font-size: 24px;
+  color: var(--clr-accent);
+  margin-bottom: 16px;
+}
+
+.feature p {
+  color: rgba(244, 244, 242, 0.8);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .features-grid {
+    padding: 40px 0;
+  }
+  
+  .features-grid h2 {
+    font-size: 32px;
+  }
+  
+  .features {
+    gap: 24px;
+  }
+  
+  .feature {
+    padding: 24px;
+  }
+}
+</style>
