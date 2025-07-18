@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
+    <!-- Permissions Policy for clipboard and other features -->
+    <meta http-equiv="Permissions-Policy" content="clipboard-write=*, clipboard-read=*, microphone=*, camera=*">
     <link rel="canonical" href="{{ canonical_url }}">
 
     {%- if settings.favicon != blank -%}
@@ -28,6 +30,9 @@
 
     {% render 'meta-tags' %}
 
+    <!-- Load clipboard permissions handler early -->
+    <script src="{{ 'clipboard-permissions.js' | asset_url }}"></script>
+    
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
@@ -257,6 +262,135 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'crowe-theme-quantum.css' | asset_url | stylesheet_tag }}
+    
+    <!-- Force Quantum Theme Overrides -->
+    <style>
+      /* Ensure quantum theme takes precedence */
+      html, body {
+        background: #0a0a0a !important;
+        color: #FFF5DC !important;
+      }
+      
+      .shopify-section {
+        background: #0a0a0a !important;
+      }
+      
+      /* Fix header positioning to prevent black space */
+      .shopify-section-group-header-group {
+        position: relative !important;
+        z-index: 900 !important;
+        background: #0a0a0a !important;
+      }
+      
+      /* Ensure sidebar shows on desktop */
+      .crowe-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 100vh;
+        background: rgba(26, 26, 26, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+      }
+      
+      /* Mobile sidebar hidden by default */
+      @media (max-width: 768px) {
+        .crowe-sidebar {
+          transform: translateX(-100%);
+        }
+        
+        .crowe-sidebar.sidebar-open {
+          transform: translateX(0);
+        }
+        
+        /* Show mobile toggle */
+        .mobile-sidebar-toggle {
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          z-index: 1001;
+          background: rgba(192, 192, 192, 0.2);
+          border: none;
+          border-radius: 8px;
+          padding: 12px;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        
+        .hamburger-line {
+          width: 24px;
+          height: 2px;
+          background: #FFF5DC;
+          transition: 0.3s;
+        }
+      }
+      
+      /* Desktop - hide mobile toggle */
+      @media (min-width: 769px) {
+        .mobile-sidebar-toggle {
+          display: none;
+        }
+        
+        /* Adjust main content for sidebar - remove massive margin */
+        #MainContent {
+          margin-left: 300px;
+          transition: margin-left 0.3s ease;
+        }
+        
+        /* Fix header group positioning */
+        .shopify-section-group-header-group {
+          margin-left: 300px;
+          transition: margin-left 0.3s ease;
+        }
+        
+        /* Ensure hero section starts immediately after header */
+        .shopify-section-group-header-group + #MainContent {
+          padding-top: 0 !important;
+          margin-top: 0 !important;
+        }
+      }
+      
+      /* Zapier Chat Widget Styling */
+      zapier-interfaces-chatbot-embed {
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(192, 192, 192, 0.2) !important;
+      }
+      
+      .chat-embed-container {
+        padding: 8px;
+        background: rgba(26, 26, 26, 0.8);
+        border-radius: 16px;
+        border: 1px solid rgba(192, 192, 192, 0.3);
+      }
+      
+      /* Remove any excessive top margins/padding that create black space */
+      .shopify-section:first-child,
+      .shopify-section-group-header-group:first-child {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+      
+      /* Ensure sections flow properly */
+      .shopify-section {
+        margin-top: 0 !important;
+      }
+      
+      /* Fix any quantum spacing that creates gaps */
+      .quantum-section {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+      }
+    </style>
+    
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}

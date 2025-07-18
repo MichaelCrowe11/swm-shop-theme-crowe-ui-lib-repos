@@ -238,7 +238,9 @@
   width: 32px;
   height: 32px;
   transition: all var(--quantum-transition-base);
-  /* Remove color filters to show original SVG colors */
+  border-radius: 4px;
+  /* Remove any background and ensure good contrast */
+  background: transparent;
 }
 
 .sidebar-brand-link:hover .crowe-logo {
@@ -578,7 +580,9 @@
   height: 20px;
   border-radius: 50%;
   transition: all var(--quantum-transition-base);
-  /* Remove filters to show original avatar colors */
+  /* Ensure PNG displays well against dark background */
+  background: transparent;
+  object-fit: contain;
 }
 
 .nav-link:hover .nav-avatar {
@@ -758,6 +762,9 @@
   border-radius: 50%;
   margin-right: var(--quantum-space-sm, 0.5rem);
   transition: all var(--quantum-transition-base);
+  /* Ensure PNG displays well in chat context */
+  background: transparent;
+  object-fit: contain;
 }
 
 .chat-header:hover .chat-avatar {
