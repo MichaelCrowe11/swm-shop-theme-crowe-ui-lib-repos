@@ -108,6 +108,7 @@ h6 { font-size: 1rem; }
   background: var(--quantum-gradient-shimmer);
   background-size: 200% 200%;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: quantum-gradient-shift 3s linear infinite;
 }

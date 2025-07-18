@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
+    <!-- Permissions Policy for clipboard and other features -->
+    <meta http-equiv="Permissions-Policy" content="clipboard-write=*, clipboard-read=*, microphone=*, camera=*">
     <link rel="canonical" href="{{ canonical_url }}">
 
     {%- if settings.favicon != blank -%}
@@ -28,6 +30,9 @@
 
     {% render 'meta-tags' %}
 
+    <!-- Load clipboard permissions handler early -->
+    <script src="{{ 'clipboard-permissions.js' | asset_url }}"></script>
+    
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
