@@ -113,7 +113,20 @@
       <!-- Zapier Chat Widget -->
       <div class="chat-embed-container">
         <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
-        <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmbhp4x71002fqpzzx1cclqec'></zapier-interfaces-chatbot-embed>
+        <zapier-interfaces-chatbot-embed chatbot-id='cmbhp4x71002fqpzzx1cclqec'></zapier-interfaces-chatbot-embed>
+        
+        <!-- Fallback iframe if web component fails -->
+        <noscript>
+          <iframe 
+            src="https://research-assistant-ce196c.zapier.app" 
+            width="100%" 
+            height="300"
+            frameborder="0"
+            allow="microphone; camera; clipboard-write"
+            title="Crowe Logic AI Research Assistant"
+            style="border-radius: 12px; background: rgba(255, 255, 255, 0.05);">
+          </iframe>
+        </noscript>
       </div>
     </div>
   </div>
