@@ -1,3 +1,27 @@
+/* Quantum Theme Article Card Enhancements */
+:root {
+  --article-card-bg: var(--quantum-charcoal, #1a1a1a);
+  --article-card-border: var(--quantum-border-color, rgba(212, 175, 55, 0.2));
+  --article-card-shadow: var(--quantum-shadow-md, 0 4px 12px rgba(212, 175, 55, 0.15));
+  --article-card-transition: var(--quantum-transition-base, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+/* Debug: Quantum Theme Loading Indicator */
+body::before {
+  content: "Quantum Theme Active";
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: var(--quantum-gold, #D4AF37);
+  color: var(--quantum-obsidian, #0a0a0a);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 10000;
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 749px) {
   .articles-wrapper .article {
     width: 100%;
@@ -13,17 +37,61 @@
   padding: 0;
 }
 
+/* Quantum Article Card Styling */
+.article-card {
+  background: var(--article-card-bg) !important;
+  border: 1px solid var(--article-card-border) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  transition: all var(--article-card-transition);
+  box-shadow: var(--article-card-shadow) !important;
+  position: relative;
+}
+
+.article-card-wrapper .card.article-card {
+  background: var(--article-card-bg) !important;
+  border: 1px solid var(--article-card-border) !important;
+  border-radius: 12px !important;
+}
+
+.article-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--quantum-shadow-lg, 0 8px 24px rgba(212, 175, 55, 0.2)) !important;
+  border-color: var(--quantum-gold, #D4AF37) !important;
+}
+
 .grid--peek .article-card {
   box-sizing: border-box;
 }
 
+.article-card__image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
 .article-card__image-wrapper > a {
   display: block;
+  transition: all var(--article-card-transition);
+}
+
+.article-card:hover .article-card__image-wrapper > a {
+  transform: scale(1.05);
 }
 
 .article-card__title {
   text-decoration: none;
   word-break: break-word;
+  color: var(--quantum-cream, #FFF5DC);
+  font-family: var(--quantum-font-display, 'Inter', sans-serif);
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 1.3;
+  margin-bottom: var(--quantum-space-sm, 0.5rem);
+}
+
+.article-card__title:hover {
+  color: var(--quantum-gold, #D4AF37);
+  transition: color var(--article-card-transition);
 }
 
 .article-card__title a:after {
@@ -52,17 +120,28 @@
 
 .blog-articles .article-card .card__information,
 .blog__posts .article-card .card__information {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: var(--quantum-space-lg, 1.5rem) var(--quantum-space-lg, 1.5rem);
+  background: var(--article-card-bg);
 }
 
 .article-card__info {
   padding-top: 0.4rem;
 }
 
+.article-card__excerpt {
+  width: 100%;
+  margin-top: 1.2rem;
+  color: rgba(255, 245, 220, 0.8);
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
 .article-card__footer {
   letter-spacing: 0.1rem;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  color: var(--quantum-gold, #D4AF37);
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
 .article-card__footer:not(:last-child) {
@@ -138,5 +217,115 @@
     .articles-wrapper.grid {
       margin-bottom: 7rem;
     }
+  }
+}
+
+/* ===== Quantum Theme Article Enhancements ===== */
+
+/* Quantum Article Grid Layout */
+.articles-wrapper.grid {
+  gap: var(--quantum-space-lg, 1.5rem);
+}
+
+/* Quantum Article Card Animations */
+@keyframes quantum-glow {
+  0%, 100% { box-shadow: var(--quantum-shadow-md); }
+  50% { box-shadow: var(--quantum-shadow-lg); }
+}
+
+.article-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--quantum-gradient-primary);
+  border-radius: 14px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--article-card-transition);
+}
+
+.article-card:hover::before {
+  opacity: 0.3;
+}
+
+/* Quantum Article Card Content Styling */
+.article-card .card__heading {
+  margin-bottom: var(--quantum-space-sm, 0.5rem);
+}
+
+.article-card__link.link {
+  padding: 0;
+  color: var(--quantum-gold, #D4AF37);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all var(--article-card-transition);
+}
+
+.article-card__link.link:hover {
+  border-bottom-color: var(--quantum-gold, #D4AF37);
+  transform: translateX(4px);
+}
+
+/* Quantum Read More Button */
+.article-card__read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--quantum-space-xs, 0.25rem);
+  padding: var(--quantum-space-sm, 0.5rem) var(--quantum-space-md, 1rem);
+  background: var(--quantum-gradient-primary);
+  color: var(--quantum-obsidian, #0a0a0a);
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--article-card-transition);
+  margin-top: var(--quantum-space-md, 1rem);
+}
+
+.article-card__read-more:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--quantum-shadow-md);
+}
+
+.article-card__read-more::after {
+  content: '→';
+  transition: transform var(--article-card-transition);
+}
+
+.article-card__read-more:hover::after {
+  transform: translateX(2px);
+}
+
+/* Quantum Author and Date Styling */
+.article-card__author,
+.article-card__date {
+  color: rgba(255, 245, 220, 0.6);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Responsive Quantum Enhancements */
+@media screen and (min-width: 750px) {
+  .article-card__title {
+    font-size: 2.2rem;
+  }
+  
+  .article-card__excerpt {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .articles-wrapper.grid {
+    gap: var(--quantum-space-xl, 2rem);
+  }
+  
+  .article-card__title {
+    font-size: 2.4rem;
   }
 }

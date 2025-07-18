@@ -2,12 +2,16 @@
 
 <nav class="crowe-sidebar" id="crowe-sidebar">
   <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <img src="{{ 'southwest-mushrooms-logo.PNG' | asset_url }}" alt="Southwest Mushrooms" class="main-logo">
+    </div>
     <h1 class="sidebar-brand">
       <a href="{{ routes.root_url }}" class="sidebar-brand-link">
-        Crowe Logic™
+        <img src="{{ 'crowe-avatar.svg' | asset_url }}" alt="Crowe Logic AI" class="crowe-logo">
+        <span class="brand-text">Crowe Logic™</span>
       </a>
     </h1>
-    <button class="sidebar-toggle mobile-only" aria-label="Close menu">
+    <button class="sidebar-toggle" aria-label="Close menu">
       {% render 'icon-close' %}
     </button>
   </div>
@@ -15,42 +19,74 @@
   <ul class="sidebar-nav">
     <li class="nav-item">
       <a href="{{ routes.root_url }}" class="nav-link">
-        <span class="nav-icon">🌿</span>
-        <span class="nav-text">Grow Dashboard</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="nav-text">Dashboard</span>
       </a>
     </li>
     
     <li class="nav-item">
       <a href="{{ routes.collections_url }}" class="nav-link">
-        <span class="nav-icon">📦</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2"/>
+            <polyline points="3.27,6.96 12,12.01 20.73,6.96" stroke="currentColor" stroke-width="2"/>
+            <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </span>
         <span class="nav-text">Products</span>
       </a>
     </li>
     
     <li class="nav-item">
       <a href="/pages/audiobook" class="nav-link">
-        <span class="nav-icon">🎧</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="currentColor" stroke-width="2"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor" stroke-width="2"/>
+            <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+            <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </span>
         <span class="nav-text">Audiobook</span>
       </a>
     </li>
     
     <li class="nav-item">
       <a href="/pages/guides" class="nav-link">
-        <span class="nav-icon">📘</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-width="2"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </span>
         <span class="nav-text">Guides</span>
       </a>
     </li>
     
     <li class="nav-item">
       <a href="/pages/crowe-logic" class="nav-link">
-        <span class="nav-icon">🤖</span>
+        <span class="nav-icon">
+          <img src="{{ 'crowe-avatar.svg' | asset_url }}" alt="Crowe Logic AI" class="nav-avatar">
+        </span>
         <span class="nav-text">Crowe Logic</span>
       </a>
     </li>
     
     <li class="nav-item">
       <a href="{{ routes.cart_url }}" class="nav-link" id="cart-link">
-        <span class="nav-icon">🛒</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="9" cy="21" r="1" stroke="currentColor" stroke-width="2"/>
+            <circle cx="20" cy="21" r="1" stroke="currentColor" stroke-width="2"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </span>
         <span class="nav-text">Cart</span>
         <span class="cart-count badge" id="cart-count">{{ cart.item_count }}</span>
       </a>
@@ -62,7 +98,12 @@
       <div class="sidebar-auth">
         {%- if customer -%}
           <a href="{{ routes.account_url }}" class="auth-link">
-            <span class="nav-icon">👤</span>
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
             <span class="nav-text">{{ customer.first_name | default: 'Account' }}</span>
           </a>
           <a href="{{ routes.account_logout_url }}" class="auth-link">
@@ -70,7 +111,13 @@
           </a>
         {%- else -%}
           <a href="{{ routes.account_login_url }}" class="auth-link">
-            <span class="nav-icon">🔑</span>
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke="currentColor" stroke-width="2"/>
+                <polyline points="10,17 15,12 10,7" stroke="currentColor" stroke-width="2"/>
+                <line x1="15" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
             <span class="nav-text">Sign In</span>
           </a>
         {%- endif -%}
@@ -82,24 +129,51 @@
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
 <script>
-  // Mobile sidebar toggle functionality
+  // Enhanced sidebar toggle functionality
   document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('crowe-sidebar');
     const overlay = document.getElementById('sidebar-overlay');
     const toggleButton = document.querySelector('.sidebar-toggle');
+    const body = document.body;
+    
+    // Create a hamburger menu button for desktop
+    const hamburgerButton = document.createElement('button');
+    hamburgerButton.className = 'sidebar-hamburger';
+    hamburgerButton.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2"/>
+        <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/>
+        <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    `;
+    hamburgerButton.setAttribute('aria-label', 'Toggle menu');
+    
+    // Insert hamburger button at the beginning of body
+    body.insertBefore(hamburgerButton, body.firstChild);
     
     function closeSidebar() {
       sidebar.classList.remove('open');
       overlay.classList.remove('active');
-      document.body.classList.remove('sidebar-open');
+      body.classList.remove('sidebar-open');
+      hamburgerButton.classList.remove('active');
     }
     
     function openSidebar() {
       sidebar.classList.add('open');
       overlay.classList.add('active');
-      document.body.classList.add('sidebar-open');
+      body.classList.add('sidebar-open');
+      hamburgerButton.classList.add('active');
     }
     
+    function toggleSidebar() {
+      if (sidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    }
+    
+    // Event listeners
     if (toggleButton) {
       toggleButton.addEventListener('click', closeSidebar);
     }
@@ -108,13 +182,42 @@
       overlay.addEventListener('click', closeSidebar);
     }
     
-    // Add mobile menu button to header if needed
-    const mobileMenuButton = document.querySelector('.header__menu-burger');
-    if (mobileMenuButton) {
-      mobileMenuButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        openSidebar();
-      });
+    // Hamburger button click
+    hamburgerButton.addEventListener('click', toggleSidebar);
+    
+    // Close sidebar on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+        closeSidebar();
+      }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768 && sidebar.classList.contains('open')) {
+        // Don't auto-close on desktop, just adjust layout
+        body.classList.add('sidebar-open-desktop');
+      }
+    });
+    
+    // Update cart count
+    function updateCartCount() {
+      fetch('/cart.js')
+        .then(response => response.json())
+        .then(cart => {
+          const cartCount = document.getElementById('cart-count');
+          if (cartCount) {
+            cartCount.textContent = cart.item_count;
+            cartCount.style.display = cart.item_count > 0 ? 'block' : 'none';
+          }
+        })
+        .catch(error => console.log('Cart update error:', error));
     }
+    
+    // Update cart count on page load
+    updateCartCount();
+    
+    // Listen for cart updates
+    document.addEventListener('cart:updated', updateCartCount);
   });
 </script>

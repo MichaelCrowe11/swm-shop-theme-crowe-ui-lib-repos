@@ -1,0 +1,336 @@
+{%- comment -%}
+  Quantum Theme - Groundbreaking Shopify Dawn Remodel
+  Homepage template with revolutionary features
+{%- endcomment -%}
+
+{{ 'crowe-theme-quantum.css' | asset_url | stylesheet_tag }}
+
+<!-- Quantum Hero Section -->
+<section class="quantum-hero-wrapper">
+  {% section 'crowe-quantum-hero' %}
+</section>
+
+<!-- AI-Powered Personalization Dashboard -->
+<section class="quantum-ai-wrapper">
+  {% section 'crowe-ai-personalization' %}
+</section>
+
+<!-- Featured Products with Quantum Cards -->
+<section class="quantum-section quantum-bg-dark">
+  <div class="quantum-container">
+    <div class="quantum-text-center quantum-mb-4">
+      <h2 class="quantum-text-gradient">Featured Quantum Products</h2>
+      <p class="quantum-text-muted quantum-text-large">Experience shopping redefined with our cutting-edge product display</p>
+    </div>
+    
+    <div class="quantum-grid quantum-grid--3" id="quantum-products">
+      {%- assign featured_collection = collections['all'] -%}
+      {%- for product in featured_collection.products limit: 6 -%}
+        {% render 'crowe-product-card-quantum', product: product %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- AR Product Experience -->
+<section class="quantum-ar-section">
+  {% section 'crowe-ar-product-viewer' %}
+</section>
+
+<!-- Quantum Features Grid -->
+<section class="quantum-section quantum-features">
+  <div class="quantum-container">
+    <div class="quantum-text-center quantum-mb-4">
+      <h2 class="quantum-text-gradient">Quantum Commerce Features</h2>
+      <p class="quantum-text-muted quantum-text-large">The future of online shopping is here</p>
+    </div>
+    
+    <div class="quantum-grid quantum-grid--4">
+      <div class="quantum-card quantum-holographic quantum-text-center">
+        <div class="quantum-feature-icon quantum-mb-2">
+          <span class="quantum-icon-3d">🧠</span>
+        </div>
+        <h3 class="quantum-mb-1">AI Intelligence</h3>
+        <p class="quantum-text-muted">Personal shopping assistant powered by advanced AI</p>
+      </div>
+      
+      <div class="quantum-card quantum-holographic quantum-text-center">
+        <div class="quantum-feature-icon quantum-mb-2">
+          <span class="quantum-icon-3d">🔮</span>
+        </div>
+        <h3 class="quantum-mb-1">AR Visualization</h3>
+        <p class="quantum-text-muted">See products in your space before buying</p>
+      </div>
+      
+      <div class="quantum-card quantum-holographic quantum-text-center">
+        <div class="quantum-feature-icon quantum-mb-2">
+          <span class="quantum-icon-3d">⚡</span>
+        </div>
+        <h3 class="quantum-mb-1">Quantum Speed</h3>
+        <p class="quantum-text-muted">Lightning-fast performance with instant updates</p>
+      </div>
+      
+      <div class="quantum-card quantum-holographic quantum-text-center">
+        <div class="quantum-feature-icon quantum-mb-2">
+          <span class="quantum-icon-3d">🌐</span>
+        </div>
+        <h3 class="quantum-mb-1">Web3 Ready</h3>
+        <p class="quantum-text-muted">Blockchain integration for secure transactions</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Product Timeline -->
+<section class="quantum-section quantum-timeline">
+  <div class="quantum-container">
+    <h2 class="quantum-text-center quantum-text-gradient quantum-mb-4">Innovation Timeline</h2>
+    
+    <div class="quantum-timeline-wrapper">
+      <div class="quantum-timeline-line"></div>
+      
+      <div class="quantum-timeline-item quantum-float" data-year="2024">
+        <div class="quantum-timeline-dot quantum-pulse"></div>
+        <div class="quantum-timeline-content quantum-card">
+          <h4>Quantum Launch</h4>
+          <p class="quantum-text-muted">Revolutionary shopping experience begins</p>
+        </div>
+      </div>
+      
+      <div class="quantum-timeline-item quantum-float" data-year="2025" style="animation-delay: 0.3s">
+        <div class="quantum-timeline-dot quantum-pulse"></div>
+        <div class="quantum-timeline-content quantum-card">
+          <h4>AI Integration</h4>
+          <p class="quantum-text-muted">Personal shopping AI becomes reality</p>
+        </div>
+      </div>
+      
+      <div class="quantum-timeline-item quantum-float" data-year="Future" style="animation-delay: 0.6s">
+        <div class="quantum-timeline-dot quantum-pulse"></div>
+        <div class="quantum-timeline-content quantum-card">
+          <h4>Beyond Commerce</h4>
+          <p class="quantum-text-muted">Transcending traditional shopping</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter with Quantum Design -->
+<section class="quantum-section quantum-newsletter">
+  <div class="quantum-container">
+    <div class="quantum-card quantum-glass quantum-text-center">
+      <h2 class="quantum-text-gradient quantum-mb-2">Join the Quantum Revolution</h2>
+      <p class="quantum-text-muted quantum-mb-3">Be the first to experience the future of shopping</p>
+      
+      <form class="quantum-newsletter-form" action="/contact#newsletter" method="post">
+        <div class="quantum-flex quantum-gap-2 quantum-justify-center">
+          <input type="email" 
+                 name="contact[email]" 
+                 class="quantum-input" 
+                 placeholder="Enter your email"
+                 required>
+          <button type="submit" class="quantum-button">
+            Subscribe
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Quantum Feature Icons */
+  .quantum-feature-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    background: var(--quantum-gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .quantum-icon-3d {
+    font-size: 2.5rem;
+    transform-style: preserve-3d;
+    animation: quantum-3d-rotate 6s linear infinite;
+  }
+  
+  @keyframes quantum-3d-rotate {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+  }
+  
+  /* Timeline Styles */
+  .quantum-timeline-wrapper {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+  
+  .quantum-timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: var(--quantum-gradient-primary);
+    transform: translateX(-50%);
+  }
+  
+  .quantum-timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .quantum-timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+  
+  .quantum-timeline-dot {
+    width: 20px;
+    height: 20px;
+    background: var(--quantum-gold);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  
+  .quantum-timeline-content {
+    width: 45%;
+    margin: 0 2.5%;
+  }
+  
+  .quantum-timeline-item::before {
+    content: attr(data-year);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -1.5rem;
+    color: var(--quantum-gold);
+    font-weight: 700;
+    font-size: 0.875rem;
+  }
+  
+  /* Newsletter Form */
+  .quantum-newsletter-form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .quantum-newsletter-form .quantum-input {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .quantum-timeline-line {
+      left: 30px;
+    }
+    
+    .quantum-timeline-item,
+    .quantum-timeline-item:nth-child(even) {
+      flex-direction: row;
+    }
+    
+    .quantum-timeline-dot {
+      left: 30px;
+    }
+    
+    .quantum-timeline-content {
+      width: calc(100% - 60px);
+      margin-left: 60px;
+    }
+    
+    .quantum-timeline-item::before {
+      left: 60px;
+      transform: none;
+    }
+    
+    .quantum-newsletter-form .quantum-flex {
+      flex-direction: column;
+    }
+    
+    .quantum-newsletter-form .quantum-input {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // Quantum Interactions
+  document.addEventListener('DOMContentLoaded', function() {
+    // Parallax scrolling for timeline
+    const timelineItems = document.querySelectorAll('.quantum-timeline-item');
+    
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '0';
+          entry.target.style.transform = 'translateY(50px)';
+          
+          setTimeout(() => {
+            entry.target.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, 100);
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    timelineItems.forEach(item => {
+      observer.observe(item);
+    });
+    
+    // Newsletter form enhancement
+    const newsletterForm = document.querySelector('.quantum-newsletter-form');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function(e) {
+        const button = this.querySelector('.quantum-button');
+        button.classList.add('quantum-pulse');
+        
+        // Remove animation after completion
+        setTimeout(() => {
+          button.classList.remove('quantum-pulse');
+        }, 2000);
+      });
+    }
+    
+    // Add hover effects to feature cards
+    const featureCards = document.querySelectorAll('.quantum-features .quantum-card');
+    featureCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        const icon = this.querySelector('.quantum-icon-3d');
+        if (icon) {
+          icon.style.animationDuration = '1s';
+        }
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        const icon = this.querySelector('.quantum-icon-3d');
+        if (icon) {
+          icon.style.animationDuration = '6s';
+        }
+      });
+    });
+  });
+</script>

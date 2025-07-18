@@ -1,0 +1,387 @@
+{%- style -%}
+  #quantum-hero-{{ section.id }} {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  }
+
+  .quantum-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .quantum-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 4rem 2rem;
+  }
+
+  .quantum-hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .quantum-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #D4AF37, #FFF5DC, #D4AF37);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: quantum-shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes quantum-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .quantum-subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  .quantum-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .quantum-btn {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quantum-btn-primary {
+    background: linear-gradient(135deg, #D4AF37, #B8943F);
+    color: #0a0a0a;
+  }
+
+  .quantum-btn-secondary {
+    background: transparent;
+    color: #FFF5DC;
+    border: 2px solid #D4AF37;
+  }
+
+  .quantum-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .quantum-btn:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .quantum-3d-showcase {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .quantum-float {
+    animation: quantum-float 6s ease-in-out infinite;
+  }
+
+  @keyframes quantum-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .quantum-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  .quantum-stat {
+    text-align: center;
+  }
+
+  .quantum-stat-value {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #D4AF37;
+    margin-bottom: 0.5rem;
+  }
+
+  .quantum-stat-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 768px) {
+    .quantum-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .quantum-btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="quantum-hero-{{ section.id }}" class="quantum-hero">
+  <canvas class="quantum-particles" id="particles-{{ section.id }}"></canvas>
+  
+  <div class="quantum-content">
+    <div class="quantum-hero-inner">
+      <h1 class="quantum-title quantum-float">{{ section.settings.title | default: 'The Future of Myco-Commerce' }}</h1>
+      <p class="quantum-subtitle">{{ section.settings.subtitle | default: 'Experience shopping redefined with AI, AR, and quantum design' }}</p>
+      
+      <div class="quantum-actions">
+        <a href="{{ section.settings.primary_link }}" class="quantum-btn quantum-btn-primary">
+          {{ section.settings.primary_text | default: 'Start Quantum Experience' }}
+        </a>
+        <a href="{{ section.settings.secondary_link }}" class="quantum-btn quantum-btn-secondary">
+          {{ section.settings.secondary_text | default: 'Explore AR Catalog' }}
+        </a>
+      </div>
+
+      {% if section.settings.show_stats %}
+      <div class="quantum-stats">
+        <div class="quantum-stat">
+          <div class="quantum-stat-value" data-count="{{ section.settings.stat_1_value }}">0</div>
+          <div class="quantum-stat-label">{{ section.settings.stat_1_label }}</div>
+        </div>
+        <div class="quantum-stat">
+          <div class="quantum-stat-value" data-count="{{ section.settings.stat_2_value }}">0</div>
+          <div class="quantum-stat-label">{{ section.settings.stat_2_label }}</div>
+        </div>
+        <div class="quantum-stat">
+          <div class="quantum-stat-value" data-count="{{ section.settings.stat_3_value }}">0</div>
+          <div class="quantum-stat-label">{{ section.settings.stat_3_label }}</div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="quantum-3d-showcase" id="showcase-{{ section.id }}"></div>
+</section>
+
+<script>
+  // Particle animation system
+  (function() {
+    const canvas = document.getElementById('particles-{{ section.id }}');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = 100;
+    
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 2 + 1;
+        this.opacity = Math.random() * 0.5 + 0.5;
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        
+        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+      }
+      
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+        ctx.fill();
+      }
+    }
+    
+    // Initialize particles
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+    
+    // Animation loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      
+      // Draw connections
+      particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach(p2 => {
+          const distance = Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(212, 175, 55, ${0.2 * (1 - distance / 100)})`;
+            ctx.stroke();
+          }
+        });
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // Resize handler
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+    
+    // Animated counter
+    document.querySelectorAll('[data-count]').forEach(element => {
+      const target = parseInt(element.getAttribute('data-count'));
+      let current = 0;
+      const increment = target / 100;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        element.textContent = Math.floor(current).toLocaleString();
+      }, 20);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Quantum Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "The Future of Myco-Commerce"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Experience shopping redefined with AI, AR, and quantum design"
+    },
+    {
+      "type": "text",
+      "id": "primary_text",
+      "label": "Primary Button Text",
+      "default": "Start Quantum Experience"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_text",
+      "label": "Secondary Button Text",
+      "default": "Explore AR Catalog"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Show Statistics",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "stat_1_value",
+      "label": "Statistic 1 Value",
+      "default": "10000"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_label",
+      "label": "Statistic 1 Label",
+      "default": "Products"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_value",
+      "label": "Statistic 2 Value",
+      "default": "99.9"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_label",
+      "label": "Statistic 2 Label",
+      "default": "AI Accuracy"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_value",
+      "label": "Statistic 3 Value",
+      "default": "24"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_label",
+      "label": "Statistic 3 Label",
+      "default": "Hour Support"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quantum Hero"
+    }
+  ]
+}
+{% endschema %}

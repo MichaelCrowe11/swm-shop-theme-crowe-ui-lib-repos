@@ -1,0 +1,529 @@
+{%- style -%}
+  .ar-product-viewer {
+    padding: 4rem 0;
+    background: #0a0a0a;
+    overflow: hidden;
+  }
+
+  .ar-viewer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .ar-viewer-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .ar-viewer-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: #FFF5DC;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .ar-viewer-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  }
+
+  .ar-viewer-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+  }
+
+  .ar-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .ar-product-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    position: relative;
+  }
+
+  .ar-product-card:hover {
+    transform: translateY(-10px);
+    border-color: #D4AF37;
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+  }
+
+  .ar-product-visual {
+    position: relative;
+    height: 300px;
+    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1), transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .ar-3d-model {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: ar-rotate 20s linear infinite;
+  }
+
+  @keyframes ar-rotate {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+
+  .ar-cube-face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 2px solid #D4AF37;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #D4AF37;
+  }
+
+  .ar-cube-face:nth-child(1) { transform: translateZ(100px); }
+  .ar-cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(100px); }
+  .ar-cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(100px); }
+  .ar-cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(100px); }
+  .ar-cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(100px); }
+  .ar-cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(100px); }
+
+  .ar-product-info {
+    padding: 2rem;
+  }
+
+  .ar-product-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FFF5DC;
+    margin-bottom: 0.5rem;
+  }
+
+  .ar-product-description {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .ar-features {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .ar-feature-badge {
+    padding: 0.5rem 1rem;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 20px;
+    color: #D4AF37;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .ar-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .ar-view-btn {
+    flex: 1;
+    padding: 1rem;
+    background: linear-gradient(135deg, #D4AF37, #B8943F);
+    color: #0a0a0a;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ar-view-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s;
+  }
+
+  .ar-view-btn:hover::before {
+    left: 100%;
+  }
+
+  .ar-icon-btn {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #D4AF37;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .ar-icon-btn:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: #D4AF37;
+    transform: scale(1.1);
+  }
+
+  .ar-experience-banner {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ar-experience-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent);
+    animation: ar-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes ar-pulse {
+    0%, 100% { transform: scale(1); opacity: 0; }
+    50% { transform: scale(1.5); opacity: 1; }
+  }
+
+  .ar-banner-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ar-banner-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #D4AF37;
+    margin-bottom: 1rem;
+  }
+
+  .ar-banner-text {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ar-scanner-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 2.5rem;
+    background: #D4AF37;
+    color: #0a0a0a;
+    font-weight: 700;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .ar-scanner-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+  }
+
+  .ar-scanner-icon {
+    width: 24px;
+    height: 24px;
+    animation: ar-scan 2s ease-in-out infinite;
+  }
+
+  @keyframes ar-scan {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @media (max-width: 768px) {
+    .ar-products-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ar-actions {
+      flex-direction: column;
+    }
+
+    .ar-view-btn {
+      width: 100%;
+    }
+
+    .ar-icon-btn {
+      width: 100%;
+    }
+  }
+{%- endstyle -%}
+
+<section class="ar-product-viewer" data-section-id="{{ section.id }}">
+  <div class="ar-viewer-container">
+    <div class="ar-viewer-header">
+      <h2 class="ar-viewer-title">{{ section.settings.title | default: 'AR Product Experience' }}</h2>
+      <p class="ar-viewer-subtitle">{{ section.settings.subtitle | default: 'View products in your space with augmented reality' }}</p>
+    </div>
+
+    <div class="ar-products-grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'ar_product' %}
+            <div class="ar-product-card" {{ block.shopify_attributes }}>
+              <div class="ar-product-visual">
+                <div class="ar-3d-model">
+                  <div class="ar-cube-face">🍄</div>
+                  <div class="ar-cube-face">🍄</div>
+                  <div class="ar-cube-face">🍄</div>
+                  <div class="ar-cube-face">🍄</div>
+                  <div class="ar-cube-face">🍄</div>
+                  <div class="ar-cube-face">🍄</div>
+                </div>
+              </div>
+              
+              <div class="ar-product-info">
+                <h3 class="ar-product-name">{{ block.settings.product_name }}</h3>
+                <p class="ar-product-description">{{ block.settings.product_description }}</p>
+                
+                <div class="ar-features">
+                  {% if block.settings.feature_1 != blank %}
+                    <span class="ar-feature-badge">{{ block.settings.feature_1 }}</span>
+                  {% endif %}
+                  {% if block.settings.feature_2 != blank %}
+                    <span class="ar-feature-badge">{{ block.settings.feature_2 }}</span>
+                  {% endif %}
+                  {% if block.settings.feature_3 != blank %}
+                    <span class="ar-feature-badge">{{ block.settings.feature_3 }}</span>
+                  {% endif %}
+                </div>
+                
+                <div class="ar-actions">
+                  <a href="{{ block.settings.product_link }}" class="ar-view-btn">
+                    View in AR
+                  </a>
+                  <button class="ar-icon-btn" aria-label="Add to favorites">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  </button>
+                  <button class="ar-icon-btn" aria-label="Share">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="18" cy="5" r="3"/>
+                      <circle cx="6" cy="12" r="3"/>
+                      <circle cx="18" cy="19" r="3"/>
+                      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    <div class="ar-experience-banner">
+      <div class="ar-banner-content">
+        <h3 class="ar-banner-title">{{ section.settings.banner_title | default: 'Try Our AR Scanner' }}</h3>
+        <p class="ar-banner-text">{{ section.settings.banner_text | default: 'Experience products in your own environment before purchasing. Our advanced AR technology brings the showroom to you.' }}</p>
+        <a href="{{ section.settings.scanner_link }}" class="ar-scanner-btn">
+          <svg class="ar-scanner-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 4v5h2V5h4V3H4a1 1 0 0 0-1 1zm18 5V4a1 1 0 0 0-1-1h-5v2h4v4h2zm-2 10v-4h-2v4h-4v2h5a1 1 0 0 0 1-1zm-16 0v-5H1v5a1 1 0 0 0 1 1h5v-2H3v1z"/>
+          </svg>
+          Launch AR Scanner
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // AR interaction simulation
+    const arCards = document.querySelectorAll('.ar-product-card');
+    
+    arCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        const model = this.querySelector('.ar-3d-model');
+        if (model) {
+          model.style.animationDuration = '2s';
+        }
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        const model = this.querySelector('.ar-3d-model');
+        if (model) {
+          model.style.animationDuration = '20s';
+        }
+      });
+    });
+    
+    // Intersection observer for fade-in animation
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '0';
+          entry.target.style.transform = 'translateY(30px)';
+          
+          setTimeout(() => {
+            entry.target.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, 100);
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+    
+    arCards.forEach(card => observer.observe(card));
+  });
+</script>
+
+{% schema %}
+{
+  "name": "AR Product Viewer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "AR Product Experience"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "View products in your space with augmented reality"
+    },
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Banner Title",
+      "default": "Try Our AR Scanner"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_text",
+      "label": "Banner Text",
+      "default": "Experience products in your own environment before purchasing. Our advanced AR technology brings the showroom to you."
+    },
+    {
+      "type": "url",
+      "id": "scanner_link",
+      "label": "AR Scanner Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ar_product",
+      "name": "AR Product",
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Name",
+          "default": "Premium Mushroom Kit"
+        },
+        {
+          "type": "textarea",
+          "id": "product_description",
+          "label": "Product Description",
+          "default": "Experience this product in your space with our AR viewer"
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature 1",
+          "default": "3D View"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature 2",
+          "default": "True Scale"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature 3",
+          "default": "360° Rotation"
+        },
+        {
+          "type": "url",
+          "id": "product_link",
+          "label": "Product Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AR Product Viewer",
+      "blocks": [
+        {
+          "type": "ar_product",
+          "settings": {
+            "product_name": "Lion's Mane Kit",
+            "product_description": "View our premium Lion's Mane growing kit in your kitchen",
+            "feature_1": "AR Ready",
+            "feature_2": "Life-size",
+            "feature_3": "Interactive"
+          }
+        },
+        {
+          "type": "ar_product",
+          "settings": {
+            "product_name": "Oyster Mushroom Kit",
+            "product_description": "See how our Oyster kit fits in your growing space",
+            "feature_1": "3D Model",
+            "feature_2": "Realistic",
+            "feature_3": "Detailed"
+          }
+        },
+        {
+          "type": "ar_product",
+          "settings": {
+            "product_name": "Shiitake Growing System",
+            "product_description": "Preview our complete Shiitake system in augmented reality",
+            "feature_1": "Full System",
+            "feature_2": "To Scale",
+            "feature_3": "360° View"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
