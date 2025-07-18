@@ -1,0 +1,710 @@
+{%- comment -%}
+🍄 Southwest Mushrooms™ Monochrome Product Card
+Premium black/white glass morphism design with metafields
+{%- endcomment -%}
+
+<style>
+/* 🖤 Monochrome Product Card Glass Morphism */
+.crowe-product-card-mono {
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(0, 0, 0, 0.95) 50%,
+    rgba(255, 255, 255, 0.02) 75%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.crowe-product-card-mono::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.015) 0%, transparent 50%),
+    linear-gradient(45deg, 
+      transparent 0%,
+      rgba(255, 255, 255, 0.008) 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.005) 75%,
+      transparent 100%
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.crowe-product-card-mono:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.8),
+    0 0 50px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* 🖼️ Image Container with Reflective Effect */
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+  height: 260px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease;
+  filter: contrast(1.2) saturate(0.8) brightness(1.1);
+}
+
+.crowe-product-card-mono:hover .product-image {
+  transform: scale(1.05);
+  filter: contrast(1.3) saturate(0.9) brightness(1.2);
+}
+
+/* 🏷️ Monochrome Badges */
+.product-badges {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 3;
+}
+
+.badge {
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  backdrop-filter: blur(15px);
+  border: 1px solid;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.badge-organic {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.badge-ai {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.badge-difficulty {
+  font-size: 10px;
+  padding: 6px 12px;
+}
+
+.badge-beginner {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.badge-intermediate {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.badge-advanced {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+/* 💎 Product Info Section */
+.product-info {
+  padding: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.product-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  line-height: 1.3;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.3px;
+}
+
+.product-price {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.compare-price {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: line-through;
+  margin-left: 12px;
+  font-weight: 400;
+}
+
+/* 🌿 Cultivation Metafields Grid */
+.cultivation-info {
+  margin: 20px 0 24px;
+}
+
+.cultivation-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 16px;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.cultivation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.cultivation-item {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.cultivation-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.crowe-product-card-mono:hover .cultivation-item::before {
+  left: 100%;
+}
+
+.cultivation-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.cultivation-icon {
+  width: 16px;
+  height: 16px;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
+}
+
+.cultivation-label {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.cultivation-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.3px;
+}
+
+/* 🛒 Action Buttons */
+.product-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.btn-primary-mono {
+  flex: 1;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 16px 24px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(15px);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.btn-primary-mono::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.btn-primary-mono:hover::before {
+  left: 100%;
+}
+
+.btn-primary-mono:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+}
+
+.btn-secondary-mono {
+  width: 56px;
+  height: 56px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn-secondary-mono:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.btn-secondary-mono svg {
+  width: 20px;
+  height: 20px;
+  stroke: #ffffff;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+}
+
+.btn-secondary-mono:hover svg {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+/* ⚡ Loading States */
+.btn-loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* 🌟 Special Effects */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.product-special .crowe-product-card-mono {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .crowe-product-card-mono {
+    border-radius: 20px;
+  }
+  
+  .product-image-container {
+    height: 220px;
+    border-radius: 16px 16px 0 0;
+  }
+  
+  .product-info {
+    padding: 24px;
+  }
+  
+  .product-title {
+    font-size: 18px;
+  }
+  
+  .product-price {
+    font-size: 20px;
+  }
+  
+  .cultivation-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .product-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .btn-secondary-mono {
+    width: 100%;
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-info {
+    padding: 20px;
+  }
+  
+  .product-title {
+    font-size: 16px;
+  }
+  
+  .product-price {
+    font-size: 18px;
+  }
+  
+  .btn-primary-mono {
+    padding: 14px 20px;
+    font-size: 12px;
+  }
+}
+</style>
+
+<!-- Monochrome Product Card -->
+<article class="crowe-product-card-mono {{ product_class | default: '' }}">
+  <!-- Product Image with Overlay Effects -->
+  <div class="product-image-container">
+    {%- if product.featured_media -%}
+      <img 
+        src="{{ product.featured_media | image_url: width: 400 }}"
+        alt="{{ product.featured_media.alt | escape }}"
+        class="product-image"
+        loading="lazy"
+        width="400"
+        height="260"
+      />
+    {%- else -%}
+      <div class="product-image product-image-placeholder">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="url(#placeholderGrad)"/>
+          <defs>
+            <linearGradient id="placeholderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.1"/>
+              <stop offset="100%" style="stop-color:#000000;stop-opacity:0.3"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    {%- endif -%}
+    
+    <!-- Monochrome Badges -->
+    <div class="product-badges">
+      <div class="badges-left">
+        {%- if product.metafields.custom.organic -%}
+          <span class="badge badge-organic">🌱 Organic</span>
+        {%- endif -%}
+        
+        {%- if product.metafields.custom.ai_recommended -%}
+          <span class="badge badge-ai">🤖 AI Pick</span>
+        {%- endif -%}
+      </div>
+      
+      <div class="badges-right">
+        {%- if product.metafields.cultivation.difficulty -%}
+          {%- assign difficulty = product.metafields.cultivation.difficulty | downcase -%}
+          <span class="badge badge-difficulty badge-{{ difficulty }}">
+            {{ product.metafields.cultivation.difficulty }}
+          </span>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+  
+  <!-- Product Information -->
+  <div class="product-info">
+    <!-- Title and Price -->
+    <h3 class="product-title">
+      <a href="{{ product.url }}">{{ product.title | escape }}</a>
+    </h3>
+    
+    <div class="product-price">
+      {{ product.price | money }}
+      {%- if product.compare_at_price > product.price -%}
+        <span class="compare-price">{{ product.compare_at_price | money }}</span>
+      {%- endif -%}
+    </div>
+    
+    <!-- Enhanced Cultivation Metafields -->
+    {%- if product.metafields.cultivation -%}
+      <div class="cultivation-info">
+        <div class="cultivation-title">Growing Conditions</div>
+        <div class="cultivation-grid">
+          
+          {%- if product.metafields.cultivation.temperature -%}
+            <div class="cultivation-item">
+              <svg class="cultivation-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 4V6C16.2091 6 18 7.79086 18 10V14C18 16.2091 16.2091 18 14 18C11.7909 18 10 16.2091 10 14V10C10 7.79086 11.7909 6 14 6V4" stroke="#ffffff" stroke-width="2"/>
+                <circle cx="14" cy="16" r="2" fill="#ffffff"/>
+              </svg>
+              <div class="cultivation-label">Temperature</div>
+              <div class="cultivation-value">{{ product.metafields.cultivation.temperature }}</div>
+            </div>
+          {%- endif -%}
+          
+          {%- if product.metafields.cultivation.humidity -%}
+            <div class="cultivation-item">
+              <svg class="cultivation-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L8 8C6.89543 9.10457 6.89543 10.8954 8 12C9.10457 13.1046 10.8954 13.1046 12 12C13.1046 10.8954 13.1046 9.10457 12 8L12 2Z" fill="#ffffff" opacity="0.7"/>
+                <path d="M12 22C16.4183 22 20 18.4183 20 14C20 11.3478 18.7739 8.8043 16.6667 6.66667L12 2L7.33333 6.66667C5.22609 8.8043 4 11.3478 4 14C4 18.4183 7.58172 22 12 22Z" stroke="#ffffff" stroke-width="2"/>
+              </svg>
+              <div class="cultivation-label">Humidity</div>
+              <div class="cultivation-value">{{ product.metafields.cultivation.humidity }}</div>
+            </div>
+          {%- endif -%}
+          
+          {%- if product.metafields.cultivation.co2_level -%}
+            <div class="cultivation-item">
+              <svg class="cultivation-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="8" stroke="#ffffff" stroke-width="2" fill="none"/>
+                <path d="M12 8V16M8 12H16" stroke="#ffffff" stroke-width="1.5"/>
+              </svg>
+              <div class="cultivation-label">CO₂ Level</div>
+              <div class="cultivation-value">{{ product.metafields.cultivation.co2_level }}</div>
+            </div>
+          {%- endif -%}
+          
+          {%- if product.metafields.cultivation.growth_time -%}
+            <div class="cultivation-item">
+              <svg class="cultivation-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="#ffffff" stroke-width="2"/>
+                <path d="M12 6V12L16 14" stroke="#ffffff" stroke-width="2"/>
+              </svg>
+              <div class="cultivation-label">Growth Time</div>
+              <div class="cultivation-value">{{ product.metafields.cultivation.growth_time }}</div>
+            </div>
+          {%- endif -%}
+          
+        </div>
+      </div>
+    {%- endif -%}
+    
+    <!-- Action Buttons -->
+    <div class="product-actions">
+      <button 
+        class="btn-primary-mono quick-add-btn" 
+        data-product-id="{{ product.id }}"
+        data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+      >
+        Add to Cart
+      </button>
+      
+      <button class="btn-secondary-mono wishlist-btn" data-product-id="{{ product.id }}">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.99914 7.05 2.99914C5.59096 2.99914 4.19169 3.5783 3.16 4.61C2.1283 5.64169 1.54914 7.04096 1.54914 8.5C1.54914 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61V4.61Z" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</article>
+
+<script>
+// 🚀 Enhanced Monochrome Product Card Interactions
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // Quick Add to Cart functionality
+  document.querySelectorAll('.quick-add-btn').forEach(button => {
+    button.addEventListener('click', async function(e) {
+      e.preventDefault();
+      
+      const variantId = this.dataset.variantId;
+      const productId = this.dataset.productId;
+      
+      // Add loading state
+      this.classList.add('btn-loading');
+      this.textContent = 'Adding...';
+      
+      try {
+        const response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: variantId,
+            quantity: 1
+          })
+        });
+        
+        if (response.ok) {
+          // Success feedback
+          this.textContent = '✓ Added!';
+          this.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%)';
+          
+          // Update cart count if exists
+          const cartCount = document.getElementById('cart-count');
+          if (cartCount) {
+            const currentCount = parseInt(cartCount.textContent) || 0;
+            cartCount.textContent = currentCount + 1;
+          }
+          
+          // Reset button after 2 seconds
+          setTimeout(() => {
+            this.textContent = 'Add to Cart';
+            this.style.background = '';
+            this.classList.remove('btn-loading');
+          }, 2000);
+          
+        } else {
+          throw new Error('Failed to add to cart');
+        }
+        
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+        this.textContent = 'Try Again';
+        this.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%)';
+        
+        setTimeout(() => {
+          this.textContent = 'Add to Cart';
+          this.style.background = '';
+          this.classList.remove('btn-loading');
+        }, 2000);
+      }
+    });
+  });
+  
+  // Wishlist functionality
+  document.querySelectorAll('.wishlist-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const productId = this.dataset.productId;
+      const isWishlisted = this.classList.contains('wishlisted');
+      
+      if (isWishlisted) {
+        // Remove from wishlist
+        this.classList.remove('wishlisted');
+        this.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.99914 7.05 2.99914C5.59096 2.99914 4.19169 3.5783 3.16 4.61C2.1283 5.64169 1.54914 7.04096 1.54914 8.5C1.54914 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61V4.61Z" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+        `;
+      } else {
+        // Add to wishlist
+        this.classList.add('wishlisted');
+        this.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.99914 7.05 2.99914C5.59096 2.99914 4.19169 3.5783 3.16 4.61C2.1283 5.64169 1.54914 7.04096 1.54914 8.5C1.54914 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61V4.61Z" stroke="currentColor" stroke-width="2" fill="#ffffff"/>
+          </svg>
+        `;
+      }
+      
+      // Store wishlist state in localStorage
+      const wishlist = JSON.parse(localStorage.getItem('swm-wishlist') || '[]');
+      if (isWishlisted) {
+        const index = wishlist.indexOf(productId);
+        if (index > -1) wishlist.splice(index, 1);
+      } else {
+        if (!wishlist.includes(productId)) wishlist.push(productId);
+      }
+      localStorage.setItem('swm-wishlist', JSON.stringify(wishlist));
+    });
+    
+    // Check if product is already in wishlist
+    const productId = button.dataset.productId;
+    const wishlist = JSON.parse(localStorage.getItem('swm-wishlist') || '[]');
+    if (wishlist.includes(productId)) {
+      button.classList.add('wishlisted');
+      button.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.99914 7.05 2.99914C5.59096 2.99914 4.19169 3.5783 3.16 4.61C2.1283 5.64169 1.54914 7.04096 1.54914 8.5C1.54914 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61V4.61Z" stroke="currentColor" stroke-width="2" fill="#ffffff"/>
+        </svg>
+      `;
+    }
+  });
+});
+</script>

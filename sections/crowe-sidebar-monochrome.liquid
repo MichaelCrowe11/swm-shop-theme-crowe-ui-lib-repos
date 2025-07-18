@@ -1,0 +1,732 @@
+{%- comment -%}
+🍄 Southwest Mushrooms™ Monochrome Glass Morphism Sidebar
+Premium black/white theme with reflective glass styling
+{%- endcomment -%}
+
+<style>
+/* 🎨 Monochrome Glass Morphism Sidebar */
+.crowe-sidebar-enhanced {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(255, 255, 255, 0.02) 25%,
+    rgba(0, 0, 0, 0.98) 50%,
+    rgba(255, 255, 255, 0.015) 75%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: none;
+  box-shadow: 
+    0 0 50px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+
+.crowe-sidebar-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+    linear-gradient(45deg, 
+      transparent 0%,
+      rgba(255, 255, 255, 0.01) 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.008) 75%,
+      transparent 100%
+    );
+  pointer-events: none;
+}
+
+.crowe-sidebar-enhanced.is-open {
+  left: 0;
+  transform: translateX(0);
+}
+
+/* 🌟 Premium Header with Southwest Mushrooms Branding */
+.sidebar-header {
+  padding: 28px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.02), 
+    transparent
+  );
+  animation: rotate 10s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-container {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.logo-container:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.brand-logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+.mushroom-logo {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+.brand-text {
+  flex: 1;
+}
+
+.brand-text h1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.brand-tagline {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 500;
+}
+
+/* 🔥 Mobile Toggle Button */
+.sidebar-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.hamburger {
+  width: 24px;
+  height: 24px;
+  stroke: #ffffff;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+}
+
+/* 📱 Sidebar Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.sidebar-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 🎯 Navigation Styles */
+.sidebar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 24px 0;
+  height: calc(100vh - 140px);
+  overflow-y: auto;
+}
+
+.nav-item {
+  margin: 0 16px 8px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.nav-link:hover::before {
+  left: 100%;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(8px) scale(1.02);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.nav-icon {
+  width: 22px;
+  height: 22px;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
+}
+
+.nav-link:hover .nav-icon {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+.nav-link span {
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* 🤖 Special Crowe Logic AI Item with Avatar */
+.nav-item.crowe-logic-item .nav-link {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.nav-item.crowe-logic-item .nav-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 8px 30px rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.crowe-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  object-fit: cover;
+}
+
+/* 💎 Stats Section */
+.sidebar-stats {
+  padding: 20px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  margin-top: auto;
+}
+
+.stats-title {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.stat-label {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ⚡ Animations */
+@keyframes shimmer {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.nav-item.cta-item .nav-link {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .crowe-sidebar-enhanced {
+    width: 280px;
+    left: -280px;
+  }
+  
+  .sidebar-header {
+    padding: 20px 16px;
+  }
+  
+  .brand-text h1 {
+    font-size: 16px;
+  }
+  
+  .nav-item {
+    margin: 0 12px 6px;
+  }
+  
+  .nav-link {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  
+  .nav-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .nav-link span {
+    font-size: 13px;
+  }
+}
+</style>
+
+<!-- Mobile Toggle Button -->
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Navigation">
+  <svg class="hamburger" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<!-- Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Enhanced Monochrome Sidebar -->
+<nav class="crowe-sidebar-enhanced" id="croweSidebar" role="navigation" aria-label="Main Navigation">
+  <!-- Southwest Mushrooms Header -->
+  <header class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="logo-container">
+        {%- if images['southwest-mushrooms-logo.PNG'] -%}
+          <img 
+            src="{{ images['southwest-mushrooms-logo.PNG'] | image_url: width: 80 }}" 
+            alt="Southwest Mushrooms" 
+            class="brand-logo-img"
+            width="40" 
+            height="40"
+          />
+        {%- else -%}
+          <!-- Fallback SVG mushroom logo -->
+          <svg class="mushroom-logo" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="mushroomGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9"/>
+                <stop offset="50%" style="stop-color:#f5f5f5;stop-opacity:0.7"/>
+                <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:0.8"/>
+              </linearGradient>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge> 
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            <!-- Mushroom cap -->
+            <ellipse cx="30" cy="25" rx="20" ry="12" fill="url(#mushroomGrad)" filter="url(#glow)"/>
+            <!-- Mushroom stem -->
+            <rect x="26" y="25" width="8" height="20" rx="4" fill="url(#mushroomGrad)" filter="url(#glow)"/>
+            <!-- Gills -->
+            <path d="M15 25 Q30 30 45 25" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+            <path d="M18 27 Q30 32 42 27" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          </svg>
+        {%- endif -%}
+      </div>
+      
+      <div class="brand-text">
+        <h1>Southwest Mushrooms</h1>
+        <span class="brand-tagline">Premium Cultivation</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Enhanced Navigation -->
+  <ul class="sidebar-nav">
+    <!-- Dashboard -->
+    <li class="nav-item">
+      <a href="{{ section.settings.dashboard_url | default: '/' }}" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="#ffffff" stroke-width="2" fill="none"/>
+          <path d="M9 22V12H15V22" stroke="#ffffff" stroke-width="2" fill="none"/>
+        </svg>
+        <span>Grow Dashboard</span>
+      </a>
+    </li>
+
+    <!-- Products -->
+    <li class="nav-item">
+      <a href="{{ section.settings.products_url | default: '/collections/all' }}" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Mushroom Icon -->
+          <path d="M12 3C8 3 5 6 5 10C5 11 5.5 12 6.5 12.5H17.5C18.5 12 19 11 19 10C19 6 16 3 12 3Z" fill="#ffffff" opacity="0.7"/>
+          <path d="M8 12.5V20C8 20.5 8.5 21 9 21H15C15.5 21 16 20.5 16 20V12.5" stroke="#ffffff" stroke-width="2" fill="none"/>
+          <circle cx="10" cy="8" r="1" fill="#ffffff"/>
+          <circle cx="14" cy="8" r="1" fill="#ffffff"/>
+        </svg>
+        <span>Mushroom Varieties</span>
+      </a>
+    </li>
+
+    <!-- Growing Guides -->
+    <li class="nav-item">
+      <a href="{{ section.settings.guides_url | default: '/pages/guides' }}" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 19.5C4 18.1193 5.11929 17 6.5 17H20" stroke="#ffffff" stroke-width="2"/>
+          <path d="M6.5 2H20V22H6.5C5.11929 22 4 20.8807 4 19.5V4.5C4 3.11929 5.11929 2 6.5 2Z" stroke="#ffffff" stroke-width="2" fill="none"/>
+          <path d="M8 7H16M8 11H16M8 15H12" stroke="#ffffff" stroke-width="2"/>
+        </svg>
+        <span>Growing Guides</span>
+      </a>
+    </li>
+
+    <!-- Crowe Logic AI Assistant -->
+    <li class="nav-item crowe-logic-item cta-item">
+      <a href="/pages/crowe-logic" class="nav-link">
+        {%- if images['crowe-avatar.PNG'] -%}
+          <img 
+            src="{{ images['crowe-avatar.PNG'] | image_url: width: 56 }}" 
+            alt="Crowe Logic AI" 
+            class="crowe-avatar"
+            width="28" 
+            height="28"
+          />
+        {%- else -%}
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- AI Brain Icon -->
+            <circle cx="12" cy="8" r="3" stroke="#ffffff" stroke-width="2" fill="none"/>
+            <path d="M12 11V16M9 13L15 13" stroke="#ffffff" stroke-width="2"/>
+            <circle cx="6" cy="6" r="1.5" fill="#ffffff"/>
+            <circle cx="18" cy="6" r="1.5" fill="#ffffff"/>
+            <circle cx="6" cy="18" r="1.5" fill="#ffffff"/>
+            <circle cx="18" cy="18" r="1.5" fill="#ffffff"/>
+            <path d="M8 7L10 9M16 7L14 9M8 17L10 15M16 17L14 15" stroke="#ffffff" stroke-width="1.5"/>
+          </svg>
+        {%- endif -%}
+        <span>Crowe Logic AI</span>
+      </a>
+    </li>
+
+    <!-- Resources -->
+    <li class="nav-item">
+      <a href="{{ section.settings.resources_url | default: '/pages/resources' }}" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#ffffff" stroke-width="2" fill="none"/>
+          <path d="M14 2V8H20" stroke="#ffffff" stroke-width="2" fill="none"/>
+          <path d="M16 13H8M16 17H8M10 9H8" stroke="#ffffff" stroke-width="2" fill="none"/>
+        </svg>
+        <span>Resources</span>
+      </a>
+    </li>
+
+    <!-- Cart -->
+    <li class="nav-item">
+      <a href="/cart" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="21" r="1" stroke="#ffffff" stroke-width="2" fill="none"/>
+          <circle cx="19" cy="21" r="1" stroke="#ffffff" stroke-width="2" fill="none"/>
+          <path d="M2.05 2.05H4L6.2 12.05C6.29544 12.4737 6.52715 12.8573 6.85882 13.1353C7.19048 13.4133 7.60445 13.5687 8.03 13.58H19.49C19.9155 13.5687 20.3295 13.4133 20.6612 13.1353C20.9928 12.8573 21.2246 12.4737 21.32 12.05L23 5H5" stroke="#ffffff" stroke-width="2" fill="none"/>
+        </svg>
+        <span>Shopping Cart</span>
+      </a>
+    </li>
+
+    <!-- Account -->
+    <li class="nav-item">
+      <a href="/account" class="nav-link">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#ffffff" stroke-width="2" fill="none"/>
+          <circle cx="12" cy="7" r="4" stroke="#ffffff" stroke-width="2" fill="none"/>
+        </svg>
+        <span>My Account</span>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Community Stats -->
+  {%- if section.settings.show_stats -%}
+    <div class="sidebar-stats">
+      <div class="stats-title">Community</div>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value">{{ section.settings.stats_varieties | default: '50+' }}</div>
+          <div class="stat-label">Strains</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">{{ section.settings.stats_growers | default: '5K+' }}</div>
+          <div class="stat-label">Growers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">{{ section.settings.stats_success_rate | default: '98%' }}</div>
+          <div class="stat-label">Success</div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</nav>
+
+<script>
+// 🚀 Enhanced Sidebar Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidebar = document.getElementById('croweSidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  
+  function openSidebar() {
+    sidebar.classList.add('is-open');
+    overlay.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeSidebar() {
+    sidebar.classList.remove('is-open');
+    overlay.classList.remove('is-active');
+    document.body.style.overflow = '';
+  }
+  
+  sidebarToggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (sidebar.classList.contains('is-open')) {
+      closeSidebar();
+    } else {
+      openSidebar();
+    }
+  });
+  
+  overlay.addEventListener('click', closeSidebar);
+  
+  // Close on escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && sidebar.classList.contains('is-open')) {
+      closeSidebar();
+    }
+  });
+  
+  // Smooth scroll for anchor links
+  document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        closeSidebar();
+        setTimeout(() => {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }, 300);
+      }
+    });
+  });
+  
+  // Add active state based on current page
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPath || (currentPath === '/' && href === '/')) {
+      link.style.background = 'rgba(255, 255, 255, 0.15)';
+      link.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+      link.style.color = '#ffffff';
+    }
+  });
+});
+</script>
+
+{%- comment -%}
+💎 Schema Settings for Theme Customizer
+{%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Monochrome Sidebar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "🍄 Southwest Mushrooms Navigation"
+    },
+    {
+      "type": "url",
+      "id": "dashboard_url",
+      "label": "Dashboard URL",
+      "default": "/"
+    },
+    {
+      "type": "url",
+      "id": "products_url", 
+      "label": "Products URL",
+      "default": "/collections/all"
+    },
+    {
+      "type": "url",
+      "id": "guides_url",
+      "label": "Guides URL", 
+      "default": "/pages/guides"
+    },
+    {
+      "type": "url",
+      "id": "resources_url",
+      "label": "Resources URL",
+      "default": "/pages/resources"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Show Community Stats",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "stats_varieties",
+      "label": "Varieties Count",
+      "default": "50+"
+    },
+    {
+      "type": "text", 
+      "id": "stats_growers",
+      "label": "Growers Count",
+      "default": "5K+"
+    },
+    {
+      "type": "text",
+      "id": "stats_success_rate", 
+      "label": "Success Rate",
+      "default": "98%"
+    }
+  ]
+}
+{% endschema %}
