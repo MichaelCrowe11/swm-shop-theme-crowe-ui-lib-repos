@@ -1,0 +1,331 @@
+/* =========================================
+   CROWE LOGIC™ METAFIELD CALLOUT
+   ========================================= */
+
+.crowe-metafield-callout {
+  background: rgba(var(--color-foreground), 0.03);
+  border: 1px solid rgba(var(--color-foreground), 0.1);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.crowe-metafield-callout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--clr-accent), var(--clr-secondary));
+}
+
+/* Variant styles */
+.metafield-callout--card {
+  background: rgba(var(--color-foreground), 0.05);
+  border: 2px solid rgba(var(--clr-accent), 0.2);
+  box-shadow: var(--shadow-md);
+}
+
+.metafield-callout--inline {
+  background: transparent;
+  border: none;
+  padding: 1.5rem;
+  border-left: 4px solid var(--clr-accent);
+  margin: 1rem 0;
+}
+
+.metafield-callout--inline::before {
+  display: none;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.metafield-callout__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.metafield-callout__title {
+  color: var(--clr-accent);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.metafield-callout__title::before {
+  content: '🌿';
+  font-size: 1.25rem;
+}
+
+.metafield-callout__subtitle {
+  color: rgba(var(--color-foreground), 0.7);
+  font-size: 0.95rem;
+  margin: 0;
+  font-style: italic;
+}
+
+/* =========================================
+   SPECIFICATIONS GRID
+   ========================================= */
+
+.metafield-callout__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+@media screen and (max-width: 749px) {
+  .metafield-callout__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* =========================================
+   INDIVIDUAL SPECIFICATIONS
+   ========================================= */
+
+.metafield-spec {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(var(--color-foreground), 0.03);
+  border: 1px solid rgba(var(--color-foreground), 0.08);
+  border-radius: calc(var(--border-radius) - 2px);
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.metafield-spec:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: rgba(var(--clr-accent), 0.3);
+}
+
+.metafield-spec__icon {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-bg-dark);
+  position: relative;
+}
+
+.metafield-spec__icon::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: rgb(var(--color-background));
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.metafield-spec__icon svg {
+  width: 20px;
+  height: 20px;
+  color: var(--clr-accent);
+}
+
+.metafield-spec__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metafield-spec__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--clr-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metafield-spec__value {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(var(--color-foreground), 0.9);
+}
+
+/* =========================================
+   NOTE SECTION
+   ========================================= */
+
+.metafield-callout__note {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(var(--color-foreground), 0.1);
+}
+
+.metafield-callout__note p {
+  margin: 0;
+  color: rgba(var(--color-foreground), 0.6);
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: center;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media screen and (max-width: 749px) {
+  .crowe-metafield-callout {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .metafield-callout__header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .metafield-callout__title {
+    font-size: 1.25rem;
+  }
+  
+  .metafield-spec {
+    padding: 1rem;
+  }
+  
+  .metafield-spec__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .metafield-spec__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .metafield-callout__note {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+  }
+}
+
+/* =========================================
+   COMPACT VARIATION
+   ========================================= */
+
+.metafield-callout--compact {
+  padding: 1.5rem;
+}
+
+.metafield-callout--compact .metafield-callout__header {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.metafield-callout--compact .metafield-callout__title {
+  font-size: 1.125rem;
+  justify-content: flex-start;
+}
+
+.metafield-callout--compact .metafield-callout__grid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.metafield-callout--compact .metafield-spec {
+  padding: 1rem;
+}
+
+.metafield-callout--compact .metafield-spec__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* =========================================
+   PRODUCT PAGE INTEGRATION
+   ========================================= */
+
+.product__info .crowe-metafield-callout {
+  background: rgba(var(--clr-accent), 0.05);
+  border-color: rgba(var(--clr-accent), 0.2);
+}
+
+.product__info .metafield-spec {
+  background: rgba(var(--color-foreground), 0.02);
+}
+
+/* =========================================
+   ANIMATION EFFECTS
+   ========================================= */
+
+.metafield-spec {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.metafield-spec:nth-child(1) { animation-delay: 0.1s; }
+.metafield-spec:nth-child(2) { animation-delay: 0.2s; }
+.metafield-spec:nth-child(3) { animation-delay: 0.3s; }
+.metafield-spec:nth-child(4) { animation-delay: 0.4s; }
+.metafield-spec:nth-child(5) { animation-delay: 0.5s; }
+.metafield-spec:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metafield-spec {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  
+  .metafield-spec:hover {
+    transform: none;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+   ========================================= */
+
+.metafield-spec:focus-within {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 2px;
+}
+
+/* =========================================
+   PRINT STYLES
+   ========================================= */
+
+@media print {
+  .crowe-metafield-callout {
+    background: none;
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+  
+  .metafield-spec {
+    background: none;
+    border: 1px solid #ccc;
+    break-inside: avoid;
+  }
+  
+  .metafield-spec__icon {
+    background: #f0f0f0;
+    color: #000;
+  }
+}
