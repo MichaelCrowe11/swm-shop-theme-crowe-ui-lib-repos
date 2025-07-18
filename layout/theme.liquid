@@ -275,14 +275,7 @@
         background: #0a0a0a !important;
       }
       
-      /* Fix header positioning to prevent black space */
-      .shopify-section-group-header-group {
-        position: relative !important;
-        z-index: 900 !important;
-        background: #0a0a0a !important;
-      }
-      
-      /* Ensure sidebar shows on desktop */
+      /* Ensure sidebar shows on desktop but doesn't interfere with header */
       .crowe-sidebar {
         position: fixed;
         top: 0;
@@ -330,27 +323,35 @@
         }
       }
       
-      /* Desktop - hide mobile toggle */
+      /* Desktop - adjust layout for sidebar without affecting header */
       @media (min-width: 769px) {
         .mobile-sidebar-toggle {
           display: none;
         }
         
-        /* Adjust main content for sidebar - remove massive margin */
-        #MainContent {
-          margin-left: 300px;
-          transition: margin-left 0.3s ease;
-        }
-        
-        /* Fix header group positioning */
+        /* Header group positioned at top, adjusts for sidebar */
         .shopify-section-group-header-group {
-          margin-left: 300px;
+          position: relative !important;
+          z-index: 900 !important;
+          margin-left: 300px !important;
+          background: #0a0a0a !important;
           transition: margin-left 0.3s ease;
         }
         
-        /* Ensure hero section starts immediately after header */
-        .shopify-section-group-header-group + #MainContent {
+        /* Main content also adjusts for sidebar */
+        #MainContent {
+          margin-left: 300px !important;
+          transition: margin-left 0.3s ease;
+        }
+        
+        /* Remove any unwanted spacing */
+        .shopify-section-group-header-group,
+        #MainContent {
           padding-top: 0 !important;
+        }
+        
+        /* Ensure no gap between header and main content */
+        .shopify-section-group-header-group + #MainContent {
           margin-top: 0 !important;
         }
       }
@@ -372,21 +373,48 @@
         border: 1px solid rgba(192, 192, 192, 0.3);
       }
       
-      /* Remove any excessive top margins/padding that create black space */
-      .shopify-section:first-child,
-      .shopify-section-group-header-group:first-child {
+      /* Additional Header Positioning Fixes */
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      .shopify-section-group-header-group {
+        position: relative !important;
+        top: 0 !important;
         margin-top: 0 !important;
         padding-top: 0 !important;
       }
       
-      /* Ensure sections flow properly */
-      .shopify-section {
+      /* Force header elements to top */
+      .shopify-section-announcement-bar,
+      .shopify-section-header {
+        position: relative !important;
+        top: 0 !important;
+      }
+      
+      /* Remove any excessive top margins/padding that create black space */
+      .shopify-section,
+      .section-group-header {
         margin-top: 0 !important;
+      }
+      
+      /* Specifically target header sections */
+      .shopify-section-announcement-bar,
+      .shopify-section-header {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
       }
       
       /* Fix any quantum spacing that creates gaps */
-      .quantum-section {
+      .quantum-section,
+      .section-quantum {
         padding-top: 0 !important;
+        margin-top: 0 !important;
+      }
+      
+      /* Image banner should start immediately after header */
+      .shopify-section-image-banner {
         margin-top: 0 !important;
       }
     </style>
