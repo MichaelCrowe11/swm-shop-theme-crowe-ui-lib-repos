@@ -1,0 +1,359 @@
+{% comment %}
+  Enhanced Crowe Logic™ Sidebar Section
+  Modular navigation with mobile responsiveness
+{% endcomment %}
+
+<style>
+  .crowe-sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background: var(--clr-accent);
+    color: var(--clr-black);
+    border: none;
+    padding: 12px;
+    border-radius: var(--radius-base);
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-base);
+  }
+  
+  .crowe-sidebar-toggle:hover {
+    background: var(--clr-secondary);
+    transform: scale(1.05);
+  }
+  
+  .crowe-sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+  }
+  
+  .crowe-sidebar-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  @media screen and (min-width: 991px) {
+    .crowe-sidebar-toggle {
+      display: none;
+    }
+    
+    .crowe-sidebar {
+      transform: translateX(0);
+      position: relative;
+      height: auto;
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="crowe-sidebar-container">
+  <!-- Mobile Toggle Button -->
+  <button class="crowe-sidebar-toggle" onclick="toggleCroweSidebar()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
+  
+  <!-- Overlay for mobile -->
+  <div class="crowe-sidebar-overlay" onclick="closeCroweSidebar()"></div>
+  
+  <!-- Sidebar Content -->
+  <aside class="crowe-sidebar" id="croweSidebar">
+    <!-- Sidebar Header -->
+    <div class="crowe-sidebar__header">
+      <div class="crowe-sidebar__logo">
+        <img
+          src="{{ 'CroweLogic_Avatar_Exact 2.svg' | asset_url }}"
+          alt="Crowe Logic AI"
+          width="60"
+          height="60"
+          style="width: 60px; height: 60px; border-radius: 50%;"
+        />
+      </div>
+      <h3 class="crowe-sidebar__title">Crowe Logic™</h3>
+      <p class="crowe-sidebar__subtitle">Myco-intelligent Commerce</p>
+    </div>
+    
+    <!-- Navigation Menu -->
+    <nav class="crowe-sidebar__nav">
+      <ul class="crowe-sidebar__nav-list">
+        {% for link in linklists[section.settings.menu].links %}
+          <li class="crowe-sidebar__nav-item">
+            <a 
+              href="{{ link.url }}" 
+              class="crowe-sidebar__nav-link {% if link.active %}is-active{% endif %}"
+            >
+              {% case link.title %}
+                {% when 'Cultivation' %}
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v20m8-10H4m15.5-3.5L2.5 21.5M21.5 8.5L2.5 2.5"/>
+                  </svg>
+                {% when 'Products' %}
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="9" cy="9" r="2"/>
+                    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                  </svg>
+                {% when 'AI Assistant' %}
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                    <path d="M9 12l2 2 4-4"/>
+                  </svg>
+                {% when 'Guides' %}
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                  </svg>
+                {% else %}
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                  </svg>
+              {% endcase %}
+              {{ link.title }}
+            </a>
+            
+            {% if link.links != blank %}
+              <ul class="crowe-sidebar__submenu">
+                {% for childlink in link.links %}
+                  <li class="crowe-sidebar__submenu-item">
+                    <a 
+                      href="{{ childlink.url }}" 
+                      class="crowe-sidebar__submenu-link {% if childlink.active %}is-active{% endif %}"
+                    >
+                      {{ childlink.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    
+    <!-- Sidebar Footer / CTA -->
+    <div class="crowe-sidebar__footer">
+      <div class="crowe-sidebar__cta">
+        <h4>Join the Network</h4>
+        <p>Connect to the mycelial intelligence</p>
+        <a href="/pages/ai-assistant" class="btn btn--secondary" style="width: 100%; margin-top: 1rem;">
+          Launch AI Assistant
+        </a>
+      </div>
+      
+      <!-- Quick Stats -->
+      <div class="crowe-sidebar__stats">
+        <div class="stat-item">
+          <span class="stat-number">{{ collections.all.products_count }}</span>
+          <span class="stat-label">Cultivars</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">{{ blog.articles_count | default: 12 }}</span>
+          <span class="stat-label">Guides</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">AI Support</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+  function toggleCroweSidebar() {
+    const sidebar = document.getElementById('croweSidebar');
+    const overlay = document.querySelector('.crowe-sidebar-overlay');
+    
+    sidebar.classList.toggle('is-open');
+    overlay.classList.toggle('is-open');
+    
+    // Prevent body scroll when sidebar is open on mobile
+    if (window.innerWidth < 991) {
+      document.body.style.overflow = sidebar.classList.contains('is-open') ? 'hidden' : '';
+    }
+  }
+  
+  function closeCroweSidebar() {
+    const sidebar = document.getElementById('croweSidebar');
+    const overlay = document.querySelector('.crowe-sidebar-overlay');
+    
+    sidebar.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  
+  // Close sidebar when clicking on main content (mobile)
+  document.addEventListener('click', function(e) {
+    const sidebar = document.getElementById('croweSidebar');
+    const toggle = document.querySelector('.crowe-sidebar-toggle');
+    
+    if (window.innerWidth < 991 && 
+        sidebar.classList.contains('is-open') && 
+        !sidebar.contains(e.target) && 
+        !toggle.contains(e.target)) {
+      closeCroweSidebar();
+    }
+  });
+  
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 991) {
+      document.body.style.overflow = '';
+      document.querySelector('.crowe-sidebar-overlay').classList.remove('is-open');
+    }
+  });
+</script>
+
+<style>
+  .crowe-sidebar__header {
+    text-align: center;
+    padding-bottom: var(--spacing-section);
+    border-bottom: 1px solid var(--clr-accent);
+    margin-bottom: var(--spacing-section);
+  }
+  
+  .crowe-sidebar__title {
+    color: var(--clr-accent);
+    margin: var(--spacing-element) 0 var(--spacing-tight);
+    font-size: var(--text-xl);
+  }
+  
+  .crowe-sidebar__subtitle {
+    color: var(--clr-text);
+    opacity: 0.8;
+    font-size: var(--text-sm);
+    margin: 0;
+  }
+  
+  .crowe-sidebar__nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-tight);
+  }
+  
+  .crowe-sidebar__submenu {
+    list-style: none;
+    padding-left: 2rem;
+    margin-top: var(--spacing-tight);
+  }
+  
+  .crowe-sidebar__submenu-link {
+    display: block;
+    color: var(--clr-text);
+    opacity: 0.8;
+    padding: var(--spacing-tight);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    font-size: var(--text-sm);
+  }
+  
+  .crowe-sidebar__submenu-link:hover,
+  .crowe-sidebar__submenu-link.is-active {
+    background: var(--clr-accent);
+    color: var(--clr-black);
+    opacity: 1;
+  }
+  
+  .crowe-sidebar__footer {
+    margin-top: auto;
+    padding-top: var(--spacing-section);
+    border-top: 1px solid var(--clr-accent);
+  }
+  
+  .crowe-sidebar__cta h4 {
+    color: var(--clr-accent);
+    margin-bottom: var(--spacing-tight);
+    font-size: var(--text-lg);
+  }
+  
+  .crowe-sidebar__cta p {
+    color: var(--clr-text);
+    opacity: 0.8;
+    font-size: var(--text-sm);
+    margin-bottom: 0;
+  }
+  
+  .crowe-sidebar__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-element);
+    margin-top: var(--spacing-section);
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    color: var(--clr-accent);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+  }
+  
+  .stat-label {
+    display: block;
+    color: var(--clr-text);
+    opacity: 0.7;
+    font-size: var(--text-sm);
+    margin-top: var(--spacing-tight);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Crowe Sidebar",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Show Statistics",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "CTA Title",
+      "default": "Join the Network"
+    },
+    {
+      "type": "text",
+      "id": "cta_subtitle",
+      "label": "CTA Subtitle",
+      "default": "Connect to the mycelial intelligence"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link",
+      "default": "/pages/ai-assistant"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Crowe Sidebar"
+    }
+  ]
+}
+{% endschema %}

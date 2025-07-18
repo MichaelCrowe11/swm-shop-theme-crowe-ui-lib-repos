@@ -1,0 +1,303 @@
+/* =========================================
+   CROWE LOGIC™ CTA BLOCK
+   ========================================= */
+
+.crowe-cta-block {
+  padding: var(--section-spacing) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-block__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  min-height: 400px;
+}
+
+.cta-block__content--reverse {
+  grid-template-columns: 1fr 1fr;
+}
+
+.cta-block__content--reverse .cta-block__media {
+  order: -1;
+}
+
+@media screen and (max-width: 749px) {
+  .cta-block__content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+    min-height: auto;
+  }
+  
+  .cta-block__content--reverse .cta-block__media {
+    order: 0;
+  }
+}
+
+/* =========================================
+   MEDIA SECTION
+   ========================================= */
+
+.cta-block__media {
+  position: relative;
+}
+
+.cta-block__media-wrapper {
+  position: relative;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background: rgba(var(--color-foreground), 0.05);
+  aspect-ratio: 4/3;
+}
+
+.cta-block__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.crowe-cta-block:hover .cta-block__image {
+  transform: scale(1.02);
+}
+
+/* =========================================
+   TEXT CONTENT
+   ========================================= */
+
+.cta-block__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cta-block__heading {
+  color: var(--clr-accent);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.cta-block__description {
+  color: rgba(var(--color-foreground), 0.85);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.cta-block__description p {
+  margin: 0 0 1rem 0;
+}
+
+.cta-block__description p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+.cta-block__button,
+.cta-block__secondary-button {
+  margin-top: 0.5rem;
+}
+
+.crowe-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--clr-accent);
+  color: var(--clr-bg-dark);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.crowe-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.crowe-cta-button:hover::before {
+  left: 100%;
+}
+
+.crowe-cta-button:hover {
+  background: var(--clr-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(198, 163, 81, 0.3);
+}
+
+.crowe-cta-button--secondary {
+  background: transparent;
+  color: var(--clr-accent);
+  border: 2px solid var(--clr-accent);
+}
+
+.crowe-cta-button--secondary:hover {
+  background: var(--clr-accent);
+  color: var(--clr-bg-dark);
+  border-color: var(--clr-accent);
+}
+
+.cta-arrow {
+  transition: transform 0.3s ease;
+}
+
+.crowe-cta-button:hover .cta-arrow {
+  transform: translateX(3px);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media screen and (max-width: 989px) {
+  .cta-block__heading {
+    font-size: 2rem;
+  }
+  
+  .cta-block__description {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .cta-block__heading {
+    font-size: 1.75rem;
+  }
+  
+  .cta-block__description {
+    font-size: 0.95rem;
+  }
+  
+  .crowe-cta-button {
+    padding: 0.875rem 1.75rem;
+    font-size: 0.95rem;
+  }
+  
+  .cta-block__media-wrapper {
+    aspect-ratio: 16/9;
+  }
+}
+
+/* =========================================
+   COLOR SCHEME VARIATIONS
+   ========================================= */
+
+.crowe-cta-block.color-background-1 {
+  background: rgb(var(--color-background));
+}
+
+.crowe-cta-block.color-background-2 {
+  background: rgba(var(--color-foreground), 0.05);
+}
+
+.crowe-cta-block.color-accent-1 {
+  background: rgba(var(--clr-accent), 0.1);
+}
+
+.crowe-cta-block.color-accent-1 .cta-block__heading {
+  color: var(--clr-accent);
+}
+
+.crowe-cta-block.color-accent-2 {
+  background: rgba(var(--clr-secondary), 0.1);
+}
+
+.crowe-cta-block.color-accent-2 .cta-block__heading {
+  color: var(--clr-secondary);
+}
+
+/* =========================================
+   ANIMATION & INTERACTIONS
+   ========================================= */
+
+.cta-block__text > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.cta-block__heading {
+  animation-delay: 0.1s;
+}
+
+.cta-block__description {
+  animation-delay: 0.2s;
+}
+
+.cta-block__button {
+  animation-delay: 0.3s;
+}
+
+.cta-block__secondary-button {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-block__text > * {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  
+  .crowe-cta-button::before {
+    display: none;
+  }
+  
+  .crowe-cta-button:hover {
+    transform: none;
+  }
+  
+  .cta-block__image {
+    transition: none;
+  }
+  
+  .crowe-cta-block:hover .cta-block__image {
+    transform: none;
+  }
+}
+
+/* =========================================
+   FOCUS STATES & ACCESSIBILITY
+   ========================================= */
+
+.crowe-cta-button:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 2px;
+}
+
+/* =========================================
+   SECTION PADDING
+   ========================================= */
+
+.crowe-cta-block {
+  padding-top: 36px;
+  padding-bottom: 36px;
+}

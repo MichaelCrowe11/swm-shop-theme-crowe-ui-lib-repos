@@ -1,0 +1,313 @@
+/* =========================================
+   CROWE LOGIC™ DESIGN SYSTEM
+   Myco-intelligent commerce interface
+   ========================================= */
+
+/* Core Brand Tokens */
+:root {
+  /* Crowe Logic Brand Colors */
+  --clr-bg-dark: #17141E;      /* Obsidian Charcoal */
+  --clr-fg-light: #F4F4F2;     /* Mycelium White */
+  --clr-accent: #C6A351;       /* Cultivar Gold */
+  --clr-secondary: #C9B88A;    /* Golden Clay */
+  --clr-text: #E0E0E0;         /* Light text */
+  --clr-black: #0D0D0D;        /* Rich Contrast */
+  
+  /* Typography System */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --text-base: 16px;
+  --text-sm: 14px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+  --text-5xl: 48px;
+  --line-height-base: 1.6;
+  --line-height-tight: 1.25;
+  --line-height-relaxed: 1.75;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Override Dawn's default colors */
+  --color-background: 23, 20, 30;    /* --clr-bg-dark in RGB */
+  --color-foreground: 244, 244, 242; /* --clr-fg-light in RGB */
+  --color-base-accent-1: 198, 163, 81; /* --clr-accent in RGB */
+  --color-base-accent-2: 201, 184, 138; /* --clr-secondary in RGB */
+  
+  /* Layout & Spacing System */
+  --spacing-section: 2rem;
+  --spacing-component: 1.5rem;
+  --spacing-element: 1rem;
+  --spacing-tight: 0.5rem;
+  --sidebar-width: 260px;
+  
+  /* Border Radius System */
+  --radius-sm: 6px;
+  --radius-base: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+  
+  /* Legacy aliases */
+  --section-spacing: var(--spacing-section);
+  --border-radius: var(--radius-base);
+  
+  /* Shadows & Effects */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-md: var(--shadow-base); /* Legacy alias */
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}
+
+/* =========================================
+   GLOBAL OVERRIDES
+   ========================================= */
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--clr-bg-dark);
+  color: var(--clr-text);
+  line-height: 1.6;
+}
+
+/* Typography System */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--clr-accent);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+h1 { font-size: 3rem; line-height: 1.2; }
+h2 { font-size: 2.25rem; line-height: 1.3; }
+h3 { font-size: 1.875rem; line-height: 1.4; }
+h4 { font-size: 1.5rem; line-height: 1.4; }
+h5 { font-size: 1.25rem; line-height: 1.5; }
+h6 { font-size: 1.125rem; line-height: 1.5; }
+
+/* Link Styles */
+a {
+  color: var(--clr-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--clr-secondary);
+}
+
+/* =========================================
+   BUTTON SYSTEM
+   ========================================= */
+
+.btn,
+.button,
+button,
+input[type="submit"],
+.shopify-payment-button__button {
+  background: var(--clr-accent);
+  color: var(--clr-bg-dark);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover,
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+.shopify-payment-button__button:hover {
+  background: var(--clr-secondary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--clr-accent);
+  border: 2px solid var(--clr-accent);
+}
+
+.btn--secondary:hover {
+  background: var(--clr-accent);
+  color: var(--clr-bg-dark);
+}
+
+/* =========================================
+   LAYOUT ADJUSTMENTS
+   ========================================= */
+
+/* Make room for sidebar */
+.shopify-section {
+  margin-left: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .shopify-section {
+    margin-left: var(--sidebar-width);
+  }
+}
+
+/* Page wrapper */
+.page-width {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Section spacing */
+.section {
+  padding: var(--section-spacing) 0;
+}
+
+/* =========================================
+   PRODUCT CARD OVERRIDES
+   ========================================= */
+
+.card {
+  background: rgba(var(--color-foreground), 0.05);
+  border: 1px solid rgba(var(--color-foreground), 0.1);
+  border-radius: var(--border-radius);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--clr-accent);
+}
+
+.card__content {
+  padding: 1.5rem;
+}
+
+.card__heading {
+  color: var(--clr-fg-light);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.price {
+  color: var(--clr-accent);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* =========================================
+   NAVIGATION OVERRIDES
+   ========================================= */
+
+.header {
+  background: var(--clr-bg-dark);
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+}
+
+.header__heading-link {
+  color: var(--clr-accent);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* =========================================
+   FOOTER OVERRIDES
+   ========================================= */
+
+.footer {
+  background: rgba(var(--color-foreground), 0.05);
+  border-top: 1px solid rgba(var(--color-foreground), 0.1);
+  color: var(--clr-text);
+}
+
+/* =========================================
+   FORM ELEMENTS
+   ========================================= */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+  background: rgba(var(--color-foreground), 0.05);
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  border-radius: var(--border-radius);
+  color: var(--clr-text);
+  padding: 0.75rem;
+  font-family: var(--font-sans);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--clr-accent);
+  box-shadow: 0 0 0 3px rgba(198, 163, 81, 0.1);
+}
+
+/* =========================================
+   RESPONSIVE UTILITIES
+   ========================================= */
+
+@media screen and (max-width: 749px) {
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.875rem; }
+  h3 { font-size: 1.5rem; }
+  
+  .section {
+    padding: 1.5rem 0;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY & FOCUS STATES
+   ========================================= */
+
+:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* =========================================
+   ANIMATION & TRANSITIONS
+   ========================================= */
+
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
