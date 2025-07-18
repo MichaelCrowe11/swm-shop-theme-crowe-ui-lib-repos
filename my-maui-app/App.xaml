@@ -1,0 +1,18 @@
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MyMauiApp.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <OnPlatform x:TypeArguments="ResourceDictionary">
+                    <On Platform="Android" Value="Resources/Styles/AndroidStyles.xaml" />
+                    <On Platform="iOS" Value="Resources/Styles/iOSStyles.xaml" />
+                    <On Platform="MacCatalyst" Value="Resources/Styles/MacCatalystStyles.xaml" />
+                    <On Platform="Windows" Value="Resources/Styles/WindowsStyles.xaml" />
+                </OnPlatform>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

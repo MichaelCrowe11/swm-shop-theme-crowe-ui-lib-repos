@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="MyMauiApp.AppShell">
+
+    <ShellContent Title="Crowe Logic" ContentTemplate="{DataTemplate Views:MainPage}" />
+    
+    <ShellItem>
+        <ShellSection Title="Dashboard">
+            <ShellContent ContentTemplate="{DataTemplate Views:MainPage}" />
+        </ShellSection>
+        <ShellSection Title="Products">
+            <ShellContent ContentTemplate="{DataTemplate Views:MainPage}" />
+        </ShellSection>
+        <ShellSection Title="Audiobook">
+            <ShellContent ContentTemplate="{DataTemplate Views:MainPage}" />
+        </ShellSection>
+        <ShellSection Title="Guides">
+            <ShellContent ContentTemplate="{DataTemplate Views:MainPage}" />
+        </ShellSection>
+        <ShellSection Title="Crowe Logic">
+            <ShellContent ContentTemplate="{DataTemplate Views:MainPage}" />
+        </ShellSection>
+        <ShellSection Title="Cart">
+            <ShellContent ContentTemplate="{DataTemplate Views:MainPage}" />
+        </ShellSection>
+    </ShellItem>
+
+</Shell>

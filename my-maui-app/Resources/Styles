@@ -1,0 +1,39 @@
+:root {
+  --clr-bg-dark: #17141E;     /* Obsidian Charcoal */
+  --clr-fg-light: #F4F4F2;    /* Mycelium White */
+  --clr-accent:   #C6A351;    /* Cultivar Gold */
+  --clr-secondary:#C9B88A;    /* Golden Clay */
+  --clr-text:     #E0E0E0;
+  --clr-black:    #0D0D0D;    /* Rich Contrast */
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--clr-bg-dark);
+  color: var(--clr-fg-light);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--clr-accent);
+}
+
+button {
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  background-color: var(--clr-accent);
+  color: var(--clr-fg-light);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--clr-secondary);
+}
+
+.section {
+  margin: 2rem 0;
+}

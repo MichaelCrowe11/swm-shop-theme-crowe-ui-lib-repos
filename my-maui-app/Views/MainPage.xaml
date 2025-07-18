@@ -1,0 +1,41 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMauiApp.Views.MainPage"
+             BackgroundColor="{StaticResource clr-bg-dark}">
+
+    <Grid RowDefinitions="Auto,*" ColumnDefinitions="Auto,*">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <ContentView Grid.Column="0" BackgroundColor="{StaticResource clr-bg-dark}">
+            <StackLayout>
+                <Label Text="Crowe Logic™" 
+                       TextColor="{StaticResource clr-fg-light}" 
+                       FontSize="24" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Start" />
+                <Button Text="🌿 Grow Dashboard" TextColor="{StaticResource clr-fg-light}" />
+                <Button Text="📦 Products" TextColor="{StaticResource clr-fg-light}" />
+                <Button Text="🎧 Audiobook" TextColor="{StaticResource clr-fg-light}" />
+                <Button Text="📘 Guides" TextColor="{StaticResource clr-fg-light}" />
+                <Button Text="🤖 Crowe Logic" TextColor="{StaticResource clr-fg-light}" />
+                <Button Text="🛒 Cart" TextColor="{StaticResource clr-fg-light}" />
+            </StackLayout>
+        </ContentView>
+
+        <!-- Main Content Area -->
+        <ContentView Grid.Column="1" BackgroundColor="{StaticResource clr-bg-dark}">
+            <StackLayout Padding="20">
+                <Label Text="Welcome to Crowe Logic™" 
+                       TextColor="{StaticResource clr-fg-light}" 
+                       FontSize="32" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Start" />
+                <!-- Additional content can be added here -->
+            </StackLayout>
+        </ContentView>
+    </Grid>
+</ContentPage>
