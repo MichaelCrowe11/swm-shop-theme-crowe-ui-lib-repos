@@ -7,7 +7,7 @@
     </div>
     <h1 class="sidebar-brand">
       <a href="{{ routes.root_url }}" class="sidebar-brand-link">
-        <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="crowe-logo">
+        <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="crowe-logo" style="filter: brightness(0) invert(1);">
         <span class="brand-text">Crowe Logic™</span>
       </a>
     </h1>
@@ -60,7 +60,7 @@
     <li class="nav-item">
       <a href="https://research-assistant-ce196c.zapier.app" class="nav-link" target="_blank" rel="noopener noreferrer">
         <span class="nav-icon">
-          <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="nav-avatar">
+          <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="nav-avatar" style="filter: brightness(0) invert(1);">
         </span>
         <span class="nav-text">Crowe Logic AI</span>
         <span class="external-link-icon">
@@ -104,23 +104,16 @@
     <!-- Crowe Logic AI Chat Section -->
     <div class="sidebar-chat-section" role="region" aria-label="Crowe Logic AI Chat">
       <div class="chat-header">
-        <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="chat-avatar">
+        <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="chat-avatar" style="filter: brightness(0) invert(1);">
         <div class="chat-info">
           <h3 class="chat-title">Crowe Logic AI</h3>
           <p class="chat-subtitle">Research Assistant</p>
         </div>
       </div>
-      <!-- Simple Iframe Embed -->
+      <!-- Zapier Chat Widget -->
       <div class="chat-embed-container">
-        <iframe 
-          src="https://research-assistant-ce196c.zapier.app" 
-          width="100%" 
-          height="400" 
-          frameborder="0"
-          allow="microphone; camera; clipboard-write"
-          title="Crowe Logic AI Research Assistant"
-          style="border-radius: 12px; background: rgba(255, 255, 255, 0.05);">
-        </iframe>
+        <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+        <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmbhp4x71002fqpzzx1cclqec'></zapier-interfaces-chatbot-embed>
       </div>
     </div>
   </div>
