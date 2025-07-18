@@ -13,6 +13,11 @@
   --quantum-cream: #FFF5DC;
 }
 
+/* White logo filter utility class */
+.white-logo-filter {
+  filter: brightness(0) invert(1);
+}
+
 /* Sidebar Hamburger Button with Simplified Glass Effect */
 .sidebar-hamburger {
   position: fixed;
@@ -156,10 +161,8 @@
     margin-left: 0;
   }
   
-  /* Hide the default Shopify header when sidebar is active */
-  .shopify-section-group-header-group {
-    display: none;
-  }
+  /* REMOVED: Hide the default Shopify header when sidebar is active */
+  /* .shopify-section-group-header-group { display: none; } */
   
   /* Hide hamburger on desktop when sidebar is persistent */
   .sidebar-hamburger {
