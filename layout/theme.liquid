@@ -262,6 +262,81 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'crowe-theme-quantum.css' | asset_url | stylesheet_tag }}
+    
+    <!-- Force Quantum Theme Overrides -->
+    <style>
+      /* Ensure quantum theme takes precedence */
+      html, body {
+        background: #0a0a0a !important;
+        color: #FFF5DC !important;
+      }
+      
+      .shopify-section {
+        background: #0a0a0a !important;
+      }
+      
+      /* Ensure sidebar shows on desktop */
+      .crowe-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 100vh;
+        background: rgba(26, 26, 26, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+      }
+      
+      /* Mobile sidebar hidden by default */
+      @media (max-width: 768px) {
+        .crowe-sidebar {
+          transform: translateX(-100%);
+        }
+        
+        .crowe-sidebar.sidebar-open {
+          transform: translateX(0);
+        }
+        
+        /* Show mobile toggle */
+        .mobile-sidebar-toggle {
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          z-index: 1001;
+          background: rgba(192, 192, 192, 0.2);
+          border: none;
+          border-radius: 8px;
+          padding: 12px;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        
+        .hamburger-line {
+          width: 24px;
+          height: 2px;
+          background: #FFF5DC;
+          transition: 0.3s;
+        }
+      }
+      
+      /* Desktop - hide mobile toggle */
+      @media (min-width: 769px) {
+        .mobile-sidebar-toggle {
+          display: none;
+        }
+        
+        /* Adjust main content for sidebar */
+        #MainContent {
+          margin-left: 300px;
+          transition: margin-left 0.3s ease;
+        }
+      }
+    </style>
+    
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
