@@ -646,4 +646,58 @@ h6 { font-size: 1rem; }
   background: var(--quantum-charcoal) !important;
 }
 
+/* ===== Footer Styling ===== */
+.footer {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #1a1a1a !important;
+  border-top: 0.1rem solid rgba(26, 26, 26, 0.1) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.footer * {
+  color: #1a1a1a !important;
+}
+
+.footer a {
+  color: #1a1a1a !important;
+  text-decoration: none;
+  transition: var(--quantum-transition-base);
+  font-weight: 500;
+}
+
+.footer a:hover {
+  color: #0a0a0a !important;
+  text-decoration: underline;
+  transform: translateY(-1px);
+}
+
+.footer h2,
+.footer h3,
+.footer h4,
+.footer h5,
+.footer h6 {
+  color: #0a0a0a !important;
+  font-weight: 700;
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+}
+
+.footer__content-bottom {
+  border-top: solid 0.1rem rgba(26, 26, 26, 0.1) !important;
+}
+
+.footer .social-icons a {
+  color: #1a1a1a !important;
+  background: rgba(26, 26, 26, 0.08);
+  border-radius: var(--quantum-border-radius-sm);
+  padding: var(--quantum-space-sm);
+  transition: var(--quantum-transition-base);
+}
+
+.footer .social-icons a:hover {
+  background: rgba(26, 26, 26, 0.15);
+  color: #0a0a0a !important;
+  transform: translateY(-2px);
+}
+
 /* ===== Quantum Theme Complete ===== */
