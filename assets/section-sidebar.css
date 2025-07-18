@@ -156,6 +156,11 @@
     margin-left: 0;
   }
   
+  /* Hide the default Shopify header when sidebar is active */
+  .shopify-section-group-header-group {
+    display: none;
+  }
+  
   /* Hide hamburger on desktop when sidebar is persistent */
   .sidebar-hamburger {
     display: none;
@@ -281,9 +286,191 @@
     display: block;
   }
   
-  /* On mobile, sidebar is hidden by default */
+  /* Keep the header visible on mobile */
+  .shopify-section-group-header-group {
+    display: block;
+  }
+  
+  /* Create mini sidebar for mobile */
+  .crowe-sidebar {
+    width: 80px; /* Mini sidebar width */
+    transform: translateX(0); /* Always show mini sidebar */
+    overflow: visible;
+  }
+  
+  /* Compact mobile sidebar header */
+  .sidebar-header {
+    padding: 0.5rem;
+    text-align: center;
+  }
+  
+  .sidebar-logo {
+    display: none; /* Hide main logo on mini sidebar */
+  }
+  
+  .sidebar-brand {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+  
+  .sidebar-brand .brand-text {
+    display: none; /* Hide text, show only logo */
+  }
+  
+  .crowe-logo {
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Mini nav items */
+  .nav-link {
+    padding: 0.75rem 0.5rem;
+    flex-direction: column;
+    margin-right: 0;
+    border-radius: 8px;
+    margin: 0.25rem;
+    text-align: center;
+  }
+  
+  .nav-icon {
+    margin-bottom: 0.25rem;
+  }
+  
+  .nav-icon svg,
+  .nav-avatar {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .nav-text {
+    font-size: 0.7rem;
+    line-height: 1;
+  }
+  
+  .external-link-icon {
+    display: none; /* Hide external link icon on mini */
+  }
+  
+  /* Compact chat section */
+  .sidebar-chat-section {
+    padding: 0.5rem;
+  }
+  
+  .chat-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.25rem;
+  }
+  
+  .chat-avatar {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .chat-title {
+    font-size: 0.7rem;
+    margin: 0;
+  }
+  
+  .chat-subtitle {
+    display: none; /* Hide subtitle on mini */
+  }
+  
+  .chat-embed-container {
+    min-height: 120px; /* Smaller chat container */
+    padding: 0.25rem;
+  }
+  
+  /* Compact auth section */
+  .sidebar-auth .auth-link {
+    padding: 0.5rem;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .sidebar-auth .nav-text {
+    font-size: 0.7rem;
+  }
+  
+  /* Expanded state for mobile - full width overlay */
+  .crowe-sidebar.open {
+    width: var(--sidebar-mobile-width);
+    z-index: 1001;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  }
+  
+  .crowe-sidebar.open .sidebar-logo {
+    display: block;
+  }
+  
+  .crowe-sidebar.open .sidebar-brand .brand-text {
+    display: inline;
+  }
+  
+  .crowe-sidebar.open .nav-link {
+    flex-direction: row;
+    padding: 1rem 1.5rem;
+    text-align: left;
+  }
+  
+  .crowe-sidebar.open .nav-icon {
+    margin-bottom: 0;
+    margin-right: 0.75rem;
+  }
+  
+  .crowe-sidebar.open .nav-text {
+    font-size: 1rem;
+  }
+  
+  .crowe-sidebar.open .external-link-icon {
+    display: block;
+  }
+  
+  .crowe-sidebar.open .chat-header {
+    flex-direction: row;
+    text-align: left;
+  }
+  
+  .crowe-sidebar.open .chat-subtitle {
+    display: block;
+  }
+  
+  .crowe-sidebar.open .chat-embed-container {
+    min-height: 300px;
+    padding: 0.5rem;
+  }
+  
+  /* On mobile, adjust main content for mini sidebar */
   body {
-    margin-left: 0;
+    margin-left: 80px; /* Account for mini sidebar width */
+  }
+  
+  /* When expanded, use overlay */
+  body.sidebar-open {
+    margin-left: 80px; /* Keep mini sidebar space */
+  }
+  
+  /* Mobile hamburger positioning */
+  .sidebar-hamburger {
+    left: 90px !important;
+    top: 10px !important;
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid rgba(192, 192, 192, 0.3);
+    transform: scale(0.8); /* Smaller on mobile */
+  }
+  
+  .sidebar-hamburger.active {
+    background: rgba(192, 192, 192, 0.2);
+  }
+  
+  /* Only show overlay when sidebar is expanded on mobile */
+  .sidebar-overlay {
+    display: none;
+  }
+  
+  .sidebar-overlay.active {
+    display: block;
+    left: 80px; /* Start overlay after mini sidebar */
   }
 }
 
@@ -633,8 +820,10 @@
   text-align: center;
 }
 
-.chat-embed-container:has(zapier-interfaces-chatbot-embed)::before {
+.chat-embed-container.loaded::before,
+.chat-embed-container:has(zapier-interfaces-chatbot-embed[data-loaded])::before {
   opacity: 0;
+  pointer-events: none;
 }
 
 /* Style the Zapier chatbot embed with glass effect */

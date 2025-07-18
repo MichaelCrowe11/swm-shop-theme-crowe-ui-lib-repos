@@ -119,12 +119,25 @@
             script.async = true;
             script.type = 'module';
             script.src = 'https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js';
+            script.onload = function() {
+              console.log('Zapier chatbot script loaded successfully');
+              // Remove loading message once script loads
+              setTimeout(() => {
+                const container = document.querySelector('.chat-embed-container');
+                if (container && container.querySelector('zapier-interfaces-chatbot-embed')) {
+                  const loadingElement = container.querySelector('::before');
+                  if (loadingElement) {
+                    container.classList.add('loaded');
+                  }
+                }
+              }, 1000);
+            };
             script.onerror = function() {
-              console.log('Zapier chatbot script failed to load');
+              console.error('Zapier chatbot script failed to load');
               // Hide chatbot container if script fails
               const container = document.querySelector('.chat-embed-container');
               if (container) {
-                container.style.display = 'none';
+                container.innerHTML = '<div style="padding: 1rem; text-align: center; color: #999;">Chat temporarily unavailable</div>';
               }
             };
             document.head.appendChild(script);
@@ -245,9 +258,12 @@
         body.classList.add('sidebar-open-desktop');
         hamburgerButton.style.display = 'none';
       } else {
-        // Mobile: Hide sidebar by default
+        // Mobile: Show mini sidebar, hamburger expands it
         body.classList.remove('sidebar-open-desktop');
         hamburgerButton.style.display = 'block';
+        // Position hamburger button over mini sidebar
+        hamburgerButton.style.left = '90px'; // Just right of mini sidebar
+        hamburgerButton.style.top = '10px';
       }
     }
     
