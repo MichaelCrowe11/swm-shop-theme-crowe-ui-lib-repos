@@ -13,27 +13,66 @@
   --quantum-cream: #FFF5DC;
 }
 
-/* Sidebar Hamburger Button */
+/* Sidebar Hamburger Button with Glass Effect */
 .sidebar-hamburger {
   position: fixed;
   top: 20px;
   left: 20px;
   z-index: 1001;
-  background: var(--quantum-charcoal, #1a1a1a);
-  border: 1px solid var(--quantum-border-color, rgba(212, 175, 55, 0.2));
-  border-radius: 8px;
+  /* Enhanced Glass Button */
+  background: linear-gradient(
+    135deg,
+    rgba(26, 26, 26, 0.8) 0%,
+    rgba(10, 10, 10, 0.9) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 2px solid rgba(192, 192, 192, 0.3);
+  border-radius: 12px;
   padding: 12px;
   cursor: pointer;
   transition: all var(--quantum-transition-base, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
-  backdrop-filter: blur(10px);
-  box-shadow: var(--quantum-shadow-md, 0 4px 12px rgba(212, 175, 55, 0.15));
+  box-shadow: 
+    0 8px 24px rgba(192, 192, 192, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-hamburger::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(192, 192, 192, 0.1) 0%,
+    transparent 50%,
+    rgba(192, 192, 192, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--quantum-transition-base);
 }
 
 .sidebar-hamburger:hover {
-  background: var(--quantum-silver, #C0C0C0);
-  border-color: var(--quantum-silver, #C0C0C0);
-  transform: scale(1.05);
-  box-shadow: var(--quantum-shadow-lg, 0 8px 24px rgba(192, 192, 192, 0.2));
+  background: linear-gradient(
+    135deg,
+    rgba(192, 192, 192, 0.2) 0%,
+    rgba(192, 192, 192, 0.15) 100%
+  );
+  border-color: rgba(192, 192, 192, 0.5);
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 
+    0 12px 32px rgba(192, 192, 192, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-hamburger:hover::before {
+  opacity: 1;
 }
 
 .sidebar-hamburger svg {
@@ -64,16 +103,47 @@
   left: 0;
   width: var(--sidebar-width);
   height: 100vh;
-  background: var(--quantum-charcoal, #1a1a1a);
-  border-right: 1px solid var(--quantum-border-color, rgba(212, 175, 55, 0.2));
+  /* Enhanced Glass Effect Background */
+  background: linear-gradient(
+    145deg,
+    rgba(26, 26, 26, 0.85) 0%,
+    rgba(10, 10, 10, 0.9) 50%,
+    rgba(20, 20, 20, 0.8) 100%
+  );
+  border-right: 2px solid rgba(192, 192, 192, 0.3);
   z-index: 1000;
   transform: translateX(-100%);
   transition: transform var(--quantum-transition-base, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
   overflow-y: auto;
-  box-shadow: var(--quantum-shadow-xl, 0 16px 48px rgba(212, 175, 55, 0.25));
-  backdrop-filter: blur(20px);
+  /* Glass Effects */
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  box-shadow: 
+    0 16px 48px rgba(192, 192, 192, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
+  /* Add subtle inner glow */
+  position: relative;
+}
+
+.crowe-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(192, 192, 192, 0.1) 0%,
+    transparent 20%,
+    transparent 80%,
+    rgba(192, 192, 192, 0.05) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Desktop: Always show sidebar, push content */
@@ -102,9 +172,37 @@
 /* Sidebar Header */
 .sidebar-header {
   padding: var(--quantum-space-lg, 1.5rem);
-  border-bottom: 1px solid var(--quantum-border-color, rgba(212, 175, 55, 0.2));
-  background: var(--quantum-gradient-dark, linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%));
+  border-bottom: 1px solid rgba(192, 192, 192, 0.2);
+  /* Glass Header Effect */
+  background: linear-gradient(
+    135deg,
+    rgba(192, 192, 192, 0.1) 0%,
+    rgba(10, 10, 10, 0.8) 50%,
+    rgba(26, 26, 26, 0.6) 100%
+  );
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
   position: relative;
+  /* Frosted glass border */
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(192, 192, 192, 0.6),
+    transparent
+  );
 }
 
 .sidebar-logo {
@@ -221,19 +319,65 @@
   position: relative;
   border-radius: 0 25px 25px 0;
   margin-right: var(--quantum-space-md, 1rem);
+  /* Glass effect for nav items */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(192, 192, 192, 0.05) 0%,
+    transparent 50%,
+    rgba(192, 192, 192, 0.02) 100%
+  );
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity var(--quantum-transition-base);
 }
 
 .nav-link:hover {
-  background: rgba(192, 192, 192, 0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(192, 192, 192, 0.15) 0%,
+    rgba(192, 192, 192, 0.08) 50%,
+    rgba(192, 192, 192, 0.12) 100%
+  );
   color: var(--quantum-silver, #C0C0C0);
   transform: translateX(8px);
-  box-shadow: inset 4px 0 0 var(--quantum-silver, #C0C0C0);
+  box-shadow: 
+    inset 4px 0 0 var(--quantum-silver, #C0C0C0),
+    0 4px 20px rgba(192, 192, 192, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+}
+
+.nav-link:hover::before {
+  opacity: 1;
 }
 
 .nav-link.active {
-  background: var(--quantum-gradient-primary, linear-gradient(135deg, #D4AF37, #B8943F));
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.9) 0%,
+    rgba(184, 148, 63, 0.8) 50%,
+    rgba(212, 175, 55, 0.7) 100%
+  );
   color: var(--quantum-obsidian, #0a0a0a);
   font-weight: 600;
+  backdrop-filter: blur(15px) saturate(200%);
+  -webkit-backdrop-filter: blur(15px) saturate(200%);
+  box-shadow: 
+    0 4px 20px rgba(212, 175, 55, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .nav-icon {
@@ -312,11 +456,246 @@
   50% { transform: scale(1.1); }
 }
 
-/* Sidebar Footer */
+/* Sidebar Footer with Glass Effect */
 .sidebar-footer {
   margin-top: auto;
   padding: var(--quantum-space-lg, 1.5rem);
-  border-top: 1px solid var(--quantum-border-color, rgba(212, 175, 55, 0.2));
+  border-top: 2px solid rgba(192, 192, 192, 0.2);
+  /* Glass footer background */
+  background: linear-gradient(
+    0deg,
+    rgba(26, 26, 26, 0.9) 0%,
+    rgba(20, 20, 20, 0.8) 50%,
+    rgba(10, 10, 10, 0.7) 100%
+  );
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  position: relative;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 -4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(192, 192, 192, 0.4),
+    transparent
+  );
+}
+
+/* Crowe Logic AI Chat Section */
+.sidebar-chat-section {
+  margin-bottom: var(--quantum-space-lg, 1.5rem);
+  border: 2px solid rgba(192, 192, 192, 0.3);
+  border-radius: 16px;
+  /* Enhanced Glass Effect for Chat */
+  background: linear-gradient(
+    145deg,
+    rgba(26, 26, 26, 0.6) 0%,
+    rgba(10, 10, 10, 0.8) 50%,
+    rgba(20, 20, 20, 0.7) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  overflow: hidden;
+  transition: all var(--quantum-transition-base);
+  /* Glass glow effect */
+  box-shadow: 
+    0 8px 32px rgba(192, 192, 192, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.sidebar-chat-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(192, 192, 192, 0.1) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(192, 192, 192, 0.05) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sidebar-chat-section:hover {
+  border-color: rgba(192, 192, 192, 0.5);
+  box-shadow: 
+    0 12px 40px rgba(192, 192, 192, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  padding: var(--quantum-space-md, 1rem);
+  /* Glass frosted header */
+  background: linear-gradient(
+    135deg,
+    rgba(192, 192, 192, 0.12) 0%,
+    rgba(26, 26, 26, 0.8) 50%,
+    rgba(10, 10, 10, 0.9) 100%
+  );
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border-bottom: 1px solid rgba(192, 192, 192, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.chat-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(192, 192, 192, 0.4),
+    transparent
+  );
+}
+
+.chat-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: var(--quantum-space-sm, 0.5rem);
+  transition: all var(--quantum-transition-base);
+}
+
+.chat-header:hover .chat-avatar {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(192, 192, 192, 0.3));
+}
+
+.chat-info {
+  flex: 1;
+}
+
+.chat-title {
+  margin: 0;
+  color: var(--quantum-silver, #C0C0C0);
+  font-family: var(--quantum-font-display, 'Inter', sans-serif);
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.chat-subtitle {
+  margin: 0;
+  color: var(--quantum-cream, #FFF5DC);
+  font-size: 1.1rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.chat-embed-container {
+  padding: var(--quantum-space-sm, 0.5rem);
+  min-height: 300px;
+  /* Glass container background */
+  background: linear-gradient(
+    145deg,
+    rgba(10, 10, 10, 0.9) 0%,
+    rgba(26, 26, 26, 0.8) 50%,
+    rgba(15, 15, 15, 0.85) 100%
+  );
+  backdrop-filter: blur(15px) saturate(120%);
+  -webkit-backdrop-filter: blur(15px) saturate(120%);
+  position: relative;
+  z-index: 1;
+}
+
+/* Loading state for chat with glass effect */
+.chat-embed-container::before {
+  content: "Loading Crowe Logic AI...";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--quantum-cream, #FFF5DC);
+  font-size: 1.2rem;
+  opacity: 0.7;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  /* Glass text effect */
+  text-shadow: 
+    0 0 10px rgba(192, 192, 192, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  background: rgba(26, 26, 26, 0.3);
+  border: 1px solid rgba(192, 192, 192, 0.2);
+}
+
+.chat-embed-container:has(zapier-interfaces-chatbot-embed)::before {
+  opacity: 0;
+}
+
+/* Style the Zapier chatbot embed with glass effect */
+.chat-embed-container zapier-interfaces-chatbot-embed {
+  width: 100%;
+  height: 300px;
+  border-radius: 12px;
+  border: 2px solid rgba(192, 192, 192, 0.3);
+  /* Glass chatbot container */
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.8) 0%,
+    rgba(20, 20, 20, 0.6) 50%,
+    rgba(15, 15, 15, 0.7) 100%
+  );
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  opacity: 0;
+  animation: fadeInChat 0.5s ease-in-out 0.5s forwards;
+  box-shadow: 
+    0 4px 20px rgba(192, 192, 192, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+@keyframes fadeInChat {
+  to { opacity: 1; }
+}
+
+/* Responsive chat section */
+@media screen and (max-width: 991px) {
+  .chat-embed-container {
+    min-height: 250px;
+  }
+  
+  .chat-embed-container zapier-interfaces-chatbot-embed {
+    height: 250px;
+  }
+  
+  .chat-title {
+    font-size: 1.3rem;
+  }
+  
+  .chat-subtitle {
+    font-size: 1rem;
+  }
 }
 
 .sidebar-auth {
@@ -331,29 +710,73 @@
   padding: var(--quantum-space-sm, 0.5rem) var(--quantum-space-md, 1rem);
   color: var(--quantum-cream, #FFF5DC);
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 8px;
   transition: all var(--quantum-transition-base);
   font-size: 1.3rem;
+  position: relative;
+  /* Glass auth links */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.auth-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(192, 192, 192, 0.05) 0%,
+    transparent 50%,
+    rgba(192, 192, 192, 0.02) 100%
+  );
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity var(--quantum-transition-base);
 }
 
 .auth-link:hover {
-  background: rgba(212, 175, 55, 0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.15) 0%,
+    rgba(212, 175, 55, 0.08) 100%
+  );
   color: var(--quantum-gold, #D4AF37);
+  border-color: rgba(212, 175, 55, 0.3);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  box-shadow: 
+    0 4px 12px rgba(212, 175, 55, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Sidebar Overlay */
+.auth-link:hover::before {
+  opacity: 1;
+}
+
+/* Sidebar Overlay with Enhanced Glass Blur */
 .sidebar-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(26, 26, 26, 0.3) 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
   z-index: 999;
   opacity: 0;
   visibility: hidden;
   transition: all var(--quantum-transition-base);
-  backdrop-filter: blur(4px);
+  /* Enhanced backdrop blur */
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
 }
 
 .sidebar-overlay.active {
@@ -400,20 +823,65 @@
   }
 }
 
-/* Quantum animations */
+/* Quantum animations with glass effects */
 @keyframes sidebar-slide-in {
   from {
     transform: translateX(-100%);
     opacity: 0;
+    backdrop-filter: blur(0px);
   }
   to {
     transform: translateX(0);
     opacity: 1;
+    backdrop-filter: blur(25px);
+  }
+}
+
+@keyframes glass-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes quantum-glass-pulse {
+  0%, 100% { 
+    box-shadow: 
+      0 16px 48px rgba(192, 192, 192, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% { 
+    box-shadow: 
+      0 20px 60px rgba(192, 192, 192, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
   }
 }
 
 .crowe-sidebar.open {
   animation: sidebar-slide-in 0.3s ease-out;
+}
+
+/* Add subtle shimmer effect to glass elements */
+.sidebar-chat-section:hover::before,
+.nav-link:hover::before,
+.sidebar-hamburger:hover::before {
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 60%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  animation: glass-shimmer 1.5s ease-in-out;
+}
+
+/* Ambient glow animation for the main sidebar */
+.crowe-sidebar:hover {
+  animation: quantum-glass-pulse 3s ease-in-out infinite;
 }
 
 /* Custom scrollbar for sidebar */
