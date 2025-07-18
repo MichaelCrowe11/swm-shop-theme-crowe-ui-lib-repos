@@ -263,55 +263,84 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'crowe-theme-quantum.css' | asset_url | stylesheet_tag }}
     
-    <!-- Force Quantum Theme Overrides -->
+    <!-- Clean Layout System -->
     <style>
-      /* Ensure quantum theme takes precedence */
+      /* Reset and base styles */
       html, body {
         background: #0a0a0a !important;
         color: #FFF5DC !important;
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow-x: hidden; /* Prevent horizontal scroll */
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100% !important;
+        overflow-x: hidden !important;
       }
       
+      /* Main page grid layout */
       .page-container {
-        display: flex;
-        height: 100%;
-        width: 100%;
-      }
-      
-      .main-content-wrapper {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto;
-        width: 100%;
-      }
-      
-      .shopify-section {
-        background: #0a0a0a !important;
-      }
-      
-      /* Sidebar is part of the flex container but fixed */
-      .crowe-sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 300px;
+        display: grid;
+        grid-template-columns: 300px 1fr;
         height: 100vh;
+        width: 100%;
+      }
+      
+      /* Sidebar positioning */
+      .crowe-sidebar {
+        grid-column: 1;
         background: rgba(26, 26, 26, 0.95);
         backdrop-filter: blur(10px);
         z-index: 1000;
-        transform: translateX(0);
-        transition: transform 0.3s ease;
-        flex-shrink: 0;
+        overflow-y: auto;
+        position: relative;
       }
       
-      /* Mobile sidebar hidden by default */
+      /* Main content area */
+      .main-content-wrapper {
+        grid-column: 2;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        background: #0a0a0a;
+      }
+      
+      /* Force header to show */
+      .shopify-section-group-header-group {
+        display: block !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 900 !important;
+        background: #0a0a0a !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      /* Main content positioning */
+      #MainContent {
+        flex-grow: 1;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      /* All sections should have dark background */
+      .shopify-section {
+        background: #0a0a0a !important;
+        margin-top: 0 !important;
+      }
+      
+      /* Mobile responsive */
       @media (max-width: 768px) {
+        .page-container {
+          grid-template-columns: 1fr;
+        }
+        
         .crowe-sidebar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 300px;
+          height: 100vh;
           transform: translateX(-100%);
+          transition: transform 0.3s ease;
+          grid-column: unset;
         }
         
         .crowe-sidebar.sidebar-open {
@@ -319,35 +348,37 @@
         }
         
         .main-content-wrapper {
-          margin-left: 0 !important;
-        }
-      }
-      
-      /* Desktop - adjust layout for sidebar */
-      @media (min-width: 769px) {
-        .mobile-sidebar-toggle {
-          display: none;
+          grid-column: 1;
         }
         
-        .main-content-wrapper {
-          margin-left: 300px !important;
-          width: calc(100% - 300px);
+        .mobile-sidebar-toggle {
+          display: flex !important;
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          z-index: 1001;
+          background: rgba(26, 26, 26, 0.9);
+          border: none;
+          border-radius: 8px;
+          padding: 12px;
+          cursor: pointer;
+          flex-direction: column;
+          gap: 4px;
+        }
+        
+        .hamburger-line {
+          width: 24px;
+          height: 2px;
+          background: #FFF5DC;
+          transition: 0.3s;
         }
       }
       
-      /* General header and section fixes */
-      .shopify-section-group-header-group,
-      #MainContent,
-      .shopify-section {
-        width: 100%;
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-      }
-      
-      .shopify-section-group-header-group {
-        position: sticky;
-        top: 0;
-        z-index: 900;
+      /* Desktop - hide mobile toggle */
+      @media (min-width: 769px) {
+        .mobile-sidebar-toggle {
+          display: none !important;
+        }
       }
       
       /* Zapier Chat Widget Styling */
@@ -365,51 +396,6 @@
         background: rgba(26, 26, 26, 0.8);
         border-radius: 16px;
         border: 1px solid rgba(192, 192, 192, 0.3);
-      }
-      
-      /* Additional Header Positioning Fixes */
-      body {
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      
-      .shopify-section-group-header-group {
-        position: relative !important;
-        top: 0 !important;
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-      }
-      
-      /* Force header elements to top */
-      .shopify-section-announcement-bar,
-      .shopify-section-header {
-        position: relative !important;
-        top: 0 !important;
-      }
-      
-      /* Remove any excessive top margins/padding that create black space */
-      .shopify-section,
-      .section-group-header {
-        margin-top: 0 !important;
-      }
-      
-      /* Specifically target header sections */
-      .shopify-section-announcement-bar,
-      .shopify-section-header {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-      }
-      
-      /* Fix any quantum spacing that creates gaps */
-      .quantum-section,
-      .section-quantum {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-      }
-      
-      /* Image banner should start immediately after header */
-      .shopify-section-image-banner {
-        margin-top: 0 !important;
       }
     </style>
     
