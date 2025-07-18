@@ -107,50 +107,20 @@
         <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="chat-avatar">
         <div class="chat-info">
           <h3 class="chat-title">Crowe Logic AI</h3>
-          <p class="chat-subtitle">Ask me anything!</p>
+          <p class="chat-subtitle">Research Assistant</p>
         </div>
       </div>
-      <div class="chat-embed-container" aria-label="AI Chat Interface">
-        <!-- Zapier Chatbot Embed -->
-        <script>
-          try {
-            (function() {
-              // Create container for Zapier chatbot
-              const chatContainer = document.createElement('div');
-              chatContainer.id = 'zapier-chat-container';
-              chatContainer.style.cssText = `
-                width: 100%;
-                height: 400px;
-                border: none;
-                border-radius: 12px;
-                background: rgba(255, 255, 255, 0.05);
-                overflow: hidden;
-              `;
-              
-              // Create iframe for Zapier chatbot
-              const iframe = document.createElement('iframe');
-              iframe.src = 'https://research-assistant-ce196c.zapier.app';
-              iframe.style.cssText = `
-                width: 100%;
-                height: 100%;
-                border: none;
-                border-radius: 12px;
-              `;
-              iframe.allow = 'microphone; camera; clipboard-write';
-              iframe.title = 'Crowe Logic AI Research Assistant';
-              
-              chatContainer.appendChild(iframe);
-              
-              // Find chat embed container and append
-              const embedContainer = document.querySelector('.chat-embed-container');
-              if (embedContainer) {
-                embedContainer.appendChild(chatContainer);
-              }
-            })();
-          } catch (error) {
-            console.log('Zapier chat loading issue:', error);
-          }
-        </script>
+      <!-- Simple Iframe Embed -->
+      <div class="chat-embed-container">
+        <iframe 
+          src="https://research-assistant-ce196c.zapier.app" 
+          width="100%" 
+          height="400" 
+          frameborder="0"
+          allow="microphone; camera; clipboard-write"
+          title="Crowe Logic AI Research Assistant"
+          style="border-radius: 12px; background: rgba(255, 255, 255, 0.05);">
+        </iframe>
       </div>
     </div>
   </div>
