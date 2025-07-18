@@ -256,11 +256,33 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  filter: brightness(0) saturate(100%) invert(85%) sepia(15%) saturate(1000%) hue-rotate(35deg);
+  transition: all var(--quantum-transition-base);
+  /* Remove filters to show original avatar colors */
 }
 
 .nav-link:hover .nav-avatar {
-  filter: brightness(0) saturate(100%) invert(70%) sepia(50%) saturate(1000%) hue-rotate(35deg);
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(192, 192, 192, 0.4));
+}
+
+/* External link icon styling */
+.external-link-icon {
+  width: 14px;
+  height: 14px;
+  margin-left: auto;
+  opacity: 0.6;
+  transition: all var(--quantum-transition-base);
+}
+
+.external-link-icon svg {
+  width: 100%;
+  height: 100%;
+  color: currentColor;
+}
+
+.nav-link:hover .external-link-icon {
+  opacity: 1;
+  transform: translateX(2px);
 }
 
 .nav-text {
