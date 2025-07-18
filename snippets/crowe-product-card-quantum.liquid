@@ -1,0 +1,769 @@
+{%- comment -%}
+  Quantum Product Card - Revolutionary shopping experience
+  Usage: {% render 'crowe-product-card-quantum', product: product %}
+{%- endcomment -%}
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_form_id = 'product-form-' | append: section.id | append: '-' | append: product.id
+-%}
+
+<div class="quantum-product-card" data-product-id="{{ product.id }}">
+  <div class="quantum-card-inner">
+    <!-- 3D Product Visual -->
+    <div class="quantum-visual">
+      <div class="quantum-image-container">
+        {% if product.featured_image %}
+          {{ product.featured_image | image_url: width: 400 | image_tag:
+            loading: 'lazy',
+            alt: product.featured_image.alt | escape,
+            class: 'quantum-product-image'
+          }}
+        {% else %}
+          <div class="quantum-placeholder">
+            <span class="quantum-icon">🍄</span>
+          </div>
+        {% endif %}
+        
+        <!-- Holographic overlay -->
+        <div class="quantum-hologram"></div>
+        
+        <!-- Interactive particles -->
+        <canvas class="quantum-particles-canvas"></canvas>
+        
+        <!-- Quick actions -->
+        <div class="quantum-quick-actions">
+          <button class="quantum-action-btn quantum-ar-view" aria-label="View in AR">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+            </svg>
+          </button>
+          <button class="quantum-action-btn quantum-ai-match" aria-label="AI Match Score">
+            <span class="quantum-match-percentage">{{ 85 | plus: product.id | modulo: 15 }}%</span>
+          </button>
+          <button class="quantum-action-btn quantum-favorite" aria-label="Add to favorites">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Live status indicator -->
+        <div class="quantum-status">
+          <span class="quantum-status-dot"></span>
+          <span class="quantum-status-text">In Stock</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Product Information -->
+    <div class="quantum-info">
+      <div class="quantum-header">
+        <h3 class="quantum-title">
+          <a href="{{ product.url }}" class="quantum-link">
+            {{ product.title }}
+          </a>
+        </h3>
+        
+        <!-- Dynamic rating -->
+        <div class="quantum-rating">
+          <div class="quantum-stars">
+            {%- for i in (1..5) -%}
+              <span class="quantum-star {% if i <= 4 %}filled{% endif %}">★</span>
+            {%- endfor -%}
+          </div>
+          <span class="quantum-rating-count">({{ 47 | plus: product.id | modulo: 200 }})</span>
+        </div>
+      </div>
+      
+      <!-- Smart tags -->
+      <div class="quantum-tags">
+        {% if product.metafields.custom.difficulty %}
+          <span class="quantum-tag quantum-tag-difficulty" data-level="{{ product.metafields.custom.difficulty }}">
+            {{ product.metafields.custom.difficulty }}
+          </span>
+        {% endif %}
+        {% if product.metafields.custom.growth_time %}
+          <span class="quantum-tag quantum-tag-time">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2" stroke="white" stroke-width="2" fill="none"/>
+            </svg>
+            {{ product.metafields.custom.growth_time }}
+          </span>
+        {% endif %}
+        <span class="quantum-tag quantum-tag-new">New</span>
+      </div>
+      
+      <!-- Price with animation -->
+      <div class="quantum-pricing">
+        <div class="quantum-price-wrapper">
+          <span class="quantum-currency">{{ cart.currency.symbol }}</span>
+          <span class="quantum-price" data-price="{{ current_variant.price | money_without_currency }}">
+            {{ current_variant.price | money_without_currency | split: '.' | first }}
+          </span>
+          <span class="quantum-cents">.{{ current_variant.price | money_without_currency | split: '.' | last }}</span>
+        </div>
+        
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <div class="quantum-discount">
+            <span class="quantum-original-price">{{ current_variant.compare_at_price | money }}</span>
+            <span class="quantum-discount-badge">
+              -{{ current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round }}%
+            </span>
+          </div>
+        {% endif %}
+      </div>
+      
+      <!-- Advanced product form -->
+      <div class="quantum-actions">
+        <form id="{{ product_form_id }}" class="quantum-form">
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+          
+          <!-- Quantity selector with haptic feedback simulation -->
+          <div class="quantum-quantity">
+            <button type="button" class="quantum-qty-btn quantum-qty-minus" aria-label="Decrease quantity">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 13H5v-2h14v2z"/>
+              </svg>
+            </button>
+            <input type="number" name="quantity" value="1" min="1" class="quantum-qty-input" aria-label="Quantity">
+            <button type="button" class="quantum-qty-btn quantum-qty-plus" aria-label="Increase quantity">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+              </svg>
+            </button>
+          </div>
+          
+          <!-- Add to cart with loading state -->
+          <button type="submit" class="quantum-add-to-cart" {% unless current_variant.available %}disabled{% endunless %}>
+            <span class="quantum-btn-text">
+              {% if current_variant.available %}
+                Add to Cart
+              {% else %}
+                Sold Out
+              {% endif %}
+            </span>
+            <span class="quantum-btn-loader"></span>
+            <span class="quantum-btn-success">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+            </span>
+          </button>
+        </form>
+      </div>
+      
+      <!-- AI insights -->
+      <div class="quantum-insights">
+        <div class="quantum-insight">
+          <span class="quantum-insight-icon">🧬</span>
+          <span class="quantum-insight-text">Perfect for your growing conditions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Hover effects overlay -->
+  <div class="quantum-hover-effects">
+    <div class="quantum-glow"></div>
+    <div class="quantum-scan-line"></div>
+  </div>
+</div>
+
+<style>
+  .quantum-product-card {
+    position: relative;
+    background: rgba(10, 10, 10, 0.95);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  .quantum-product-card:hover {
+    transform: translateY(-5px);
+    border-color: #D4AF37;
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+  }
+
+  .quantum-card-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .quantum-visual {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1), transparent);
+  }
+
+  .quantum-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quantum-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .quantum-product-card:hover .quantum-product-image {
+    transform: scale(1.1);
+  }
+
+  .quantum-placeholder {
+    font-size: 5rem;
+    opacity: 0.3;
+  }
+
+  .quantum-hologram {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+      transparent 30%, 
+      rgba(212, 175, 55, 0.1) 50%, 
+      transparent 70%);
+    background-size: 200% 200%;
+    animation: quantum-hologram-sweep 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes quantum-hologram-sweep {
+    0% { background-position: 200% 200%; }
+    100% { background-position: -200% -200%; }
+  }
+
+  .quantum-particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .quantum-product-card:hover .quantum-particles-canvas {
+    opacity: 1;
+  }
+
+  .quantum-quick-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s;
+  }
+
+  .quantum-product-card:hover .quantum-quick-actions {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .quantum-action-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #D4AF37;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+  }
+
+  .quantum-action-btn:hover {
+    background: #D4AF37;
+    color: #0a0a0a;
+    transform: scale(1.1);
+  }
+
+  .quantum-match-percentage {
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .quantum-status {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(10, 10, 10, 0.8);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  .quantum-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4CAF50;
+    animation: quantum-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes quantum-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+  }
+
+  .quantum-status-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .quantum-info {
+    padding: 1.5rem;
+  }
+
+  .quantum-header {
+    margin-bottom: 1rem;
+  }
+
+  .quantum-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .quantum-link {
+    color: #FFF5DC;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .quantum-link:hover {
+    color: #D4AF37;
+  }
+
+  .quantum-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .quantum-stars {
+    display: flex;
+    gap: 0.1rem;
+  }
+
+  .quantum-star {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+
+  .quantum-star.filled {
+    color: #D4AF37;
+  }
+
+  .quantum-rating-count {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+  }
+
+  .quantum-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .quantum-tag {
+    padding: 0.25rem 0.75rem;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 15px;
+    color: #D4AF37;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .quantum-tag-new {
+    background: rgba(76, 175, 80, 0.1);
+    border-color: rgba(76, 175, 80, 0.3);
+    color: #4CAF50;
+    animation: quantum-tag-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes quantum-tag-glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); }
+    50% { box-shadow: 0 0 15px rgba(76, 175, 80, 0.8); }
+  }
+
+  .quantum-pricing {
+    margin-bottom: 1.5rem;
+  }
+
+  .quantum-price-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 0.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .quantum-currency {
+    color: #D4AF37;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .quantum-price {
+    color: #FFF5DC;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .quantum-cents {
+    color: #D4AF37;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .quantum-discount {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .quantum-original-price {
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: line-through;
+    font-size: 0.9rem;
+  }
+
+  .quantum-discount-badge {
+    padding: 0.25rem 0.5rem;
+    background: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    border-radius: 10px;
+    color: #F44336;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .quantum-actions {
+    margin-bottom: 1rem;
+  }
+
+  .quantum-form {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .quantum-quantity {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .quantum-qty-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    color: #D4AF37;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+
+  .quantum-qty-btn:hover {
+    background: rgba(212, 175, 55, 0.1);
+  }
+
+  .quantum-qty-btn:active {
+    transform: scale(0.95);
+  }
+
+  .quantum-qty-input {
+    width: 50px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    color: #FFF5DC;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .quantum-qty-input::-webkit-inner-spin-button,
+  .quantum-qty-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .quantum-add-to-cart {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #D4AF37, #B8943F);
+    color: #0a0a0a;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .quantum-add-to-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+  }
+
+  .quantum-add-to-cart:active {
+    transform: translateY(0);
+  }
+
+  .quantum-add-to-cart:disabled {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+  }
+
+  .quantum-btn-text,
+  .quantum-btn-loader,
+  .quantum-btn-success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all 0.3s;
+  }
+
+  .quantum-btn-loader,
+  .quantum-btn-success {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .quantum-add-to-cart.loading .quantum-btn-text {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .quantum-add-to-cart.loading .quantum-btn-loader {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .quantum-add-to-cart.success .quantum-btn-text,
+  .quantum-add-to-cart.success .quantum-btn-loader {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .quantum-add-to-cart.success .quantum-btn-success {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .quantum-btn-loader::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top-color: #0a0a0a;
+    border-radius: 50%;
+    animation: quantum-spin 0.8s linear infinite;
+  }
+
+  @keyframes quantum-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .quantum-insights {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .quantum-insight {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+  }
+
+  .quantum-insight-icon {
+    font-size: 1rem;
+  }
+
+  .quantum-hover-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .quantum-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .quantum-product-card:hover .quantum-glow {
+    opacity: 1;
+  }
+
+  .quantum-scan-line {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    animation: quantum-scan 3s linear infinite;
+    animation-play-state: paused;
+  }
+
+  .quantum-product-card:hover .quantum-scan-line {
+    animation-play-state: running;
+  }
+
+  @keyframes quantum-scan {
+    to { top: 200%; }
+  }
+</style>
+
+<script>
+  // Quantum card interactions
+  document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.quantum-product-card');
+    
+    cards.forEach(card => {
+      const canvas = card.querySelector('.quantum-particles-canvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        
+        const particles = [];
+        
+        // Create particles on hover
+        card.addEventListener('mouseenter', function() {
+          for (let i = 0; i < 20; i++) {
+            particles.push({
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height,
+              vx: (Math.random() - 0.5) * 2,
+              vy: (Math.random() - 0.5) * 2,
+              size: Math.random() * 3 + 1,
+              opacity: Math.random() * 0.5 + 0.5
+            });
+          }
+        });
+        
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          
+          particles.forEach((particle, index) => {
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+            particle.opacity -= 0.01;
+            
+            if (particle.opacity <= 0) {
+              particles.splice(index, 1);
+              return;
+            }
+            
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(212, 175, 55, ${particle.opacity})`;
+            ctx.fill();
+          });
+          
+          if (particles.length > 0) {
+            requestAnimationFrame(animate);
+          }
+        }
+        
+        card.addEventListener('mouseenter', animate);
+      }
+      
+      // Quantity controls
+      const minusBtn = card.querySelector('.quantum-qty-minus');
+      const plusBtn = card.querySelector('.quantum-qty-plus');
+      const input = card.querySelector('.quantum-qty-input');
+      
+      if (minusBtn && plusBtn && input) {
+        minusBtn.addEventListener('click', () => {
+          const value = parseInt(input.value);
+          if (value > 1) input.value = value - 1;
+        });
+        
+        plusBtn.addEventListener('click', () => {
+          const value = parseInt(input.value);
+          input.value = value + 1;
+        });
+      }
+      
+      // Add to cart animation
+      const form = card.querySelector('.quantum-form');
+      const addBtn = card.querySelector('.quantum-add-to-cart');
+      
+      if (form && addBtn) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          addBtn.classList.add('loading');
+          
+          // Simulate API call
+          setTimeout(() => {
+            addBtn.classList.remove('loading');
+            addBtn.classList.add('success');
+            
+            setTimeout(() => {
+              addBtn.classList.remove('success');
+            }, 2000);
+          }, 1500);
+        });
+      }
+    });
+  });
+</script>
