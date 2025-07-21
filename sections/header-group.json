@@ -20,13 +20,29 @@
             "text": "📘 New Release: Audiobook + E-Book “A Journey into Mycology” by Michael Crowe Is Now available! ",
             "link": "shopify://collections/books-ebooks-audiobooks"
           }
+        },
+        "announcement_nYmNBP": {
+          "type": "announcement",
+          "settings": {
+            "text": "🛍 Flagship Lion’s Mane Extract — Batch CLX-LM001Now shipping. Small-batch. Dual-extracted. Potent.",
+            "link": ""
+          }
+        },
+        "announcement_BgfX3X": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": ""
+          }
         }
       },
       "block_order": [
-        "announcement-bar-0"
+        "announcement-bar-0",
+        "announcement_nYmNBP",
+        "announcement_BgfX3X"
       ],
       "settings": {
-        "auto_rotate": false,
+        "auto_rotate": true,
         "change_slides_speed": 5,
         "color_scheme": "scheme-1",
         "show_line_separator": true,
