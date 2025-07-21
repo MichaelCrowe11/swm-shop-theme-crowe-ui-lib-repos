@@ -1,0 +1,68 @@
+{% comment %}
+  Quantum AI Chat Widget Integration
+  ElevenLabs ConvAI Widget with Quantum Theme Styling
+{% endcomment %}
+
+{{ 'component-quantum-chat.css' | asset_url | stylesheet_tag }}
+
+<!-- Quantum AI Chat Widget Container -->
+<div class="quantum-chat-container" id="quantum-chat-container">
+  <div class="quantum-chat-trigger" id="quantum-chat-trigger">
+    <div class="chat-trigger-icon">
+      <svg class="ai-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="chat-trigger-text">
+      <span class="chat-label">AI Assistant</span>
+      <span class="chat-sublabel">Ask me anything</span>
+    </div>
+    <div class="quantum-pulse"></div>
+  </div>
+  
+  <!-- Status Indicator -->
+  <div class="quantum-chat-status">
+    <div class="status-dot"></div>
+    <span class="status-text">AI Online</span>
+  </div>
+</div>
+
+<!-- ElevenLabs ConvAI Widget -->
+<elevenlabs-convai agent-id="agent_01jz4jgxksfj7v6tkc6f1g7d9y" class="quantum-elevenlabs-widget"></elevenlabs-convai>
+
+<script>
+  // Quantum Chat Widget Enhancement
+  document.addEventListener('DOMContentLoaded', function() {
+    const chatContainer = document.getElementById('quantum-chat-container');
+    const chatTrigger = document.getElementById('quantum-chat-trigger');
+    
+    // Add quantum glow effect on hover
+    chatTrigger.addEventListener('mouseenter', function() {
+      this.style.boxShadow = 'var(--quantum-shadow-xl), 0 0 20px var(--quantum-gold)';
+    });
+    
+    chatTrigger.addEventListener('mouseleave', function() {
+      this.style.boxShadow = 'var(--quantum-shadow-lg)';
+    });
+    
+    // Add click interaction
+    chatTrigger.addEventListener('click', function() {
+      // Trigger ElevenLabs widget if it has an API
+      const elevenLabsWidget = document.querySelector('elevenlabs-convai');
+      if (elevenLabsWidget && elevenLabsWidget.startConversation) {
+        elevenLabsWidget.startConversation();
+      }
+      
+      // Add quantum activation animation
+      this.classList.add('quantum-activated');
+      setTimeout(() => {
+        this.classList.remove('quantum-activated');
+      }, 600);
+    });
+  });
+</script>
+
+<!-- Load ElevenLabs ConvAI Script -->
+<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>

@@ -646,6 +646,33 @@ h6 { font-size: 1rem; }
   background: var(--quantum-charcoal) !important;
 }
 
+/* ===== Collection Card Styling ===== */
+.card-wrapper .card h3,
+.collection-card__title,
+.card__content .card__heading,
+.card__information .card__heading {
+  color: var(--quantum-cream, #FFF5DC) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 8px rgba(255, 245, 220, 0.3);
+}
+
+.card-wrapper .card:hover h3,
+.collection-card:hover .collection-card__title,
+.card:hover .card__content .card__heading,
+.card:hover .card__information .card__heading {
+  color: var(--quantum-silver, #C0C0C0) !important;
+  text-shadow: 0 0 12px rgba(192, 192, 192, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Collection Page Titles */
+.collection-hero__title,
+.collection__title,
+.page-title {
+  color: var(--quantum-cream, #FFF5DC) !important;
+  text-shadow: 0 0 15px rgba(255, 245, 220, 0.4);
+}
+
 /* ===== Footer Styling ===== */
 .footer {
   background: rgba(255, 255, 255, 0.95) !important;

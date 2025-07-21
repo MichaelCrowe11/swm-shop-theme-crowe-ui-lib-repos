@@ -76,19 +76,20 @@
 .card-wrapper .card.product-card:hover .card__heading,
 .product-card-wrapper .card:hover .product-card__title,
 .card:hover .card__information .card__heading {
-  color: var(--quantum-gold, #D4AF37) !important;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  color: var(--quantum-cream, #FFF5DC) !important;
+  text-shadow: 0 0 15px rgba(255, 245, 220, 0.5);
+  transform: translateY(-1px);
 }
 
 /* Product Price Styling */
 .price,
 .product-card__price,
 .card__information .price {
-  color: var(--quantum-gold, #D4AF37) !important;
+  color: var(--quantum-silver, #C0C0C0) !important;
   font-family: var(--quantum-font-display, 'Inter', sans-serif) !important;
   font-weight: 800 !important;
   font-size: 1.8rem !important;
-  text-shadow: 0 0 5px rgba(212, 175, 55, 0.2);
+  text-shadow: 0 0 8px rgba(192, 192, 192, 0.3);
 }
 
 .price__sale,
@@ -314,4 +315,53 @@
   border-radius: 4px;
   z-index: 10;
   box-shadow: var(--quantum-shadow-lg);
+}
+
+/* ===== Mobile Responsive Product Cards ===== */
+@media screen and (max-width: 768px) {
+  /* Adjust font sizes for mobile */
+  .card__heading,
+  .product-card__title,
+  .card__information .card__heading {
+    font-size: 1.4rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .price,
+  .product-card__price,
+  .card__information .price {
+    font-size: 1.6rem !important;
+  }
+  
+  /* Smaller padding on mobile */
+  .card__information,
+  .card__content {
+    padding: var(--quantum-space-sm, 0.5rem) !important;
+  }
+  
+  /* Adjust hover effects for touch devices */
+  .card-wrapper .card.product-card,
+  .product-card-wrapper .card {
+    transform: none !important;
+  }
+  
+  .card-wrapper .card.product-card:active,
+  .product-card-wrapper .card:active {
+    transform: scale(0.98) !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Even smaller text for very small screens */
+  .card__heading,
+  .product-card__title,
+  .card__information .card__heading {
+    font-size: 1.2rem !important;
+  }
+  
+  .price,
+  .product-card__price,
+  .card__information .price {
+    font-size: 1.4rem !important;
+  }
 }
