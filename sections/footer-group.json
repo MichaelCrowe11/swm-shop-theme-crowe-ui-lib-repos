@@ -30,6 +30,7 @@
         },
         "footer-2": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "heading": "Our mission",
             "subtext": "<p><strong>To regenerate people, land, and livelihood through mushrooms.</strong><br/>At Southwest Mushrooms, our mission is to grow more than fungi. We cultivate systems that are living, educational, and entrepreneurial, that restore ecological balance, empower community resilience, and bring high-performance mushrooms to every kitchen, grow tent, and wellness ritual.</p><p></p>"

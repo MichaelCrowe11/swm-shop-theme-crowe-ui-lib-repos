@@ -78,6 +78,24 @@
         "padding_bottom": 36
       }
     },
+    "crowe_cta_block_y6RfaB": {
+      "type": "crowe-cta-block",
+      "name": "Crowe CTA Block",
+      "settings": {
+        "image": "shopify://shop_images/width_375-IMa-journey-into-mycology-cover.jpg",
+        "title": "Discover the Mushroom Cultivation eBook",
+        "text": "<p>Learn the secrets of successful mushroom growing with our comprehensive audio guide from Crowe Mycology experts.</p>",
+        "button_label": "Grab Your Copy!",
+        "button_link": "shopify://products/a-journey-into-mycology-ebook",
+        "secondary_button_label": "Learn More",
+        "secondary_button_link": "shopify://products/a-journey-into-mycology-ebook",
+        "show_arrow": true,
+        "layout": "image_first",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "collage": {
       "type": "collage",
       "blocks": {
@@ -131,7 +149,7 @@
         "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
         "cover_image": "shopify://shop_images/IMG_0945_2.jpg",
         "description": "mushroom time-lapse",
-        "full_width": false,
+        "full_width": true,
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
@@ -222,33 +240,15 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "crowe_cta_block_y6RfaB": {
-      "type": "crowe-cta-block",
-      "name": "Crowe CTA Block",
-      "settings": {
-        "image": "shopify://shop_images/width_375-IMa-journey-into-mycology-cover.jpg",
-        "title": "Discover the Mushroom Cultivation eBook",
-        "text": "<p>Learn the secrets of successful mushroom growing with our comprehensive audio guide from Crowe Mycology experts.</p>",
-        "button_label": "Grab Your Copy!",
-        "button_link": "shopify://products/a-journey-into-mycology-ebook",
-        "secondary_button_label": "Learn More",
-        "secondary_button_link": "shopify://products/a-journey-into-mycology-ebook",
-        "show_arrow": true,
-        "layout": "image_first",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
     "crowe_quantum_hero_VGfAbK",
     "rich_text",
     "crowe_cta_block_4tCLEK",
+    "video_XyebjE",
     "crowe_cta_block_y6RfaB",
     "collage",
-    "video_XyebjE",
     "featured_collection",
     "multicolumn"
   ]
