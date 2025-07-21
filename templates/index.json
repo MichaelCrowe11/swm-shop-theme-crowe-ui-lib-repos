@@ -78,6 +78,7 @@
     },
     "featured_collection": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "collection": "all",
         "products_to_show": 8,
@@ -149,6 +150,7 @@
       "blocks": {
         "column1": {
           "type": "column",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/driedreishimushrooms5D4A9838-987333.jpg",
             "title": "Dried Reishi Mushrooms",
@@ -159,6 +161,7 @@
         },
         "column2": {
           "type": "column",
+          "disabled": true,
           "settings": {
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
@@ -168,6 +171,7 @@
         },
         "column3": {
           "type": "column",
+          "disabled": true,
           "settings": {
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
