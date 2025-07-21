@@ -9,6 +9,26 @@
  */
 {
   "sections": {
+    "crowe_quantum_hero_VGfAbK": {
+      "type": "crowe-quantum-hero",
+      "custom_css": [],
+      "name": "Quantum Hero",
+      "settings": {
+        "title": "Welcome to Southwest Mushrooms",
+        "subtitle": "Gourmet fungi & grow-kits—guided by Crowe Logic™, and quantum-smart design.",
+        "primary_text": "Start Quantum Experience",
+        "primary_link": "",
+        "secondary_text": "Explore AR Catalog",
+        "secondary_link": "",
+        "show_stats": true,
+        "stat_1_value": "10000",
+        "stat_1_label": "Products",
+        "stat_2_value": "99.9",
+        "stat_2_label": "AI Accuracy",
+        "stat_3_value": "24",
+        "stat_3_label": "Hour Support"
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -46,7 +66,7 @@
       "settings": {
         "image": "shopify://shop_images/2A7295A0-B40D-4FDB-B8D3-C0A4B1CFD495_1_105_c.jpg",
         "image_overlay_opacity": 40,
-        "image_height": "adapt",
+        "image_height": "small",
         "image_behavior": "none",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
@@ -121,7 +141,7 @@
         "collection-0": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "books-ebooks-audiobooks"
           }
         },
         "product": {
@@ -223,6 +243,7 @@
     }
   },
   "order": [
+    "crowe_quantum_hero_VGfAbK",
     "image_banner",
     "rich_text",
     "featured_collection",
