@@ -17,8 +17,8 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
-            "link": ""
+            "text": "📘 New Release: Audiobook + E-Book “A Journey into Mycology” by Michael Crowe Is Now available! ",
+            "link": "shopify://collections/books-ebooks-audiobooks"
           }
         }
       },
