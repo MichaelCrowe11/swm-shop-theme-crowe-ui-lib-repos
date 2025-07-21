@@ -18,7 +18,7 @@
           "type": "link_list",
           "settings": {
             "heading": "Quick links",
-            "menu": "footer"
+            "menu": "main-menu"
           }
         },
         "footer-1": {
@@ -32,7 +32,7 @@
           "type": "text",
           "settings": {
             "heading": "Our mission",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>"
+            "subtext": "<p><strong>To regenerate people, land, and livelihood through mushrooms.</strong><br/>At Southwest Mushrooms, our mission is to grow more than fungi. We cultivate systems that are living, educational, and entrepreneurial, that restore ecological balance, empower community resilience, and bring high-performance mushrooms to every kitchen, grow tent, and wellness ritual.</p><p></p>"
           }
         }
       },
@@ -44,7 +44,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
+        "newsletter_heading": "Want to grow better mushrooms?",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": true,
