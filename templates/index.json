@@ -16,11 +16,11 @@
       "settings": {
         "title": "Welcome to Southwest Mushrooms",
         "subtitle": "Gourmet fungi & grow-kits—guided by Crowe Logic™, and quantum-smart design.",
-        "primary_text": "Start Quantum Experience",
-        "primary_link": "",
-        "secondary_text": "Explore AR Catalog",
-        "secondary_link": "",
-        "show_stats": true,
+        "primary_text": "Explore Our Store",
+        "primary_link": "shopify://collections/all",
+        "secondary_text": "Explore Crowe Logic",
+        "secondary_link": "https://www.crowelogic.com",
+        "show_stats": false,
         "stat_1_value": "10000",
         "stat_1_label": "Products",
         "stat_2_value": "99.9",
@@ -35,14 +35,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Talk about your brand",
+            "heading": "<strong>From One Fruiting Block to a Movement.</strong>",
             "heading_size": "h1"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            "text": "<p>Southwest Mushrooms began in a backyard shed in Phoenix, Arizona.<br/>No investors. No lab coats. Just a pressure cooker, a clear mission, and the belief that mushrooms can regenerate more than soil—they can regenerate systems.</p><p>Today, we grow medicinal mushrooms and manage our extensive<em><strong> culture library</strong></em> in the desert using efficient methods. But more than that, we grow <em>capacity, </em>in people, in ecosystems, and in our local community.</p>"
           }
         }
       },
@@ -121,7 +121,7 @@
         "desktop_layout": "left",
         "mobile_layout": "collage",
         "card_styles": "product-card-wrapper",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-3",
         "padding_top": 36,
         "padding_bottom": 36
       }
