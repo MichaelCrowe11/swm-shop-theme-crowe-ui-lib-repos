@@ -59,6 +59,23 @@
         "padding_bottom": 0
       }
     },
+    "video_XyebjE": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "Video",
+        "heading_size": "h1",
+        "enable_video_looping": false,
+        "video": "shopify://files/videos/9A4690C4-1CA0-4AA5-A355-4D52D79F1B87 2.MP4",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "cover_image": "shopify://shop_images/IMG_0945_2.jpg",
+        "description": "mushroom time-lapse",
+        "full_width": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -193,32 +210,15 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "video_XyebjE": {
-      "type": "video",
-      "name": "t:sections.video.presets.name",
-      "settings": {
-        "heading": "Video",
-        "heading_size": "h1",
-        "enable_video_looping": false,
-        "video": "shopify://files/videos/9A4690C4-1CA0-4AA5-A355-4D52D79F1B87 2.MP4",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "cover_image": "shopify://shop_images/IMG_0945_2.jpg",
-        "description": "mushroom time-lapse",
-        "full_width": false,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
     "crowe_quantum_hero_VGfAbK",
     "rich_text",
+    "video_XyebjE",
     "featured_collection",
     "collage",
     "video",
-    "multicolumn",
-    "video_XyebjE"
+    "multicolumn"
   ]
 }
