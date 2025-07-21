@@ -42,7 +42,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Southwest Mushrooms began in a backyard shed in Phoenix, Arizona.<br/>No investors. No lab coats. Just a pressure cooker, a clear mission, and the belief that mushrooms can regenerate more than soil—they can regenerate systems.</p><p>Today, we grow medicinal mushrooms and manage our extensive<em><strong> culture library</strong></em> in the desert using efficient methods. But more than that, we grow <em>capacity, </em>in people, in ecosystems, and in our local community.</p>"
+            "text": "<p>Southwest Mushrooms began in a backyard shed in Phoenix, Arizona.<br/>No investors. No lab coats. Just a pressure cooker, a clear mission, and the belief that mushrooms can regenerate more than soil, but that they can regenerate systems. Today, we grow medicinal mushrooms and manage our<em><strong> culture library</strong></em></p>"
           }
         }
       },
@@ -57,6 +57,65 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 0
+      }
+    },
+    "crowe_cta_block_4tCLEK": {
+      "type": "crowe-cta-block",
+      "custom_css": [],
+      "name": "Crowe CTA Block",
+      "settings": {
+        "image": "shopify://shop_images/2A7295A0-B40D-4FDB-B8D3-C0A4B1CFD495_1_105_c_5ad10ad2-cfee-413a-b871-2ef7e86ae14c.jpg",
+        "title": "Discover the Mushroom Cultivation Audiobook",
+        "text": "<p>Learn the secrets of successful mushroom growing with our comprehensive audio guide from  Michael Crowe.</p>",
+        "button_label": "Listen Now",
+        "button_link": "shopify://products/a-journey-into-mycology-audio-book",
+        "secondary_button_label": "Learn More",
+        "secondary_button_link": "shopify://products/a-journey-into-mycology-audio-book",
+        "show_arrow": true,
+        "layout": "image_first",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collage": {
+      "type": "collage",
+      "blocks": {
+        "collection-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "books-ebooks-audiobooks"
+          }
+        },
+        "product_Pz8yci": {
+          "type": "product",
+          "settings": {
+            "product": "a-journey-into-mycology-ebook",
+            "second_image": false
+          }
+        },
+        "product": {
+          "type": "product",
+          "settings": {
+            "product": "a-journey-into-mycology-audio-book",
+            "second_image": false
+          }
+        }
+      },
+      "block_order": [
+        "collection-0",
+        "product_Pz8yci",
+        "product"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "video_XyebjE": {
@@ -102,46 +161,6 @@
         "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 28,
-        "padding_bottom": 36
-      }
-    },
-    "collage": {
-      "type": "collage",
-      "blocks": {
-        "collection-0": {
-          "type": "collection",
-          "settings": {
-            "collection": "books-ebooks-audiobooks"
-          }
-        },
-        "product_Pz8yci": {
-          "type": "product",
-          "settings": {
-            "product": "a-journey-into-mycology-ebook",
-            "second_image": false
-          }
-        },
-        "product": {
-          "type": "product",
-          "settings": {
-            "product": "a-journey-into-mycology-audio-book",
-            "second_image": false
-          }
-        }
-      },
-      "block_order": [
-        "collection-0",
-        "product_Pz8yci",
-        "product"
-      ],
-      "settings": {
-        "heading": "",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "card_styles": "product-card-wrapper",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
         "padding_bottom": 36
       }
     },
@@ -206,9 +225,10 @@
   "order": [
     "crowe_quantum_hero_VGfAbK",
     "rich_text",
+    "crowe_cta_block_4tCLEK",
+    "collage",
     "video_XyebjE",
     "featured_collection",
-    "collage",
     "multicolumn"
   ]
 }

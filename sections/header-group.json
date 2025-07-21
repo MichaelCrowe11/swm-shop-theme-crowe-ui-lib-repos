@@ -69,10 +69,77 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "crowe_ai_personalization_yVdNg4": {
+      "type": "crowe-ai-personalization",
+      "blocks": {
+        "ai_product_pa6aQR": {
+          "type": "ai_product",
+          "name": " Product Recommendation",
+          "settings": {
+            "product_name": "Lion's Mane Elite",
+            "product_emoji": "🦁",
+            "match_score": "98",
+            "ai_reason": "Based on your interest in cognitive enhancement and gourmet cultivation",
+            "tag_1": "Brain Health",
+            "tag_2": "Gourmet",
+            "tag_3": "Premium"
+          }
+        },
+        "ai_product_Na8k96": {
+          "type": "ai_product",
+          "settings": {
+            "product_name": "Oyster Multi-Pack",
+            "product_emoji": "",
+            "match_score": "95",
+            "ai_reason": "Perfect for your preference for variety and bulk growing",
+            "tag_1": "Variety Pack",
+            "tag_2": "Best Value",
+            "tag_3": "Easy Grow"
+          }
+        },
+        "ai_product_HNakAr": {
+          "type": "ai_product",
+          "settings": {
+            "product_name": "Shiitake Professional",
+            "product_emoji": "",
+            "match_score": "92",
+            "ai_reason": "Matches your advanced skill level and quality focus",
+            "tag_1": "Advanced",
+            "tag_2": "Restaurant Quality",
+            "tag_3": "Traditional"
+          }
+        },
+        "ai_product_NMaD3q": {
+          "type": "ai_product",
+          "settings": {
+            "product_name": "Cordyceps Power",
+            "product_emoji": "⚡",
+            "match_score": "89",
+            "ai_reason": "Aligns with your wellness goals and rare variety interests",
+            "tag_1": "Energy Boost",
+            "tag_2": "Rare Species",
+            "tag_3": "Medicinal"
+          }
+        }
+      },
+      "block_order": [
+        "ai_product_pa6aQR",
+        "ai_product_Na8k96",
+        "ai_product_HNakAr",
+        "ai_product_NMaD3q"
+      ],
+      "disabled": true,
+      "name": "AI Personalization",
+      "settings": {
+        "title": "Crowe Logic Powered Shopping Experience",
+        "subtitle": "Crowe Logic analyzes preferences to curate the perfect products"
+      }
     }
   },
   "order": [
     "announcement-bar",
-    "header"
+    "header",
+    "crowe_ai_personalization_yVdNg4"
   ]
 }
