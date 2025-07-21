@@ -651,26 +651,40 @@ h6 { font-size: 1rem; }
 .collection-card__title,
 .card__content .card__heading,
 .card__information .card__heading {
-  color: var(--quantum-cream, #FFF5DC) !important;
+  color: #1a1a1a !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 8px !important;
   font-weight: 700 !important;
-  text-shadow: 0 0 8px rgba(255, 245, 220, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: inline-block;
+  margin-bottom: 0.5rem;
 }
 
 .card-wrapper .card:hover h3,
 .collection-card:hover .collection-card__title,
 .card:hover .card__content .card__heading,
 .card:hover .card__information .card__heading {
-  color: var(--quantum-silver, #C0C0C0) !important;
-  text-shadow: 0 0 12px rgba(192, 192, 192, 0.4);
+  color: #0a0a0a !important;
+  background: rgba(255, 255, 255, 1) !important;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Collection Page Titles */
 .collection-hero__title,
 .collection__title,
 .page-title {
-  color: var(--quantum-cream, #FFF5DC) !important;
-  text-shadow: 0 0 15px rgba(255, 245, 220, 0.4);
+  color: #1a1a1a !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  padding: 1rem 1.5rem !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: inline-block;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* ===== Footer Styling ===== */

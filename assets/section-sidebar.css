@@ -296,11 +296,16 @@
     display: block;
   }
   
-  /* Create mini sidebar for mobile */
+  /* Create mini sidebar for mobile - initially hidden */
   .crowe-sidebar {
-    width: 80px; /* Mini sidebar width */
-    transform: translateX(0); /* Always show mini sidebar */
-    overflow: visible;
+    width: 0; /* Start completely hidden */
+    transform: translateX(-100%); /* Slide out of view */
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000;
   }
   
   /* Compact mobile sidebar header */
@@ -397,9 +402,10 @@
     font-size: 0.7rem;
   }
   
-  /* Expanded state for mobile - full width overlay */
+  /* Expanded state for mobile - reasonable width overlay */
   .crowe-sidebar.sidebar-open {
-    width: var(--sidebar-mobile-width);
+    width: 280px; /* Reasonable mobile width */
+    transform: translateX(0);
     z-index: 1001;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
   }
@@ -445,14 +451,15 @@
     padding: 0.5rem;
   }
   
-  /* On mobile, adjust main content for mini sidebar */
+  /* On mobile, no margin needed since sidebar is hidden */
   body {
-    margin-left: 80px; /* Account for mini sidebar width */
+    margin-left: 0; /* Full width for mobile content */
   }
   
-  /* When expanded, use overlay */
-  body.sidebar-open {
-    margin-left: 80px; /* Keep mini sidebar space */
+  /* When expanded, content stays in place (overlay mode) */
+  body.sidebar-is-open {
+    margin-left: 0; /* Content stays full width */
+    overflow: hidden; /* Prevent scrolling when sidebar is open */
   }
   
   /* Mobile hamburger positioning */
@@ -468,14 +475,17 @@
     background: rgba(192, 192, 192, 0.2);
   }
   
-  /* Only show overlay when sidebar is expanded on mobile */
+  /* Show overlay when sidebar is expanded on mobile */
   .sidebar-overlay {
     display: none;
   }
   
   .sidebar-overlay.overlay-active {
     display: block;
-    left: 80px; /* Start overlay after mini sidebar */
+    left: 0; /* Start overlay from left edge */
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 }
 
