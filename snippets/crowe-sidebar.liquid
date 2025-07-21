@@ -103,15 +103,20 @@
   <div class="sidebar-footer">
     <!-- Crowe Logic AI Chat Section -->
     <div class="sidebar-chat-section" role="region" aria-label="Crowe Logic AI Chat">
-      <div class="chat-header">
+      <div class="chat-header" id="chat-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="chat-content">
         <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="chat-avatar white-logo-filter">
         <div class="chat-info">
           <h3 class="chat-title">Crowe Logic AI</h3>
           <p class="chat-subtitle">Research Assistant</p>
         </div>
+        <div class="chat-expand-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
       </div>
       <!-- Zapier Chat Widget -->
-      <div class="chat-embed-container">
+      <div class="chat-embed-container" id="chat-content">
         <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
         <zapier-interfaces-chatbot-embed chatbot-id='cmbhp4x71002fqpzzx1cclqec'></zapier-interfaces-chatbot-embed>
         
@@ -131,6 +136,39 @@
     </div>
   </div>
 </nav>
+
+<!-- Chat Toggle JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const chatToggle = document.getElementById('chat-toggle');
+  const chatContent = document.getElementById('chat-content');
+  const expandIcon = chatToggle.querySelector('.chat-expand-icon svg path');
+  
+  if (chatToggle && chatContent) {
+    chatToggle.addEventListener('click', function() {
+      const isExpanded = chatContent.classList.contains('chat-expanded');
+      
+      if (isExpanded) {
+        chatContent.classList.remove('chat-expanded');
+        chatToggle.setAttribute('aria-expanded', 'false');
+        expandIcon.setAttribute('d', 'M6 9L12 15L18 9'); // Down arrow
+      } else {
+        chatContent.classList.add('chat-expanded');
+        chatToggle.setAttribute('aria-expanded', 'true');
+        expandIcon.setAttribute('d', 'M18 15L12 9L6 15'); // Up arrow
+      }
+    });
+    
+    // Keyboard accessibility
+    chatToggle.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        chatToggle.click();
+      }
+    });
+  }
+});
+</script>
 
 <!-- Mobile Sidebar Toggle -->
 <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Open navigation menu">
