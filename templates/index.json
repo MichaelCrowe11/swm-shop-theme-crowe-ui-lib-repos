@@ -239,6 +239,20 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "crowe_collection_premium_jrpgky": {
+      "type": "crowe-collection-premium",
+      "name": "Premium Collection",
+      "settings": {
+        "title": "Premium Collection",
+        "subtitle": "",
+        "collection": "",
+        "products_to_show": 6,
+        "featured_first": true,
+        "show_view_all": true,
+        "background_color": "#17141E",
+        "accent_color": "#C6A351"
+      }
     }
   },
   "order": [
@@ -247,6 +261,7 @@
     "crowe_cta_block_4tCLEK",
     "video_XyebjE",
     "crowe_cta_block_y6RfaB",
+    "crowe_collection_premium_jrpgky",
     "collage",
     "featured_collection",
     "multicolumn"
