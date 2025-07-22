@@ -1,0 +1,606 @@
+/*
+ * Crowe Sidebar Money-Making Engine Styles
+ * High-converting e-commerce optimization features
+ */
+
+/* =====================================================
+   CORE MONEY ENGINE STYLES
+   ===================================================== */
+
+.sidebar-money-engine {
+  padding: 20px 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(212, 175, 55, 0.05) 100%
+  );
+}
+
+.sidebar-money-engine > div {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-money-engine > div:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+}
+
+/* =====================================================
+   CART COUNT INDICATOR
+   ===================================================== */
+
+.cart-count-indicator {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #ff4757, #ff3742);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  animation: cart-count-pulse 2s ease-in-out infinite;
+}
+
+@keyframes cart-count-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* =====================================================
+   FREE SHIPPING PROGRESS BAR
+   ===================================================== */
+
+.shipping-progress-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.shipping-progress-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.shipping-icon {
+  font-size: 18px;
+  animation: shipping-bounce 2s ease-in-out infinite;
+}
+
+@keyframes shipping-bounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+.shipping-text {
+  color: #D4AF37;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.shipping-progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.shipping-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #D4AF37, #B8943F, #D4AF37);
+  background-size: 200% 100%;
+  border-radius: 20px;
+  transition: width 0.5s ease;
+  animation: shipping-progress-shimmer 2s linear infinite;
+}
+
+@keyframes shipping-progress-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* =====================================================
+   LIVE ACTIVITY FEED
+   ===================================================== */
+
+.activity-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.activity-pulse {
+  width: 12px;
+  height: 12px;
+  background: #27ae60;
+  border-radius: 50%;
+  animation: activity-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes activity-pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: scale(1.2); 
+    opacity: 0.7; 
+  }
+}
+
+.activity-title {
+  color: #27ae60;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.activity-item {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  line-height: 1.4;
+  animation: activity-slide-in 0.5s ease-out;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+@keyframes activity-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.activity-customer {
+  color: #D4AF37;
+  font-weight: 600;
+}
+
+.activity-product {
+  color: #5dade2;
+}
+
+.activity-location {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* =====================================================
+   SMART PRODUCT RECOMMENDATIONS
+   ===================================================== */
+
+.recommendations-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.recommendations-icon {
+  font-size: 16px;
+  animation: recommendations-sparkle 3s ease-in-out infinite;
+}
+
+@keyframes recommendations-sparkle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(5deg) scale(1.1); }
+  75% { transform: rotate(-5deg) scale(1.1); }
+}
+
+.recommendations-title {
+  color: #D4AF37;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.recommendation-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.recommendation-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: scale(1.02);
+}
+
+.recommendation-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.recommendation-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.recommendation-title {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.recommendation-price {
+  color: #D4AF37;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.recommendation-compare-price {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  text-decoration: line-through;
+  margin-left: 6px;
+}
+
+.recommendation-quick-add {
+  background: linear-gradient(135deg, #D4AF37, #B8943F);
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.recommendation-quick-add:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* =====================================================
+   RECENTLY VIEWED PRODUCTS
+   ===================================================== */
+
+.recently-viewed-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.recently-icon {
+  font-size: 16px;
+}
+
+.recently-title {
+  color: #5dade2;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.recently-viewed-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.recently-viewed-item {
+  text-align: center;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  border: 1px solid rgba(93, 173, 226, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.recently-viewed-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(93, 173, 226, 0.3);
+  transform: translateY(-2px);
+}
+
+.recently-viewed-image {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  object-fit: cover;
+  margin-bottom: 6px;
+}
+
+.recently-viewed-title {
+  color: #fff;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+/* =====================================================
+   URGENCY & SCARCITY TRIGGERS
+   ===================================================== */
+
+.urgency-trigger {
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border-left: 4px solid;
+  animation: urgency-glow 2s ease-in-out infinite alternate;
+}
+
+.urgency-trigger.low-stock {
+  background: rgba(255, 71, 87, 0.1);
+  border-color: #ff4757;
+  color: #ff6b7d;
+}
+
+.urgency-trigger.flash-sale {
+  background: rgba(255, 165, 0, 0.1);
+  border-color: #ffa500;
+  color: #ffb84d;
+}
+
+.urgency-trigger.trending {
+  background: rgba(46, 204, 113, 0.1);
+  border-color: #2ecc71;
+  color: #58d68d;
+}
+
+@keyframes urgency-glow {
+  from { box-shadow: 0 0 10px rgba(255, 71, 87, 0.3); }
+  to { box-shadow: 0 0 20px rgba(255, 71, 87, 0.6); }
+}
+
+.urgency-icon {
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.urgency-text {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* =====================================================
+   CART ABANDONMENT PREVENTION
+   ===================================================== */
+
+.abandonment-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.abandonment-icon {
+  font-size: 16px;
+  animation: abandonment-flash 1s ease-in-out infinite;
+}
+
+@keyframes abandonment-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.abandonment-title {
+  color: #ff4757;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.abandonment-message {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.abandonment-cta {
+  width: 100%;
+  background: linear-gradient(135deg, #ff4757, #ff3742);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.abandonment-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+}
+
+/* =====================================================
+   EMAIL CAPTURE WITH INCENTIVE
+   ===================================================== */
+
+.capture-header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.capture-icon {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.capture-title {
+  color: #D4AF37;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.capture-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.capture-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #fff;
+  font-size: 13px;
+  transition: all 0.3s ease;
+}
+
+.capture-input:focus {
+  outline: none;
+  border-color: #D4AF37;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.capture-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.capture-btn {
+  background: linear-gradient(135deg, #D4AF37, #B8943F);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.capture-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 768px) {
+  .sidebar-money-engine {
+    padding: 16px 0;
+  }
+  
+  .sidebar-money-engine > div {
+    margin-bottom: 16px;
+    padding: 12px;
+  }
+  
+  .recommendations-grid {
+    gap: 8px;
+  }
+  
+  .recommendation-item {
+    padding: 8px;
+  }
+  
+  .recommendation-image {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .recently-viewed-grid {
+    gap: 6px;
+  }
+}
+
+/* =====================================================
+   ANIMATION DELAYS FOR STAGGERED EFFECT
+   ===================================================== */
+
+.sidebar-money-engine > div:nth-child(1) { animation-delay: 0.1s; }
+.sidebar-money-engine > div:nth-child(2) { animation-delay: 0.2s; }
+.sidebar-money-engine > div:nth-child(3) { animation-delay: 0.3s; }
+.sidebar-money-engine > div:nth-child(4) { animation-delay: 0.4s; }
+.sidebar-money-engine > div:nth-child(5) { animation-delay: 0.5s; }
+.sidebar-money-engine > div:nth-child(6) { animation-delay: 0.6s; }
+
+/* =====================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ===================================================== */
+
+.sidebar-money-engine button:focus,
+.sidebar-money-engine input:focus {
+  outline: 2px solid #D4AF37;
+  outline-offset: 2px;
+}
+
+.sidebar-money-engine [role="button"] {
+  cursor: pointer;
+}
+
+.sidebar-money-engine .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =====================================================
+   PERFORMANCE OPTIMIZATIONS
+   ===================================================== */
+
+.sidebar-money-engine * {
+  will-change: transform, opacity;
+}
+
+.sidebar-money-engine img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+.sidebar-money-engine .quantum-scale-in {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
