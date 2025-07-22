@@ -7,6 +7,7 @@
 {{ 'quantum-enhancements-phase6.css' | asset_url | stylesheet_tag }}
 {{ 'quantum-enhancements-phase7.css' | asset_url | stylesheet_tag }}
 {{ 'quantum-ultimate-integration.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'utils.js' | asset_url }}" defer></script>
 <script src="{{ 'quantum-enhancements.js' | asset_url }}" defer></script>
 <script src="{{ 'quantum-enhancements-phase5.js' | asset_url }}" defer></script>
 <script src="{{ 'quantum-enhancements-phase6.js' | asset_url }}" defer></script>
@@ -108,9 +109,90 @@
           </svg>
         </span>
         <span class="nav-text">Cart</span>
+        <span class="cart-count-indicator" id="cart-count-bubble" style="display: none;">0</span>
       </a>
     </li>
   </ul>
+
+  <!-- MONEY-MAKING ENGINE: Smart Conversion Zone -->
+  <div class="sidebar-money-engine quantum-fade-in">
+    
+    <!-- Free Shipping Progress Bar -->
+    <div class="shipping-progress-section quantum-scale-in" id="shipping-progress" style="display: none;">
+      <div class="shipping-progress-header">
+        <span class="shipping-icon">🚚</span>
+        <span class="shipping-text" id="shipping-text">Add $25 more for FREE shipping!</span>
+      </div>
+      <div class="shipping-progress-bar">
+        <div class="shipping-progress-fill" id="shipping-progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Live Activity Feed -->
+    <div class="live-activity-feed quantum-scale-in" id="live-activity">
+      <div class="activity-header">
+        <span class="activity-pulse"></span>
+        <span class="activity-title">Live Activity</span>
+      </div>
+      <div class="activity-items" id="activity-items">
+        <!-- Dynamic activity items will be inserted here -->
+      </div>
+    </div>
+
+    <!-- Smart Product Recommendations -->
+    <div class="smart-recommendations quantum-scale-in" id="smart-recommendations">
+      <div class="recommendations-header">
+        <span class="recommendations-icon">✨</span>
+        <span class="recommendations-title">Recommended for You</span>
+      </div>
+      <div class="recommendations-grid" id="recommendations-grid">
+        <!-- Dynamic recommendations will be inserted here -->
+      </div>
+    </div>
+
+    <!-- Recently Viewed Products -->
+    <div class="recently-viewed quantum-scale-in" id="recently-viewed" style="display: none;">
+      <div class="recently-viewed-header">
+        <span class="recently-icon">👁️</span>
+        <span class="recently-title">Recently Viewed</span>
+      </div>
+      <div class="recently-viewed-grid" id="recently-viewed-grid">
+        <!-- Dynamic recently viewed items will be inserted here -->
+      </div>
+    </div>
+
+    <!-- Urgency & Scarcity Triggers -->
+    <div class="urgency-triggers quantum-scale-in" id="urgency-triggers">
+      <!-- Dynamic urgency messages will be inserted here -->
+    </div>
+
+    <!-- Cart Abandonment Prevention -->
+    <div class="cart-abandonment-prevention quantum-scale-in" id="cart-abandonment" style="display: none;">
+      <div class="abandonment-header">
+        <span class="abandonment-icon">⚡</span>
+        <span class="abandonment-title">Don't Miss Out!</span>
+      </div>
+      <div class="abandonment-message" id="abandonment-message">
+        Complete your purchase and save 10% with code SAVE10
+      </div>
+      <button class="abandonment-cta quantum-interactive-glass" id="complete-purchase-btn">
+        Complete Purchase
+      </button>
+    </div>
+
+    <!-- Email Capture with Incentive -->
+    <div class="email-capture-incentive quantum-scale-in" id="email-capture" style="display: none;">
+      <div class="capture-header">
+        <span class="capture-icon">🎁</span>
+        <span class="capture-title">Get 15% Off Your First Order!</span>
+      </div>
+      <form class="capture-form" id="newsletter-signup">
+        <input type="email" placeholder="Enter your email" class="capture-input" required>
+        <button type="submit" class="capture-btn quantum-interactive-glass">Get Discount</button>
+      </form>
+    </div>
+
+  </div>
 
   <div class="sidebar-footer">
     <!-- Crowe Logic AI Chat Section -->

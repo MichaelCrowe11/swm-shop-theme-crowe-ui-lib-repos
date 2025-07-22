@@ -1,0 +1,412 @@
+{{ 'crowe-visual-effects-master.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #quantum-hero-ultimate-{{ section.id }} {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #0f0f1a 50%, #000000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quantum-hero-ultimate {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .quantum-title-ultimate {
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    margin-bottom: 2rem;
+    position: relative;
+    background: linear-gradient(45deg, 
+      #D4AF37 0%,
+      #FFD700 25%,
+      #FFF5DC 50%,
+      #FFD700 75%,
+      #D4AF37 100%);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: quantum-ultimate-shimmer 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3));
+  }
+
+  .quantum-title-ultimate::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+      transparent 30%,
+      rgba(255, 255, 255, 0.8) 50%,
+      transparent 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: quantum-text-shine 3s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  @keyframes quantum-ultimate-shimmer {
+    0%, 100% { 
+      background-position: 0% 50%;
+      filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3)) hue-rotate(0deg);
+    }
+    25% { 
+      background-position: 100% 50%;
+      filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.4)) hue-rotate(15deg);
+    }
+    50% { 
+      background-position: 50% 100%;
+      filter: drop-shadow(0 0 50px rgba(255, 245, 220, 0.5)) hue-rotate(30deg);
+    }
+    75% { 
+      background-position: 0% 0%;
+      filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.4)) hue-rotate(15deg);
+    }
+  }
+
+  @keyframes quantum-text-shine {
+    0% { transform: translateX(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+  }
+
+  .quantum-subtitle-ultimate {
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 3rem;
+    font-weight: 300;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    animation: quantum-text-glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes quantum-text-glow {
+    0% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }
+    100% { text-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
+  }
+
+  .quantum-actions-ultimate {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+
+  .quantum-btn-ultimate {
+    padding: 1.5rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .quantum-btn-ultimate::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    border-radius: 50%;
+  }
+
+  .quantum-btn-ultimate:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .quantum-btn-primary-ultimate {
+    background: linear-gradient(135deg, #D4AF37 0%, #B8943F 50%, #D4AF37 100%);
+    color: #000;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+  }
+
+  .quantum-btn-primary-ultimate:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
+  }
+
+  .quantum-btn-secondary-ultimate {
+    background: rgba(255, 255, 255, 0.05);
+    color: #FFF5DC;
+    border: 2px solid #D4AF37;
+  }
+
+  .quantum-btn-secondary-ultimate:hover {
+    transform: translateY(-3px);
+    background: rgba(212, 175, 55, 0.1);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+  }
+
+  .quantum-neural-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    z-index: 1;
+  }
+
+  .quantum-floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .quantum-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.8), transparent 70%);
+    filter: blur(1px);
+    animation: quantum-float-orb 8s ease-in-out infinite;
+  }
+
+  .quantum-orb:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .quantum-orb:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 15%;
+    animation-delay: -2s;
+  }
+
+  .quantum-orb:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: -4s;
+  }
+
+  @keyframes quantum-float-orb {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+    25% { transform: translateY(-30px) rotate(90deg); opacity: 0.6; }
+    50% { transform: translateY(0) rotate(180deg); opacity: 0.3; }
+    75% { transform: translateY(30px) rotate(270deg); opacity: 0.6; }
+  }
+
+  @media (max-width: 768px) {
+    .quantum-actions-ultimate {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .quantum-btn-ultimate {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="quantum-hero-ultimate-{{ section.id }}">
+  <!-- Neural Network Background -->
+  <canvas class="quantum-neural-bg" id="neural-{{ section.id }}"></canvas>
+  
+  <!-- Floating Orbs -->
+  <div class="quantum-floating-elements">
+    <div class="quantum-orb"></div>
+    <div class="quantum-orb"></div>
+    <div class="quantum-orb"></div>
+  </div>
+  
+  <!-- Main Content -->
+  <div class="quantum-hero-ultimate">
+    <h1 class="quantum-title-ultimate" data-text="{{ section.settings.title | default: 'Revolutionary Experience' }}">
+      {{ section.settings.title | default: 'Revolutionary Experience' }}
+    </h1>
+    
+    <p class="quantum-subtitle-ultimate">
+      {{ section.settings.subtitle | default: 'Discover the future of e-commerce with cutting-edge design and immersive experiences' }}
+    </p>
+    
+    <div class="quantum-actions-ultimate">
+      <a href="{{ section.settings.primary_link | default: '#' }}" class="quantum-btn-ultimate quantum-btn-primary-ultimate">
+        {{ section.settings.primary_text | default: 'Experience the Future' }}
+      </a>
+      <a href="{{ section.settings.secondary_link | default: '#' }}" class="quantum-btn-ultimate quantum-btn-secondary-ultimate">
+        {{ section.settings.secondary_text | default: 'Explore Collection' }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  'use strict';
+
+  const canvas = document.getElementById('neural-{{ section.id }}');
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  let animationId;
+  
+  // Responsive canvas
+  function resizeCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  
+  // Neural network nodes
+  const nodes = [];
+  const nodeCount = 50;
+  
+  // Initialize nodes
+  for (let i = 0; i < nodeCount; i++) {
+    nodes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      radius: Math.random() * 2 + 1,
+      opacity: Math.random() * 0.5 + 0.2
+    });
+  }
+  
+  // Animation loop with performance optimization
+  let isAnimating = true;
+  
+  function animate() {
+    if (!isAnimating) return;
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Update and draw nodes
+    nodes.forEach((node, i) => {
+      // Update position
+      node.x += node.vx;
+      node.y += node.vy;
+      
+      // Bounce off edges
+      if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+      if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+      
+      // Keep in bounds
+      node.x = Math.max(0, Math.min(canvas.width, node.x));
+      node.y = Math.max(0, Math.min(canvas.height, node.y));
+      
+      // Draw node
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(212, 175, 55, ${node.opacity})`;
+      ctx.fill();
+      
+      // Draw connections
+      nodes.slice(i + 1).forEach(otherNode => {
+        const dx = node.x - otherNode.x;
+        const dy = node.y - otherNode.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 100) {
+          ctx.beginPath();
+          ctx.moveTo(node.x, node.y);
+          ctx.lineTo(otherNode.x, otherNode.y);
+          ctx.strokeStyle = `rgba(212, 175, 55, ${(1 - distance / 100) * 0.2})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      });
+    });
+    
+    animationId = requestAnimationFrame(animate);
+  }
+  
+  // Start animation
+  animate();
+  
+  // Pause animation when tab is not visible
+  document.addEventListener('visibilitychange', () => {
+    isAnimating = !document.hidden;
+    if (isAnimating) animate();
+  });
+  
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    isAnimating = false;
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+    }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Quantum Hero Ultimate",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Hero Title",
+      "default": "Revolutionary Experience"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Hero Subtitle",
+      "default": "Discover the future of e-commerce with cutting-edge design and immersive experiences"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "primary_text",
+      "label": "Primary Button Text",
+      "default": "Experience the Future"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_text",
+      "label": "Secondary Button Text",
+      "default": "Explore Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quantum Hero Ultimate"
+    }
+  ]
+}
+{% endschema %}

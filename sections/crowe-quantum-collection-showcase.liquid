@@ -1,0 +1,495 @@
+{{ 'crowe-visual-effects-master.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .quantum-collection-showcase {
+    position: relative;
+    background: var(--gradient-quantum-bg);
+    padding: 80px 0;
+    overflow: hidden;
+  }
+
+  .quantum-collection-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(26, 26, 46, 0.1) 0%, transparent 50%),
+      linear-gradient(45deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.001) 25%,
+        transparent 50%,
+        rgba(212, 175, 55, 0.002) 75%,
+        transparent 100%
+      );
+    animation: quantum-bg-shift 15s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes quantum-bg-shift {
+    0%, 100% { 
+      background-position: 0% 0%, 100% 100%, 0% 50%; 
+      opacity: 0.5;
+    }
+    50% { 
+      background-position: 100% 100%, 0% 0%, 100% 50%; 
+      opacity: 0.8;
+    }
+  }
+
+  .quantum-showcase-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .quantum-showcase-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+  }
+
+  .quantum-showcase-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 20px;
+    background: var(--gradient-quantum-text);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: quantum-spectral-shift 8s ease-in-out infinite;
+    position: relative;
+  }
+
+  .quantum-showcase-title::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    transform: translateX(-50%);
+    margin-top: 20px;
+    border-radius: 2px;
+    animation: quantum-line-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes quantum-line-glow {
+    0%, 100% { 
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+      transform: translateX(-50%) scaleX(1);
+    }
+    50% { 
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+      transform: translateX(-50%) scaleX(1.2);
+    }
+  }
+
+  .quantum-showcase-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    margin-top: 40px;
+  }
+
+  .quantum-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  .quantum-grid-item {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: quantum-fade-in-up 0.8s ease-out forwards;
+  }
+
+  .quantum-grid-item:nth-child(1) { animation-delay: 0.1s; }
+  .quantum-grid-item:nth-child(2) { animation-delay: 0.2s; }
+  .quantum-grid-item:nth-child(3) { animation-delay: 0.3s; }
+  .quantum-grid-item:nth-child(4) { animation-delay: 0.4s; }
+  .quantum-grid-item:nth-child(5) { animation-delay: 0.5s; }
+  .quantum-grid-item:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes quantum-fade-in-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .quantum-showcase-cta {
+    text-align: center;
+    position: relative;
+  }
+
+  .quantum-view-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 36px;
+    background: linear-gradient(135deg, 
+      rgba(212, 175, 55, 0.1) 0%, 
+      rgba(212, 175, 55, 0.2) 100%);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(212, 175, 55, 0.4);
+    border-radius: 50px;
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quantum-view-all-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .quantum-view-all-btn:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .quantum-view-all-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: linear-gradient(135deg, 
+      rgba(212, 175, 55, 0.2) 0%, 
+      rgba(212, 175, 55, 0.3) 100%);
+    border-color: rgba(212, 175, 55, 0.8);
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      0 0 50px rgba(212, 175, 55, 0.2);
+  }
+
+  .quantum-btn-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .quantum-view-all-btn:hover .quantum-btn-icon {
+    transform: translateX(5px);
+  }
+
+  .quantum-floating-orbs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .quantum-floating-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, 
+      rgba(212, 175, 55, 0.6) 0%, 
+      rgba(212, 175, 55, 0.2) 40%,
+      transparent 70%);
+    filter: blur(2px);
+    animation: quantum-orb-dance 12s ease-in-out infinite;
+  }
+
+  .quantum-floating-orb:nth-child(1) {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+  }
+
+  .quantum-floating-orb:nth-child(2) {
+    width: 80px;
+    height: 80px;
+    top: 70%;
+    right: 10%;
+    animation-delay: -4s;
+  }
+
+  .quantum-floating-orb:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    bottom: 15%;
+    left: 15%;
+    animation-delay: -8s;
+  }
+
+  .quantum-placeholder-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 24px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  @keyframes quantum-orb-dance {
+    0%, 100% { 
+      transform: translateY(0) scale(1) rotate(0deg); 
+      opacity: 0.3; 
+    }
+    25% { 
+      transform: translateY(-30px) scale(1.1) rotate(90deg); 
+      opacity: 0.6; 
+    }
+    50% { 
+      transform: translateY(-10px) scale(0.9) rotate(180deg); 
+      opacity: 0.4; 
+    }
+    75% { 
+      transform: translateY(20px) scale(1.05) rotate(270deg); 
+      opacity: 0.7; 
+    }
+  }
+
+  @media (max-width: 768px) {
+    .quantum-collection-showcase {
+      padding: 60px 0;
+    }
+
+    .quantum-products-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .quantum-showcase-header {
+      margin-bottom: 40px;
+    }
+
+    .quantum-floating-orb {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .quantum-collection-showcase::before,
+    .quantum-showcase-title,
+    .quantum-showcase-title::after,
+    .quantum-floating-orb,
+    .quantum-grid-item {
+      animation: none !important;
+    }
+
+    .quantum-grid-item {
+      opacity: 1;
+      transform: none;
+    }
+  }
+{%- endstyle -%}
+
+<section class="quantum-collection-showcase">
+  <!-- Floating Orbs -->
+  <div class="quantum-floating-orbs">
+    <div class="quantum-floating-orb"></div>
+    <div class="quantum-floating-orb"></div>
+    <div class="quantum-floating-orb"></div>
+  </div>
+
+  <div class="quantum-showcase-container">
+    <!-- Header -->
+    <div class="quantum-showcase-header">
+      <h2 class="quantum-showcase-title">
+        {{ section.settings.title | default: 'Featured Collection' }}
+      </h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="quantum-showcase-subtitle">
+          {{ section.settings.subtitle }}
+        </p>
+      {% endif %}
+    </div>
+
+    <!-- Products Grid -->
+    {% assign featured_collection = collections[section.settings.collection] %}
+    {% if featured_collection != blank and featured_collection.products.size > 0 %}
+      <div class="quantum-products-grid">
+        {% for product in featured_collection.products limit: section.settings.product_limit %}
+          <div class="quantum-grid-item">
+            {% render 'crowe-product-card-quantum-enhanced', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- CTA Button -->
+      <div class="quantum-showcase-cta">
+        <a href="{{ featured_collection.url }}" class="quantum-view-all-btn">
+          <span>View All {{ featured_collection.title }}</span>
+          <svg class="quantum-btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+          </svg>
+        </a>
+      </div>
+    {% else %}
+      <!-- Placeholder for empty collection -->
+      <div class="quantum-products-grid">
+        {% for i in (1..6) %}
+          <div class="quantum-grid-item">
+            <div class="quantum-placeholder-card">
+              Product {{ i }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Intersection Observer for staggered animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all grid items
+  const gridItems = document.querySelectorAll('.quantum-grid-item');
+  gridItems.forEach(function(item) {
+    observer.observe(item);
+  });
+
+  // Enhanced hover effects for grid items with debouncing
+  const debounce = (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  };
+
+  gridItems.forEach(function(item, index) {
+    const debouncedEnter = debounce(() => {
+      // Add stagger effect to neighboring items
+      gridItems.forEach(function(otherItem, otherIndex) {
+        if (Math.abs(index - otherIndex) === 1) {
+          otherItem.style.transform = 'translateY(-5px) scale(1.02)';
+          otherItem.style.transition = 'transform 0.3s ease';
+        }
+      });
+    }, 50);
+
+    const debouncedLeave = debounce(() => {
+      // Reset neighboring items
+      gridItems.forEach(function(otherItem) {
+        otherItem.style.transform = '';
+      });
+    }, 50);
+
+    item.addEventListener('mouseenter', debouncedEnter);
+    item.addEventListener('mouseleave', debouncedLeave);
+  });
+
+  // Parallax effect for floating orbs
+  let ticking = false;
+
+  function updateParallax() {
+    const scrolled = window.pageYOffset;
+    const orbs = document.querySelectorAll('.quantum-floating-orb');
+    
+    orbs.forEach(function(orb, index) {
+      const speed = 0.5 + (index * 0.2);
+      const yPos = -(scrolled * speed);
+      orb.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.1}deg)`;
+    });
+
+    ticking = false;
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', requestTick);
+
+  // Performance optimization: pause animations when not in view
+  const sectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+      } else {
+        entry.target.style.animationPlayState = 'paused';
+      }
+    });
+  });
+
+  const showcase = document.querySelector('.quantum-collection-showcase');
+  if (showcase) {
+    sectionObserver.observe(showcase);
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Quantum Collection Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Featured Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Discover our most popular products with cutting-edge design"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "label": "Number of products to show",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quantum Collection Showcase"
+    }
+  ]
+}
+{% endschema %}

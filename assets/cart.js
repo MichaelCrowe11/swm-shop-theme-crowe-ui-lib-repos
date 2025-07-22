@@ -43,36 +43,16 @@ class CartItems extends HTMLElement {
   }
 
   resetQuantityInput(id) {
-    const input = this.querySelector(`#Quantity-${id}`);
-    input.value = input.getAttribute('value');
+    ThemeUtils.QuantityValidator.resetQuantityInput(this, id);
     this.isEnterPressed = false;
   }
 
-  setValidity(event, index, message) {
-    event.target.setCustomValidity(message);
-    event.target.reportValidity();
-    this.resetQuantityInput(index);
-    event.target.select();
-  }
-
   validateQuantity(event) {
-    const inputValue = parseInt(event.target.value);
     const index = event.target.dataset.index;
-    let message = '';
-
-    if (inputValue < event.target.dataset.min) {
-      message = window.quickOrderListStrings.min_error.replace('[min]', event.target.dataset.min);
-    } else if (inputValue > parseInt(event.target.max)) {
-      message = window.quickOrderListStrings.max_error.replace('[max]', event.target.max);
-    } else if (inputValue % parseInt(event.target.step) !== 0) {
-      message = window.quickOrderListStrings.step_error.replace('[step]', event.target.step);
-    }
-
-    if (message) {
-      this.setValidity(event, index, message);
-    } else {
-      event.target.setCustomValidity('');
-      event.target.reportValidity();
+    const resetFn = (id) => this.resetQuantityInput(id);
+    
+    if (ThemeUtils.QuantityValidator.validateAndHandle(event, this)) {
+      const inputValue = parseInt(event.target.value);
       this.updateQuantity(
         index,
         inputValue,
@@ -120,21 +100,11 @@ class CartItems extends HTMLElement {
   }
 
   getSectionsToRender() {
-    return [
+    const customSections = [
       {
         id: 'main-cart-items',
         section: document.getElementById('main-cart-items').dataset.id,
         selector: '.js-contents',
-      },
-      {
-        id: 'cart-icon-bubble',
-        section: 'cart-icon-bubble',
-        selector: '.shopify-section',
-      },
-      {
-        id: 'cart-live-region-text',
-        section: 'cart-live-region-text',
-        selector: '.shopify-section',
       },
       {
         id: 'main-cart-footer',
@@ -142,6 +112,7 @@ class CartItems extends HTMLElement {
         selector: '.js-contents',
       },
     ];
+    return ThemeUtils.SectionRenderer.createSectionsConfig(customSections);
   }
 
   updateQuantity(line, quantity, event, name, variantId) {
@@ -180,14 +151,7 @@ class CartItems extends HTMLElement {
           if (cartFooter) cartFooter.classList.toggle('is-empty', parsedState.item_count === 0);
           if (cartDrawerWrapper) cartDrawerWrapper.classList.toggle('is-empty', parsedState.item_count === 0);
 
-          this.getSectionsToRender().forEach((section) => {
-            const elementToReplace =
-              document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-            elementToReplace.innerHTML = this.getSectionInnerHTML(
-              parsedState.sections[section.section],
-              section.selector
-            );
-          });
+          ThemeUtils.CartUpdateUtils.updateCartSections(parsedState, this.getSectionsToRender());
           const updatedValue = parsedState.items[line - 1] ? parsedState.items[line - 1].quantity : undefined;
           let message = '';
           if (items.length === parsedState.items.length && updatedValue !== parseInt(quantityElement.value)) {
@@ -242,9 +206,6 @@ class CartItems extends HTMLElement {
     }, 1000);
   }
 
-  getSectionInnerHTML(html, selector) {
-    return new DOMParser().parseFromString(html, 'text/html').querySelector(selector).innerHTML;
-  }
 
   enableLoading(line) {
     const mainCartItems = document.getElementById('main-cart-items') || document.getElementById('CartDrawer-CartItems');

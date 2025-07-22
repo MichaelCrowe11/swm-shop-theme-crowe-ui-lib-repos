@@ -144,16 +144,11 @@ if (!customElements.get('quick-order-list')) {
       }
 
       getSectionsToRender() {
-        return [
+        const customSections = [
           {
             id: this.id,
             section: this.dataset.section,
             selector: `#${this.id}`,
-          },
-          {
-            id: 'cart-icon-bubble',
-            section: 'cart-icon-bubble',
-            selector: '#shopify-section-cart-icon-bubble',
           },
           {
             id: `quick-order-list-live-region-text-${this.dataset.productId}`,
@@ -166,11 +161,12 @@ if (!customElements.get('quick-order-list')) {
             section: 'cart-drawer',
           },
         ];
+        return ThemeUtils.SectionRenderer.createSectionsConfig(customSections);
       }
 
       toggleTableLoading(enable) {
         this.quickOrderListTable.classList.toggle('quick-order-list__container--disabled', enable);
-        this.toggleLoading(enable);
+        ThemeUtils.LoadingStateManager.setLoadingState(this, enable);
       }
 
       async refresh(pageNumber = null) {

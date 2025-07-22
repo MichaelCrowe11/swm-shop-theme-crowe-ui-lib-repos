@@ -1,0 +1,338 @@
+/* =========================================
+   CROWE QUANTUM HERO ULTIMATE STYLES
+   Revolutionary visual system for lasting impact
+   ========================================= */
+
+/* 🎨 Ultimate Background System */
+.quantum-hero-ultimate-container {
+  position: relative;
+  background: 
+    radial-gradient(ellipse 800px 600px at 50% 0%, rgba(212, 175, 55, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse 600px 400px at 0% 100%, rgba(26, 26, 46, 0.6) 0%, transparent 50%),
+    linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #0f0f1a 100%);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* 🌟 Enhanced Particle System */
+.quantum-particles-ultimate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.quantum-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #D4AF37 0%, transparent 70%);
+  border-radius: 50%;
+  animation: quantum-particle-float 8s linear infinite;
+}
+
+.quantum-particle:nth-child(odd) {
+  animation-duration: 12s;
+  animation-delay: -2s;
+}
+
+.quantum-particle:nth-child(even) {
+  animation-duration: 10s;
+  animation-delay: -4s;
+}
+
+@keyframes quantum-particle-float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 🔮 Holographic Effects */
+.quantum-hologram-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(212, 175, 55, 0.01) 2px,
+      rgba(212, 175, 55, 0.01) 4px
+    );
+  pointer-events: none;
+  z-index: 8;
+  animation: quantum-hologram-scan 3s ease-in-out infinite;
+}
+
+@keyframes quantum-hologram-scan {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* ✨ Advanced Text Effects */
+.quantum-text-ultimate {
+  position: relative;
+  display: inline-block;
+}
+
+.quantum-text-ultimate::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  border-radius: 20px;
+  animation: quantum-text-aura 4s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes quantum-text-aura {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.05); }
+}
+
+/* 🌊 Liquid Morphing Buttons */
+.quantum-btn-liquid {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #D4AF37 0%, #B8943F 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quantum-btn-liquid::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.quantum-btn-liquid:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.quantum-btn-liquid::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.quantum-btn-liquid:hover::after {
+  left: 100%;
+}
+
+/* 🎭 Morphing Card System */
+.quantum-card-ultimate {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.quantum-card-ultimate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.1) 0%,
+    transparent 50%,
+    rgba(212, 175, 55, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.quantum-card-ultimate:hover {
+  transform: translateY(-10px) rotateX(5deg);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 50px rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.6);
+}
+
+.quantum-card-ultimate:hover::before {
+  opacity: 1;
+}
+
+/* 🌈 Prismatic Effects */
+.quantum-prism {
+  position: relative;
+  background: linear-gradient(45deg, 
+    #D4AF37 0%, 
+    #FFD700 25%, 
+    #FFF5DC 50%, 
+    #FFD700 75%, 
+    #D4AF37 100%);
+  background-size: 400% 400%;
+  animation: quantum-prism-shift 6s ease-in-out infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes quantum-prism-shift {
+  0% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+  25% { background-position: 100% 50%; filter: hue-rotate(30deg); }
+  50% { background-position: 50% 100%; filter: hue-rotate(60deg); }
+  75% { background-position: 0% 0%; filter: hue-rotate(30deg); }
+  100% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+}
+
+/* 🔥 Energy Pulse Effects */
+.quantum-energy {
+  position: relative;
+}
+
+.quantum-energy::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #D4AF37 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: quantum-energy-pulse 2s ease-in-out infinite;
+}
+
+@keyframes quantum-energy-pulse {
+  0% { 
+    width: 20px; 
+    height: 20px; 
+    opacity: 0.8; 
+  }
+  50% { 
+    width: 100px; 
+    height: 100px; 
+    opacity: 0.2; 
+  }
+  100% { 
+    width: 20px; 
+    height: 20px; 
+    opacity: 0.8; 
+  }
+}
+
+/* 🌀 Vortex Loading Animation */
+.quantum-vortex {
+  width: 80px;
+  height: 80px;
+  border: 3px solid rgba(212, 175, 55, 0.2);
+  border-top: 3px solid #D4AF37;
+  border-radius: 50%;
+  animation: quantum-vortex-spin 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  position: relative;
+}
+
+.quantum-vortex::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(212, 175, 55, 0.4);
+  border-top: 2px solid #D4AF37;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: quantum-vortex-spin 1s linear infinite reverse;
+}
+
+@keyframes quantum-vortex-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 📱 Responsive Enhancements */
+@media (max-width: 768px) {
+  .quantum-card-ultimate:hover {
+    transform: translateY(-5px) rotateX(2deg);
+  }
+  
+  .quantum-btn-liquid::before {
+    transition-duration: 0.3s;
+  }
+  
+  .quantum-particle {
+    width: 2px;
+    height: 2px;
+  }
+}
+
+/* ⚡ Performance Optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .quantum-particle,
+  .quantum-hologram-overlay,
+  .quantum-text-ultimate::after,
+  .quantum-prism,
+  .quantum-energy::before,
+  .quantum-vortex,
+  .quantum-vortex::before {
+    animation: none !important;
+  }
+  
+  .quantum-card-ultimate:hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* 🎯 Focus States for Accessibility */
+.quantum-btn-liquid:focus,
+.quantum-card-ultimate:focus {
+  outline: 3px solid rgba(212, 175, 55, 0.6);
+  outline-offset: 2px;
+}
+
+/* 🌟 Print Styles */
+@media print {
+  .quantum-particles-ultimate,
+  .quantum-hologram-overlay,
+  .quantum-energy::before {
+    display: none !important;
+  }
+  
+  .quantum-prism {
+    -webkit-text-fill-color: #D4AF37 !important;
+    color: #D4AF37 !important;
+  }
+}

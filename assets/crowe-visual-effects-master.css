@@ -1,0 +1,318 @@
+/* =========================================
+   CROWE VISUAL EFFECTS MASTER LIBRARY
+   Next-generation visual enhancements for lasting impact
+   ========================================= */
+
+/* 🌟 CORE VISUAL SYSTEM */
+:root {
+  /* Enhanced Color Palette */
+  --quantum-gold: #D4AF37;
+  --quantum-gold-light: #FFD700;
+  --quantum-cream: #FFF5DC;
+  --quantum-dark: #0a0a0a;
+  --quantum-dark-blue: #1a1a2e;
+  --quantum-deep: #0f0f1a;
+  
+  /* Advanced Gradients */
+  --gradient-quantum-primary: linear-gradient(135deg, var(--quantum-gold) 0%, #B8943F 50%, var(--quantum-gold) 100%);
+  --gradient-quantum-text: linear-gradient(45deg, var(--quantum-gold) 0%, var(--quantum-gold-light) 25%, var(--quantum-cream) 50%, var(--quantum-gold-light) 75%, var(--quantum-gold) 100%);
+  --gradient-quantum-bg: radial-gradient(ellipse at center, var(--quantum-dark-blue) 0%, var(--quantum-deep) 50%, var(--quantum-dark) 100%);
+  
+  /* Enhanced Shadows */
+  --shadow-quantum-soft: 0 10px 30px rgba(212, 175, 55, 0.15);
+  --shadow-quantum-medium: 0 20px 40px rgba(212, 175, 55, 0.25);
+  --shadow-quantum-strong: 0 30px 60px rgba(212, 175, 55, 0.35);
+  --shadow-quantum-glow: 0 0 30px rgba(212, 175, 55, 0.4);
+  
+  /* Transition Presets */
+  --transition-quantum-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-quantum-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-quantum-elegant: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 🎭 MORPHING ANIMATIONS */
+@keyframes quantum-morph-scale {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.05) rotate(2deg); }
+  50% { transform: scale(1.1) rotate(0deg); }
+  75% { transform: scale(1.05) rotate(-2deg); }
+}
+
+@keyframes quantum-levitate {
+  0%, 100% { transform: translateY(0px) rotateX(0deg); }
+  50% { transform: translateY(-20px) rotateX(5deg); }
+}
+
+@keyframes quantum-pulse-glow {
+  0%, 100% { 
+    box-shadow: var(--shadow-quantum-soft);
+    filter: brightness(1) saturate(1);
+  }
+  50% { 
+    box-shadow: var(--shadow-quantum-glow);
+    filter: brightness(1.1) saturate(1.2);
+  }
+}
+
+@keyframes quantum-prismatic {
+  0% { filter: hue-rotate(0deg) brightness(1) contrast(1); }
+  25% { filter: hue-rotate(90deg) brightness(1.1) contrast(1.1); }
+  50% { filter: hue-rotate(180deg) brightness(1.2) contrast(1.2); }
+  75% { filter: hue-rotate(270deg) brightness(1.1) contrast(1.1); }
+  100% { filter: hue-rotate(360deg) brightness(1) contrast(1); }
+}
+
+/* 🔮 HOLOGRAPHIC ELEMENTS */
+.quantum-holographic {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+.quantum-holographic::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, 
+    transparent 0deg, 
+    rgba(212, 175, 55, 0.1) 60deg, 
+    transparent 120deg,
+    rgba(255, 215, 0, 0.05) 180deg,
+    transparent 240deg,
+    rgba(212, 175, 55, 0.1) 300deg,
+    transparent 360deg);
+  animation: quantum-holographic-rotate 8s linear infinite;
+  opacity: 0;
+  transition: opacity var(--transition-quantum-smooth);
+}
+
+.quantum-holographic:hover::before {
+  opacity: 1;
+}
+
+@keyframes quantum-holographic-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ✨ SHIMMER EFFECTS */
+.quantum-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.quantum-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    transparent);
+  animation: quantum-shimmer-sweep 3s ease-in-out infinite;
+}
+
+@keyframes quantum-shimmer-sweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* 🌊 LIQUID DISTORTION */
+.quantum-liquid {
+  filter: url('#liquid-distortion');
+  transition: filter var(--transition-quantum-smooth);
+  will-change: filter;
+}
+
+.quantum-liquid:hover {
+  animation: quantum-liquid-wave 2s ease-in-out infinite;
+}
+
+@keyframes quantum-liquid-wave {
+  0%, 100% { filter: url('#liquid-distortion'); }
+  50% { filter: url('#liquid-distortion') hue-rotate(30deg); }
+}
+
+/* 🔥 PLASMA EFFECTS */
+.quantum-plasma {
+  background: linear-gradient(45deg, 
+    rgba(212, 175, 55, 0.3) 0%,
+    rgba(255, 215, 0, 0.2) 25%,
+    rgba(255, 245, 220, 0.1) 50%,
+    rgba(255, 215, 0, 0.2) 75%,
+    rgba(212, 175, 55, 0.3) 100%);
+  background-size: 400% 400%;
+  animation: quantum-plasma-flow 6s ease-in-out infinite;
+}
+
+@keyframes quantum-plasma-flow {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 50% 100%; }
+  75% { background-position: 0% 0%; }
+}
+
+/* ⚡ ELECTRIC BORDERS */
+.quantum-electric {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(var(--quantum-dark), var(--quantum-dark)) padding-box,
+              linear-gradient(45deg, var(--quantum-gold), var(--quantum-gold-light), var(--quantum-gold)) border-box;
+}
+
+.quantum-electric::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    var(--quantum-gold) 0%, 
+    var(--quantum-gold-light) 25%, 
+    var(--quantum-cream) 50%, 
+    var(--quantum-gold-light) 75%, 
+    var(--quantum-gold) 100%);
+  background-size: 200% 200%;
+  border-radius: inherit;
+  z-index: -1;
+  animation: quantum-electric-pulse 3s linear infinite;
+}
+
+@keyframes quantum-electric-pulse {
+  0%, 100% { background-position: 0% 50%; opacity: 0.6; }
+  50% { background-position: 100% 50%; opacity: 1; }
+}
+
+/* 🌀 VORTEX BACKGROUNDS */
+.quantum-vortex-bg {
+  background: radial-gradient(ellipse at center,
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(26, 26, 46, 0.3) 30%,
+    rgba(15, 15, 26, 0.6) 60%,
+    var(--quantum-dark) 100%);
+  background-size: 200% 200%;
+  animation: quantum-vortex-spin 20s linear infinite;
+}
+
+@keyframes quantum-vortex-spin {
+  from { background-position: 0% 0%; }
+  to { background-position: 100% 100%; }
+}
+
+/* 💎 CRYSTALLINE EFFECTS */
+.quantum-crystal {
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 25%,
+    rgba(212, 175, 55, 0.05) 50%,
+    transparent 75%,
+    rgba(255, 255, 255, 0.1) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+}
+
+/* 🎯 MAGNETIC HOVER EFFECTS */
+.quantum-magnetic {
+  transition: all var(--transition-quantum-elegant);
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+}
+
+.quantum-magnetic:hover {
+  transform: perspective(1000px) rotateX(10deg) rotateY(10deg) scale(1.02);
+  box-shadow: var(--shadow-quantum-strong);
+}
+
+/* 🌈 SPECTRAL ANIMATIONS */
+.quantum-spectral {
+  background: var(--gradient-quantum-text);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: quantum-spectral-shift 8s ease-in-out infinite;
+}
+
+@keyframes quantum-spectral-shift {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  25% { 
+    background-position: 100% 50%;
+    filter: hue-rotate(60deg) brightness(1.2);
+  }
+  50% { 
+    background-position: 50% 100%;
+    filter: hue-rotate(120deg) brightness(1.4);
+  }
+  75% { 
+    background-position: 0% 0%;
+    filter: hue-rotate(60deg) brightness(1.2);
+  }
+}
+
+/* 📱 RESPONSIVE OPTIMIZATIONS */
+@media (max-width: 768px) {
+  .quantum-magnetic:hover {
+    transform: scale(1.01);
+  }
+  
+  .quantum-holographic::before {
+    animation-duration: 12s;
+  }
+  
+  .quantum-shimmer::after {
+    animation-duration: 4s;
+  }
+}
+
+/* ⚡ PERFORMANCE MODE */
+@media (prefers-reduced-motion: reduce) {
+  .quantum-holographic::before,
+  .quantum-shimmer::after,
+  .quantum-liquid,
+  .quantum-plasma,
+  .quantum-electric::before,
+  .quantum-vortex-bg,
+  .quantum-spectral {
+    animation: none !important;
+  }
+  
+  .quantum-magnetic:hover {
+    transform: scale(1.01);
+  }
+}
+
+/* 🔍 HIGH CONTRAST MODE */
+@media (forced-colors: active) {
+  .quantum-holographic,
+  .quantum-crystal {
+    border-color: ButtonBorder;
+    background: ButtonFace;
+  }
+  
+  .quantum-spectral {
+    -webkit-text-fill-color: ButtonText;
+    color: ButtonText;
+  }
+}
+
+/* SVG Filters for Advanced Effects */
+.quantum-svg-filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
