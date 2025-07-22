@@ -1,0 +1,498 @@
+/* ===== QUANTUM THEME ENHANCEMENTS - PHASE 4 ===== */
+/* Mobile Innovation, PWA Features, and Advanced Accessibility */
+
+/* ===== GESTURE NAVIGATION ===== */
+
+.quantum-gesture-area {
+  position: relative;
+  touch-action: pan-x pan-y;
+  user-select: none;
+}
+
+.quantum-swipe-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(212, 175, 55, 0.2);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.quantum-swipe-indicator.left {
+  left: 20px;
+  transform: translateY(-50%) translateX(-20px);
+}
+
+.quantum-swipe-indicator.right {
+  right: 20px;
+  transform: translateY(-50%) translateX(20px);
+}
+
+.quantum-swipe-indicator.active {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+  background: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.quantum-swipe-indicator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.quantum-swipe-indicator.left::before {
+  border-width: 8px 12px 8px 0;
+  border-color: transparent var(--quantum-cream) transparent transparent;
+}
+
+.quantum-swipe-indicator.right::before {
+  border-width: 8px 0 8px 12px;
+  border-color: transparent transparent transparent var(--quantum-cream);
+}
+
+/* ===== PINCH TO ZOOM ===== */
+
+.quantum-zoomable {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.quantum-zoomable.zooming {
+  cursor: grabbing;
+}
+
+.quantum-zoomable img {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center;
+  will-change: transform;
+}
+
+.quantum-zoomable.zoomed img {
+  transform: scale(var(--zoom-scale, 2));
+}
+
+.quantum-zoom-controls {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.quantum-zoomable:hover .quantum-zoom-controls,
+.quantum-zoomable.zoomed .quantum-zoom-controls {
+  opacity: 1;
+}
+
+.quantum-zoom-btn {
+  width: 32px;
+  height: 32px;
+  background: rgba(26, 26, 26, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+  color: var(--quantum-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.quantum-zoom-btn:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: var(--quantum-accent);
+  transform: scale(1.1);
+}
+
+/* ===== PULL TO REFRESH ===== */
+
+.quantum-pull-to-refresh {
+  position: relative;
+  overflow: hidden;
+}
+
+.quantum-refresh-indicator {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--quantum-primary), var(--quantum-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1000;
+}
+
+.quantum-refresh-indicator.pulling {
+  top: 20px;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.quantum-refresh-indicator.refreshing {
+  animation: quantum-refresh-spin 1s linear infinite;
+}
+
+.quantum-refresh-indicator svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+@keyframes quantum-refresh-spin {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to { transform: translateX(-50%) rotate(360deg); }
+}
+
+/* ===== SHAKE DETECTION FEEDBACK ===== */
+
+.quantum-shake-feedback {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(26, 26, 26, 0.95);
+  border: 2px solid var(--quantum-accent);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  color: var(--quantum-cream);
+  z-index: 10000;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.quantum-shake-feedback.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.quantum-shake-feedback h3 {
+  margin: 0 0 1rem 0;
+  color: var(--quantum-accent);
+  font-size: 1.2rem;
+}
+
+.quantum-shake-feedback p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* ===== PWA INSTALLATION PROMPT ===== */
+
+.quantum-pwa-install {
+  position: fixed;
+  bottom: -100px;
+  left: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, 
+    rgba(26, 26, 26, 0.95) 0%, 
+    rgba(40, 40, 40, 0.95) 100%);
+  border: 2px solid var(--quantum-primary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: var(--quantum-cream);
+  z-index: 10001;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+}
+
+.quantum-pwa-install.show {
+  bottom: 20px;
+}
+
+.quantum-pwa-install .pwa-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.quantum-pwa-install .pwa-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--quantum-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantum-pwa-install .pwa-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--quantum-accent);
+}
+
+.quantum-pwa-install .pwa-subtitle {
+  font-size: 0.85rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.quantum-pwa-install .pwa-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.quantum-pwa-install .pwa-btn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--quantum-primary);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--quantum-cream);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quantum-pwa-install .pwa-btn.primary {
+  background: var(--quantum-primary);
+  color: var(--quantum-charcoal);
+}
+
+.quantum-pwa-install .pwa-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* ===== OFFLINE INDICATOR ===== */
+
+.quantum-offline-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+  color: white;
+  text-align: center;
+  padding: 0.75rem;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  z-index: 10002;
+  font-weight: 500;
+}
+
+.quantum-offline-indicator.show {
+  transform: translateY(0);
+}
+
+.quantum-offline-indicator.online {
+  background: linear-gradient(90deg, #4ECDC4, #44A08D);
+}
+
+/* ===== ADVANCED ACCESSIBILITY ===== */
+
+.quantum-accessibility-panel {
+  position: fixed;
+  top: 20px;
+  left: -300px;
+  width: 280px;
+  background: rgba(26, 26, 26, 0.95);
+  border: 2px solid var(--quantum-primary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: var(--quantum-cream);
+  z-index: 10003;
+  transition: left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.quantum-accessibility-panel.show {
+  left: 20px;
+}
+
+.quantum-accessibility-toggle {
+  position: fixed;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: var(--quantum-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10004;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+}
+
+.quantum-accessibility-toggle:hover {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.5);
+}
+
+.quantum-accessibility-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--quantum-charcoal);
+}
+
+.quantum-accessibility-control {
+  margin-bottom: 1rem;
+}
+
+.quantum-accessibility-control label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.quantum-accessibility-control input[type="range"] {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.quantum-accessibility-control input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+/* ===== HAPTIC FEEDBACK SIMULATION ===== */
+
+.quantum-haptic-feedback {
+  animation: quantum-haptic-buzz 0.1s ease-in-out;
+}
+
+@keyframes quantum-haptic-buzz {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+/* ===== LARGE TOUCH TARGETS ===== */
+
+@media screen and (max-width: 768px) {
+  .quantum-touch-target {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.75rem;
+  }
+  
+  .nav-link,
+  .chat-header,
+  .mobile-sidebar-toggle,
+  .quantum-button {
+    min-height: 48px;
+    touch-action: manipulation;
+  }
+  
+  /* Enhanced mobile gestures */
+  .quantum-gesture-area {
+    min-height: 100px;
+  }
+  
+  .quantum-swipe-indicator {
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* Mobile accessibility improvements */
+  .quantum-accessibility-panel {
+    width: calc(100vw - 40px);
+    left: -100vw;
+  }
+  
+  .quantum-accessibility-panel.show {
+    left: 20px;
+  }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+
+.quantum-high-contrast {
+  --quantum-primary: #FFFFFF;
+  --quantum-secondary: #CCCCCC;
+  --quantum-accent: #FFFF00;
+  --quantum-charcoal: #000000;
+  --quantum-cream: #FFFFFF;
+}
+
+.quantum-high-contrast .quantum-pwa-install,
+.quantum-high-contrast .quantum-accessibility-panel {
+  background: #000000;
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+/* ===== REDUCED MOTION ACCESSIBILITY ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .quantum-swipe-indicator,
+  .quantum-refresh-indicator,
+  .quantum-shake-feedback,
+  .quantum-pwa-install,
+  .quantum-accessibility-panel {
+    transition: none;
+    animation: none;
+  }
+  
+  .quantum-zoomable img {
+    transition: none;
+  }
+  
+  .quantum-haptic-feedback {
+    animation: none;
+  }
+}
+
+/* ===== FOCUS MANAGEMENT ===== */
+
+.quantum-focus-trap {
+  position: relative;
+}
+
+.quantum-focus-visible {
+  outline: 3px solid var(--quantum-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip link for screen readers */
+.quantum-skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--quantum-primary);
+  color: var(--quantum-charcoal);
+  padding: 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  z-index: 10005;
+  transition: top 0.3s ease;
+}
+
+.quantum-skip-link:focus {
+  top: 6px;
+}

@@ -1,0 +1,596 @@
+/* ===== QUANTUM THEME ENHANCEMENTS - PHASE 6 ===== */
+/* Hyper-Intelligence: Real-time AI Recommendations & Sentiment Analysis */
+
+/* ===== QUANTUM AI VARIABLES ===== */
+:root {
+  /* AI Recommendation Colors */
+  --quantum-ai-recommend: #FF6B6B;
+  --quantum-ai-trending: #4ECDC4;
+  --quantum-ai-popular: #45B7D1;
+  --quantum-ai-personalized: #96CEB4;
+  --quantum-ai-urgent: #FFEAA7;
+  
+  /* Sentiment Analysis Colors */
+  --quantum-sentiment-positive: #00B894;
+  --quantum-sentiment-neutral: #74B9FF;
+  --quantum-sentiment-excited: #FD79A8;
+  --quantum-sentiment-focused: #A29BFE;
+  --quantum-sentiment-relaxed: #6C5CE7;
+  
+  /* AI Glow Effects */
+  --quantum-ai-glow-recommend: rgba(255, 107, 107, 0.4);
+  --quantum-ai-glow-trending: rgba(78, 205, 196, 0.4);
+  --quantum-ai-glow-popular: rgba(69, 183, 209, 0.4);
+  
+  /* Advanced AI Animations */
+  --quantum-ai-pulse: 3s ease-in-out infinite;
+  --quantum-ai-scan: 2s linear infinite;
+  --quantum-ai-morph: 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+/* ===== AI RECOMMENDATION SYSTEM ===== */
+
+.quantum-ai-recommendations {
+  position: fixed;
+  top: 50%;
+  right: -400px;
+  transform: translateY(-50%);
+  width: 350px;
+  max-height: 80vh;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(20px);
+  border: 2px solid var(--quantum-ai-recommend);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: white;
+  z-index: 10000;
+  transition: right 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(255, 107, 107, 0.3);
+}
+
+.quantum-ai-recommendations.show {
+  right: 20px;
+}
+
+.quantum-ai-recommendations.hide {
+  right: -400px;
+}
+
+.quantum-ai-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.quantum-ai-avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--quantum-ai-recommend), var(--quantum-ai-trending));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  animation: quantum-ai-pulse var(--quantum-ai-pulse);
+}
+
+.quantum-ai-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--quantum-ai-recommend);
+}
+
+.quantum-ai-subtitle {
+  font-size: 0.8rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.quantum-ai-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.quantum-ai-close:hover {
+  background: rgba(255, 107, 107, 0.2);
+  transform: rotate(90deg);
+}
+
+.quantum-recommendation-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.quantum-recommendation-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 107, 107, 0.1) 50%,
+    transparent 100%
+  );
+  transition: left 0.6s ease;
+}
+
+.quantum-recommendation-item:hover::before {
+  left: 100%;
+}
+
+.quantum-recommendation-item:hover {
+  border-color: var(--quantum-ai-recommend);
+  background: rgba(255, 107, 107, 0.1);
+  transform: translateX(5px);
+}
+
+.quantum-recommendation-item.trending {
+  border-color: var(--quantum-ai-trending);
+}
+
+.quantum-recommendation-item.popular {
+  border-color: var(--quantum-ai-popular);
+}
+
+.quantum-recommendation-item.personalized {
+  border-color: var(--quantum-ai-personalized);
+}
+
+.quantum-recommendation-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.quantum-recommendation-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.quantum-recommendation-item:hover .quantum-recommendation-image img {
+  transform: scale(1.1);
+}
+
+.quantum-recommendation-content {
+  flex: 1;
+}
+
+.quantum-recommendation-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  color: white;
+}
+
+.quantum-recommendation-reason {
+  font-size: 0.75rem;
+  color: var(--quantum-ai-recommend);
+  margin: 0 0 0.25rem 0;
+  font-weight: 500;
+}
+
+.quantum-recommendation-price {
+  font-size: 0.8rem;
+  color: var(--quantum-ai-trending);
+  font-weight: 600;
+}
+
+.quantum-recommendation-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.quantum-recommendation-badge.trending {
+  background: var(--quantum-ai-trending);
+  color: white;
+}
+
+.quantum-recommendation-badge.popular {
+  background: var(--quantum-ai-popular);
+  color: white;
+}
+
+.quantum-recommendation-badge.ai-pick {
+  background: var(--quantum-ai-recommend);
+  color: white;
+}
+
+.quantum-recommendation-badge.urgent {
+  background: var(--quantum-ai-urgent);
+  color: #333;
+  animation: quantum-urgent-pulse 1s ease-in-out infinite;
+}
+
+@keyframes quantum-urgent-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* ===== SENTIMENT ANALYSIS OVERLAY ===== */
+
+.quantum-sentiment-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  transition: all 1s ease;
+}
+
+.quantum-sentiment-overlay.positive {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 184, 148, 0.05) 0%,
+    transparent 70%
+  );
+  animation: quantum-positive-pulse 8s ease-in-out infinite;
+}
+
+.quantum-sentiment-overlay.excited {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(253, 121, 168, 0.08) 0%,
+    transparent 60%
+  );
+  animation: quantum-excited-dance 4s ease-in-out infinite;
+}
+
+.quantum-sentiment-overlay.focused {
+  background: linear-gradient(
+    45deg,
+    rgba(162, 155, 254, 0.03) 0%,
+    rgba(108, 92, 231, 0.03) 100%
+  );
+  animation: quantum-focused-flow 6s linear infinite;
+}
+
+.quantum-sentiment-overlay.relaxed {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(108, 92, 231, 0.04) 0%,
+    transparent 80%
+  );
+  animation: quantum-relaxed-breathe 10s ease-in-out infinite;
+}
+
+@keyframes quantum-positive-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+@keyframes quantum-excited-dance {
+  0%, 100% { transform: translateX(0) scale(1); }
+  25% { transform: translateX(2px) scale(1.02); }
+  75% { transform: translateX(-2px) scale(0.98); }
+}
+
+@keyframes quantum-focused-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes quantum-relaxed-breathe {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.02); }
+}
+
+/* ===== DYNAMIC PRICING VISUALIZATION ===== */
+
+.quantum-price-container {
+  position: relative;
+  display: inline-block;
+}
+
+.quantum-price-visualization {
+  position: relative;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.quantum-price-visualization.price-drop {
+  border-color: var(--quantum-sentiment-positive);
+  background: rgba(0, 184, 148, 0.1);
+  animation: quantum-price-drop 2s ease-out;
+}
+
+.quantum-price-visualization.price-rise {
+  border-color: var(--quantum-ai-recommend);
+  background: rgba(255, 107, 107, 0.1);
+  animation: quantum-price-rise 2s ease-out;
+}
+
+.quantum-price-visualization.limited-time {
+  border-color: var(--quantum-ai-urgent);
+  background: rgba(255, 234, 167, 0.1);
+  animation: quantum-limited-time 1s ease-in-out infinite;
+}
+
+@keyframes quantum-price-drop {
+  0% { transform: translateY(-20px) scale(1.2); }
+  50% { transform: translateY(5px) scale(0.95); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes quantum-price-rise {
+  0% { transform: translateY(20px) scale(0.8); }
+  50% { transform: translateY(-5px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes quantum-limited-time {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 234, 167, 0.5); }
+  50% { box-shadow: 0 0 25px rgba(255, 234, 167, 0.8); }
+}
+
+.quantum-price-trend {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: white;
+}
+
+.quantum-price-trend.up {
+  background: var(--quantum-ai-recommend);
+}
+
+.quantum-price-trend.down {
+  background: var(--quantum-sentiment-positive);
+}
+
+.quantum-price-trend.hot {
+  background: var(--quantum-ai-urgent);
+  animation: quantum-hot-deal 0.8s ease-in-out infinite;
+}
+
+@keyframes quantum-hot-deal {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.2) rotate(10deg); }
+}
+
+/* ===== AI RECOMMENDATION TRIGGER ===== */
+
+.quantum-ai-trigger {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--quantum-ai-recommend), var(--quantum-ai-trending));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 20px var(--quantum-ai-glow-recommend);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.quantum-ai-trigger:hover {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 8px 32px var(--quantum-ai-glow-recommend);
+}
+
+.quantum-ai-trigger.pulsing {
+  animation: quantum-ai-trigger-pulse 2s ease-in-out infinite;
+}
+
+@keyframes quantum-ai-trigger-pulse {
+  0%, 100% { 
+    transform: translateY(-50%) scale(1);
+    box-shadow: 0 4px 20px var(--quantum-ai-glow-recommend);
+  }
+  50% { 
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 8px 40px var(--quantum-ai-glow-recommend);
+  }
+}
+
+.quantum-ai-trigger-icon {
+  width: 24px;
+  height: 24px;
+  fill: white;
+  transition: transform 0.3s ease;
+}
+
+.quantum-ai-trigger:hover .quantum-ai-trigger-icon {
+  transform: rotate(15deg);
+}
+
+.quantum-ai-notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  background: var(--quantum-ai-urgent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #333;
+  animation: quantum-notification-bounce 2s ease-in-out infinite;
+}
+
+@keyframes quantum-notification-bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-5px); }
+  60% { transform: translateY(-3px); }
+}
+
+/* ===== SMART PRODUCT HIGHLIGHTING ===== */
+
+.quantum-smart-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.quantum-smart-highlight::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 107, 107, 0.2) 50%,
+    transparent 100%
+  );
+  animation: quantum-smart-sweep 3s ease-in-out infinite;
+}
+
+@keyframes quantum-smart-sweep {
+  0% { left: -100%; }
+  50% { left: 0%; }
+  100% { left: 100%; }
+}
+
+.quantum-smart-highlight.recommended {
+  border: 2px solid var(--quantum-ai-recommend);
+  box-shadow: 0 0 20px var(--quantum-ai-glow-recommend);
+}
+
+.quantum-smart-highlight.trending {
+  border: 2px solid var(--quantum-ai-trending);
+  box-shadow: 0 0 20px var(--quantum-ai-glow-trending);
+}
+
+.quantum-smart-highlight.popular {
+  border: 2px solid var(--quantum-ai-popular);
+  box-shadow: 0 0 20px var(--quantum-ai-glow-popular);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media screen and (max-width: 768px) {
+  .quantum-ai-recommendations {
+    width: calc(100vw - 40px);
+    right: -100vw;
+    top: 20px;
+    transform: none;
+    height: calc(100vh - 40px);
+  }
+  
+  .quantum-ai-recommendations.show {
+    right: 20px;
+  }
+  
+  .quantum-ai-trigger {
+    width: 50px;
+    height: 50px;
+    right: 15px;
+  }
+  
+  .quantum-recommendation-item {
+    padding: 0.75rem;
+  }
+  
+  .quantum-recommendation-image {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quantum-ai-avatar,
+  .quantum-sentiment-overlay,
+  .quantum-price-visualization,
+  .quantum-ai-trigger,
+  .quantum-smart-highlight::after {
+    animation: none;
+  }
+  
+  .quantum-recommendation-item::before {
+    display: none;
+  }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+
+.quantum-ai-recommendations[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+.quantum-ai-recommendations:focus-within {
+  outline: 3px solid var(--quantum-ai-recommend);
+  outline-offset: 2px;
+}
+
+.quantum-recommendation-item:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.quantum-ai-trigger:focus {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+/* Screen reader only text */
+.quantum-ai-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
