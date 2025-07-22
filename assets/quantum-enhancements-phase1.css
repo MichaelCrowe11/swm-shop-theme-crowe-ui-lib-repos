@@ -1,0 +1,304 @@
+/* ===== QUANTUM THEME ENHANCEMENTS - PHASE 1 ===== */
+/* Enhanced Micro-interactions and Advanced Glassmorphism */
+
+/* ===== QUANTUM VARIABLES ===== */
+:root {
+  /* Enhanced Quantum Colors */
+  --quantum-primary: #D4AF37;
+  --quantum-secondary: #B8943F;
+  --quantum-accent: #FFD700;
+  --quantum-charcoal: #1a1a1a;
+  --quantum-cream: #FFF5DC;
+  
+  /* New Enhancement Variables */
+  --quantum-glow-primary: rgba(212, 175, 55, 0.6);
+  --quantum-glow-secondary: rgba(255, 215, 0, 0.4);
+  --quantum-ripple-duration: 0.6s;
+  --quantum-lift-duration: 0.3s;
+  --quantum-particle-color: rgba(212, 175, 55, 0.3);
+  
+  /* Advanced Glass Properties */
+  --quantum-glass-light: rgba(255, 255, 255, 0.1);
+  --quantum-glass-medium: rgba(255, 255, 255, 0.15);
+  --quantum-glass-strong: rgba(255, 255, 255, 0.25);
+  --quantum-blur-subtle: blur(8px);
+  --quantum-blur-medium: blur(12px);
+  --quantum-blur-strong: blur(20px);
+}
+
+/* ===== ENHANCED BUTTON INTERACTIONS ===== */
+
+/* Quantum Ripple Effect */
+.quantum-button, .nav-link, .chat-header, .mobile-sidebar-toggle {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--quantum-transition-base, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.quantum-button::before, .nav-link::before, .chat-header::before, .mobile-sidebar-toggle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--quantum-glow-primary);
+  transform: translate(-50%, -50%);
+  transition: width var(--quantum-ripple-duration) ease, height var(--quantum-ripple-duration) ease;
+  z-index: 0;
+  opacity: 0;
+}
+
+.quantum-button:active::before, .nav-link:active::before, .chat-header:active::before {
+  width: 300px;
+  height: 300px;
+  opacity: 0.3;
+  transition: width 0s, height 0s, opacity var(--quantum-ripple-duration) ease;
+}
+
+/* Enhanced Hover States */
+.nav-link:hover {
+  background: linear-gradient(
+    135deg,
+    var(--quantum-glass-light) 0%,
+    var(--quantum-glass-medium) 50%,
+    var(--quantum-glass-light) 100%
+  );
+  backdrop-filter: var(--quantum-blur-medium);
+  transform: translateX(8px) scale(1.02);
+  box-shadow: 
+    0 8px 32px rgba(212, 175, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.nav-link:hover .nav-icon {
+  transform: scale(1.1) rotate(5deg);
+  color: var(--quantum-accent);
+}
+
+.nav-link:hover .nav-text {
+  color: var(--quantum-accent);
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+/* ===== ADVANCED CARD LIFT ANIMATIONS ===== */
+
+.card-wrapper .card.product-card, .product-card-wrapper .card {
+  transition: all var(--quantum-lift-duration) cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card-wrapper .card.product-card:hover, .product-card-wrapper .card:hover {
+  transform: translateY(-12px) rotateX(5deg) rotateY(-2deg) scale(1.03);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.3),
+    0 16px 32px rgba(212, 175, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Dynamic Shadow Morphing */
+.card-wrapper .card.product-card::after, .product-card-wrapper .card::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 10%;
+  right: 10%;
+  height: 20px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.2) 0%, transparent 70%);
+  transform: scaleY(0);
+  transition: transform var(--quantum-lift-duration) ease;
+  z-index: -1;
+}
+
+.card-wrapper .card.product-card:hover::after, .product-card-wrapper .card:hover::after {
+  transform: scaleY(1) scaleX(1.2);
+}
+
+/* ===== QUANTUM LOADING STATES ===== */
+
+/* Wave Function Collapse Loader */
+.quantum-loader {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.quantum-loader::before,
+.quantum-loader::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--quantum-primary);
+  border-radius: 50%;
+  animation: quantum-spin 1s linear infinite;
+}
+
+.quantum-loader::after {
+  border-top: 2px solid var(--quantum-accent);
+  animation: quantum-spin 1.5s linear infinite reverse;
+  transform: scale(0.8);
+}
+
+@keyframes quantum-spin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Particle Dissolution Effect */
+.quantum-dissolve {
+  position: relative;
+  overflow: hidden;
+}
+
+.quantum-dissolve::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--quantum-particle-color) 20%,
+    var(--quantum-glow-primary) 50%,
+    var(--quantum-particle-color) 80%,
+    transparent 100%
+  );
+  animation: quantum-dissolve 2s ease-in-out infinite;
+}
+
+@keyframes quantum-dissolve {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ===== ENHANCED GLASSMORPHISM ===== */
+
+/* Multi-layered Glass Effect */
+.quantum-glass-layer-1 {
+  background: var(--quantum-glass-light);
+  backdrop-filter: var(--quantum-blur-subtle);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quantum-glass-layer-2 {
+  background: var(--quantum-glass-medium);
+  backdrop-filter: var(--quantum-blur-medium);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.quantum-glass-layer-3 {
+  background: var(--quantum-glass-strong);
+  backdrop-filter: var(--quantum-blur-strong);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Interactive Glass Response */
+.quantum-interactive-glass {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quantum-interactive-glass:hover {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px) saturate(150%) brightness(1.1);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(212, 175, 55, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ===== ICON ANIMATIONS ===== */
+
+.nav-icon svg, .chat-expand-icon svg {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-link:hover .nav-icon svg {
+  transform: scale(1.1) rotate(10deg);
+  filter: drop-shadow(0 0 8px var(--quantum-glow-secondary));
+}
+
+.chat-header:hover .chat-expand-icon svg {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 6px var(--quantum-accent));
+}
+
+/* ===== ENHANCED TRANSITIONS ===== */
+
+/* Quantum Fade Transition */
+.quantum-fade-in {
+  animation: quantum-fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes quantum-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Quantum Scale Transition */
+.quantum-scale-in {
+  animation: quantum-scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+@keyframes quantum-scale-in {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===== RESPONSIVE ENHANCEMENTS ===== */
+
+@media screen and (max-width: 768px) {
+  .quantum-button::before, .nav-link::before {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .card-wrapper .card.product-card:hover, .product-card-wrapper .card:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+  
+  .nav-link:hover {
+    transform: translateX(4px) scale(1.01);
+  }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .quantum-button::before,
+  .nav-link::before,
+  .quantum-loader::before,
+  .quantum-loader::after,
+  .quantum-dissolve::before {
+    animation: none;
+  }
+  
+  .card-wrapper .card.product-card:hover,
+  .product-card-wrapper .card:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .quantum-glass-layer-1,
+  .quantum-glass-layer-2,
+  .quantum-glass-layer-3 {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--quantum-charcoal);
+  }
+}

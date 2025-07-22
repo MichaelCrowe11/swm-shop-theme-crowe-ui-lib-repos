@@ -1,0 +1,362 @@
+/* ===== QUANTUM THEME ENHANCEMENTS - PHASE 2 ===== */
+/* Particle System, Smart Color Adaptation, and Parallax Effects */
+
+/* ===== PARTICLE SYSTEM ===== */
+
+.quantum-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.quantum-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--quantum-particle-color);
+  border-radius: 50%;
+  opacity: 0;
+  animation: quantum-float 8s infinite linear;
+  will-change: transform, opacity;
+}
+
+.quantum-particle::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: radial-gradient(circle, var(--quantum-glow-primary) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.quantum-particle.large {
+  width: 4px;
+  height: 4px;
+  animation-duration: 12s;
+}
+
+.quantum-particle.medium {
+  width: 3px;
+  height: 3px;
+  animation-duration: 10s;
+}
+
+@keyframes quantum-float {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(90vh) translateX(10px) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(10vh) translateX(-10px) scale(1);
+  }
+  100% {
+    transform: translateY(-10vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Particle interaction on hover */
+.quantum-particles.interactive .quantum-particle {
+  transition: all 0.3s ease;
+}
+
+/* ===== SMART COLOR ADAPTATION ===== */
+
+/* Time-based color themes */
+.theme-dawn {
+  --quantum-primary: #E6B980;
+  --quantum-secondary: #D4A574;
+  --quantum-accent: #F4D03F;
+  --quantum-particle-color: rgba(230, 185, 128, 0.3);
+}
+
+.theme-day {
+  --quantum-primary: #D4AF37;
+  --quantum-secondary: #B8943F;
+  --quantum-accent: #FFD700;
+  --quantum-particle-color: rgba(212, 175, 55, 0.3);
+}
+
+.theme-dusk {
+  --quantum-primary: #B8943F;
+  --quantum-secondary: #A67C3A;
+  --quantum-accent: #CD853F;
+  --quantum-particle-color: rgba(184, 148, 63, 0.3);
+}
+
+.theme-night {
+  --quantum-primary: #8B6914;
+  --quantum-secondary: #7A5D12;
+  --quantum-accent: #DAA520;
+  --quantum-particle-color: rgba(139, 105, 20, 0.3);
+}
+
+/* Product category themes */
+.category-mushrooms {
+  --quantum-primary: #8B4513;
+  --quantum-secondary: #A0522D;
+  --quantum-accent: #DEB887;
+}
+
+.category-supplements {
+  --quantum-primary: #228B22;
+  --quantum-secondary: #32CD32;
+  --quantum-accent: #90EE90;
+}
+
+.category-equipment {
+  --quantum-primary: #4682B4;
+  --quantum-secondary: #5F9EA0;
+  --quantum-accent: #87CEEB;
+}
+
+/* ===== PARALLAX EFFECTS ===== */
+
+.quantum-parallax-container {
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.quantum-parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  will-change: transform;
+}
+
+.quantum-parallax-bg {
+  transform: translateZ(-1px) scale(2);
+}
+
+.quantum-parallax-mid {
+  transform: translateZ(-0.5px) scale(1.5);
+}
+
+.quantum-parallax-front {
+  transform: translateZ(0);
+}
+
+/* Mouse-following effects */
+.quantum-mouse-follower {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, var(--quantum-glow-primary) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  will-change: transform;
+}
+
+.quantum-mouse-follower.active {
+  opacity: 0.6;
+}
+
+/* ===== ENHANCED PRODUCT CARD PARALLAX ===== */
+
+.card-wrapper .card.product-card .card__media,
+.product-card-wrapper .card .product-card__image {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.card-wrapper .card.product-card:hover .card__media,
+.product-card-wrapper .card:hover .product-card__image {
+  transform: translateZ(10px);
+}
+
+.card-wrapper .card.product-card .card__information,
+.product-card-wrapper .card .product-card__info {
+  transform: translateZ(5px);
+  transition: transform 0.3s ease;
+}
+
+/* ===== INTELLIGENT LOADING STATES ===== */
+
+.quantum-smart-loader {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantum-smart-loader .quantum-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--quantum-primary);
+  animation: quantum-pulse 1.5s ease-in-out infinite;
+}
+
+.quantum-smart-loader .quantum-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.quantum-smart-loader .quantum-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes quantum-pulse {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Predictive loading indicator */
+.quantum-predictive-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--quantum-primary) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 10000;
+}
+
+.quantum-predictive-loader.loading {
+  animation: quantum-predictive-slide 2s ease-in-out;
+}
+
+@keyframes quantum-predictive-slide {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ===== ADVANCED INTERACTIONS ===== */
+
+/* Quantum ripple on any clickable element */
+.quantum-clickable {
+  position: relative;
+  overflow: hidden;
+}
+
+.quantum-clickable::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.quantum-clickable:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Hover glow effects */
+.quantum-glow-hover {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.quantum-glow-hover::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--quantum-primary), var(--quantum-accent));
+  border-radius: inherit;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.quantum-glow-hover:hover::before {
+  opacity: 0.7;
+  animation: quantum-border-glow 2s ease-in-out infinite;
+}
+
+@keyframes quantum-border-glow {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* ===== RESPONSIVE ENHANCEMENTS ===== */
+
+@media screen and (max-width: 768px) {
+  .quantum-particle {
+    animation-duration: 6s;
+  }
+  
+  .quantum-mouse-follower {
+    display: none;
+  }
+  
+  .quantum-parallax-bg,
+  .quantum-parallax-mid {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quantum-particle {
+    animation: none;
+    opacity: 0.1;
+  }
+  
+  .quantum-parallax-bg,
+  .quantum-parallax-mid,
+  .quantum-parallax-front {
+    transform: none;
+  }
+  
+  .quantum-smart-loader .quantum-dot {
+    animation: none;
+  }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+.quantum-gpu-optimized {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.quantum-smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Force hardware acceleration for smooth animations */
+.quantum-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
