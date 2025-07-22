@@ -112,6 +112,22 @@
         "padding_bottom": 36
       }
     },
+    "video_DQjrUG": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "How We Make Mycelium Grain Spawn & Liquid Culture | Mushroom Lab Techniques | Southwest Mushrooms",
+        "heading_size": "h1",
+        "enable_video_looping": false,
+        "video_url": "https://www.youtube.com/watch?v=rxlJJpu3O_g",
+        "cover_image": "shopify://shop_images/mqdefault.webp",
+        "description": "how to make mushroom liquid culture",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "crowe_collection_premium_jrpgky": {
       "type": "crowe-collection-premium",
       "name": "Premium Collection",
@@ -253,21 +269,6 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "video_DQjrUG": {
-      "type": "video",
-      "name": "t:sections.video.presets.name",
-      "settings": {
-        "heading": "How We Make Mycelium Grain Spawn & Liquid Culture | Mushroom Lab Techniques | Southwest Mushrooms",
-        "heading_size": "h1",
-        "enable_video_looping": false,
-        "video_url": "https://www.youtube.com/watch?v=rxlJJpu3O_g",
-        "description": "how to make mushroom liquid culture",
-        "full_width": true,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
@@ -276,10 +277,10 @@
     "crowe_cta_block_4tCLEK",
     "video_XyebjE",
     "crowe_cta_block_y6RfaB",
+    "video_DQjrUG",
     "crowe_collection_premium_jrpgky",
     "collage",
     "featured_collection",
-    "multicolumn",
-    "video_DQjrUG"
+    "multicolumn"
   ]
 }
