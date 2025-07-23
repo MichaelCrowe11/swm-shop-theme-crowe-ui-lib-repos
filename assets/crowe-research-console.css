@@ -288,10 +288,8 @@
 
 /* Main Content Area */
 .station-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+  display: block;
   height: 600px;
-  gap: 0;
   position: relative;
   z-index: 1;
 }
@@ -301,11 +299,13 @@
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(12px) saturate(105%);
   -webkit-backdrop-filter: blur(12px) saturate(105%);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  margin: 0;
 }
 
 .chat-frame-container {
@@ -332,6 +332,8 @@
   height: 100%;
   border-radius: 12px;
   display: block;
+  --chatbot-height: 100%;
+  --chatbot-width: 100%;
 }
 
 .chat-frame-container iframe {
@@ -1448,36 +1450,11 @@
 /* Large Tablets and Small Desktops */
 @media (max-width: 1024px) {
   .station-content {
-    grid-template-columns: 1fr;
-    grid-template-rows: 400px auto;
-    height: auto;
-    gap: 1px;
+    height: 500px;
   }
   
   .chat-panel {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    min-height: 400px;
-  }
-  
-  .control-panel {
-    max-height: none;
-    padding: 18px;
-  }
-  
-  .knob-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-  }
-  
-  .mode-selector {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-  }
-  
-  .mode-button {
-    padding: 8px 6px;
-    font-size: 8px;
+    min-height: 500px;
   }
 }
 
@@ -1530,16 +1507,11 @@
   }
 
   .station-content {
-    grid-template-columns: 1fr;
-    grid-template-rows: 350px auto;
-    height: auto;
-    gap: 1px;
+    height: 450px;
   }
 
   .chat-panel {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    min-height: 350px;
+    min-height: 450px;
   }
 
   .control-panel {
@@ -1669,11 +1641,11 @@
   }
 
   .station-content {
-    grid-template-rows: 280px auto;
+    height: 400px;
   }
 
   .chat-panel {
-    min-height: 280px;
+    min-height: 400px;
   }
 
   .control-panel {

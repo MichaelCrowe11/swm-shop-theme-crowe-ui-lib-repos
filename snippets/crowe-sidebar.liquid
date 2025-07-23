@@ -87,65 +87,6 @@
         </div>
       </div>
 
-      <!-- Simplified Control Panel -->
-      <div class="control-panel">
-        <!-- Neural Activity Monitor -->
-        <div class="control-section">
-          <h3 class="section-title">Neural Activity</h3>
-          <div class="neural-status-display">
-            <div class="neural-indicator" id="neuralIndicator">
-              <div class="neural-pulse"></div>
-              <span class="neural-label">Monitoring</span>
-            </div>
-          </div>
-          <div class="vu-meter-container">
-            <div class="vu-meter" id="vu-meter">
-              <div class="vu-bar" style="height: 20%"></div>
-              <div class="vu-bar" style="height: 40%"></div>
-              <div class="vu-bar" style="height: 60%"></div>
-              <div class="vu-bar" style="height: 80%"></div>
-              <div class="vu-bar" style="height: 90%"></div>
-              <div class="vu-bar" style="height: 95%"></div>
-              <div class="vu-bar" style="height: 85%"></div>
-              <div class="vu-bar" style="height: 70%"></div>
-              <div class="vu-bar" style="height: 50%"></div>
-              <div class="vu-bar" style="height: 30%"></div>
-              <div class="vu-bar" style="height: 20%"></div>
-              <div class="vu-bar" style="height: 15%"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Signal Strength -->
-        <div class="control-section">
-          <h3 class="section-title">Signal Strength</h3>
-          <div class="signal-display">
-            <div class="signal-bars" id="signalBars">
-              <div class="signal-bar active"></div>
-              <div class="signal-bar active"></div>
-              <div class="signal-bar active"></div>
-              <div class="signal-bar"></div>
-              <div class="signal-bar"></div>
-            </div>
-            <div class="signal-status" id="signalStatus">Strong</div>
-          </div>
-        </div>
-
-        <!-- Interaction Status -->
-        <div class="control-section">
-          <h3 class="section-title">AI Status</h3>
-          <div class="ai-status-display">
-            <div class="status-item">
-              <div class="status-dot connected" id="connectionStatus"></div>
-              <span>Connected</span>
-            </div>
-            <div class="status-item">
-              <div class="status-dot processing" id="processingStatus"></div>
-              <span>Ready</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -728,68 +669,34 @@ function monitorNetworkStatus() {
 document.addEventListener('DOMContentLoaded', function() {
   optimizeForDevice();
   monitorNetworkStatus();
-  initializeNeuralActivity();
-  
-  // Monitor for Zapier chat interactions
-  let chatActive = false;
-  let lastActivity = Date.now();
-  
-  // Watch for chat interactions
-  setInterval(() => {
-    const zapierEmbed = document.querySelector('zapier-interfaces-chatbot-embed');
-    if (zapierEmbed) {
-      // Chat is loaded, update neural activity
-      updateNeuralActivity(true);
-    }
-  }, 1000);
+  autoStartChat();
   
   // Handle window resize
   window.addEventListener('resize', optimizeForDevice);
 });
 
-function initializeNeuralActivity() {
-  const neuralIndicator = document.getElementById('neuralIndicator');
-  const signalBars = document.getElementById('signalBars');
-  const vuBars = document.querySelectorAll('.vu-bar');
-  
-  // Animate VU meter
-  setInterval(() => {
-    vuBars.forEach((bar, index) => {
-      const shouldActivate = Math.random() > 0.3 + (index * 0.1);
-      if (shouldActivate) {
-        bar.classList.add('active');
-        const height = Math.random() * 80 + 20;
-        bar.style.height = height + '%';
-      } else {
-        bar.classList.remove('active');
+function autoStartChat() {
+  // Wait for Zapier embed to load and auto-open it
+  setTimeout(() => {
+    const zapierEmbed = document.querySelector('zapier-interfaces-chatbot-embed');
+    if (zapierEmbed) {
+      console.log('🤖 Crowe Logic AI chat interface loaded and ready');
+      
+      // Try to trigger the chat to open automatically
+      try {
+        // Look for any clickable elements within the embed to auto-open
+        const shadowRoot = zapierEmbed.shadowRoot;
+        if (shadowRoot) {
+          const chatButton = shadowRoot.querySelector('button, [role="button"]');
+          if (chatButton) {
+            chatButton.click();
+            console.log('✅ Chat auto-started successfully');
+          }
+        }
+      } catch (error) {
+        console.log('💡 Chat ready for manual interaction');
       }
-    });
-  }, 200);
-  
-  // Update signal strength based on chat activity
-  setInterval(() => {
-    const bars = signalBars.querySelectorAll('.signal-bar');
-    const activeCount = Math.floor(Math.random() * 5) + 1;
-    bars.forEach((bar, index) => {
-      if (index < activeCount) {
-        bar.classList.add('active');
-      } else {
-        bar.classList.remove('active');
-      }
-    });
-  }, 3000);
-}
-
-function updateNeuralActivity(active) {
-  const processingStatus = document.getElementById('processingStatus');
-  const neuralIndicator = document.getElementById('neuralIndicator');
-  
-  if (active) {
-    processingStatus?.classList.add('neural-active');
-    neuralIndicator?.classList.add('active');
-  } else {
-    processingStatus?.classList.remove('neural-active');
-    neuralIndicator?.classList.remove('active');
-  }
+    }
+  }, 2000);
 }
 </script>
