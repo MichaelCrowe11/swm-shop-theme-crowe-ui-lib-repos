@@ -68,132 +68,36 @@
       <!-- Chat Panel (Main Interface) -->
       <div class="chat-panel">
         <div class="chat-frame-container">
-          <!-- Primary Chat Interface -->
-          <iframe 
-            id="croweChat"
-            src="https://research-assistant-ce196c.zapier.app" 
-            width="100%" 
-            height="100%"
-            frameborder="0"
-            allow="microphone; camera; clipboard-write"
-            title="Crowe Logic AI Research Assistant"
-            style="border: none; background: transparent; border-radius: 12px;">
-          </iframe>
+          <!-- Correct Zapier Interface -->
+          <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+          <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmbhp4x71002fqpzzx1cclqec'></zapier-interfaces-chatbot-embed>
           
-          <!-- Enhanced Fallback Interface -->
+          <!-- Fallback for loading issues -->
           <div class="chat-interface-fallback" id="chatFallback" style="display: none;">
             <div class="chat-status">
               🤖 Crowe Logic AI Research Assistant
             </div>
-            <p style="margin: 0; opacity: 0.8; max-width: 400px; line-height: 1.4; font-size: 14px;">Your intelligent cultivation companion is ready to help with mushroom growing techniques, substrate formulas, and product recommendations.</p>
+            <p style="margin: 0; opacity: 0.8; max-width: 400px; line-height: 1.4; font-size: 14px;">Loading AI interface...</p>
             <div class="chat-actions">
               <a href="https://research-assistant-ce196c.zapier.app" target="_blank" class="chat-action-btn">
-                🚀 Open Full Chat Interface
+                🚀 Open Direct Chat
               </a>
-              <button class="chat-action-btn" onclick="showQuickHelp()">
-                ❓ Quick Help Guide
-              </button>
-              <button class="chat-action-btn" onclick="location.reload()">
-                🔄 Reload Console
-              </button>
             </div>
-          </div>
-          
-          <div class="loading-overlay hidden" id="loadingOverlay">
-            <div class="loading-spinner"></div>
-            <div class="loading-text">Connecting to Crowe Logic AI...</div>
           </div>
         </div>
       </div>
 
-      <!-- Control Panel -->
+      <!-- Simplified Control Panel -->
       <div class="control-panel">
-        <!-- AI Parameters -->
-        <div class="control-section">
-          <h3 class="section-title">AI Parameters</h3>
-          <div class="knob-grid">
-            <div class="knob-unit">
-              <div class="knob-label">Intelligence</div>
-              <div class="knob-container" data-param="intelligence" data-min="0" data-max="100" data-value="75">
-                <div class="knob" id="intelligence-knob"></div>
-              </div>
-              <div class="knob-value">75%</div>
-            </div>
-            <div class="knob-unit">
-              <div class="knob-label">Depth</div>
-              <div class="knob-container" data-param="depth" data-min="0" data-max="100" data-value="60">
-                <div class="knob" id="depth-knob"></div>
-              </div>
-              <div class="knob-value">60%</div>
-            </div>
-            <div class="knob-unit">
-              <div class="knob-label">Speed</div>
-              <div class="knob-container" data-param="speed" data-min="0" data-max="100" data-value="85">
-                <div class="knob" id="speed-knob"></div>
-              </div>
-              <div class="knob-value">85%</div>
-            </div>
-            <div class="knob-unit">
-              <div class="knob-label">Creativity</div>
-              <div class="knob-container" data-param="creativity" data-min="0" data-max="100" data-value="70">
-                <div class="knob" id="creativity-knob"></div>
-              </div>
-              <div class="knob-value">70%</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Research Mode -->
-        <div class="control-section">
-          <h3 class="section-title">Research Mode</h3>
-          <div class="mode-selector">
-            <button class="mode-button active" data-mode="chat">Chat</button>
-            <button class="mode-button" data-mode="voice">Voice</button>
-            <button class="mode-button" data-mode="research">Research</button>
-            <button class="mode-button" data-mode="analyze">Analyze</button>
-            <button class="mode-button" data-mode="learn">Learn</button>
-            <button class="mode-button" data-mode="export">Export</button>
-          </div>
-        </div>
-
-        <!-- Processing Options -->
-        <div class="control-section">
-          <h3 class="section-title">Processing Options</h3>
-          <div class="toggle-array">
-            <div class="toggle-unit">
-              <label class="toggle-container">
-                <input type="checkbox" class="toggle-input" id="toggle-neural" name="neural" checked>
-                <span class="toggle-switch"></span>
-              </label>
-              <div class="toggle-label">Neural</div>
-            </div>
-            <div class="toggle-unit">
-              <label class="toggle-container">
-                <input type="checkbox" class="toggle-input" id="toggle-deep" name="deep">
-                <span class="toggle-switch"></span>
-              </label>
-              <div class="toggle-label">Deep</div>
-            </div>
-            <div class="toggle-unit">
-              <label class="toggle-container">
-                <input type="checkbox" class="toggle-input" id="toggle-learn" name="learn" checked>
-                <span class="toggle-switch"></span>
-              </label>
-              <div class="toggle-label">Learn</div>
-            </div>
-            <div class="toggle-unit">
-              <label class="toggle-container">
-                <input type="checkbox" class="toggle-input" id="toggle-save" name="save">
-                <span class="toggle-switch"></span>
-              </label>
-              <div class="toggle-label">Save</div>
-            </div>
-          </div>
-        </div>
-
         <!-- Neural Activity Monitor -->
         <div class="control-section">
           <h3 class="section-title">Neural Activity</h3>
+          <div class="neural-status-display">
+            <div class="neural-indicator" id="neuralIndicator">
+              <div class="neural-pulse"></div>
+              <span class="neural-label">Monitoring</span>
+            </div>
+          </div>
           <div class="vu-meter-container">
             <div class="vu-meter" id="vu-meter">
               <div class="vu-bar" style="height: 20%"></div>
@@ -208,6 +112,36 @@
               <div class="vu-bar" style="height: 30%"></div>
               <div class="vu-bar" style="height: 20%"></div>
               <div class="vu-bar" style="height: 15%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Signal Strength -->
+        <div class="control-section">
+          <h3 class="section-title">Signal Strength</h3>
+          <div class="signal-display">
+            <div class="signal-bars" id="signalBars">
+              <div class="signal-bar active"></div>
+              <div class="signal-bar active"></div>
+              <div class="signal-bar active"></div>
+              <div class="signal-bar"></div>
+              <div class="signal-bar"></div>
+            </div>
+            <div class="signal-status" id="signalStatus">Strong</div>
+          </div>
+        </div>
+
+        <!-- Interaction Status -->
+        <div class="control-section">
+          <h3 class="section-title">AI Status</h3>
+          <div class="ai-status-display">
+            <div class="status-item">
+              <div class="status-dot connected" id="connectionStatus"></div>
+              <span>Connected</span>
+            </div>
+            <div class="status-item">
+              <div class="status-dot processing" id="processingStatus"></div>
+              <span>Ready</span>
             </div>
           </div>
         </div>
@@ -606,38 +540,7 @@ let chatRetryCount = 0;
 const MAX_RETRIES = 3;
 
 function initializeChatInterface() {
-  // Simplified initialization - just ensure fallback is ready
-  console.log('🔧 Chat interface initialized');
-}
-
-function showFallbackInterface() {
-  const iframe = document.getElementById('croweChat');
-  const fallbackInterface = document.getElementById('chatFallback');
-  const loadingOverlay = document.getElementById('loadingOverlay');
-  
-  if (iframe) iframe.style.display = 'none';
-  if (fallbackInterface) fallbackInterface.style.display = 'flex';
-  if (loadingOverlay) loadingOverlay.classList.add('hidden');
-}
-
-function hideLoadingOverlay() {
-  const loadingOverlay = document.getElementById('loadingOverlay');
-  if (loadingOverlay) {
-    setTimeout(() => {
-      loadingOverlay.classList.add('hidden');
-    }, 1500);
-  }
-}
-
-function retryChat() {
-  const iframe = document.getElementById('croweChat');
-  const fallbackInterface = document.getElementById('chatFallback');
-  
-  if (iframe && fallbackInterface) {
-    fallbackInterface.style.display = 'none';
-    iframe.style.display = 'block';
-    iframe.src = iframe.src; // Force reload
-  }
+  console.log('🤖 Crowe Logic AI interface initialized');
 }
 
 function showQuickHelp() {
@@ -825,33 +728,68 @@ function monitorNetworkStatus() {
 document.addEventListener('DOMContentLoaded', function() {
   optimizeForDevice();
   monitorNetworkStatus();
+  initializeNeuralActivity();
   
-  // Simple iframe monitoring
-  const iframe = document.getElementById('croweChat');
-  const fallback = document.getElementById('chatFallback');
+  // Monitor for Zapier chat interactions
+  let chatActive = false;
+  let lastActivity = Date.now();
   
-  if (iframe && fallback) {
-    iframe.onload = function() {
-      console.log('✅ Chat interface loaded successfully');
-    };
-    
-    iframe.onerror = function() {
-      console.log('❌ Chat interface failed to load, showing fallback');
-      iframe.style.display = 'none';
-      fallback.style.display = 'flex';
-    };
-    
-    // Fallback timeout
-    setTimeout(() => {
-      if (!iframe.contentDocument && !iframe.contentWindow) {
-        console.log('⚠️ Chat interface timeout, showing fallback');
-        iframe.style.display = 'none';
-        fallback.style.display = 'flex';
-      }
-    }, 10000);
-  }
+  // Watch for chat interactions
+  setInterval(() => {
+    const zapierEmbed = document.querySelector('zapier-interfaces-chatbot-embed');
+    if (zapierEmbed) {
+      // Chat is loaded, update neural activity
+      updateNeuralActivity(true);
+    }
+  }, 1000);
   
   // Handle window resize
   window.addEventListener('resize', optimizeForDevice);
 });
+
+function initializeNeuralActivity() {
+  const neuralIndicator = document.getElementById('neuralIndicator');
+  const signalBars = document.getElementById('signalBars');
+  const vuBars = document.querySelectorAll('.vu-bar');
+  
+  // Animate VU meter
+  setInterval(() => {
+    vuBars.forEach((bar, index) => {
+      const shouldActivate = Math.random() > 0.3 + (index * 0.1);
+      if (shouldActivate) {
+        bar.classList.add('active');
+        const height = Math.random() * 80 + 20;
+        bar.style.height = height + '%';
+      } else {
+        bar.classList.remove('active');
+      }
+    });
+  }, 200);
+  
+  // Update signal strength based on chat activity
+  setInterval(() => {
+    const bars = signalBars.querySelectorAll('.signal-bar');
+    const activeCount = Math.floor(Math.random() * 5) + 1;
+    bars.forEach((bar, index) => {
+      if (index < activeCount) {
+        bar.classList.add('active');
+      } else {
+        bar.classList.remove('active');
+      }
+    });
+  }, 3000);
+}
+
+function updateNeuralActivity(active) {
+  const processingStatus = document.getElementById('processingStatus');
+  const neuralIndicator = document.getElementById('neuralIndicator');
+  
+  if (active) {
+    processingStatus?.classList.add('neural-active');
+    neuralIndicator?.classList.add('active');
+  } else {
+    processingStatus?.classList.remove('neural-active');
+    neuralIndicator?.classList.remove('active');
+  }
+}
 </script>
