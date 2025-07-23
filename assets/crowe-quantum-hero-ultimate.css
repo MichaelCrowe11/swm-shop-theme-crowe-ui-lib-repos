@@ -1,338 +1,577 @@
-/* =========================================
-   CROWE QUANTUM HERO ULTIMATE STYLES
-   Revolutionary visual system for lasting impact
-   ========================================= */
+/*
+ * Crowe Quantum Hero Ultimate CSS
+ * Advanced styling for the revolutionary hero section with AI avatar and voice integration
+ */
 
-/* 🎨 Ultimate Background System */
-.quantum-hero-ultimate-container {
+/* =====================================================
+   ENHANCED HERO FOUNDATION
+   ===================================================== */
+
+.quantum-hero-ultimate {
   position: relative;
-  background: 
-    radial-gradient(ellipse 800px 600px at 50% 0%, rgba(212, 175, 55, 0.02) 0%, transparent 50%),
-    radial-gradient(ellipse 600px 400px at 0% 100%, rgba(26, 26, 46, 0.6) 0%, transparent 50%),
-    linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #0f0f1a 100%);
-  min-height: 100vh;
-  overflow: hidden;
+  z-index: 10;
+  text-align: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+  grid-template-areas: 
+    "avatar"
+    "intro"
+    "title"
+    "subtitle" 
+    "voice"
+    "actions"
+    "showcase";
 }
 
-/* 🌟 Enhanced Particle System */
-.quantum-particles-ultimate {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 2;
+@media (min-width: 1024px) {
+  .quantum-hero-ultimate {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: 
+      "avatar title title"
+      ". intro intro"
+      ". subtitle subtitle"
+      ". voice voice"
+      ". actions actions"
+      "showcase showcase showcase";
+    gap: 2rem;
+    text-align: left;
+  }
 }
 
-.quantum-particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: radial-gradient(circle, #D4AF37 0%, transparent 70%);
+/* =====================================================
+   CROWE AI AVATAR SECTION
+   ===================================================== */
+
+.crowe-ai-avatar-container {
+  grid-area: avatar;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.avatar-hologram-effect {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crowe-ai-avatar {
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  animation: quantum-particle-float 8s linear infinite;
-}
-
-.quantum-particle:nth-child(odd) {
-  animation-duration: 12s;
-  animation-delay: -2s;
-}
-
-.quantum-particle:nth-child(even) {
-  animation-duration: 10s;
-  animation-delay: -4s;
-}
-
-@keyframes quantum-particle-float {
-  0% {
-    transform: translateY(100vh) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100px) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-/* 🔮 Holographic Effects */
-.quantum-hologram-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(212, 175, 55, 0.01) 2px,
-      rgba(212, 175, 55, 0.01) 4px
-    );
-  pointer-events: none;
-  z-index: 8;
-  animation: quantum-hologram-scan 3s ease-in-out infinite;
-}
-
-@keyframes quantum-hologram-scan {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.6; }
-}
-
-/* ✨ Advanced Text Effects */
-.quantum-text-ultimate {
+  object-fit: cover;
+  border: 3px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 
+    0 0 30px rgba(212, 175, 55, 0.4),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(93, 173, 226, 0.1));
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  display: inline-block;
+  z-index: 5;
 }
 
-.quantum-text-ultimate::after {
+.crowe-ai-avatar:hover {
+  transform: scale(1.1) rotate(5deg);
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 
+    0 0 50px rgba(212, 175, 55, 0.6),
+    inset 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Hologram overlay effect */
+.avatar-hologram-effect::before {
   content: '';
   position: absolute;
   top: -10px;
   left: -10px;
   right: -10px;
   bottom: -10px;
-  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  background: 
+    linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.1) 50%, transparent 70%),
+    conic-gradient(from 0deg, transparent, rgba(93, 173, 226, 0.2), transparent);
+  border-radius: 50%;
+  animation: hologram-rotate 4s linear infinite;
+  z-index: 1;
+}
+
+.avatar-hologram-effect::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: conic-gradient(from 180deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+  border-radius: 50%;
+  animation: hologram-rotate 6s linear infinite reverse;
+  z-index: 1;
+}
+
+@keyframes hologram-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Voice Visualizer */
+.avatar-voice-visualizer {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 30px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 6;
+}
+
+.avatar-speaking .avatar-voice-visualizer {
+  opacity: 1;
+}
+
+.voice-wave {
+  background: linear-gradient(45deg, #D4AF37, #5dade2);
+  width: 3px;
+  height: 4px;
+  border-radius: 2px;
+  animation: voiceWave 1s ease-in-out infinite;
+}
+
+.voice-wave:nth-child(1) { animation-delay: 0s; }
+.voice-wave:nth-child(2) { animation-delay: 0.1s; }
+.voice-wave:nth-child(3) { animation-delay: 0.2s; }
+.voice-wave:nth-child(4) { animation-delay: 0.3s; }
+.voice-wave:nth-child(5) { animation-delay: 0.4s; }
+
+/* Avatar Status Indicator */
+.avatar-status-indicator {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: rgba(39, 174, 96, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 7;
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+/* =====================================================
+   AI INTRODUCTION PANEL
+   ===================================================== */
+
+.ai-intro-panel {
+  grid-area: intro;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.ai-speech-bubble {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 20px;
-  animation: quantum-text-aura 4s ease-in-out infinite;
-  z-index: -1;
+  padding: 1.5rem;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes quantum-text-aura {
-  0%, 100% { opacity: 0; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(1.05); }
+.ai-speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid rgba(212, 175, 55, 0.3);
 }
 
-/* 🌊 Liquid Morphing Buttons */
-.quantum-btn-liquid {
+.ai-message {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+.ai-message strong {
+  color: #D4AF37;
+  font-weight: 700;
+}
+
+/* =====================================================
+   ENHANCED TYPOGRAPHY
+   ===================================================== */
+
+.quantum-title-ultimate {
+  grid-area: title;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  margin-bottom: 1rem;
+  position: relative;
+  background: linear-gradient(45deg, 
+    #D4AF37 0%,
+    #FFD700 25%,
+    #FFF5DC 50%,
+    #FFD700 75%,
+    #D4AF37 100%);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: quantum-ultimate-shimmer 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3));
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .quantum-title-ultimate {
+    text-align: left;
+  }
+}
+
+.quantum-subtitle-ultimate {
+  grid-area: subtitle;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  font-weight: 300;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: quantum-text-glow 2s ease-in-out infinite alternate;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .quantum-subtitle-ultimate {
+    text-align: left;
+  }
+}
+
+/* =====================================================
+   VOICE CONTROLS SECTION
+   ===================================================== */
+
+.voice-controls {
+  grid-area: voice;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.voice-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(93, 173, 226, 0.2));
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  border-radius: 50px;
+  color: #FFF5DC;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #D4AF37 0%, #B8943F 100%);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 200px;
+  justify-content: center;
 }
 
-.quantum-btn-liquid::before {
+.voice-btn::before {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   width: 0;
   height: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
-  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
   transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
+  transition: width 0.6s, height 0.6s;
+  border-radius: 50%;
 }
 
-.quantum-btn-liquid:hover::before {
+.voice-btn:hover::before {
   width: 300px;
   height: 300px;
 }
 
-.quantum-btn-liquid::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease;
+.voice-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 
+    0 15px 35px rgba(212, 175, 55, 0.3),
+    0 0 50px rgba(93, 173, 226, 0.2);
 }
 
-.quantum-btn-liquid:hover::after {
-  left: 100%;
+.voice-icon {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  animation: voice-icon-pulse 2s ease-in-out infinite;
 }
 
-/* 🎭 Morphing Card System */
-.quantum-card-ultimate {
+@keyframes voice-icon-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.voice-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.listening-indicator {
   position: relative;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
+  width: 60px;
+  height: 60px;
+  display: none;
+}
+
+.voice-controls.listening .listening-indicator {
+  display: block;
+}
+
+/* =====================================================
+   PRODUCT SHOWCASE CARDS
+   ===================================================== */
+
+.hero-product-showcase {
+  grid-area: showcase;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.showcase-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
   border: 1px solid rgba(212, 175, 55, 0.2);
   border-radius: 20px;
-  padding: 2rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
   overflow: hidden;
-}
-
-.quantum-card-ultimate::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, 
-    rgba(212, 175, 55, 0.1) 0%,
-    transparent 50%,
-    rgba(212, 175, 55, 0.05) 100%);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  animation: fadeInUp 1s ease-out forwards;
 }
 
-.quantum-card-ultimate:hover {
-  transform: translateY(-10px) rotateX(5deg);
+.showcase-card:nth-child(1) { animation-delay: 0.2s; }
+.showcase-card:nth-child(2) { animation-delay: 0.4s; }
+.showcase-card:nth-child(3) { animation-delay: 0.6s; }
+
+.showcase-card:hover {
+  transform: translateY(-10px) rotateY(5deg) scale(1.05);
+  border-color: rgba(212, 175, 55, 0.5);
   box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 0 50px rgba(212, 175, 55, 0.2);
-  border-color: rgba(212, 175, 55, 0.6);
+    0 20px 40px rgba(0, 0, 0, 0.2),
+    0 0 30px rgba(212, 175, 55, 0.3);
 }
 
-.quantum-card-ultimate:hover::before {
-  opacity: 1;
+.showcase-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #D4AF37;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
-/* 🌈 Prismatic Effects */
-.quantum-prism {
-  position: relative;
-  background: linear-gradient(45deg, 
-    #D4AF37 0%, 
-    #FFD700 25%, 
-    #FFF5DC 50%, 
-    #FFD700 75%, 
-    #D4AF37 100%);
-  background-size: 400% 400%;
-  animation: quantum-prism-shift 6s ease-in-out infinite;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.showcase-card p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  margin: 0;
 }
 
-@keyframes quantum-prism-shift {
-  0% { background-position: 0% 50%; filter: hue-rotate(0deg); }
-  25% { background-position: 100% 50%; filter: hue-rotate(30deg); }
-  50% { background-position: 50% 100%; filter: hue-rotate(60deg); }
-  75% { background-position: 0% 0%; filter: hue-rotate(30deg); }
-  100% { background-position: 0% 50%; filter: hue-rotate(0deg); }
-}
-
-/* 🔥 Energy Pulse Effects */
-.quantum-energy {
-  position: relative;
-}
-
-.quantum-energy::before {
-  content: '';
+.card-glow {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, #D4AF37 0%, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: quantum-energy-pulse 2s ease-in-out infinite;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+  opacity: 0.5;
+  animation: card-glow-rotate 4s linear infinite;
+  z-index: -1;
 }
 
-@keyframes quantum-energy-pulse {
-  0% { 
-    width: 20px; 
-    height: 20px; 
-    opacity: 0.8; 
+@keyframes card-glow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* =====================================================
+   ENHANCED ANIMATIONS
+   ===================================================== */
+
+@keyframes quantum-ultimate-shimmer {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3)) hue-rotate(0deg);
+  }
+  25% { 
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.4)) hue-rotate(15deg);
   }
   50% { 
-    width: 100px; 
-    height: 100px; 
-    opacity: 0.2; 
+    background-position: 50% 100%;
+    filter: drop-shadow(0 0 50px rgba(255, 245, 220, 0.5)) hue-rotate(30deg);
   }
-  100% { 
-    width: 20px; 
-    height: 20px; 
-    opacity: 0.8; 
+  75% { 
+    background-position: 0% 0%;
+    filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.4)) hue-rotate(15deg);
   }
 }
 
-/* 🌀 Vortex Loading Animation */
-.quantum-vortex {
-  width: 80px;
-  height: 80px;
-  border: 3px solid rgba(212, 175, 55, 0.2);
-  border-top: 3px solid #D4AF37;
-  border-radius: 50%;
-  animation: quantum-vortex-spin 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  position: relative;
+@keyframes quantum-text-glow {
+  0% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }
+  100% { text-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
 }
 
-.quantum-vortex::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(212, 175, 55, 0.4);
-  border-top: 2px solid #D4AF37;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: quantum-vortex-spin 1s linear infinite reverse;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@keyframes quantum-vortex-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@keyframes voiceWave {
+  0%, 100% { height: 4px; opacity: 0.3; }
+  50% { height: 20px; opacity: 1; }
 }
 
-/* 📱 Responsive Enhancements */
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
 @media (max-width: 768px) {
-  .quantum-card-ultimate:hover {
-    transform: translateY(-5px) rotateX(2deg);
+  .quantum-hero-ultimate {
+    grid-template-areas: 
+      "avatar"
+      "intro"
+      "title"
+      "subtitle"
+      "voice"
+      "actions"
+      "showcase";
+    text-align: center;
+    padding: 1rem;
   }
-  
-  .quantum-btn-liquid::before {
-    transition-duration: 0.3s;
+
+  .quantum-actions-ultimate {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .quantum-particle {
-    width: 2px;
-    height: 2px;
+
+  .quantum-btn-ultimate {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .hero-product-showcase {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .showcase-card {
+    padding: 1rem;
+  }
+
+  .crowe-ai-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .avatar-hologram-effect {
+    width: 130px;
+    height: 130px;
+  }
+
+  .voice-btn {
+    min-width: 250px;
+    padding: 0.8rem 1.5rem;
   }
 }
 
-/* ⚡ Performance Optimizations */
-@media (prefers-reduced-motion: reduce) {
-  .quantum-particle,
-  .quantum-hologram-overlay,
-  .quantum-text-ultimate::after,
-  .quantum-prism,
-  .quantum-energy::before,
-  .quantum-vortex,
-  .quantum-vortex::before {
-    animation: none !important;
+@media (max-width: 480px) {
+  .quantum-title-ultimate {
+    font-size: clamp(2rem, 8vw, 3rem);
   }
-  
-  .quantum-card-ultimate:hover {
-    transform: translateY(-3px);
+
+  .quantum-subtitle-ultimate {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+  }
+
+  .ai-speech-bubble {
+    padding: 1rem;
+    font-size: 0.9rem;
   }
 }
 
-/* 🎯 Focus States for Accessibility */
-.quantum-btn-liquid:focus,
-.quantum-card-ultimate:focus {
-  outline: 3px solid rgba(212, 175, 55, 0.6);
-  outline-offset: 2px;
+/* =====================================================
+   PERFORMANCE OPTIMIZATIONS
+   ===================================================== */
+
+.quantum-hero-ultimate * {
+  will-change: transform, opacity;
 }
 
-/* 🌟 Print Styles */
-@media print {
-  .quantum-particles-ultimate,
-  .quantum-hologram-overlay,
-  .quantum-energy::before {
-    display: none !important;
-  }
-  
-  .quantum-prism {
-    -webkit-text-fill-color: #D4AF37 !important;
-    color: #D4AF37 !important;
-  }
+.crowe-ai-avatar,
+.showcase-card,
+.quantum-btn-ultimate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* GPU acceleration for animations */
+.quantum-orb,
+.card-glow,
+.avatar-hologram-effect::before,
+.avatar-hologram-effect::after {
+  transform: translateZ(0);
+  will-change: transform;
 }

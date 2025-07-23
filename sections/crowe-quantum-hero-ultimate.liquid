@@ -1,14 +1,37 @@
 {{ 'crowe-visual-effects-master.css' | asset_url | stylesheet_tag }}
+{{ 'crowe-quantum-hero-ultimate.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   #quantum-hero-ultimate-{{ section.id }} {
     position: relative;
     min-height: 100vh;
     overflow: hidden;
-    background: radial-gradient(ellipse at center, #1a1a2e 0%, #0f0f1a 50%, #000000 100%);
+    background: 
+      radial-gradient(ellipse at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(93, 173, 226, 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at center, #1a1a2e 0%, #0f0f1a 50%, #000000 100%);
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+  }
+
+  /* Dynamic particle system background */
+  #quantum-hero-ultimate-{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: quantum-particle-drift 20s linear infinite;
+    z-index: 1;
+  }
+
+  @keyframes quantum-particle-drift {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(-60px) translateY(-60px); }
   }
 
   .quantum-hero-ultimate {
@@ -241,23 +264,95 @@
     <div class="quantum-orb"></div>
   </div>
   
+  <!-- Crowe AI Avatar with Voice Integration -->
+  <div class="crowe-ai-avatar-container" id="croweAvatarContainer">
+    <div class="avatar-hologram-effect">
+      <img src="{{ 'crowelogo.png' | asset_url }}" 
+           alt="Crowe Logic AI Avatar" 
+           class="crowe-ai-avatar" 
+           id="croweAvatar"
+           loading="eager">
+      <div class="avatar-voice-visualizer" id="avatarVoiceVisualizer">
+        <div class="voice-wave"></div>
+        <div class="voice-wave"></div>
+        <div class="voice-wave"></div>
+        <div class="voice-wave"></div>
+        <div class="voice-wave"></div>
+      </div>
+      <div class="avatar-status-indicator" id="avatarStatus">
+        <span class="status-text">AI Assistant Ready</span>
+      </div>
+    </div>
+  </div>
+
   <!-- Main Content -->
   <div class="quantum-hero-ultimate">
-    <h1 class="quantum-title-ultimate" data-text="{{ section.settings.title | default: 'Revolutionary Experience' }}">
-      {{ section.settings.title | default: 'Revolutionary Experience' }}
+    <!-- AI Introduction Panel -->
+    <div class="ai-intro-panel" id="aiIntroPanel">
+      <div class="ai-speech-bubble">
+        <p class="ai-message" id="aiMessage">
+          👋 Hello! I'm Crowe Logic AI. I can help you discover our premium mushroom supplements and answer any questions about our products. 
+          <strong>Click the microphone to start talking with me!</strong>
+        </p>
+      </div>
+    </div>
+
+    <h1 class="quantum-title-ultimate" data-text="{{ section.settings.title | default: 'Meet Crowe Logic AI' }}">
+      {{ section.settings.title | default: 'Meet Crowe Logic AI' }}
     </h1>
     
     <p class="quantum-subtitle-ultimate">
-      {{ section.settings.subtitle | default: 'Discover the future of e-commerce with cutting-edge design and immersive experiences' }}
+      {{ section.settings.subtitle | default: 'Your intelligent mushroom supplement advisor with voice AI technology' }}
     </p>
+
+    <!-- Voice Interaction Controls -->
+    <div class="voice-controls" id="voiceControls">
+      <button class="voice-btn" id="voiceBtn" title="Talk to Crowe AI">
+        <svg class="voice-icon" viewBox="0 0 24 24" fill="none">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="currentColor" stroke-width="2"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor" stroke-width="2"/>
+          <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+          <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span class="voice-btn-text">Start Voice Chat</span>
+      </button>
+      
+      <div class="voice-status" id="voiceStatus">
+        <div class="listening-indicator">
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring"></div>
+        </div>
+        <span class="status-text">Ready to listen...</span>
+      </div>
+    </div>
     
     <div class="quantum-actions-ultimate">
-      <a href="{{ section.settings.primary_link | default: '#' }}" class="quantum-btn-ultimate quantum-btn-primary-ultimate">
-        {{ section.settings.primary_text | default: 'Experience the Future' }}
+      <a href="{{ section.settings.primary_link | default: '/collections/all' }}" class="quantum-btn-ultimate quantum-btn-primary-ultimate">
+        {{ section.settings.primary_text | default: 'Shop Supplements' }}
       </a>
-      <a href="{{ section.settings.secondary_link | default: '#' }}" class="quantum-btn-ultimate quantum-btn-secondary-ultimate">
-        {{ section.settings.secondary_text | default: 'Explore Collection' }}
+      <a href="{{ section.settings.secondary_link | default: '/pages/about' }}" class="quantum-btn-ultimate quantum-btn-secondary-ultimate">
+        {{ section.settings.secondary_text | default: 'Learn More' }}
       </a>
+    </div>
+
+    <!-- Product Showcase Cards -->
+    <div class="hero-product-showcase" id="heroProductShowcase">
+      <div class="showcase-card">
+        <div class="card-glow"></div>
+        <h3>🦁 Lion's Mane</h3>
+        <p>Cognitive Enhancement</p>
+      </div>
+      <div class="showcase-card">
+        <div class="card-glow"></div>
+        <h3>🍄 Reishi</h3>
+        <p>Stress Relief</p>
+      </div>
+      <div class="showcase-card">
+        <div class="card-glow"></div>
+        <h3>⚡ Cordyceps</h3>
+        <p>Energy Boost</p>
+      </div>
     </div>
   </div>
 </section>
@@ -266,101 +361,543 @@
 (function() {
   'use strict';
 
+  // ===== ADVANCED NEURAL NETWORK CANVAS =====
   const canvas = document.getElementById('neural-{{ section.id }}');
-  if (!canvas) return;
-  
-  const ctx = canvas.getContext('2d');
-  let animationId;
-  
-  // Responsive canvas
-  function resizeCanvas() {
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-  
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-  
-  // Neural network nodes
-  const nodes = [];
-  const nodeCount = 50;
-  
-  // Initialize nodes
-  for (let i = 0; i < nodeCount; i++) {
-    nodes.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      radius: Math.random() * 2 + 1,
-      opacity: Math.random() * 0.5 + 0.2
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let animationId;
+    
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Enhanced neural network nodes
+    const nodes = [];
+    const nodeCount = 80;
+    
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 3 + 1,
+        opacity: Math.random() * 0.6 + 0.2,
+        pulsePhase: Math.random() * Math.PI * 2
+      });
+    }
+    
+    let isAnimating = true;
+    
+    function animate() {
+      if (!isAnimating) return;
+      
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Time for pulsing effects
+      const time = Date.now() * 0.001;
+      
+      nodes.forEach((node, i) => {
+        // Update position
+        node.x += node.vx;
+        node.y += node.vy;
+        
+        // Bounce off edges with energy conservation
+        if (node.x < 0 || node.x > canvas.width) {
+          node.vx *= -0.8;
+          node.x = Math.max(0, Math.min(canvas.width, node.x));
+        }
+        if (node.y < 0 || node.y > canvas.height) {
+          node.vy *= -0.8;
+          node.y = Math.max(0, Math.min(canvas.height, node.y));
+        }
+        
+        // Pulsing radius effect
+        const pulseRadius = node.radius + Math.sin(time + node.pulsePhase) * 0.5;
+        const pulseOpacity = node.opacity + Math.sin(time * 2 + node.pulsePhase) * 0.2;
+        
+        // Draw node with glow effect
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, pulseRadius, 0, Math.PI * 2);
+        
+        // Create gradient for glow
+        const gradient = ctx.createRadialGradient(
+          node.x, node.y, 0,
+          node.x, node.y, pulseRadius * 3
+        );
+        gradient.addColorStop(0, `rgba(212, 175, 55, ${pulseOpacity})`);
+        gradient.addColorStop(0.5, `rgba(212, 175, 55, ${pulseOpacity * 0.3})`);
+        gradient.addColorStop(1, 'transparent');
+        
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        
+        // Draw connections with quantum effects
+        nodes.slice(i + 1).forEach(otherNode => {
+          const dx = node.x - otherNode.x;
+          const dy = node.y - otherNode.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 120) {
+            ctx.beginPath();
+            ctx.moveTo(node.x, node.y);
+            ctx.lineTo(otherNode.x, otherNode.y);
+            
+            const connectionOpacity = (1 - distance / 120) * 0.3;
+            const hue = (time * 50 + distance) % 360;
+            ctx.strokeStyle = `hsla(${hue}, 70%, 60%, ${connectionOpacity})`;
+            ctx.lineWidth = 1 + Math.sin(time * 3 + distance * 0.01) * 0.5;
+            ctx.stroke();
+          }
+        });
+      });
+      
+      animationId = requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    document.addEventListener('visibilitychange', () => {
+      isAnimating = !document.hidden;
+      if (isAnimating) animate();
     });
   }
-  
-  // Animation loop with performance optimization
-  let isAnimating = true;
-  
-  function animate() {
-    if (!isAnimating) return;
-    
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Update and draw nodes
-    nodes.forEach((node, i) => {
-      // Update position
-      node.x += node.vx;
-      node.y += node.vy;
+
+  // ===== CROWE AI VOICE INTEGRATION =====
+  class CroweVoiceAI {
+    constructor() {
+      this.isInitialized = false;
+      this.isListening = false;
+      this.isSpeaking = false;
+      this.conversationId = null;
       
-      // Bounce off edges
-      if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
-      if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+      // ElevenLabs Configuration
+      this.config = {
+        apiKey: 'sk_070497763bb534837e3810ba7c07578ae06fbc1e3760a3b7',
+        voiceId: 'BsxQGfHOT8xeJhwW3B2u',
+        agentId: 'agent_01jz4jgxksfj7v6tkc6f1g7d9y',
+        apiUrl: 'https://api.elevenlabs.io/v1'
+      };
       
-      // Keep in bounds
-      node.x = Math.max(0, Math.min(canvas.width, node.x));
-      node.y = Math.max(0, Math.min(canvas.height, node.y));
+      this.init();
+    }
+
+    async init() {
+      try {
+        this.setupEventListeners();
+        this.setupVoiceVisualizer();
+        this.setupAvatarAnimations();
+        this.initializeIntroMessage();
+        this.isInitialized = true;
+        console.log('🎤 Crowe Voice AI initialized successfully!');
+      } catch (error) {
+        console.error('Failed to initialize Crowe Voice AI:', error);
+      }
+    }
+
+    setupEventListeners() {
+      const voiceBtn = document.getElementById('voiceBtn');
+      const avatar = document.getElementById('croweAvatar');
       
-      // Draw node
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(212, 175, 55, ${node.opacity})`;
-      ctx.fill();
+      if (voiceBtn) {
+        voiceBtn.addEventListener('click', () => this.toggleVoiceChat());
+      }
       
-      // Draw connections
-      nodes.slice(i + 1).forEach(otherNode => {
-        const dx = node.x - otherNode.x;
-        const dy = node.y - otherNode.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+      if (avatar) {
+        avatar.addEventListener('click', () => this.toggleVoiceChat());
+        avatar.style.cursor = 'pointer';
+      }
+    }
+
+    setupVoiceVisualizer() {
+      const visualizer = document.getElementById('avatarVoiceVisualizer');
+      if (!visualizer) return;
+
+      // Create voice wave animation
+      const waves = visualizer.querySelectorAll('.voice-wave');
+      waves.forEach((wave, index) => {
+        wave.style.animationDelay = `${index * 0.1}s`;
+      });
+    }
+
+    setupAvatarAnimations() {
+      const avatar = document.getElementById('croweAvatar');
+      if (!avatar) return;
+
+      // Add breathing animation to avatar
+      avatar.style.animation = 'avatarBreathe 4s ease-in-out infinite';
+      
+      // Add CSS for avatar animations
+      if (!document.querySelector('#avatar-animations')) {
+        const style = document.createElement('style');
+        style.id = 'avatar-animations';
+        style.textContent = `
+          @keyframes avatarBreathe {
+            0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3)); }
+            50% { transform: scale(1.05) rotate(1deg); filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.6)); }
+          }
+          
+          @keyframes avatarSpeak {
+            0%, 100% { transform: scale(1) rotate(0deg); filter: hue-rotate(0deg) drop-shadow(0 0 25px rgba(212, 175, 55, 0.4)); }
+            25% { transform: scale(1.08) rotate(-1deg); filter: hue-rotate(10deg) drop-shadow(0 0 35px rgba(93, 173, 226, 0.5)); }
+            75% { transform: scale(1.08) rotate(1deg); filter: hue-rotate(-10deg) drop-shadow(0 0 35px rgba(255, 215, 0, 0.5)); }
+          }
+          
+          @keyframes voiceWave {
+            0%, 100% { height: 4px; opacity: 0.3; }
+            50% { height: 20px; opacity: 1; }
+          }
+          
+          .voice-wave {
+            background: linear-gradient(45deg, #D4AF37, #5dade2);
+            width: 3px;
+            margin: 0 2px;
+            border-radius: 2px;
+            animation: voiceWave 1s ease-in-out infinite;
+          }
+          
+          .avatar-speaking .voice-wave {
+            animation-duration: 0.5s;
+          }
+          
+          .listening-indicator .pulse-ring {
+            border: 3px solid #D4AF37;
+            border-radius: 50%;
+            height: 60px;
+            width: 60px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+          }
+          
+          .pulse-ring:nth-child(2) { animation-delay: 0.5s; }
+          .pulse-ring:nth-child(3) { animation-delay: 1s; }
+          
+          @keyframes pulse-ring {
+            0% { transform: translate(-50%, -50%) scale(0.33); opacity: 1; }
+            80%, 100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    }
+
+    async toggleVoiceChat() {
+      if (this.isListening) {
+        this.stopListening();
+      } else {
+        await this.startListening();
+      }
+    }
+
+    async startListening() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         
-        if (distance < 100) {
-          ctx.beginPath();
-          ctx.moveTo(node.x, node.y);
-          ctx.lineTo(otherNode.x, otherNode.y);
-          ctx.strokeStyle = `rgba(212, 175, 55, ${(1 - distance / 100) * 0.2})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
+        this.isListening = true;
+        this.updateUI('listening');
+        
+        // Initialize speech recognition
+        if ('webkitSpeechRecognition' in window) {
+          const recognition = new webkitSpeechRecognition();
+          recognition.continuous = true;
+          recognition.interimResults = true;
+          recognition.lang = 'en-US';
+          
+          recognition.onresult = (event) => {
+            const transcript = Array.from(event.results)
+              .map(result => result[0].transcript)
+              .join('');
+            
+            if (event.results[event.results.length - 1].isFinal) {
+              this.processSpeech(transcript);
+            }
+          };
+          
+          recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            this.stopListening();
+          };
+          
+          recognition.start();
+          this.recognition = recognition;
+        } else {
+          // Fallback for browsers without speech recognition
+          this.simulateConversation();
+        }
+        
+      } catch (error) {
+        console.error('Microphone access denied:', error);
+        this.showError('Microphone access required for voice chat');
+      }
+    }
+
+    stopListening() {
+      this.isListening = false;
+      if (this.recognition) {
+        this.recognition.stop();
+      }
+      this.updateUI('ready');
+    }
+
+    async processSpeech(transcript) {
+      console.log('User said:', transcript);
+      
+      this.updateUI('processing');
+      this.updateAIMessage('Processing your request...');
+      
+      try {
+        // Call ElevenLabs Conversational AI API
+        const response = await this.callElevenLabsAPI(transcript);
+        
+        if (response.audio) {
+          await this.playAIResponse(response.audio);
+        }
+        
+        if (response.text) {
+          this.updateAIMessage(response.text);
+        }
+        
+      } catch (error) {
+        console.error('AI processing error:', error);
+        this.simulateAIResponse(transcript);
+      }
+      
+      this.updateUI('ready');
+    }
+
+    async callElevenLabsAPI(userMessage) {
+      try {
+        // Start conversation if needed
+        if (!this.conversationId) {
+          const startResponse = await fetch(`${this.config.apiUrl}/convai/conversations`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${this.config.apiKey}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              agent_id: this.config.agentId
+            })
+          });
+          
+          const startData = await startResponse.json();
+          this.conversationId = startData.conversation_id;
+        }
+        
+        // Send message to conversation
+        const response = await fetch(`${this.config.apiUrl}/convai/conversations/${this.conversationId}`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${this.config.apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            text: userMessage,
+            mode: 'voice'
+          })
+        });
+        
+        if (!response.ok) {
+          throw new Error(`API call failed: ${response.status}`);
+        }
+        
+        const audioBlob = await response.blob();
+        return { audio: audioBlob };
+        
+      } catch (error) {
+        console.error('ElevenLabs API error:', error);
+        throw error;
+      }
+    }
+
+    async playAIResponse(audioBlob) {
+      this.isSpeaking = true;
+      this.updateUI('speaking');
+      
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      
+      audio.onended = () => {
+        this.isSpeaking = false;
+        this.updateUI('ready');
+        URL.revokeObjectURL(audioUrl);
+      };
+      
+      await audio.play();
+    }
+
+    simulateAIResponse(userInput) {
+      const responses = {
+        'hello': "Hello! I'm Crowe Logic AI, your personal mushroom supplement advisor. How can I help you today?",
+        'products': "We offer premium mushroom supplements including Lion's Mane for cognitive enhancement, Reishi for stress relief, and Cordyceps for energy boost.",
+        'lions mane': "Lion's Mane is excellent for cognitive function, memory, and focus. It contains compounds that support nerve growth factor production.",
+        'reishi': "Reishi is known as the 'mushroom of immortality' and is perfect for stress relief, immune support, and better sleep quality.",
+        'cordyceps': "Cordyceps is fantastic for natural energy, athletic performance, and respiratory health. It's great for active lifestyles!",
+        'default': "That's interesting! I'd be happy to help you learn more about our mushroom supplements. What specific benefits are you looking for?"
+      };
+      
+      const lowerInput = userInput.toLowerCase();
+      let response = responses.default;
+      
+      for (const [key, value] of Object.entries(responses)) {
+        if (lowerInput.includes(key)) {
+          response = value;
+          break;
+        }
+      }
+      
+      this.updateAIMessage(response);
+      this.simulateVoiceResponse(response);
+    }
+
+    simulateVoiceResponse(text) {
+      this.isSpeaking = true;
+      this.updateUI('speaking');
+      
+      // Simulate speech duration based on text length
+      const duration = Math.max(2000, text.length * 50);
+      
+      setTimeout(() => {
+        this.isSpeaking = false;
+        this.updateUI('ready');
+      }, duration);
+    }
+
+    simulateConversation() {
+      // Fallback for browsers without speech recognition
+      const defaultMessage = "I hear you! Unfortunately, your browser doesn't support speech recognition, but I'm still here to help. Try clicking on our product cards below to learn more!";
+      this.updateAIMessage(defaultMessage);
+      this.simulateVoiceResponse(defaultMessage);
+    }
+
+    updateUI(state) {
+      const voiceBtn = document.getElementById('voiceBtn');
+      const voiceStatus = document.getElementById('voiceStatus');
+      const avatarContainer = document.getElementById('croweAvatarContainer');
+      const avatar = document.getElementById('croweAvatar');
+      
+      if (!voiceBtn || !voiceStatus) return;
+      
+      // Reset classes
+      avatarContainer?.classList.remove('avatar-listening', 'avatar-speaking', 'avatar-processing');
+      
+      switch (state) {
+        case 'listening':
+          voiceBtn.querySelector('.voice-btn-text').textContent = 'Listening...';
+          voiceStatus.querySelector('.status-text').textContent = 'I\'m listening...';
+          avatarContainer?.classList.add('avatar-listening');
+          avatar.style.animation = 'avatarSpeak 1s ease-in-out infinite';
+          break;
+          
+        case 'processing':
+          voiceBtn.querySelector('.voice-btn-text').textContent = 'Processing...';
+          voiceStatus.querySelector('.status-text').textContent = 'Thinking...';
+          avatarContainer?.classList.add('avatar-processing');
+          break;
+          
+        case 'speaking':
+          voiceBtn.querySelector('.voice-btn-text').textContent = 'Speaking...';
+          voiceStatus.querySelector('.status-text').textContent = 'I\'m responding...';
+          avatarContainer?.classList.add('avatar-speaking');
+          avatar.style.animation = 'avatarSpeak 0.5s ease-in-out infinite';
+          break;
+          
+        default: // ready
+          voiceBtn.querySelector('.voice-btn-text').textContent = 'Start Voice Chat';
+          voiceStatus.querySelector('.status-text').textContent = 'Ready to listen...';
+          avatar.style.animation = 'avatarBreathe 4s ease-in-out infinite';
+          break;
+      }
+    }
+
+    updateAIMessage(message) {
+      const aiMessage = document.getElementById('aiMessage');
+      if (aiMessage) {
+        aiMessage.innerHTML = message;
+        
+        // Add typing effect
+        this.typewriterEffect(aiMessage, message);
+      }
+    }
+
+    typewriterEffect(element, text) {
+      element.innerHTML = '';
+      let i = 0;
+      const timer = setInterval(() => {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(timer);
+        }
+      }, 30);
+    }
+
+    initializeIntroMessage() {
+      setTimeout(() => {
+        const introPanel = document.getElementById('aiIntroPanel');
+        if (introPanel) {
+          introPanel.style.animation = 'fadeInUp 1s ease-out';
+        }
+      }, 1000);
+    }
+
+    showError(message) {
+      this.updateAIMessage(`⚠️ ${message}`);
+      this.updateUI('ready');
+    }
+  }
+
+  // ===== PRODUCT SHOWCASE ANIMATIONS =====
+  function initializeProductShowcase() {
+    const showcaseCards = document.querySelectorAll('.showcase-card');
+    
+    showcaseCards.forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.2}s`;
+      
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-10px) rotateY(5deg) scale(1.05)';
+        card.querySelector('.card-glow').style.opacity = '1';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) rotateY(0deg) scale(1)';
+        card.querySelector('.card-glow').style.opacity = '0.5';
+      });
+    });
+  }
+
+  // ===== INITIALIZE EVERYTHING =====
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Crowe Voice AI
+    window.croweVoiceAI = new CroweVoiceAI();
+    
+    // Initialize product showcase
+    initializeProductShowcase();
+    
+    // Add scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 1s ease-out forwards';
         }
       });
     });
     
-    animationId = requestAnimationFrame(animate);
-  }
-  
-  // Start animation
-  animate();
-  
-  // Pause animation when tab is not visible
-  document.addEventListener('visibilitychange', () => {
-    isAnimating = !document.hidden;
-    if (isAnimating) animate();
+    document.querySelectorAll('.showcase-card, .quantum-actions-ultimate').forEach(el => {
+      observer.observe(el);
+    });
+    
+    console.log('🌟 Quantum Hero Ultimate: All systems operational!');
   });
-  
-  // Cleanup on page unload
-  window.addEventListener('beforeunload', () => {
-    isAnimating = false;
-    if (animationId) {
-      cancelAnimationFrame(animationId);
-    }
-  });
+
 })();
 </script>
 
