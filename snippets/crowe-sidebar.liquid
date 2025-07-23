@@ -1,5 +1,5 @@
 {{ 'section-sidebar.css' | asset_url | stylesheet_tag }}
-{{ 'crowe-trophy-integration.css' | asset_url | stylesheet_tag }}
+{{ 'crowe-research-console.css' | asset_url | stylesheet_tag }}
 {{ 'quantum-enhancements-phase1.css' | asset_url | stylesheet_tag }}
 {{ 'quantum-enhancements-phase2.css' | asset_url | stylesheet_tag }}
 {{ 'quantum-enhancements-phase3.css' | asset_url | stylesheet_tag }}
@@ -32,98 +32,164 @@
     </button>
   </div>
 
-  <!-- CROWE LOGIC AI RESEARCH ASSISTANT - TROPHY POSITION -->
-  <div class="crowe-trophy-section quantum-fade-in" role="region" aria-label="Crowe Logic AI Research Assistant">
-    <div class="trophy-header">
-      <div class="trophy-avatar-container">
-        <img src="{{ 'crowe-avatar.png' | asset_url }}" alt="Crowe Logic AI" class="trophy-avatar">
-        <div class="neural-network-overlay">
-          <div class="neural-node"></div>
-          <div class="neural-node"></div>
-          <div class="neural-node"></div>
-          <div class="neural-connection"></div>
-          <div class="neural-connection"></div>
+  <!-- CROWE LOGIC AI RESEARCH STATION -->
+  <div class="crowe-research-station quantum-fade-in" role="region" aria-label="Crowe Logic AI Research Station">
+    <!-- Station Header -->
+    <div class="station-header">
+      <div class="station-title">
+        <div class="station-logo">
+          <img src="{{ 'crowe-avatar.png' | asset_url }}" alt="Crowe Logic AI" class="station-avatar">
         </div>
+        <h2 class="station-name">Crowe Logic AI Research Station</h2>
       </div>
-      <div class="trophy-info">
-        <h2 class="trophy-title">Crowe Logic AI™</h2>
-        <p class="trophy-subtitle">Research Assistant</p>
-        <div class="ai-status-indicator">
-          <span class="status-dot"></span>
-          <span class="status-text">Online & Ready</span>
+      <div class="status-indicators">
+        <div class="status-item">
+          <div class="status-dot neural-active"></div>
+          <span>Neural Active</span>
         </div>
-      </div>
-    </div>
-    
-    <!-- Control Panel -->
-    <div class="crowe-control-panel">
-      <div class="control-buttons">
-        <button class="control-btn voice-btn" id="croweVoiceBtn" title="Voice Chat">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="currentColor" stroke-width="2"/>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor" stroke-width="2"/>
-            <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
-            <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </button>
-        
-        <button class="control-btn chat-btn" id="croweChatBtn" title="Text Chat">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </button>
-        
-        <button class="control-btn research-btn" id="croweResearchBtn" title="Research Mode">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M11 2a9 9 0 1 0 9 9c0-.5-.04-1-.1-1.5L11 2z" stroke="currentColor" stroke-width="2"/>
-            <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </button>
-        
-        <a href="https://research-assistant-ce196c.zapier.app" class="control-btn external-btn" target="_blank" rel="noopener noreferrer" title="Open Full Assistant">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" stroke-width="2"/>
-            <polyline points="15,3 21,3 21,9" stroke="currentColor" stroke-width="2"/>
-            <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </a>
-      </div>
-      
-      <!-- Branding Bar -->
-      <div class="crowe-branding-bar">
-        <div class="brand-element">
-          <span class="brand-icon">🧠</span>
-          <span class="brand-text">Neural AI</span>
+        <div class="status-item">
+          <div class="status-dot processing"></div>
+          <span>Processing</span>
         </div>
-        <div class="brand-element">
-          <span class="brand-icon">🔬</span>
-          <span class="brand-text">Research</span>
-        </div>
-        <div class="brand-element">
-          <span class="brand-icon">🍄</span>
-          <span class="brand-text">Mycology</span>
+        <div class="status-item">
+          <div class="status-dot connected"></div>
+          <span>Connected</span>
         </div>
       </div>
     </div>
-    
-    <!-- Chat Interface -->
-    <div class="trophy-chat-container" id="trophyChatContainer">
-      <div class="chat-embed-wrapper">
-        <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
-        <zapier-interfaces-chatbot-embed chatbot-id='cmbhp4x71002fqpzzx1cclqec'></zapier-interfaces-chatbot-embed>
-        
-        <!-- Fallback iframe -->
-        <noscript>
-          <iframe 
-            src="https://research-assistant-ce196c.zapier.app" 
-            width="100%" 
-            height="300"
-            frameborder="0"
-            allow="microphone; camera; clipboard-write"
-            title="Crowe Logic AI Research Assistant"
-            style="border-radius: 12px; background: rgba(255, 255, 255, 0.05);">
-          </iframe>
-        </noscript>
+
+    <!-- Main Research Interface -->
+    <div class="station-content">
+      <!-- Chat Panel (Main Interface) -->
+      <div class="chat-panel">
+        <div class="chat-frame-container">
+          <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+          <zapier-interfaces-chatbot-embed chatbot-id='cmbhp4x71002fqpzzx1cclqec'></zapier-interfaces-chatbot-embed>
+          
+          <!-- Fallback iframe -->
+          <noscript>
+            <iframe 
+              src="https://research-assistant-ce196c.zapier.app" 
+              width="100%" 
+              height="100%"
+              frameborder="0"
+              allow="microphone; camera; clipboard-write"
+              title="Crowe Logic AI Research Assistant"
+              style="border: none; background: transparent;">
+            </iframe>
+          </noscript>
+          
+          <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Control Panel -->
+      <div class="control-panel">
+        <!-- AI Parameters -->
+        <div class="control-section">
+          <h3 class="section-title">AI Parameters</h3>
+          <div class="knob-grid">
+            <div class="knob-unit">
+              <div class="knob-label">Intelligence</div>
+              <div class="knob-container" data-param="intelligence" data-min="0" data-max="100" data-value="75">
+                <div class="knob" id="intelligence-knob"></div>
+              </div>
+              <div class="knob-value">75%</div>
+            </div>
+            <div class="knob-unit">
+              <div class="knob-label">Depth</div>
+              <div class="knob-container" data-param="depth" data-min="0" data-max="100" data-value="60">
+                <div class="knob" id="depth-knob"></div>
+              </div>
+              <div class="knob-value">60%</div>
+            </div>
+            <div class="knob-unit">
+              <div class="knob-label">Speed</div>
+              <div class="knob-container" data-param="speed" data-min="0" data-max="100" data-value="85">
+                <div class="knob" id="speed-knob"></div>
+              </div>
+              <div class="knob-value">85%</div>
+            </div>
+            <div class="knob-unit">
+              <div class="knob-label">Creativity</div>
+              <div class="knob-container" data-param="creativity" data-min="0" data-max="100" data-value="70">
+                <div class="knob" id="creativity-knob"></div>
+              </div>
+              <div class="knob-value">70%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Research Mode -->
+        <div class="control-section">
+          <h3 class="section-title">Research Mode</h3>
+          <div class="mode-selector">
+            <button class="mode-button active" data-mode="chat">Chat</button>
+            <button class="mode-button" data-mode="voice">Voice</button>
+            <button class="mode-button" data-mode="research">Research</button>
+            <button class="mode-button" data-mode="analyze">Analyze</button>
+            <button class="mode-button" data-mode="learn">Learn</button>
+            <button class="mode-button" data-mode="export">Export</button>
+          </div>
+        </div>
+
+        <!-- Processing Options -->
+        <div class="control-section">
+          <h3 class="section-title">Processing Options</h3>
+          <div class="toggle-array">
+            <div class="toggle-unit">
+              <label class="toggle-container">
+                <input type="checkbox" class="toggle-input" id="toggle-neural" name="neural" checked>
+                <span class="toggle-switch"></span>
+              </label>
+              <div class="toggle-label">Neural</div>
+            </div>
+            <div class="toggle-unit">
+              <label class="toggle-container">
+                <input type="checkbox" class="toggle-input" id="toggle-deep" name="deep">
+                <span class="toggle-switch"></span>
+              </label>
+              <div class="toggle-label">Deep</div>
+            </div>
+            <div class="toggle-unit">
+              <label class="toggle-container">
+                <input type="checkbox" class="toggle-input" id="toggle-learn" name="learn" checked>
+                <span class="toggle-switch"></span>
+              </label>
+              <div class="toggle-label">Learn</div>
+            </div>
+            <div class="toggle-unit">
+              <label class="toggle-container">
+                <input type="checkbox" class="toggle-input" id="toggle-save" name="save">
+                <span class="toggle-switch"></span>
+              </label>
+              <div class="toggle-label">Save</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Neural Activity Monitor -->
+        <div class="control-section">
+          <h3 class="section-title">Neural Activity</h3>
+          <div class="vu-meter-container">
+            <div class="vu-meter" id="vu-meter">
+              <div class="vu-bar" style="height: 20%"></div>
+              <div class="vu-bar" style="height: 40%"></div>
+              <div class="vu-bar" style="height: 60%"></div>
+              <div class="vu-bar" style="height: 80%"></div>
+              <div class="vu-bar" style="height: 90%"></div>
+              <div class="vu-bar" style="height: 95%"></div>
+              <div class="vu-bar" style="height: 85%"></div>
+              <div class="vu-bar" style="height: 70%"></div>
+              <div class="vu-bar" style="height: 50%"></div>
+              <div class="vu-bar" style="height: 30%"></div>
+              <div class="vu-bar" style="height: 20%"></div>
+              <div class="vu-bar" style="height: 15%"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -315,23 +381,27 @@
 <!-- Enhanced Crowe Logic AI Integration Script -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Trophy Section AI Controls
+  // Research Console Controls
   const voiceBtn = document.getElementById('croweVoiceBtn');
   const chatBtn = document.getElementById('croweChatBtn');
   const researchBtn = document.getElementById('croweResearchBtn');
-  const chatContainer = document.getElementById('trophyChatContainer');
+  const researchConsole = document.querySelector('.crowe-research-console');
+  const chatInterface = document.getElementById('researchChatInterface');
   const scrollToTrophyBtn = document.getElementById('scrollToTrophy');
   const trophySection = document.querySelector('.crowe-trophy-section');
   
   // Voice Chat Functionality
   if (voiceBtn) {
     voiceBtn.addEventListener('click', function() {
-      // Add visual feedback
-      this.classList.add('control-btn-active');
+      // Remove active state from other buttons
+      document.querySelectorAll('.control-btn-compact').forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
       
-      // Simulate voice activation (integrate with your voice API)
+      // Add visual feedback
+      this.style.transform = 'scale(0.95)';
       setTimeout(() => {
-        this.classList.remove('control-btn-active');
+        this.style.transform = 'scale(1)';
+        
         // Open voice interface or trigger voice commands
         if (window.croweVoiceAI) {
           window.croweVoiceAI.startListening();
@@ -339,19 +409,20 @@ document.addEventListener('DOMContentLoaded', function() {
           // Fallback: Open external assistant
           window.open('https://research-assistant-ce196c.zapier.app', '_blank');
         }
-      }, 300);
+      }, 150);
     });
   }
   
-  // Chat Toggle Functionality
-  if (chatBtn && chatContainer) {
+  // Chat Mode (Default Active)
+  if (chatBtn) {
     chatBtn.addEventListener('click', function() {
-      this.classList.toggle('control-btn-active');
-      chatContainer.classList.toggle('chat-container-expanded');
+      document.querySelectorAll('.control-btn-compact').forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
       
-      // Scroll to make sure chat is visible
-      if (chatContainer.classList.contains('chat-container-expanded')) {
-        chatContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      // Ensure chat interface is visible and focused
+      if (chatInterface) {
+        chatInterface.style.opacity = '1';
+        chatInterface.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     });
   }
@@ -359,17 +430,21 @@ document.addEventListener('DOMContentLoaded', function() {
   // Research Mode Toggle
   if (researchBtn) {
     researchBtn.addEventListener('click', function() {
-      this.classList.toggle('control-btn-active');
+      document.querySelectorAll('.control-btn-compact').forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
       
       // Add research mode visual effects
-      trophySection?.classList.toggle('research-mode-active');
+      researchConsole?.classList.toggle('research-mode-enhanced');
       
-      // Could integrate with AI to switch to research mode
-      console.log('Research mode toggled');
+      // Update console title
+      const consoleTitle = document.querySelector('.console-title h2');
+      if (consoleTitle) {
+        consoleTitle.textContent = this.classList.contains('active') ? 'Deep Research Mode' : 'Research Console';
+      }
     });
   }
   
-  // Scroll to Trophy Section
+  // Scroll to Trophy Section (from footer)
   if (scrollToTrophyBtn && trophySection) {
     scrollToTrophyBtn.addEventListener('click', function() {
       trophySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -382,44 +457,51 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Neural Network Animation
+  // Neural Network Animation (simplified for compact design)
   function animateNeuralNodes() {
     const nodes = document.querySelectorAll('.neural-node');
     const connections = document.querySelectorAll('.neural-connection');
     
     nodes.forEach((node, index) => {
-      node.style.animationDelay = `${index * 0.5}s`;
+      node.style.animationDelay = `${index * 0.3}s`;
     });
     
     connections.forEach((connection, index) => {
-      connection.style.animationDelay = `${index * 0.7}s`;
+      connection.style.animationDelay = `${index * 0.5}s`;
     });
   }
   
-  // Initialize neural network animation
+  // Initialize animations
   animateNeuralNodes();
   
-  // Avatar breathing animation
+  // Avatar breathing animation (subtle)
   const trophyAvatar = document.querySelector('.trophy-avatar');
   if (trophyAvatar) {
     setInterval(() => {
-      trophyAvatar.classList.add('avatar-breath');
+      trophyAvatar.style.transform = 'scale(1.02)';
       setTimeout(() => {
-        trophyAvatar.classList.remove('avatar-breath');
-      }, 2000);
-    }, 4000);
+        trophyAvatar.style.transform = 'scale(1)';
+      }, 1000);
+    }, 5000);
   }
   
-  // Status indicator pulsing
-  const statusDot = document.querySelector('.status-dot');
-  if (statusDot) {
+  // Status indicator pulsing for console
+  const statusIndicator = document.querySelector('.status-indicator');
+  if (statusIndicator) {
     setInterval(() => {
-      statusDot.classList.add('status-pulse');
+      statusIndicator.style.opacity = '0.5';
       setTimeout(() => {
-        statusDot.classList.remove('status-pulse');
-      }, 1000);
-    }, 3000);
+        statusIndicator.style.opacity = '1';
+      }, 500);
+    }, 2000);
   }
+  
+  // Auto-focus chat interface on load
+  setTimeout(() => {
+    if (chatInterface) {
+      chatInterface.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, 1000);
 });
 </script>
 
@@ -492,3 +574,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 </script>
+
+<!-- Research Station JavaScript -->
+<script src="{{ 'crowe-research-console.js' | asset_url }}" defer></script>
