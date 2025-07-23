@@ -1,5 +1,22 @@
 {{ 'crowe-research-console.css' | asset_url | stylesheet_tag }}
 
+<!-- DEBUG STYLES TO FORCE VISIBILITY -->
+<style>
+.crowe-research-station {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 9999 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  background: red !important; /* DEBUG: Temporary bright background */
+  width: 300px !important;
+  height: 100vh !important;
+  border: 5px solid yellow !important; /* DEBUG: Bright border */
+}
+</style>
+
 <!-- High-Tech Smartphone Research Station Interface -->
 <div class="crowe-research-station" id="crowe-sidebar">
   <!-- Station Header with App-Style Logo -->
