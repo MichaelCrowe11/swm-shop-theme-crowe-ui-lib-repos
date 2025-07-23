@@ -46,7 +46,18 @@ class QuantumGPUParticleSystem {
     const cores = navigator.hardwareConcurrency || 4;
     if (cores <= 2) baseCount *= 0.5;
     
-    return Math.max(50, Math.min(1000, baseCount));
+    const { minParticles, maxParticles } = this.getDynamicParticleLimits();
+    return Math.max(minParticles, Math.min(maxParticles, baseCount));
+  }
+  
+  getDynamicParticleLimits() {
+    const cores = navigator.hardwareConcurrency || 4;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    const minParticles = isMobile ? 20 : cores <= 2 ? 30 : 50;
+    const maxParticles = isMobile ? 500 : cores >= 8 ? 2000 : 1000;
+    
+    return { minParticles, maxParticles };
   }
   
   createContainer() {
