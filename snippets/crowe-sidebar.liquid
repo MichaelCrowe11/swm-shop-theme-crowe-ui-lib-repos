@@ -1,4 +1,5 @@
 {{ 'section-sidebar.css' | asset_url | stylesheet_tag }}
+{{ 'crowe-trophy-integration.css' | asset_url | stylesheet_tag }}
 {{ 'quantum-enhancements-phase1.css' | asset_url | stylesheet_tag }}
 {{ 'quantum-enhancements-phase2.css' | asset_url | stylesheet_tag }}
 {{ 'quantum-enhancements-phase3.css' | asset_url | stylesheet_tag }}
@@ -29,6 +30,102 @@
     <button class="sidebar-toggle" aria-label="Close menu">
       {% render 'icon-close' %}
     </button>
+  </div>
+
+  <!-- CROWE LOGIC AI RESEARCH ASSISTANT - TROPHY POSITION -->
+  <div class="crowe-trophy-section quantum-fade-in" role="region" aria-label="Crowe Logic AI Research Assistant">
+    <div class="trophy-header">
+      <div class="trophy-avatar-container">
+        <img src="{{ 'crowe-avatar.png' | asset_url }}" alt="Crowe Logic AI" class="trophy-avatar">
+        <div class="neural-network-overlay">
+          <div class="neural-node"></div>
+          <div class="neural-node"></div>
+          <div class="neural-node"></div>
+          <div class="neural-connection"></div>
+          <div class="neural-connection"></div>
+        </div>
+      </div>
+      <div class="trophy-info">
+        <h2 class="trophy-title">Crowe Logic AI™</h2>
+        <p class="trophy-subtitle">Research Assistant</p>
+        <div class="ai-status-indicator">
+          <span class="status-dot"></span>
+          <span class="status-text">Online & Ready</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Control Panel -->
+    <div class="crowe-control-panel">
+      <div class="control-buttons">
+        <button class="control-btn voice-btn" id="croweVoiceBtn" title="Voice Chat">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="currentColor" stroke-width="2"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor" stroke-width="2"/>
+            <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+            <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        
+        <button class="control-btn chat-btn" id="croweChatBtn" title="Text Chat">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        
+        <button class="control-btn research-btn" id="croweResearchBtn" title="Research Mode">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M11 2a9 9 0 1 0 9 9c0-.5-.04-1-.1-1.5L11 2z" stroke="currentColor" stroke-width="2"/>
+            <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        
+        <a href="https://research-assistant-ce196c.zapier.app" class="control-btn external-btn" target="_blank" rel="noopener noreferrer" title="Open Full Assistant">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" stroke-width="2"/>
+            <polyline points="15,3 21,3 21,9" stroke="currentColor" stroke-width="2"/>
+            <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </a>
+      </div>
+      
+      <!-- Branding Bar -->
+      <div class="crowe-branding-bar">
+        <div class="brand-element">
+          <span class="brand-icon">🧠</span>
+          <span class="brand-text">Neural AI</span>
+        </div>
+        <div class="brand-element">
+          <span class="brand-icon">🔬</span>
+          <span class="brand-text">Research</span>
+        </div>
+        <div class="brand-element">
+          <span class="brand-icon">🍄</span>
+          <span class="brand-text">Mycology</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Chat Interface -->
+    <div class="trophy-chat-container" id="trophyChatContainer">
+      <div class="chat-embed-wrapper">
+        <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+        <zapier-interfaces-chatbot-embed chatbot-id='cmbhp4x71002fqpzzx1cclqec'></zapier-interfaces-chatbot-embed>
+        
+        <!-- Fallback iframe -->
+        <noscript>
+          <iframe 
+            src="https://research-assistant-ce196c.zapier.app" 
+            width="100%" 
+            height="300"
+            frameborder="0"
+            allow="microphone; camera; clipboard-write"
+            title="Crowe Logic AI Research Assistant"
+            style="border-radius: 12px; background: rgba(255, 255, 255, 0.05);">
+          </iframe>
+        </noscript>
+      </div>
+    </div>
   </div>
 
   <ul class="sidebar-nav quantum-fade-in">
@@ -75,7 +172,7 @@
     <li class="nav-item quantum-scale-in">
       <a href="https://research-assistant-ce196c.zapier.app" class="nav-link quantum-interactive-glass" target="_blank" rel="noopener noreferrer">
         <span class="nav-icon">
-          <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="nav-avatar white-logo-filter">
+          <img src="{{ 'crowe-avatar.png' | asset_url }}" alt="Crowe Logic AI" class="nav-avatar">
         </span>
         <span class="nav-text">Crowe Logic AI</span>
         <span class="external-link-icon">
@@ -197,71 +294,131 @@
   </div>
 
   <div class="sidebar-footer">
-    <!-- Crowe Logic AI Chat Section -->
-    <div class="sidebar-chat-section" role="region" aria-label="Crowe Logic AI Chat">
-      <div class="chat-header quantum-interactive-glass" id="chat-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="chat-content">
-        <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="chat-avatar white-logo-filter">
-        <div class="chat-info">
-          <h3 class="chat-title">Crowe Logic AI</h3>
-          <p class="chat-subtitle">Research Assistant</p>
+    <!-- Secondary Chat Reference (Links to Trophy Section Above) -->
+    <div class="sidebar-chat-reference" role="region" aria-label="Crowe Logic AI Reference">
+      <div class="chat-reference-header">
+        <img src="{{ 'crowe-avatar.png' | asset_url }}" alt="Crowe Logic AI" class="chat-avatar-small">
+        <div class="chat-reference-info">
+          <h3 class="chat-reference-title">Need Help?</h3>
+          <p class="chat-reference-subtitle">Crowe Logic AI is ready above ↗️</p>
         </div>
-        <div class="chat-expand-icon">
+        <button class="scroll-to-trophy-btn" id="scrollToTrophy" title="Go to AI Assistant">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 14l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
-      </div>
-      <!-- Zapier Chat Widget -->
-      <div class="chat-embed-container quantum-dissolve" id="chat-content">
-        <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
-        <zapier-interfaces-chatbot-embed chatbot-id='cmbhp4x71002fqpzzx1cclqec'></zapier-interfaces-chatbot-embed>
-        
-        <!-- Fallback iframe if web component fails -->
-        <noscript>
-          <iframe 
-            src="https://research-assistant-ce196c.zapier.app" 
-            width="100%" 
-            height="300"
-            frameborder="0"
-            allow="microphone; camera; clipboard-write"
-            title="Crowe Logic AI Research Assistant"
-            style="border-radius: 12px; background: rgba(255, 255, 255, 0.05);">
-          </iframe>
-        </noscript>
+        </button>
       </div>
     </div>
   </div>
 </nav>
 
-<!-- Chat Toggle JavaScript -->
+<!-- Enhanced Crowe Logic AI Integration Script -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const chatToggle = document.getElementById('chat-toggle');
-  const chatContent = document.getElementById('chat-content');
-  const expandIcon = chatToggle.querySelector('.chat-expand-icon svg path');
+  // Trophy Section AI Controls
+  const voiceBtn = document.getElementById('croweVoiceBtn');
+  const chatBtn = document.getElementById('croweChatBtn');
+  const researchBtn = document.getElementById('croweResearchBtn');
+  const chatContainer = document.getElementById('trophyChatContainer');
+  const scrollToTrophyBtn = document.getElementById('scrollToTrophy');
+  const trophySection = document.querySelector('.crowe-trophy-section');
   
-  if (chatToggle && chatContent) {
-    chatToggle.addEventListener('click', function() {
-      const isExpanded = chatContent.classList.contains('chat-expanded');
+  // Voice Chat Functionality
+  if (voiceBtn) {
+    voiceBtn.addEventListener('click', function() {
+      // Add visual feedback
+      this.classList.add('control-btn-active');
       
-      if (isExpanded) {
-        chatContent.classList.remove('chat-expanded');
-        chatToggle.setAttribute('aria-expanded', 'false');
-        expandIcon.setAttribute('d', 'M6 9L12 15L18 9'); // Down arrow
-      } else {
-        chatContent.classList.add('chat-expanded');
-        chatToggle.setAttribute('aria-expanded', 'true');
-        expandIcon.setAttribute('d', 'M18 15L12 9L6 15'); // Up arrow
+      // Simulate voice activation (integrate with your voice API)
+      setTimeout(() => {
+        this.classList.remove('control-btn-active');
+        // Open voice interface or trigger voice commands
+        if (window.croweVoiceAI) {
+          window.croweVoiceAI.startListening();
+        } else {
+          // Fallback: Open external assistant
+          window.open('https://research-assistant-ce196c.zapier.app', '_blank');
+        }
+      }, 300);
+    });
+  }
+  
+  // Chat Toggle Functionality
+  if (chatBtn && chatContainer) {
+    chatBtn.addEventListener('click', function() {
+      this.classList.toggle('control-btn-active');
+      chatContainer.classList.toggle('chat-container-expanded');
+      
+      // Scroll to make sure chat is visible
+      if (chatContainer.classList.contains('chat-container-expanded')) {
+        chatContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
+    });
+  }
+  
+  // Research Mode Toggle
+  if (researchBtn) {
+    researchBtn.addEventListener('click', function() {
+      this.classList.toggle('control-btn-active');
+      
+      // Add research mode visual effects
+      trophySection?.classList.toggle('research-mode-active');
+      
+      // Could integrate with AI to switch to research mode
+      console.log('Research mode toggled');
+    });
+  }
+  
+  // Scroll to Trophy Section
+  if (scrollToTrophyBtn && trophySection) {
+    scrollToTrophyBtn.addEventListener('click', function() {
+      trophySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      // Highlight the trophy section briefly
+      trophySection.classList.add('trophy-highlighted');
+      setTimeout(() => {
+        trophySection.classList.remove('trophy-highlighted');
+      }, 2000);
+    });
+  }
+  
+  // Neural Network Animation
+  function animateNeuralNodes() {
+    const nodes = document.querySelectorAll('.neural-node');
+    const connections = document.querySelectorAll('.neural-connection');
+    
+    nodes.forEach((node, index) => {
+      node.style.animationDelay = `${index * 0.5}s`;
     });
     
-    // Keyboard accessibility
-    chatToggle.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        chatToggle.click();
-      }
+    connections.forEach((connection, index) => {
+      connection.style.animationDelay = `${index * 0.7}s`;
     });
+  }
+  
+  // Initialize neural network animation
+  animateNeuralNodes();
+  
+  // Avatar breathing animation
+  const trophyAvatar = document.querySelector('.trophy-avatar');
+  if (trophyAvatar) {
+    setInterval(() => {
+      trophyAvatar.classList.add('avatar-breath');
+      setTimeout(() => {
+        trophyAvatar.classList.remove('avatar-breath');
+      }, 2000);
+    }, 4000);
+  }
+  
+  // Status indicator pulsing
+  const statusDot = document.querySelector('.status-dot');
+  if (statusDot) {
+    setInterval(() => {
+      statusDot.classList.add('status-pulse');
+      setTimeout(() => {
+        statusDot.classList.remove('status-pulse');
+      }, 1000);
+    }, 3000);
   }
 });
 </script>

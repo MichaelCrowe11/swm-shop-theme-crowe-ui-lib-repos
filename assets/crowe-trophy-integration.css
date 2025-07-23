@@ -1,0 +1,604 @@
+/*
+ * Crowe Logic AI Trophy Integration Styles
+ * Enhanced AI assistant positioning and control panel
+ */
+
+/* =====================================================
+   CROWE TROPHY SECTION - MAIN POSITIONING
+   ===================================================== */
+
+.crowe-trophy-section {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(23, 20, 30, 0.95) 0%,
+    rgba(212, 175, 55, 0.03) 25%,
+    rgba(23, 20, 30, 0.98) 50%,
+    rgba(212, 175, 55, 0.05) 75%,
+    rgba(23, 20, 30, 0.95) 100%
+  );
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 24px;
+  padding: 24px;
+  margin: 16px 0 32px 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(212, 175, 55, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.crowe-trophy-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(from 0deg at 50% 50%, 
+    transparent 0deg, 
+    rgba(212, 175, 55, 0.08) 60deg, 
+    transparent 120deg,
+    rgba(255, 215, 0, 0.05) 180deg,
+    transparent 240deg,
+    rgba(212, 175, 55, 0.08) 300deg,
+    transparent 360deg);
+  animation: trophy-rotation 20s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.crowe-trophy-section:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(212, 175, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.trophy-highlighted {
+  animation: trophy-highlight 2s ease-in-out;
+}
+
+@keyframes trophy-rotation {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes trophy-highlight {
+  0%, 100% { 
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      0 0 60px rgba(212, 175, 55, 0.1);
+  }
+  50% { 
+    border-color: rgba(212, 175, 55, 0.8);
+    box-shadow: 
+      0 16px 64px rgba(0, 0, 0, 0.6),
+      0 0 100px rgba(212, 175, 55, 0.4);
+  }
+}
+
+/* =====================================================
+   TROPHY HEADER WITH AVATAR
+   ===================================================== */
+
+.trophy-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 3;
+}
+
+.trophy-avatar-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 215, 0, 0.1));
+  padding: 4px;
+  box-shadow: 
+    0 0 30px rgba(212, 175, 55, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.trophy-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.1), transparent 70%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(1.1) contrast(1.1);
+}
+
+.trophy-avatar:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2) contrast(1.2);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.avatar-breath {
+  animation: avatar-breathing 2s ease-in-out;
+}
+
+@keyframes avatar-breathing {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* Neural Network Overlay */
+.neural-network-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.neural-node {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #D4AF37 0%, transparent 70%);
+  border-radius: 50%;
+  animation: neural-pulse 3s ease-in-out infinite;
+}
+
+.neural-node:nth-child(1) { top: 20%; left: 20%; }
+.neural-node:nth-child(2) { top: 70%; right: 15%; }
+.neural-node:nth-child(3) { bottom: 25%; left: 60%; }
+
+.neural-connection {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+  animation: neural-flow 4s linear infinite;
+}
+
+.neural-connection:nth-child(4) {
+  top: 30%;
+  left: 25%;
+  width: 40px;
+  transform: rotate(45deg);
+}
+
+.neural-connection:nth-child(5) {
+  bottom: 35%;
+  right: 20%;
+  width: 35px;
+  transform: rotate(-30deg);
+}
+
+@keyframes neural-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes neural-flow {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Trophy Info */
+.trophy-info {
+  flex: 1;
+}
+
+.trophy-title {
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #B8943F 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.5px;
+}
+
+.trophy-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.ai-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  background: #27ae60;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(39, 174, 96, 0.5);
+  transition: all 0.3s ease;
+}
+
+.status-pulse {
+  animation: status-pulsing 1s ease-in-out;
+}
+
+@keyframes status-pulsing {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+.status-text {
+  color: #27ae60;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* =====================================================
+   CONTROL PANEL
+   ===================================================== */
+
+.crowe-control-panel {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  position: relative;
+  z-index: 3;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.control-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.control-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease;
+}
+
+.control-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+}
+
+.control-btn:hover::before {
+  width: 100px;
+  height: 100px;
+}
+
+.control-btn:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+}
+
+.control-btn:active,
+.control-btn-active {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.8);
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.control-btn-active svg {
+  color: #D4AF37;
+  transform: scale(1.1);
+}
+
+/* Specific button styles */
+.voice-btn:hover { border-color: rgba(46, 204, 113, 0.6); }
+.chat-btn:hover { border-color: rgba(93, 173, 226, 0.6); }
+.research-btn:hover { border-color: rgba(155, 89, 182, 0.6); }
+.external-btn:hover { border-color: rgba(241, 196, 15, 0.6); }
+
+/* =====================================================
+   BRANDING BAR
+   ===================================================== */
+
+.crowe-branding-bar {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.brand-element {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all 0.3s ease;
+}
+
+.brand-element:hover {
+  background: rgba(212, 175, 55, 0.05);
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-1px);
+}
+
+.brand-icon {
+  font-size: 16px;
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+}
+
+.brand-text {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* =====================================================
+   TROPHY CHAT CONTAINER
+   ===================================================== */
+
+.trophy-chat-container {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 3;
+}
+
+.chat-container-expanded {
+  max-height: 400px;
+  opacity: 1;
+  padding: 16px;
+}
+
+.chat-embed-wrapper {
+  width: 100%;
+  height: 350px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.chat-embed-wrapper zapier-interfaces-chatbot-embed {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+/* Research Mode Effects */
+.research-mode-active {
+  border-color: rgba(155, 89, 182, 0.6);
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(155, 89, 182, 0.3);
+}
+
+.research-mode-active .neural-node {
+  background: radial-gradient(circle, #9b59b6 0%, transparent 70%);
+}
+
+.research-mode-active .neural-connection {
+  background: linear-gradient(90deg, transparent, rgba(155, 89, 182, 0.4), transparent);
+}
+
+/* =====================================================
+   SIDEBAR FOOTER REFERENCE
+   ===================================================== */
+
+.sidebar-chat-reference {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all 0.3s ease;
+}
+
+.sidebar-chat-reference:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.chat-reference-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-avatar-small {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  object-fit: cover;
+}
+
+.chat-reference-info {
+  flex: 1;
+}
+
+.chat-reference-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 2px 0;
+}
+
+.chat-reference-subtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.scroll-to-trophy-btn {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.scroll-to-trophy-btn:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.5);
+  transform: translateY(-1px);
+  color: #D4AF37;
+}
+
+.scroll-to-trophy-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 768px) {
+  .crowe-trophy-section {
+    padding: 16px;
+    margin: 12px 0 24px 0;
+  }
+  
+  .trophy-header {
+    gap: 16px;
+  }
+  
+  .trophy-avatar-container {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .trophy-title {
+    font-size: 20px;
+  }
+  
+  .control-buttons {
+    gap: 8px;
+  }
+  
+  .control-btn {
+    padding: 10px;
+  }
+  
+  .control-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .brand-element {
+    padding: 6px;
+  }
+  
+  .brand-icon {
+    font-size: 14px;
+  }
+  
+  .brand-text {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trophy-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .control-buttons {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .control-btn {
+    min-width: 44px;
+  }
+  
+  .crowe-branding-bar {
+    gap: 8px;
+  }
+}
+
+/* =====================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .crowe-trophy-section::before,
+  .neural-node,
+  .neural-connection,
+  .trophy-avatar,
+  .status-dot {
+    animation: none;
+  }
+  
+  .crowe-trophy-section:hover {
+    transform: none;
+  }
+  
+  .control-btn:hover {
+    transform: none;
+  }
+}
+
+/* Focus states for accessibility */
+.control-btn:focus,
+.scroll-to-trophy-btn:focus {
+  outline: 2px solid #D4AF37;
+  outline-offset: 2px;
+}
+
+.trophy-avatar:focus {
+  outline: 3px solid #D4AF37;
+  outline-offset: 3px;
+}
