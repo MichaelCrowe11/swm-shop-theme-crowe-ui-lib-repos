@@ -1400,6 +1400,107 @@
     ]
   },
   {
+    "name": "Crowe AI Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Crowe Logic AI Configuration"
+      },
+      {
+        "type": "paragraph",
+        "content": "Configure your Crowe Logic AI assistant with xAI integration and advanced features."
+      },
+      {
+        "type": "text",
+        "id": "xai_api_key",
+        "label": "xAI API Key",
+        "info": "Enter your xAI API key to enable Grok AI chat functionality. Get your key from https://x.ai/api",
+        "placeholder": "xai-..."
+      },
+      {
+        "type": "select",
+        "id": "crowe_ai_model",
+        "options": [
+          {
+            "value": "grok-beta",
+            "label": "Grok Beta (Recommended)"
+          },
+          {
+            "value": "grok-2-mini",
+            "label": "Grok 2 Mini"
+          },
+          {
+            "value": "grok-2",
+            "label": "Grok 2"
+          }
+        ],
+        "default": "grok-beta",
+        "label": "AI Model",
+        "info": "Select which xAI model to use for chat responses"
+      },
+      {
+        "type": "checkbox",
+        "id": "crowe_chat_enabled",
+        "label": "Enable Chat Feature",
+        "default": true,
+        "info": "Enable or disable the AI chat functionality in the sidebar"
+      },
+      {
+        "type": "checkbox",
+        "id": "crowe_voice_enabled",
+        "label": "Enable Voice Input",
+        "default": true,
+        "info": "Allow users to use voice input for chat (requires browser support)"
+      },
+      {
+        "type": "checkbox",
+        "id": "crowe_image_generation",
+        "label": "Enable Image Generation",
+        "default": false,
+        "info": "Enable /image command for AI image generation (requires additional API setup)"
+      },
+      {
+        "type": "checkbox",
+        "id": "crowe_document_generation",
+        "label": "Enable Document Generation",
+        "default": true,
+        "info": "Enable /document command for creating downloadable documents"
+      },
+      {
+        "type": "checkbox",
+        "id": "crowe_product_search",
+        "label": "Enable Product Search",
+        "default": true,
+        "info": "Enable /search command for finding products in your store"
+      },
+      {
+        "type": "checkbox",
+        "id": "crowe_code_execution",
+        "label": "Enable Code Execution",
+        "default": false,
+        "info": "Enable /code command for safe math calculations (security limited)"
+      },
+      {
+        "type": "range",
+        "id": "crowe_chat_height",
+        "min": 250,
+        "max": 600,
+        "step": 50,
+        "unit": "px",
+        "label": "Default Chat Height",
+        "default": 400,
+        "info": "Set the default height of the chat interface when expanded"
+      },
+      {
+        "type": "text",
+        "id": "crowe_system_prompt",
+        "label": "Custom System Prompt",
+        "info": "Customize the AI's personality and behavior (optional)",
+        "placeholder": "You are a helpful shopping assistant for Southwest Mushrooms..."
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.cart.name",
     "settings": [
       {
