@@ -1,120 +1,313 @@
-{{ 'section-sidebar.css' | asset_url | stylesheet_tag }}
+{{ 'crowe-research-console.css' | asset_url | stylesheet_tag }}
 
-<nav class="crowe-sidebar" id="crowe-sidebar">
-  <div class="sidebar-header">
-    <h1 class="sidebar-brand">
-      <a href="{{ routes.root_url }}" class="sidebar-brand-link">
-        Crowe Logic™
-      </a>
-    </h1>
-    <button class="sidebar-toggle mobile-only" aria-label="Close menu">
-      {% render 'icon-close' %}
-    </button>
-  </div>
-
-  <ul class="sidebar-nav">
-    <li class="nav-item">
-      <a href="{{ routes.root_url }}" class="nav-link">
-        <span class="nav-icon">🌿</span>
-        <span class="nav-text">Grow Dashboard</span>
-      </a>
-    </li>
-    
-    <li class="nav-item">
-      <a href="{{ routes.collections_url }}" class="nav-link">
-        <span class="nav-icon">📦</span>
-        <span class="nav-text">Products</span>
-      </a>
-    </li>
-    
-    <li class="nav-item">
-      <a href="/pages/audiobook" class="nav-link">
-        <span class="nav-icon">🎧</span>
-        <span class="nav-text">Audiobook</span>
-      </a>
-    </li>
-    
-    <li class="nav-item">
-      <a href="/pages/guides" class="nav-link">
-        <span class="nav-icon">📘</span>
-        <span class="nav-text">Guides</span>
-      </a>
-    </li>
-    
-    <li class="nav-item">
-      <a href="/pages/crowe-logic" class="nav-link">
-        <span class="nav-icon">🤖</span>
-        <span class="nav-text">Crowe Logic</span>
-      </a>
-    </li>
-    
-    <li class="nav-item">
-      <a href="{{ routes.cart_url }}" class="nav-link" id="cart-link">
-        <span class="nav-icon">🛒</span>
-        <span class="nav-text">Cart</span>
-        <span class="cart-count badge" id="cart-count">{{ cart.item_count }}</span>
-      </a>
-    </li>
-  </ul>
-
-  <div class="sidebar-footer">
-    {%- if shop.customer_accounts_enabled -%}
-      <div class="sidebar-auth">
-        {%- if customer -%}
-          <a href="{{ routes.account_url }}" class="auth-link">
-            <span class="nav-icon">👤</span>
-            <span class="nav-text">{{ customer.first_name | default: 'Account' }}</span>
-          </a>
-          <a href="{{ routes.account_logout_url }}" class="auth-link">
-            <span class="nav-text">Sign Out</span>
-          </a>
-        {%- else -%}
-          <a href="{{ routes.account_login_url }}" class="auth-link">
-            <span class="nav-icon">🔑</span>
-            <span class="nav-text">Sign In</span>
-          </a>
-        {%- endif -%}
+<!-- High-Tech Smartphone Research Station Interface -->
+<div class="crowe-research-station" id="crowe-sidebar">
+  <!-- Station Header with App-Style Logo -->
+  <div class="station-header">
+    <div class="station-title">
+      <div class="station-logo">
+        <div class="logo-icon">
+          <div class="neural-core"></div>
+          <div class="neural-ring"></div>
+          <div class="neural-pulse"></div>
+        </div>
       </div>
-    {%- endif -%}
+      <h1 class="station-brand">Crowe Research Station</h1>
+    </div>
+    
+    <!-- Premium Size Control Panel -->
+    <div class="sidebar-size-controls" aria-label="Sidebar Size Controls">
+      <button class="size-option" data-size="mini" aria-label="Extra Small Size">XS</button>
+      <button class="size-option active" data-size="compact" aria-label="Small Size">S</button>
+      <button class="size-option" data-size="standard" aria-label="Medium Size">M</button>
+      <button class="size-option" data-size="large" aria-label="Large Size">L</button>
+      <button class="size-option" data-size="full" aria-label="Extra Large Size">XL</button>
+    </div>
   </div>
-</nav>
 
-<div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <!-- Smartphone-Style Research Console -->
+  <div class="station-content">
+    <div class="crowe-research-console">
+      <!-- Main Research Interface -->
+      <div class="research-interface">
+        <!-- Crowe Avatar Section -->
+        <div class="crowe-avatar-section">
+          <div class="avatar-container">
+            <img src="{{ 'crowe-avatar.png' | asset_url }}" alt="Crowe Logic AI Avatar" class="crowe-avatar">
+            <div class="avatar-glow"></div>
+            <div class="neural-connections">
+              <div class="neural-node node-1"></div>
+              <div class="neural-node node-2"></div>
+              <div class="neural-node node-3"></div>
+            </div>
+          </div>
+          <h2 class="avatar-title">Crowe Logic AI</h2>
+          <p class="avatar-status">Research Station Active</p>
+        </div>
 
+        <!-- Research Controls -->
+        <div class="research-controls">
+          <button class="control-button primary" id="croweVoiceBtn" aria-label="Voice Research">
+            <span class="button-icon">🎤</span>
+            <span class="button-text">Voice Query</span>
+          </button>
+          
+          <button class="control-button secondary" id="croweChatBtn" aria-label="Text Research">
+            <span class="button-icon">💬</span>
+            <span class="button-text">Text Chat</span>
+          </button>
+          
+          <button class="control-button accent" id="croweResearchBtn" aria-label="Research Mode">
+            <span class="button-icon">🔬</span>
+            <span class="button-text">Research</span>
+          </button>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <a href="{{ routes.root_url }}" class="action-link">
+            <span class="action-icon">🌿</span>
+            <span class="action-text">Dashboard</span>
+          </a>
+          
+          <a href="{{ routes.collections_url }}" class="action-link">
+            <span class="action-icon">📦</span>
+            <span class="action-text">Products</span>
+          </a>
+          
+          <a href="/pages/crowe-logic" class="action-link">
+            <span class="action-icon">🤖</span>
+            <span class="action-text">AI Hub</span>
+          </a>
+          
+          <a href="{{ routes.cart_url }}" class="action-link" id="cart-link">
+            <span class="action-icon">🛒</span>
+            <span class="action-text">Cart</span>
+            <span class="cart-badge" id="cart-count">{{ cart.item_count }}</span>
+          </a>
+        </div>
+
+        <!-- Trophy Integration -->
+        <div class="trophy-integration">
+          <button class="trophy-button" id="scrollToTrophy" aria-label="View Achievement Trophy">
+            <span class="trophy-icon">🏆</span>
+            <span class="trophy-text">Trophy Showcase</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Research Chat Interface -->
+      <div class="research-chat-interface" id="researchChatInterface" style="display: none;">
+        <div class="chat-header">
+          <h3>Research Console</h3>
+          <button class="chat-close" id="closeChatBtn" aria-label="Close Chat">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-message system">
+            <div class="message-avatar">🤖</div>
+            <div class="message-content">
+              <p>Welcome to Crowe Research Station. How can I assist your research today?</p>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="chatInput" placeholder="Ask Crowe anything..." aria-label="Research Query Input">
+          <button id="sendChatBtn" aria-label="Send Message">
+            <span class="send-icon">➤</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Enhanced Crowe Logic AI Integration Script -->
 <script>
-  // Mobile sidebar toggle functionality
-  document.addEventListener('DOMContentLoaded', function() {
-    const sidebar = document.getElementById('crowe-sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-    const toggleButton = document.querySelector('.sidebar-toggle');
-    
-    function closeSidebar() {
-      sidebar.classList.remove('open');
-      overlay.classList.remove('active');
-      document.body.classList.remove('sidebar-open');
-    }
-    
-    function openSidebar() {
-      sidebar.classList.add('open');
-      overlay.classList.add('active');
-      document.body.classList.add('sidebar-open');
-    }
-    
-    if (toggleButton) {
-      toggleButton.addEventListener('click', closeSidebar);
-    }
-    
-    if (overlay) {
-      overlay.addEventListener('click', closeSidebar);
-    }
-    
-    // Add mobile menu button to header if needed
-    const mobileMenuButton = document.querySelector('.header__menu-burger');
-    if (mobileMenuButton) {
-      mobileMenuButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        openSidebar();
+document.addEventListener('DOMContentLoaded', function() {
+  // Size Control System
+  const researchStation = document.querySelector('.crowe-research-station');
+  const sizeOptions = document.querySelectorAll('.size-option');
+  const sidebar = document.getElementById('crowe-sidebar');
+  
+  // Initialize size controls
+  function initializeSizeControls() {
+    sizeOptions.forEach(option => {
+      option.addEventListener('click', function() {
+        const size = this.dataset.size;
+        
+        // Remove active class from all options
+        sizeOptions.forEach(opt => opt.classList.remove('active'));
+        
+        // Add active class to clicked option
+        this.classList.add('active');
+        
+        // Remove all size classes
+        researchStation.classList.remove('size-mini', 'size-compact', 'size-standard', 'size-large', 'size-full');
+        
+        // Add selected size class
+        researchStation.classList.add(`size-${size}`);
+        
+        // Store preference
+        localStorage.setItem('crowe-sidebar-size', size);
+        
+        // Animate transition
+        researchStation.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          researchStation.style.transform = '';
+        }, 150);
+        
+        console.log(`🔧 Sidebar size changed to: ${size}`);
       });
+    });
+    
+    // Load saved size preference
+    const savedSize = localStorage.getItem('crowe-sidebar-size');
+    if (savedSize) {
+      const savedOption = document.querySelector(`[data-size="${savedSize}"]`);
+      if (savedOption) {
+        savedOption.click();
+      }
     }
-  });
+  }
+  
+  // Auto-hide/show based on main content interaction
+  function handleMainContentInteraction() {
+    const mainContent = document.querySelector('main, .main-content, #MainContent');
+    if (!mainContent) return;
+    
+    let hideTimeout;
+    
+    // Hide sidebar when interacting with main content
+    mainContent.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 1200) {
+        hideTimeout = setTimeout(() => {
+          sidebar.classList.add('sidebar-auto-hide');
+        }, 500);
+      }
+    });
+    
+    // Show sidebar when leaving main content
+    mainContent.addEventListener('mouseleave', () => {
+      clearTimeout(hideTimeout);
+      sidebar.classList.remove('sidebar-auto-hide');
+    });
+    
+    // Always show when hovering sidebar
+    sidebar.addEventListener('mouseenter', () => {
+      clearTimeout(hideTimeout);
+      sidebar.classList.remove('sidebar-auto-hide');
+    });
+  }
+  
+  // Initialize all systems
+  initializeSizeControls();
+  handleMainContentInteraction();
+
+  // Research Console Controls (existing code)
+  const voiceBtn = document.getElementById('croweVoiceBtn');
+  const chatBtn = document.getElementById('croweChatBtn');
+  const researchBtn = document.getElementById('croweResearchBtn');
+  const researchConsole = document.querySelector('.crowe-research-console');
+  const chatInterface = document.getElementById('researchChatInterface');
+  const scrollToTrophyBtn = document.getElementById('scrollToTrophy');
+  const trophySection = document.querySelector('.crowe-trophy-section');
+
+  // Research Console Functionality
+  if (voiceBtn) {
+    voiceBtn.addEventListener('click', function() {
+      console.log('🎤 Voice research activated');
+      // Add voice recognition logic here
+      this.classList.add('active');
+      setTimeout(() => this.classList.remove('active'), 2000);
+    });
+  }
+
+  if (chatBtn) {
+    chatBtn.addEventListener('click', function() {
+      console.log('💬 Opening research chat interface');
+      if (chatInterface) {
+        chatInterface.style.display = chatInterface.style.display === 'none' ? 'block' : 'none';
+      }
+    });
+  }
+
+  if (researchBtn) {
+    researchBtn.addEventListener('click', function() {
+      console.log('🔬 Research mode activated');
+      researchConsole.classList.toggle('research-mode-active');
+    });
+  }
+
+  // Trophy scroll functionality
+  if (scrollToTrophyBtn) {
+    scrollToTrophyBtn.addEventListener('click', function() {
+      const trophySection = document.querySelector('.crowe-trophy-section, #trophy-section, [data-trophy]');
+      if (trophySection) {
+        trophySection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'center'
+        });
+        console.log('🏆 Scrolling to trophy section');
+      } else {
+        console.log('🏆 Trophy section not found on this page');
+      }
+    });
+  }
+
+  // Chat interface functionality
+  const chatInput = document.getElementById('chatInput');
+  const sendChatBtn = document.getElementById('sendChatBtn');
+  const chatMessages = document.getElementById('chatMessages');
+  const closeChatBtn = document.getElementById('closeChatBtn');
+
+  if (sendChatBtn && chatInput) {
+    function sendMessage() {
+      const message = chatInput.value.trim();
+      if (message) {
+        // Add user message
+        const userMsg = document.createElement('div');
+        userMsg.className = 'chat-message user';
+        userMsg.innerHTML = `
+          <div class="message-avatar">👤</div>
+          <div class="message-content"><p>${message}</p></div>
+        `;
+        chatMessages.appendChild(userMsg);
+
+        // Clear input
+        chatInput.value = '';
+
+        // Simulate AI response
+        setTimeout(() => {
+          const aiMsg = document.createElement('div');
+          aiMsg.className = 'chat-message system';
+          aiMsg.innerHTML = `
+            <div class="message-avatar">🤖</div>
+            <div class="message-content"><p>Research query received: "${message}". Processing your request...</p></div>
+          `;
+          chatMessages.appendChild(aiMsg);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+    }
+
+    sendChatBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  }
+
+  if (closeChatBtn) {
+    closeChatBtn.addEventListener('click', function() {
+      if (chatInterface) {
+        chatInterface.style.display = 'none';
+      }
+    });
+  }
+
+  console.log('🚀 Crowe Research Station initialized successfully');
+});
 </script>

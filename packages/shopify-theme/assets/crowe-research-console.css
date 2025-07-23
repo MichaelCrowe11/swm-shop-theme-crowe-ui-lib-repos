@@ -1,0 +1,2527 @@
+/* =================================
+   CROWE LOGIC AI RESEARCH STATION
+   High-Tech Smartphone Interface with Size Controls
+   ================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Size Control Variables */
+:root {
+  --sidebar-size: 385px; /* Default smartphone size */
+  --sidebar-scale: 1;
+  --sidebar-margin: 15px;
+}
+
+/* Main Research Station - Reflective Glass Panel Design */
+.crowe-research-station {
+  --neural-hue: 170;
+  --neural-saturation: 100%;
+  --neural-lightness: 50%;
+  --neural-alpha: 0.8;
+  --glass-reflection: rgba(255, 255, 255, 0.15);
+  --glass-depth: rgba(0, 255, 170, 0.08);
+  
+  /* Multi-layered reflective glass background */
+  background: 
+    linear-gradient(145deg, rgba(0, 0, 0, 0.95) 0%, rgba(10, 10, 10, 0.9) 30%, rgba(0, 0, 0, 0.95) 100%),
+    linear-gradient(135deg, transparent 0%, var(--glass-reflection) 25%, transparent 50%, var(--glass-depth) 75%, transparent 100%),
+    radial-gradient(ellipse at 30% 20%, rgba(0, 255, 170, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse at 70% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+  
+  /* Advanced multi-layer backdrop blur with glass refraction */
+  backdrop-filter: blur(40px) saturate(180%) brightness(1.2) contrast(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.2) contrast(1.1);
+  
+  /* Smartphone-style rounded corners */
+  border-radius: 32px;
+  
+  /* Premium glass panel shadow with holographic depth */
+  box-shadow: 
+    0 0 0 1px var(--glass-reflection),
+    0 0 0 2px rgba(0, 255, 170, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.9),
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    0 4px 20px hsla(var(--neural-hue), var(--neural-saturation), var(--neural-lightness), 0.25),
+    inset 0 2px 4px var(--glass-reflection),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.6),
+    inset 20px 0 40px rgba(0, 255, 170, 0.03),
+    inset -20px 0 40px rgba(255, 255, 255, 0.02);
+  
+  /* Holographic glass border with light refraction */
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, 
+    transparent 0%, 
+    var(--glass-reflection) 25%,
+    rgba(0, 255, 170, 0.3) 50%,
+    var(--glass-reflection) 75%,
+    transparent 100%) 1;
+  background-clip: padding-box;
+  
+  /* Smartphone dimensions and spacing */
+  margin: 15px auto;
+  overflow: hidden;
+  min-height: 680px;
+  max-width: 385px;
+  width: 100%;
+  
+  /* 3D perspective for premium device feel */
+  position: relative;
+  transform: perspective(1200px) rotateX(1deg);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smartphone screen reflection effect */
+.crowe-research-station::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 25%,
+    transparent 75%,
+    rgba(0, 255, 170, 0.06) 100%
+  );
+  border-radius: 30px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Premium glass panel hover effect with holographic response */
+.crowe-research-station:hover {
+  transform: perspective(1200px) rotateX(0deg) translateY(-3px) scale(1.01);
+  box-shadow: 
+    0 0 0 1px rgba(0, 255, 170, 0.4),
+    0 0 0 3px rgba(255, 255, 255, 0.1),
+    0 15px 50px rgba(0, 0, 0, 0.9),
+    0 30px 100px rgba(0, 255, 170, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.25),
+    inset 0 0 20px rgba(0, 255, 170, 0.05);
+}
+
+/* =================================
+   SIDEBAR SIZE CONTROL SYSTEM
+   ================================= */
+
+/* Size Control Panel */
+.sidebar-size-controls {
+  position: absolute;
+  top: -50px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1001;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.crowe-research-station:hover .sidebar-size-controls {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.size-option {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.size-option::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(0, 255, 170, 0.1) 0%, 
+    transparent 50%, 
+    rgba(0, 255, 170, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.size-option:hover {
+  background: rgba(0, 255, 170, 0.15);
+  border-color: rgba(0, 255, 170, 0.4);
+  color: rgba(0, 255, 170, 1);
+  transform: scale(1.15);
+  box-shadow: 0 0 15px rgba(0, 255, 170, 0.3);
+}
+
+.size-option:hover::before {
+  opacity: 1;
+}
+
+.size-option.active {
+  background: linear-gradient(135deg, 
+    rgba(0, 255, 170, 0.25) 0%, 
+    rgba(0, 255, 170, 0.15) 100%);
+  border-color: rgba(0, 255, 170, 0.6);
+  color: rgba(0, 255, 170, 1);
+  box-shadow: 
+    0 0 15px rgba(0, 255, 170, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Size Variants */
+.crowe-research-station.size-mini {
+  --sidebar-size: 280px;
+  --sidebar-scale: 0.75;
+  --sidebar-margin: 8px;
+  min-height: 450px;
+  border-radius: 24px;
+}
+
+.crowe-research-station.size-compact {
+  --sidebar-size: 320px;
+  --sidebar-scale: 0.85;
+  --sidebar-margin: 10px;
+  min-height: 520px;
+  border-radius: 28px;
+}
+
+.crowe-research-station.size-standard {
+  --sidebar-size: 385px;
+  --sidebar-scale: 1;
+  --sidebar-margin: 15px;
+  min-height: 680px;
+  border-radius: 32px;
+}
+
+.crowe-research-station.size-large {
+  --sidebar-size: 450px;
+  --sidebar-scale: 1.1;
+  --sidebar-margin: 20px;
+  min-height: 750px;
+  border-radius: 36px;
+}
+
+.crowe-research-station.size-full {
+  --sidebar-size: 100%;
+  --sidebar-scale: 1;
+  --sidebar-margin: 12px;
+  max-width: 600px;
+  min-height: 800px;
+  border-radius: 20px;
+}
+
+/* Apply size variables */
+.crowe-research-station {
+  max-width: var(--sidebar-size);
+  margin: var(--sidebar-margin) auto;
+  transform: scale(var(--sidebar-scale)) perspective(1200px) rotateX(1deg);
+}
+
+/* Holographic Avatar Container - Top of Console */
+.crowe-avatar-hologram {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.crowe-avatar-hologram .avatar-frame {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 60%),
+    linear-gradient(145deg, rgba(0, 255, 170, 0.2) 0%, rgba(0, 255, 170, 0.05) 100%);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 2px solid rgba(0, 255, 170, 0.4);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 170, 0.6),
+    0 0 60px rgba(0, 255, 170, 0.3),
+    inset 0 2px 10px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: avatarFloat 4s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.crowe-avatar-hologram .avatar-image {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 170, 0.5));
+  animation: avatarGlow 3s ease-in-out infinite alternate;
+}
+
+.crowe-avatar-hologram .neural-connections {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.neural-connection {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 170, 0.6), transparent);
+  animation: neuralPulse 2s ease-in-out infinite;
+}
+
+.neural-connection:nth-child(1) {
+  height: 60px;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%) rotate(0deg);
+}
+
+.neural-connection:nth-child(2) {
+  height: 40px;
+  top: 20px;
+  right: -20px;
+  transform: rotate(45deg);
+  animation-delay: 0.3s;
+}
+
+.neural-connection:nth-child(3) {
+  height: 50px;
+  bottom: -25px;
+  left: 30%;
+  transform: rotate(-30deg);
+  animation-delay: 0.6s;
+}
+
+.neural-connection:nth-child(4) {
+  height: 35px;
+  top: 30%;
+  left: -15px;
+  transform: rotate(-45deg);
+  animation-delay: 0.9s;
+}
+
+/* Holographic Glass Reflection Layer 2 - Particle System */
+.crowe-research-station::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(3px 3px at 25px 35px, rgba(0, 255, 170, 0.4), transparent),
+    radial-gradient(2px 2px at 45px 75px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 95px 45px, rgba(0, 255, 170, 0.2), transparent),
+    radial-gradient(2px 2px at 135px 85px, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(3px 3px at 165px 35px, rgba(0, 255, 170, 0.3), transparent);
+  background-repeat: repeat;
+  background-size: 220px 120px;
+  animation: holographicParticles 25s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 30px;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-10px) translateX(5px); }
+  50% { transform: translateY(0px) translateX(-5px); }
+  75% { transform: translateY(10px) translateX(3px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+/* Neural Grid Pattern */
+.crowe-research-station::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 255, 170, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 170, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: neuralGrid 30s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes neuralGrid {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.1; }
+}
+
+/* Smartphone Status Bar Header */
+.station-header {
+  /* iPhone-style status bar background */
+  background: linear-gradient(180deg, 
+    rgba(0, 0, 0, 0.85) 0%, 
+    rgba(20, 20, 20, 0.8) 50%,
+    rgba(10, 10, 10, 0.9) 100%);
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  
+  /* Smartphone dimensions */
+  padding: 12px 20px 15px 20px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+  
+  /* Flex layout like phone status bar */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60px;
+  
+  /* Smartphone status bar styling */
+  position: relative;
+  z-index: 10;
+}
+
+/* Add smartphone notch effect */
+.station-header::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.15) 20%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    rgba(255, 255, 255, 0.15) 80%, 
+    transparent 100%);
+  border-radius: 0 0 6px 6px;
+}
+
+/* Station Title - App Style */
+.station-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 255, 170, 0.1) 0%,
+    rgba(0, 255, 170, 0.05) 30%,
+    transparent 70%
+  );
+  animation: neuralPulse 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes neuralPulse {
+  0%, 100% { 
+    transform: scale(0.8) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.7;
+  }
+}
+
+.station-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 180px;
+}
+
+/* App Icon Style Logo */
+.station-logo {
+  width: 36px;
+  height: 36px;
+  background: 
+    linear-gradient(145deg, 
+      rgba(0, 255, 170, 0.9) 0%, 
+      rgba(0, 200, 140, 0.8) 50%,
+      rgba(0, 255, 170, 0.7) 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 4px 12px rgba(0, 255, 170, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.8),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* App icon shimmer effect */
+.station-logo::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 70%
+  );
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  50% { transform: translateX(-50%) translateY(-50%) rotate(45deg); }
+  100% { transform: translateX(0%) translateY(0%) rotate(45deg); }
+}
+
+/* App Icon Avatar */
+.station-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(0, 255, 170, 0.3);
+  background: #1a1a1a;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+/* Additional avatar styling for better rendering */
+.station-avatar {
+  max-width: 36px;
+  max-height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.station-avatar:loaded,
+.station-avatar.loaded {
+  opacity: 1;
+}
+
+/* Loading state for avatar */
+.station-logo::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 255, 170, 0.3);
+  border-top: 2px solid rgba(0, 255, 170, 0.8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 1s linear infinite;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.station-logo:has(.station-avatar.loaded)::after,
+.station-logo.loaded::after {
+  opacity: 0;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Fallback for missing avatar */
+.station-logo:empty::before {
+  content: 'AI';
+  color: rgba(0, 255, 170, 0.8);
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Smartphone App Title */
+.station-name {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  line-height: 1.2;
+  
+  /* Modern iOS-style text */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Subtle gradient accent */
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 1) 0%, 
+    rgba(0, 255, 170, 0.9) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Smartphone Status Bar Indicators */
+.status-indicators {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Smartphone Status Dots */
+.status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+.status-dot.neural-active {
+  background: rgba(0, 255, 170, 0.8);
+  box-shadow: 0 0 10px rgba(0, 255, 170, 0.8);
+}
+
+.status-dot.processing {
+  background: rgba(255, 170, 0, 0.8);
+  box-shadow: 0 0 10px rgba(255, 170, 0, 0.8);
+}
+
+.status-dot.connected {
+  background: rgba(0, 170, 255, 0.8);
+  box-shadow: 0 0 10px rgba(0, 170, 255, 0.8);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Smartphone Screen Content Area */
+.station-content {
+  display: block;
+  height: 580px;
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Chat Panel - Full Screen App Style */
+.chat-panel {
+  background: 
+    linear-gradient(145deg, rgba(0, 0, 0, 0.1) 0%, rgba(10, 10, 10, 0.2) 100%);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.chat-frame-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: 
+    linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, transparent 100%);
+  isolation: isolate;
+  padding: 8px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0;
+  
+  /* Smartphone screen effect */
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.03);
+}
+
+/* Removed gradient overlay that interferes with chat */
+
+.chat-frame-container zapier-interfaces-chatbot-embed {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  border-radius: 12px;
+  display: block !important;
+  contain: layout style paint;
+  transform: translateZ(0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+}
+
+/* Override any Zapier default styles */
+.chat-frame-container zapier-interfaces-chatbot-embed * {
+  box-sizing: border-box !important;
+}
+
+/* Force iframe inside Zapier embed to fit properly */
+.chat-frame-container zapier-interfaces-chatbot-embed iframe,
+.chat-frame-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Remove any default spacing from Zapier shadow DOM */
+.chat-frame-container zapier-interfaces-chatbot-embed::part(container) {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.chat-frame-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: rgba(0, 0, 0, 0.1);
+  flex: 1;
+  border-radius: 12px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced Chat Interface */
+.chat-interface-fallback {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.chat-interface-fallback::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 255, 170, 0.05) 0%,
+    transparent 70%
+  );
+  animation: pulseGlow 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+.chat-interface-fallback.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 15px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-status {
+  padding: 12px 20px;
+  background: linear-gradient(145deg, 
+    rgba(0, 255, 170, 0.15) 0%, 
+    rgba(0, 255, 170, 0.05) 100%
+  );
+  border: 1px solid rgba(0, 255, 170, 0.3);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 
+    0 4px 16px rgba(0, 255, 170, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.chat-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 1;
+}
+
+.chat-action-btn {
+  padding: 10px 16px;
+  background: linear-gradient(145deg, rgba(0, 255, 170, 0.15) 0%, rgba(0, 255, 170, 0.08) 100%);
+  color: rgba(0, 255, 170, 1);
+  border: 1px solid rgba(0, 255, 170, 0.3);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.chat-action-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  transition: left 0.6s ease;
+}
+
+.chat-action-btn:hover {
+  background: linear-gradient(145deg, rgba(0, 255, 170, 0.25) 0%, rgba(0, 255, 170, 0.15) 100%);
+  border-color: rgba(0, 255, 170, 0.5);
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 
+    0 6px 20px rgba(0, 255, 170, 0.2),
+    0 2px 8px rgba(0, 255, 170, 0.1);
+}
+
+.chat-action-btn:hover::before {
+  left: 100%;
+}
+
+.chat-action-btn:active {
+  transform: translateY(0) translateZ(0);
+  transition: transform 0.1s ease;
+}
+
+/* Control Panel */
+.control-panel {
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.75) 0%, rgba(15, 15, 15, 0.85) 100%);
+  backdrop-filter: blur(18px) saturate(115%);
+  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  padding: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Control Panel Neural Glow */
+.control-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 255, 170, 0.05) 0%,
+    transparent 25%,
+    rgba(0, 255, 170, 0.02) 50%,
+    transparent 75%,
+    rgba(0, 255, 170, 0.05) 100%
+  );
+  animation: controlPanelGlow 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes controlPanelGlow {
+  0%, 100% { 
+    transform: translateX(-100%);
+    opacity: 0.5;
+  }
+  50% { 
+    transform: translateX(100%);
+    opacity: 1;
+  }
+}
+
+.control-panel::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+.control-panel::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 4px;
+  margin: 4px 0;
+}
+
+.control-panel::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, 
+    rgba(0, 255, 170, 0.4) 0%, 
+    rgba(0, 255, 170, 0.6) 50%,
+    rgba(0, 255, 170, 0.4) 100%
+  );
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  border-radius: 4px;
+  border: 1px solid rgba(0, 255, 170, 0.2);
+  box-shadow: 
+    0 0 8px rgba(0, 255, 170, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.control-panel::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, 
+    rgba(0, 255, 170, 0.6) 0%, 
+    rgba(0, 255, 170, 0.8) 50%,
+    rgba(0, 255, 170, 0.6) 100%
+  );
+  box-shadow: 
+    0 0 12px rgba(0, 255, 170, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: scaleX(1.1);
+}
+
+.control-panel::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 255, 170, 0.9);
+  box-shadow: 
+    0 0 15px rgba(0, 255, 170, 0.7),
+    inset 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Control Sections */
+.control-section {
+  margin-bottom: 0;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px) saturate(110%);
+  -webkit-backdrop-filter: blur(10px) saturate(110%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.control-section:hover {
+  background: rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 255, 170, 0.1);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(0, 255, 170, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.section-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(0, 255, 170, 0.8);
+  margin: 0 0 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title::before,
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 170, 0.3), transparent);
+}
+
+/* Knob Grid */
+.knob-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.knob-unit {
+  text-align: center;
+}
+
+.knob-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
+}
+
+/* Enhanced 3D Knob */
+.knob-container {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 6px;
+  position: relative;
+  cursor: grab;
+}
+
+.knob-container:active {
+  cursor: grabbing;
+}
+
+.knob {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    linear-gradient(145deg, #2a2a2a 0%, #0a0a0a 100%);
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.8),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.9),
+    inset 0 2px 6px rgba(255, 255, 255, 0.1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.knob:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.9),
+    0 0 15px rgba(0, 255, 170, 0.2),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.9),
+    inset 0 2px 6px rgba(255, 255, 255, 0.15);
+}
+
+.knob-container:active .knob {
+  transform: scale(0.98);
+  transition: transform 0.05s ease;
+}
+
+/* Haptic Feedback Effects */
+.haptic-ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 170, 0.6) 0%,
+    rgba(0, 255, 170, 0.3) 50%,
+    transparent 100%
+  );
+  transform: translate(-50%, -50%) scale(0);
+  animation: hapticRipple 0.6s ease-out;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes hapticRipple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+.knob-feedback {
+  animation: knobFeedbackGlow 0.2s ease-out;
+}
+
+@keyframes knobFeedbackGlow {
+  0% {
+    box-shadow: 
+      0 8px 16px rgba(0, 0, 0, 0.8),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.9),
+      inset 0 2px 6px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 8px 16px rgba(0, 0, 0, 0.8),
+      0 0 20px rgba(0, 255, 170, 0.4),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.9),
+      inset 0 2px 6px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    box-shadow: 
+      0 8px 16px rgba(0, 0, 0, 0.8),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.9),
+      inset 0 2px 6px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.knob::before {
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  width: 2px;
+  height: 20%;
+  background: linear-gradient(180deg, 
+    rgba(0, 255, 170, 1) 0%, 
+    rgba(0, 255, 170, 0.4) 100%
+  );
+  border-radius: 1px;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(0, 255, 170, 0.8);
+}
+
+.knob::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 35%;
+  height: 35%;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 50% 50%, 
+      rgba(0, 0, 0, 0.8) 0%, 
+      transparent 70%
+    );
+  transform: translate(-50%, -50%);
+}
+
+.knob-value {
+  font-size: 10px;
+  color: rgba(0, 255, 170, 0.9);
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+}
+
+/* Mode Selector */
+.mode-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.mode-button {
+  background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 10px 8px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.mode-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, 
+    rgba(0, 255, 170, 0.2) 0%, 
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mode-button:hover {
+  transform: translateY(-2px) translateZ(0) scale(1.02);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(0, 255, 170, 0.1);
+  border-color: rgba(0, 255, 170, 0.2);
+}
+
+.mode-button.active {
+  background: linear-gradient(145deg, 
+    rgba(0, 255, 170, 0.15) 0%, 
+    rgba(0, 255, 170, 0.08) 100%
+  );
+  color: rgba(0, 255, 170, 1);
+  border-color: rgba(0, 255, 170, 0.4);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 170, 0.4),
+    0 4px 15px rgba(0, 255, 170, 0.2),
+    inset 0 0 15px rgba(0, 255, 170, 0.1);
+  transform: translateY(-1px) scale(1.05);
+  animation: activeButtonPulse 2s ease-in-out infinite;
+}
+
+@keyframes activeButtonPulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px rgba(0, 255, 170, 0.4),
+      0 4px 15px rgba(0, 255, 170, 0.2),
+      inset 0 0 15px rgba(0, 255, 170, 0.1);
+  }
+  50% { 
+    box-shadow: 
+      0 0 25px rgba(0, 255, 170, 0.6),
+      0 6px 20px rgba(0, 255, 170, 0.3),
+      inset 0 0 20px rgba(0, 255, 170, 0.15);
+  }
+}
+
+.mode-button.active::before {
+  opacity: 1;
+}
+
+/* Toggle Array */
+.toggle-array {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.toggle-unit {
+  text-align: center;
+}
+
+.toggle-container {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  margin-bottom: 4px;
+}
+
+.toggle-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+  border-radius: 20px;
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.8),
+    0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.toggle-switch::before {
+  position: absolute;
+  content: '';
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background: linear-gradient(145deg, #3a3a3a 0%, #1a1a1a 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-input:checked + .toggle-switch {
+  background: linear-gradient(180deg, 
+    rgba(0, 255, 170, 0.2) 0%, 
+    rgba(0, 255, 170, 0.1) 100%
+  );
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 12px rgba(0, 255, 170, 0.3);
+}
+
+.toggle-input:checked + .toggle-switch::before {
+  transform: translateX(20px);
+  background: linear-gradient(145deg, 
+    rgba(0, 255, 170, 0.9) 0%, 
+    rgba(0, 255, 170, 0.6) 100%
+  );
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    0 0 8px rgba(0, 255, 170, 0.8);
+}
+
+.toggle-label {
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+}
+
+/* VU Meter */
+.vu-meter-container {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px) saturate(105%);
+  -webkit-backdrop-filter: blur(8px) saturate(105%);
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.8),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.vu-meter {
+  display: flex;
+  gap: 2px;
+  height: 40px;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.vu-bar {
+  width: 6px;
+  background: linear-gradient(180deg, 
+    rgba(255, 0, 0, 0.8) 0%, 
+    rgba(255, 255, 0, 0.8) 40%, 
+    rgba(0, 255, 0, 0.8) 100%
+  );
+  border-radius: 3px 3px 0 0;
+  transition: height 0.1s ease;
+  opacity: 0.2;
+  position: relative;
+}
+
+.vu-bar.active {
+  opacity: 1;
+  box-shadow: 
+    0 0 8px currentColor,
+    inset 0 0 4px rgba(255, 255, 255, 0.3);
+}
+
+.vu-bar.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 1px;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+/* Loading Animation */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(25px) saturate(130%);
+  -webkit-backdrop-filter: blur(25px) saturate(130%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 10;
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.5s ease;
+}
+
+.loading-text {
+  color: rgba(0, 255, 170, 0.8);
+  font-size: 14px;
+  text-align: center;
+  animation: loadingTextPulse 2s ease-in-out infinite;
+}
+
+@keyframes loadingTextPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Neural Status Display */
+.neural-status-display {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.neural-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 255, 170, 0.2);
+}
+
+.neural-pulse {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(0, 255, 170, 0.8);
+  animation: neuralPulseIndicator 2s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
+}
+
+.neural-indicator.active .neural-pulse {
+  animation-duration: 0.5s;
+  background: rgba(0, 255, 170, 1);
+  box-shadow: 0 0 15px rgba(0, 255, 170, 0.8);
+}
+
+.neural-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@keyframes neuralPulseIndicator {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Signal Display */
+.signal-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.signal-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.signal-bar {
+  width: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px 3px 0 0;
+  transition: all 0.3s ease;
+}
+
+.signal-bar:nth-child(1) { height: 8px; }
+.signal-bar:nth-child(2) { height: 12px; }
+.signal-bar:nth-child(3) { height: 16px; }
+.signal-bar:nth-child(4) { height: 20px; }
+.signal-bar:nth-child(5) { height: 24px; }
+
+.signal-bar.active {
+  background: linear-gradient(180deg, 
+    rgba(0, 255, 170, 0.9) 0%, 
+    rgba(0, 255, 170, 0.6) 100%
+  );
+  box-shadow: 0 0 6px rgba(0, 255, 170, 0.4);
+}
+
+.signal-status {
+  font-size: 11px;
+  color: rgba(0, 255, 170, 0.9);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* AI Status Display */
+.ai-status-display {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 4px 0;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: statusBlink 2s ease-in-out infinite;
+}
+
+.status-dot.connected {
+  background: rgba(0, 255, 170, 0.8);
+  box-shadow: 0 0 8px rgba(0, 255, 170, 0.5);
+}
+
+.status-dot.processing {
+  background: rgba(255, 170, 0, 0.8);
+  box-shadow: 0 0 8px rgba(255, 170, 0, 0.5);
+}
+
+.status-dot.neural-active {
+  background: rgba(0, 255, 170, 1);
+  box-shadow: 0 0 12px rgba(0, 255, 170, 0.8);
+  animation-duration: 0.5s;
+}
+
+@keyframes statusBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.loading-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(0, 255, 170, 0.1);
+  border-top-color: rgba(0, 255, 170, 0.8);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Floating Data Visualization Elements */
+.data-visualization {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 120px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px) saturate(110%);
+  -webkit-backdrop-filter: blur(12px) saturate(110%);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 170, 0.2);
+  padding: 8px;
+  z-index: 5;
+  animation: floatData 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes floatData {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateY(-5px) rotate(1deg);
+    opacity: 1;
+  }
+}
+
+.data-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: 100%;
+}
+
+.data-line {
+  height: 2px;
+  border-radius: 1px;
+  animation: dataFlow 2s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+.data-line:nth-child(1) {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 255, 170, 0.8) 50%, 
+    transparent 100%
+  );
+  width: 80%;
+  animation-delay: 0s;
+}
+
+.data-line:nth-child(2) {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 170, 255, 0.6) 50%, 
+    transparent 100%
+  );
+  width: 60%;
+  animation-delay: 0.3s;
+}
+
+.data-line:nth-child(3) {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 170, 0, 0.7) 50%, 
+    transparent 100%
+  );
+  width: 90%;
+  animation-delay: 0.6s;
+}
+
+.data-line:nth-child(4) {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(170, 0, 255, 0.5) 50%, 
+    transparent 100%
+  );
+  width: 70%;
+  animation-delay: 0.9s;
+}
+
+@keyframes dataFlow {
+  0%, 100% { 
+    transform: scaleX(0.3);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Floating Neural Nodes */
+.neural-nodes {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  width: 60px;
+  height: 60px;
+  transform: translateY(-50%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.neural-node {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(0, 255, 170, 0.8);
+  border-radius: 50%;
+  animation: neuralPulse 3s ease-in-out infinite;
+  box-shadow: 0 0 8px rgba(0, 255, 170, 0.6);
+}
+
+.neural-node:nth-child(1) {
+  top: 10px;
+  left: 20px;
+  animation-delay: 0s;
+}
+
+.neural-node:nth-child(2) {
+  top: 30px;
+  left: 40px;
+  animation-delay: 0.5s;
+}
+
+.neural-node:nth-child(3) {
+  top: 50px;
+  left: 15px;
+  animation-delay: 1s;
+}
+
+.neural-node:nth-child(4) {
+  top: 25px;
+  left: 5px;
+  animation-delay: 1.5s;
+}
+
+@keyframes neuralNodePulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% { 
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+/* Enhanced Activity States with Smooth Transitions */
+.crowe-research-station.low-activity {
+  --neural-hue: 240;
+  --neural-saturation: 30%;
+  --neural-lightness: 15%;
+  --activity-intensity: 0.3;
+}
+
+.crowe-research-station.low-activity .station-logo {
+  animation-duration: 3s;
+  box-shadow: 
+    0 0 15px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.3),
+    0 0 30px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.1);
+}
+
+.crowe-research-station.medium-activity {
+  --neural-hue: 170;
+  --neural-saturation: 60%;
+  --neural-lightness: 25%;
+  --activity-intensity: 0.6;
+}
+
+.crowe-research-station.medium-activity .station-logo {
+  animation-duration: 2s;
+  box-shadow: 
+    0 0 20px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.5),
+    0 0 40px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.2);
+}
+
+.crowe-research-station.high-activity {
+  --neural-hue: 120;
+  --neural-saturation: 80%;
+  --neural-lightness: 30%;
+  --activity-intensity: 1.0;
+}
+
+.crowe-research-station.high-activity .station-logo {
+  animation-duration: 1s;
+  box-shadow: 
+    0 0 30px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.8),
+    0 0 60px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.3),
+    0 0 90px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.1);
+}
+
+.crowe-research-station.high-activity .neural-node {
+  animation-duration: 1.5s;
+  box-shadow: 
+    0 0 12px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.9),
+    0 0 24px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.3);
+}
+
+/* Enhanced Border Glow Effect */
+.crowe-research-station::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    hsla(var(--neural-hue), var(--neural-saturation), var(--neural-lightness), calc(var(--activity-intensity, 0.5) * 0.3)) 0%,
+    transparent 25%,
+    hsla(var(--neural-hue), var(--neural-saturation), var(--neural-lightness), calc(var(--activity-intensity, 0.5) * 0.2)) 50%,
+    transparent 75%,
+    hsla(var(--neural-hue), var(--neural-saturation), var(--neural-lightness), calc(var(--activity-intensity, 0.5) * 0.3)) 100%
+  );
+  border-radius: 26px;
+  opacity: calc(var(--activity-intensity, 0.5) * 0.7);
+  animation: borderGlow 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    filter: blur(1px);
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    filter: blur(2px);
+    transform: rotate(180deg) scale(1.02);
+  }
+}
+
+/* Dynamic Theme Transitions */
+.crowe-research-station * {
+  transition: 
+    color 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+    background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+    border-color 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+    box-shadow 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease,
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .crowe-research-station *,
+  .crowe-research-station::before,
+  .crowe-research-station::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .neural-node,
+  .data-line,
+  .vu-bar {
+    animation: none !important;
+  }
+}
+
+/* Enhanced Responsive Design */
+
+/* Large Tablets and Small Desktops */
+@media (max-width: 1024px) {
+  .station-content {
+    height: 500px;
+  }
+  
+  .chat-panel {
+    min-height: 500px;
+  }
+}
+
+/* iPad and Medium Tablets */
+@media (max-width: 768px) {
+  .crowe-research-station {
+    margin: 5px;
+    min-height: 550px;
+    width: calc(100% - 10px);
+  }
+  
+  .station-header {
+    padding: 12px 15px;
+    min-height: 60px;
+    flex-wrap: nowrap;
+  }
+
+  .station-logo {
+    width: 35px;
+    height: 35px;
+  }
+
+  .station-avatar {
+    width: 31px;
+    height: 31px;
+    min-width: 31px;
+    min-height: 31px;
+    max-width: 31px;
+    max-height: 31px;
+  }
+
+  .station-name {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .status-indicators {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .status-item {
+    font-size: 8px;
+    gap: 4px;
+  }
+  
+  .status-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .station-content {
+    height: 450px;
+  }
+
+  .chat-panel {
+    min-height: 450px;
+  }
+
+  .control-panel {
+    padding: 15px;
+    max-height: 350px;
+  }
+
+  .knob-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .knob-container {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .knob-label {
+    font-size: 8px;
+  }
+  
+  .knob-value {
+    font-size: 9px;
+  }
+
+  .mode-selector {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  
+  .mode-button {
+    padding: 8px 4px;
+    font-size: 7px;
+  }
+
+  .toggle-array {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  
+  .toggle-container {
+    width: 35px;
+    height: 18px;
+  }
+  
+  .toggle-switch::before {
+    height: 12px;
+    width: 12px;
+    left: 3px;
+    bottom: 3px;
+  }
+  
+  .toggle-input:checked + .toggle-switch::before {
+    transform: translateX(17px);
+  }
+  
+  .toggle-label {
+    font-size: 7px;
+  }
+  
+  .section-title {
+    font-size: 9px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  
+  .control-section {
+    margin-bottom: 20px;
+    padding: 12px;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+  .crowe-research-station {
+    margin: 2px;
+    min-height: 500px;
+    border-radius: 16px;
+    width: calc(100% - 4px);
+  }
+  
+  .station-header {
+    padding: 10px 12px;
+    min-height: 55px;
+  }
+  
+  .station-title {
+    gap: 8px;
+    min-width: 150px;
+  }
+
+  .station-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .station-avatar {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    min-height: 26px;
+    max-width: 26px;
+    max-height: 26px;
+  }
+
+  .station-name {
+    font-size: 12px;
+    letter-spacing: 0.3px;
+  }
+
+  .status-indicators {
+    gap: 6px;
+  }
+
+  .status-item {
+    font-size: 7px;
+    gap: 3px;
+  }
+  
+  .status-item span {
+    display: none; /* Hide text on very small screens, keep dots */
+  }
+  
+  .status-dot {
+    width: 4px;
+    height: 4px;
+  }
+
+  .station-content {
+    height: 400px;
+  }
+
+  .chat-panel {
+    min-height: 400px;
+  }
+
+  .control-panel {
+    padding: 12px;
+    max-height: 300px;
+  }
+
+  .knob-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .knob-container {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .knob-label {
+    font-size: 7px;
+    margin-bottom: 6px;
+  }
+  
+  .knob-value {
+    font-size: 8px;
+  }
+
+  .mode-selector {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+  
+  .mode-button {
+    padding: 6px 3px;
+    font-size: 6px;
+  }
+
+  .toggle-array {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  
+  .toggle-container {
+    width: 30px;
+    height: 16px;
+  }
+  
+  .toggle-switch::before {
+    height: 10px;
+    width: 10px;
+    left: 3px;
+    bottom: 3px;
+  }
+  
+  .toggle-input:checked + .toggle-switch::before {
+    transform: translateX(14px);
+  }
+  
+  .toggle-label {
+    font-size: 6px;
+  }
+  
+  .section-title {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  
+  .control-section {
+    margin-bottom: 15px;
+    padding: 10px;
+  }
+  
+  .vu-meter {
+    height: 30px;
+  }
+  
+  .vu-bar {
+    width: 4px;
+  }
+  
+  /* Hide floating elements on mobile for performance */
+  .data-visualization,
+  .neural-nodes {
+    display: none;
+  }
+  
+  /* Simplified border glow on mobile */
+  .crowe-research-station::after {
+    display: none;
+  }
+}
+
+/* Focus States for Better Accessibility */
+.knob-container:focus {
+  outline: 2px solid rgba(0, 255, 170, 0.8);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+.mode-button:focus {
+  outline: 2px solid rgba(0, 255, 170, 0.8);
+  outline-offset: 2px;
+}
+
+.toggle-container:focus-within {
+  outline: 2px solid rgba(0, 255, 170, 0.8);
+  outline-offset: 2px;
+  border-radius: 20px;
+}
+
+/* Enhanced Loading States */
+.loading-spinner {
+  position: relative;
+}
+
+.loading-spinner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  border: 1px solid rgba(0, 255, 170, 0.1);
+  border-radius: 50%;
+  animation: spinOuter 2s linear infinite reverse;
+}
+
+@keyframes spinOuter {
+  to { transform: rotate(-360deg); }
+}
+
+/* Status Indicator Enhancements */
+.status-indicators::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 170, 0.2) 50%,
+    transparent 100%
+  );
+  animation: scanLine 3s ease-in-out infinite;
+}
+
+@keyframes scanLine {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1);
+  }
+}
+
+/* Enhanced Initialization Error Styling */
+.initialization-error {
+  animation: errorSlideIn 0.5s ease-out;
+  position: relative;
+  z-index: 100;
+}
+
+@keyframes errorSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===== HOLOGRAPHIC GLASS PANEL ANIMATIONS ===== */
+
+@keyframes holographicShimmer {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: brightness(1) hue-rotate(0deg);
+  }
+  25% { 
+    background-position: 100% 50%;
+    filter: brightness(1.1) hue-rotate(5deg);
+  }
+  50% { 
+    background-position: 50% 100%;
+    filter: brightness(1.2) hue-rotate(10deg);
+  }
+  75% { 
+    background-position: 0% 0%;
+    filter: brightness(1.1) hue-rotate(5deg);
+  }
+}
+
+@keyframes holographicParticles {
+  0% { transform: translateX(0) translateY(0) rotate(0deg); }
+  25% { transform: translateX(-20px) translateY(-15px) rotate(90deg); }
+  50% { transform: translateX(-40px) translateY(-30px) rotate(180deg); }
+  75% { transform: translateX(-60px) translateY(-45px) rotate(270deg); }
+  100% { transform: translateX(-80px) translateY(-60px) rotate(360deg); }
+}
+
+@keyframes avatarFloat {
+  0%, 100% { 
+    transform: translateX(-50%) translateY(0px) scale(1);
+    filter: drop-shadow(0 0 20px rgba(0, 255, 170, 0.6));
+  }
+  33% { 
+    transform: translateX(-50%) translateY(-8px) scale(1.02);
+    filter: drop-shadow(0 0 30px rgba(0, 255, 170, 0.8));
+  }
+  66% { 
+    transform: translateX(-50%) translateY(5px) scale(0.98);
+    filter: drop-shadow(0 0 25px rgba(0, 255, 170, 0.7));
+  }
+}
+
+@keyframes avatarGlow {
+  0% { 
+    filter: drop-shadow(0 0 10px rgba(0, 255, 170, 0.5)) brightness(1);
+  }
+  100% { 
+    filter: drop-shadow(0 0 20px rgba(0, 255, 170, 0.8)) brightness(1.1);
+  }
+}
+
+@keyframes neuralPulse {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scaleY(1);
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 170, 0.3), transparent);
+  }
+  50% { 
+    opacity: 1; 
+    transform: scaleY(1.2);
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 170, 0.8), transparent);
+  }
+}
+
+/* Subtle Text Selection Styling */
+.crowe-research-station *::selection {
+  background: rgba(0, 255, 170, 0.3);
+  color: white;
+}
+
+.crowe-research-station *::-moz-selection {
+  background: rgba(0, 255, 170, 0.3);
+  color: white;
+}
+
+/* =================================
+   SMARTPHONE-SPECIFIC ENHANCEMENTS
+   ================================= */
+
+/* iPhone-style safe area handling */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .crowe-research-station {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* High-DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .station-avatar {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  .station-logo {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+}
+
+/* Dark mode compatibility */
+@media (prefers-color-scheme: dark) {
+  .crowe-research-station {
+    background: 
+      linear-gradient(145deg, #000000 0%, #111111 30%, #000000 100%),
+      radial-gradient(circle at 20% 50%, rgba(0, 255, 170, 0.05) 0%, transparent 60%);
+  }
+  
+  .station-header {
+    background: linear-gradient(180deg, 
+      rgba(0, 0, 0, 0.9) 0%, 
+      rgba(15, 15, 15, 0.85) 100%);
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .station-logo {
+    transform: scale(1.1);
+  }
+  
+  .status-item {
+    padding: 4px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+  
+  .chat-frame-container {
+    padding: 12px;
+  }
+}
+
+/* Ultra-wide smartphone support */
+@media (max-width: 430px) and (min-height: 800px) {
+  .crowe-research-station {
+    max-width: 100%;
+    margin: 8px;
+    border-radius: 28px;
+  }
+  
+  .station-content {
+    height: calc(100vh - 200px);
+    min-height: 500px;
+  }
+}
+
+/* Landscape mode for smartphones */
+@media (max-height: 500px) and (orientation: landscape) {
+  .crowe-research-station {
+    min-height: 400px;
+    max-width: none;
+    margin: 5px;
+  }
+  
+  .station-header {
+    min-height: 50px;
+    padding: 8px 15px;
+  }
+  
+  .station-content {
+    height: 320px;
+  }
+}
+
+/* Premium smartphone glow effect */
+@media (hover: hover) {
+  .crowe-research-station:hover {
+    box-shadow: 
+      0 0 0 1px rgba(0, 255, 170, 0.3),
+      0 15px 50px rgba(0, 0, 0, 0.9),
+      0 30px 90px rgba(0, 255, 170, 0.15),
+      inset 0 1px 2px rgba(255, 255, 255, 0.25);
+  }
+}
+
+/* ======= SIZE CONTROL SYSTEM ENHANCEMENTS ======= */
+
+/* Auto-hide functionality for UI collision prevention */
+#crowe-sidebar.sidebar-auto-hide .crowe-research-station {
+  transform: translateX(-85%) scale(0.8);
+  opacity: 0.6;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#crowe-sidebar.sidebar-auto-hide:hover .crowe-research-station {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Size transition animation */
+.crowe-research-station.size-transition {
+  transform: scale(0.95) perspective(1200px) rotateX(2deg);
+  opacity: 0.8;
+}
+
+/* Active size option highlighting */
+.size-option.active {
+  background: linear-gradient(135deg, #00ffff 0%, #0080ff 100%);
+  color: #000;
+  border: 1px solid rgba(0, 255, 255, 0.6);
+  box-shadow: 
+    0 0 15px rgba(0, 255, 255, 0.6),
+    0 2px 10px rgba(0, 128, 255, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  transform: scale(1.15);
+}
+
+.size-option.active::before {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  font-weight: bold;
+  color: #000;
+  z-index: 2;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced size control hover effects */
+.size-option:hover:not(.active) {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.3) 0%, rgba(0, 128, 255, 0.2) 100%);
+  box-shadow: 
+    0 0 10px rgba(0, 255, 255, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+/* Responsive auto-hide behavior for different screen sizes */
+@media (max-width: 1200px) {
+  #crowe-sidebar.sidebar-auto-hide .crowe-research-station {
+    transform: translateX(-90%) scale(0.7);
+  }
+}
+
+@media (max-width: 768px) {
+  #crowe-sidebar.sidebar-auto-hide .crowe-research-station {
+    transform: translateY(-85%) scale(0.6);
+  }
+  
+  .sidebar-size-controls {
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .size-option {
+    width: 24px;
+    height: 24px;
+    font-size: 8px;
+  }
+}
+
+/* Size control panel animations */
+.sidebar-size-controls {
+  animation: controlPanelSlide 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes controlPanelSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Size change feedback effect */
+.crowe-research-station.size-changing {
+  animation: sizeChangeFeedback 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes sizeChangeFeedback {
+  0% { transform: scale(1) perspective(1200px) rotateX(1deg); }
+  50% { 
+    transform: scale(0.95) perspective(1200px) rotateX(3deg);
+    filter: brightness(1.1);
+  }
+  100% { transform: scale(1) perspective(1200px) rotateX(1deg); }
+}
