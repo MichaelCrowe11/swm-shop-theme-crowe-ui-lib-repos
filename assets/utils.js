@@ -14,7 +14,8 @@ class DOMUtils {
    * @returns {string} Inner HTML of the selected section
    */
   static getSectionInnerHTML(html, selector = '.shopify-section') {
-    return new DOMParser().parseFromString(html, 'text/html').querySelector(selector).innerHTML;
+    const element = new DOMParser().parseFromString(html, 'text/html').querySelector(selector);
+    return element ? element.innerHTML : '';
   }
 
   /**
