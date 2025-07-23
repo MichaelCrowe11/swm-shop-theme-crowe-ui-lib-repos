@@ -194,7 +194,7 @@
   }
 }
 
-.crowe-sidebar.sidebar-open {
+.crowe-sidebar.sidebar-open-desktop {
   transform: translateX(0);
 }
 
