@@ -7,33 +7,83 @@
   box-sizing: border-box;
 }
 
-/* Main Research Station */
+/* Main Research Station - High-Tech Smartphone Design */
 .crowe-research-station {
   --neural-hue: 170;
-  --neural-saturation: 70%;
-  --neural-lightness: 20%;
-  --neural-alpha: 0.4;
+  --neural-saturation: 100%;
+  --neural-lightness: 50%;
+  --neural-alpha: 0.8;
   
-  background: linear-gradient(145deg, rgba(26, 26, 26, 0.85) 0%, rgba(13, 13, 13, 0.9) 100%);
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  border-radius: 24px;
+  /* Smartphone-like gradient background */
+  background: 
+    linear-gradient(145deg, #000000 0%, #1a1a1a 30%, #000000 100%),
+    radial-gradient(circle at 20% 50%, rgba(0, 255, 170, 0.04) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 60%);
+  
+  /* Enhanced backdrop blur for modern glass effect */
+  backdrop-filter: blur(30px) saturate(150%) brightness(1.1);
+  -webkit-backdrop-filter: blur(30px) saturate(150%) brightness(1.1);
+  
+  /* Smartphone-style rounded corners */
+  border-radius: 32px;
+  
+  /* Premium device shadow with depth */
   box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.8),
-    0 8px 32px hsla(var(--neural-hue), var(--neural-saturation), var(--neural-lightness), calc(var(--neural-alpha) * 0.1)),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 hsla(var(--neural-hue), var(--neural-saturation), var(--neural-lightness), calc(var(--neural-alpha) * 0.05));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  margin: 10px 0;
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 8px 32px rgba(0, 0, 0, 0.9),
+    0 20px 60px rgba(0, 0, 0, 0.7),
+    0 4px 16px hsla(var(--neural-hue), var(--neural-saturation), var(--neural-lightness), 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.8);
+  
+  /* Subtle border for premium feel */
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  
+  /* Smartphone dimensions and spacing */
+  margin: 15px auto;
   overflow: hidden;
-  min-height: 650px;
+  min-height: 680px;
+  max-width: 385px;
   width: 100%;
-  max-width: none;
+  
+  /* 3D perspective for premium device feel */
   position: relative;
-  transition: all 0.5s ease;
+  transform: perspective(1200px) rotateX(1deg);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Animated Background Particles */
+/* Smartphone screen reflection effect */
+.crowe-research-station::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 25%,
+    transparent 75%,
+    rgba(0, 255, 170, 0.06) 100%
+  );
+  border-radius: 30px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Premium hover effect */
+.crowe-research-station:hover {
+  transform: perspective(1200px) rotateX(0deg) translateY(-3px);
+  box-shadow: 
+    0 0 0 1px rgba(0, 255, 170, 0.25),
+    0 12px 40px rgba(0, 0, 0, 0.9),
+    0 25px 80px rgba(0, 255, 170, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Smartphone screen reflection effect */
 .crowe-research-station::before {
   content: '';
   position: absolute;
@@ -302,10 +352,11 @@
   border-radius: 12px;
   position: relative;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  display: block;
   height: 100%;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .chat-frame-container {
@@ -314,27 +365,64 @@
   position: relative;
   background: linear-gradient(135deg, rgba(0, 255, 170, 0.02) 0%, transparent 100%);
   isolation: isolate;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
 }
 
-.chat-frame-container::before {
-  content: '';
+/* Removed gradient overlay that interferes with chat */
+
+.chat-frame-container zapier-interfaces-chatbot-embed {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  border-radius: 12px;
+  display: block !important;
+  contain: layout style paint;
+  transform: translateZ(0);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 30px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
-  z-index: 1;
-  pointer-events: none;
+  bottom: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
 }
 
-.chat-frame-container zapier-interfaces-chatbot-embed {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  display: block;
-  contain: layout style paint;
-  transform: translateZ(0);
+/* Override any Zapier default styles */
+.chat-frame-container zapier-interfaces-chatbot-embed * {
+  box-sizing: border-box !important;
+}
+
+/* Force iframe inside Zapier embed to fit properly */
+.chat-frame-container zapier-interfaces-chatbot-embed iframe,
+.chat-frame-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Remove any default spacing from Zapier shadow DOM */
+.chat-frame-container zapier-interfaces-chatbot-embed::part(container) {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .chat-frame-container iframe {
