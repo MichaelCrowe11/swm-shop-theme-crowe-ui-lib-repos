@@ -1,12 +1,18 @@
 /* ===== QUANTUM THEME ENHANCEMENTS - JAVASCRIPT ===== */
 
+// Cache viewport width
+let cachedViewportWidth = window.innerWidth;
+window.addEventListener('resize', () => {
+  cachedViewportWidth = window.innerWidth;
+});
+
 // Quantum Neural Network Background
 class QuantumNeuralNetwork {
   constructor() {
     this.container = null;
     this.nodes = [];
     this.connections = [];
-    this.maxNodes = window.innerWidth > 768 ? 20 : 10;
+    this.maxNodes = cachedViewportWidth > 768 ? 20 : 10;
     this.init();
   }
   
