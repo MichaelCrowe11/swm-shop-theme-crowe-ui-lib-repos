@@ -67,6 +67,8 @@ export interface NavItem {
   icon: string // Icon name from lucide-react
   badge?: number
   hasVoice?: boolean
+  neuralType?: 'growth' | 'commerce' | 'sensory' | 'knowledge' | 'intelligence' | 'transaction'
+  priority?: number
 }
 
 // CTA types
