@@ -36,16 +36,66 @@ class CroweResearchStation {
   }
 
   setupStation() {
-    this.initializeKnobs();
-    this.initializeModeButtons();
-    this.initializeToggles();
-    this.initializeVUMeter();
-    this.initializeNeuralActivity();
-    this.createFloatingElements();
-    this.hideLoadingOverlay();
-    this.isInitialized = true;
+    try {
+      console.log('🚀 Initializing Crowe Logic Research Station...');
+      
+      // Initialize components with error handling
+      this.safeInitialize('knobs', () => this.initializeKnobs());
+      this.safeInitialize('mode buttons', () => this.initializeModeButtons());
+      this.safeInitialize('toggles', () => this.initializeToggles());
+      this.safeInitialize('VU meter', () => this.initializeVUMeter());
+      this.safeInitialize('neural activity', () => this.initializeNeuralActivity());
+      this.safeInitialize('floating elements', () => this.createFloatingElements());
+      
+      // Add performance monitoring
+      this.initializePerformanceMonitoring();
+      
+      // Add accessibility enhancements
+      this.enhanceAccessibility();
+      
+      this.hideLoadingOverlay();
+      this.isInitialized = true;
 
-    console.log('🧠 Crowe Logic Research Station Initialized');
+      console.log('✅ Crowe Logic Research Station Initialized Successfully');
+      
+      // Dispatch custom event for external listeners
+      window.dispatchEvent(new CustomEvent('croweStationReady', {
+        detail: { station: this }
+      }));
+      
+    } catch (error) {
+      console.error('❌ Failed to initialize Research Station:', error);
+      this.handleInitializationError(error);
+    }
+  }
+  
+  safeInitialize(componentName, initFunction) {
+    try {
+      initFunction();
+      console.log(`✓ ${componentName} initialized`);
+    } catch (error) {
+      console.warn(`⚠️ Failed to initialize ${componentName}:`, error);
+      // Continue with other components
+    }
+  }
+  
+  handleInitializationError(error) {
+    // Show user-friendly error message
+    const station = document.querySelector('.crowe-research-station');
+    if (station) {
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'initialization-error';
+      errorDiv.innerHTML = `
+        <div style="padding: 20px; text-align: center; color: rgba(255, 100, 100, 0.8);">
+          <h3>⚠️ Initialization Issue</h3>
+          <p>Some features may not work properly. Try refreshing the page.</p>
+          <button onclick="location.reload()" style="padding: 8px 16px; background: rgba(255, 100, 100, 0.2); border: 1px solid rgba(255, 100, 100, 0.4); color: white; border-radius: 4px; cursor: pointer;">
+            Refresh Page
+          </button>
+        </div>
+      `;
+      station.appendChild(errorDiv);
+    }
   }
 
   createFloatingElements() {
@@ -463,13 +513,59 @@ class CroweResearchStation {
   }
 
   hideLoadingOverlay() {
-    // Hide loading overlay after initialization
-    setTimeout(() => {
+    // Hide loading overlay after initialization with enhanced error handling
+    const hideWithDelay = () => {
       const loadingOverlay = document.querySelector('.loading-overlay');
       if (loadingOverlay) {
         loadingOverlay.classList.add('hidden');
+        
+        // Remove from DOM after transition
+        setTimeout(() => {
+          if (loadingOverlay.parentNode) {
+            loadingOverlay.style.display = 'none';
+          }
+        }, 500);
       }
-    }, 1500);
+    };
+    
+    // Check if chat interface is working before hiding
+    const chatWorking = this.validateChatInterface();
+    const delay = chatWorking ? 1500 : 8000; // Longer delay if chat issues
+    
+    setTimeout(hideWithDelay, delay);
+  }
+  
+  validateChatInterface() {
+    try {
+      const zapierChatbot = document.getElementById('zapierChatbot');
+      const fallbackInterface = document.getElementById('chatFallback');
+      
+      // Check if Zapier embed is present and not hidden
+      if (zapierChatbot && zapierChatbot.style.display !== 'none') {
+        // Check for shadow DOM or iframe
+        const hasValidContent = zapierChatbot.shadowRoot || 
+                               zapierChatbot.querySelector('iframe') ||
+                               zapierChatbot.innerHTML.trim().length > 50;
+        
+        if (hasValidContent) {
+          console.log('✅ Chat interface validation passed');
+          return true;
+        }
+      }
+      
+      // Check if fallback is active
+      if (fallbackInterface && fallbackInterface.classList.contains('active')) {
+        console.log('⚠️ Fallback interface is active');
+        return true;
+      }
+      
+      console.log('❌ Chat interface validation failed');
+      return false;
+      
+    } catch (error) {
+      console.error('Chat validation error:', error);
+      return false;
+    }
   }
 
   // Public API methods
@@ -514,18 +610,159 @@ class CroweResearchStation {
   getProcessingOptions() {
     return { ...this.processingOptions };
   }
+  
+  initializePerformanceMonitoring() {
+    // Monitor performance and adjust accordingly
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        this.optimizeForPerformance();
+      });
+    } else {
+      setTimeout(() => this.optimizeForPerformance(), 2000);
+    }
+  }
+  
+  optimizeForPerformance() {
+    const isMobile = window.innerWidth <= 768;
+    const isLowPerformance = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+    
+    if (isMobile || isLowPerformance) {
+      // Reduce animation frequency
+      this.animationInterval = Math.max(200, this.animationInterval || 100 * 2);
+      
+      // Disable some visual effects
+      const station = document.querySelector('.crowe-research-station');
+      if (station) {
+        station.classList.add('performance-mode');
+      }
+      
+      console.log('📊 Performance mode activated');
+    }
+  }
+  
+  enhanceAccessibility() {
+    // Add ARIA labels and keyboard navigation
+    const station = document.querySelector('.crowe-research-station');
+    if (station) {
+      station.setAttribute('role', 'region');
+      station.setAttribute('aria-label', 'Crowe Logic AI Research Console');
+    }
+    
+    // Enhance knob accessibility
+    const knobs = document.querySelectorAll('.knob-container');
+    knobs.forEach((knob, index) => {
+      const paramName = knob.dataset.param;
+      if (paramName) {
+        knob.setAttribute('aria-label', `${paramName} control knob`);
+        knob.setAttribute('aria-describedby', `${paramName}-description`);
+      }
+    });
+    
+    // Enhance mode buttons
+    const modeButtons = document.querySelectorAll('.mode-button');
+    modeButtons.forEach(button => {
+      const mode = button.dataset.mode || button.textContent;
+      button.setAttribute('aria-label', `Switch to ${mode} mode`);
+    });
+  }
+  
+  // Enhanced error handling for user interactions
+  handleUserInteractionError(error, context) {
+    console.warn(`User interaction error in ${context}:`, error);
+    
+    // Provide user feedback
+    const feedbackElement = document.createElement('div');
+    feedbackElement.className = 'user-feedback';
+    feedbackElement.innerHTML = `
+      <div style="position: fixed; top: 20px; right: 20px; background: rgba(255, 100, 100, 0.9); color: white; padding: 12px; border-radius: 8px; z-index: 1000; animation: fadeInOut 3s ease-in-out;">
+        ⚠️ ${context} temporarily unavailable
+      </div>
+    `;
+    
+    document.body.appendChild(feedbackElement);
+    setTimeout(() => {
+      if (feedbackElement.parentNode) {
+        feedbackElement.parentNode.removeChild(feedbackElement);
+      }
+    }, 3000);
+  }
+}
+
+// CSS for user feedback animation
+const feedbackStyles = document.createElement('style');
+feedbackStyles.textContent = `
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-20px); }
+    20% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+  }
+  
+  .performance-mode .neural-node,
+  .performance-mode .data-line {
+    animation-duration: 4s !important;
+  }
+  
+  .performance-mode .vu-bar {
+    transition: height 0.2s ease !important;
+  }
+`;
+document.head.appendChild(feedbackStyles);
+
+// Enhanced initialization with retry logic
+let initializationAttempts = 0;
+const MAX_INIT_ATTEMPTS = 3;
+let croweStation = null;
+
+function initializeWithRetry() {
+  const stationElement = document.querySelector('.crowe-research-station');
+  
+  if (stationElement && !croweStation) {
+    try {
+      croweStation = new CroweResearchStation();
+      
+      // Expose to global scope for external access
+      window.CroweResearchStation = croweStation;
+      
+      console.log('🎉 Research Station ready for use');
+      
+    } catch (error) {
+      initializationAttempts++;
+      console.error(`Initialization attempt ${initializationAttempts} failed:`, error);
+      
+      if (initializationAttempts < MAX_INIT_ATTEMPTS) {
+        console.log(`Retrying in ${initializationAttempts * 1000}ms...`);
+        setTimeout(initializeWithRetry, initializationAttempts * 1000);
+      } else {
+        console.error('❌ Max initialization attempts reached. Station may not function properly.');
+      }
+    }
+  } else if (!stationElement) {
+    console.log('Research Station element not found on this page');
+  }
 }
 
 // Auto-initialize when DOM is ready
-let croweStation = null;
+document.addEventListener('DOMContentLoaded', initializeWithRetry);
 
-document.addEventListener('DOMContentLoaded', () => {
-  const stationElement = document.querySelector('.crowe-research-station');
-  if (stationElement && !croweStation) {
-    croweStation = new CroweResearchStation();
-    
-    // Expose to global scope for external access
-    window.CroweResearchStation = croweStation;
+// Fallback initialization for cases where DOMContentLoaded already fired
+if (document.readyState === 'loading') {
+  // DOMContentLoaded has not fired yet
+} else {
+  // DOMContentLoaded has already fired
+  setTimeout(initializeWithRetry, 100);
+}
+
+// Handle page visibility changes for performance
+document.addEventListener('visibilitychange', () => {
+  if (croweStation) {
+    if (document.hidden) {
+      // Pause animations when page is hidden
+      croweStation.pauseAnimations?.();
+    } else {
+      // Resume animations when page is visible
+      croweStation.resumeAnimations?.();
+    }
   }
 });
 
