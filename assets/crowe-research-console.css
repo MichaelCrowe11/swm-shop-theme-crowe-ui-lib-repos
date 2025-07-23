@@ -28,17 +28,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 70px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .station-title {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex: 1;
+  min-width: 200px;
 }
 
 .station-logo {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   background: radial-gradient(circle, rgba(0, 255, 170, 0.8) 0%, rgba(0, 255, 170, 0.2) 100%);
   border-radius: 50%;
   display: flex;
@@ -47,18 +52,85 @@
   box-shadow: 0 0 20px rgba(0, 255, 170, 0.5);
   animation: pulse 2s ease-in-out infinite;
   overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
 }
 
 .station-avatar {
-  width: 100%;
-  height: 100%;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(0, 255, 170, 0.3);
+  background: #1a1a1a;
 }
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 0.8; }
   50% { transform: scale(1.05); opacity: 1; }
+}
+
+/* Additional avatar styling for better rendering */
+.station-avatar {
+  max-width: 36px;
+  max-height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.station-avatar:loaded,
+.station-avatar.loaded {
+  opacity: 1;
+}
+
+/* Loading state for avatar */
+.station-logo::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 255, 170, 0.3);
+  border-top: 2px solid rgba(0, 255, 170, 0.8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 1s linear infinite;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.station-logo:has(.station-avatar.loaded)::after,
+.station-logo.loaded::after {
+  opacity: 0;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Fallback for missing avatar */
+.station-logo:empty::before {
+  content: 'AI';
+  color: rgba(0, 255, 170, 0.8);
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .station-name {
@@ -518,6 +590,37 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+  .station-header {
+    padding: 12px 15px;
+    min-height: 60px;
+  }
+
+  .station-logo {
+    width: 35px;
+    height: 35px;
+  }
+
+  .station-avatar {
+    width: 31px;
+    height: 31px;
+    min-width: 31px;
+    min-height: 31px;
+    max-width: 31px;
+    max-height: 31px;
+  }
+
+  .station-name {
+    font-size: 14px;
+  }
+
+  .status-indicators {
+    gap: 10px;
+  }
+
+  .status-item {
+    font-size: 9px;
+  }
+
   .station-content {
     grid-template-columns: 1fr;
     grid-template-rows: 400px auto;

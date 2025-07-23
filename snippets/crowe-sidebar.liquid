@@ -37,8 +37,13 @@
     <!-- Station Header -->
     <div class="station-header">
       <div class="station-title">
-        <div class="station-logo">
-          <img src="{{ 'crowe-avatar.png' | asset_url }}" alt="Crowe Logic AI" class="station-avatar">
+        <div class="station-logo" id="station-logo-{{ section.id | default: 'default' }}">
+          <img src="{{ 'crowe-avatar.png' | asset_url }}" 
+               alt="Crowe Logic AI" 
+               class="station-avatar"
+               onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded');"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'color: rgba(0, 255, 170, 0.8); font-size: 18px; font-weight: bold; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;\'>AI</div>';"
+               loading="lazy">
         </div>
         <h2 class="station-name">Crowe Logic AI Research Station</h2>
       </div>
