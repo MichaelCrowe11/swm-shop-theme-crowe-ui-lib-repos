@@ -1,0 +1,344 @@
+{{ 'section-sidebar.css' | asset_url | stylesheet_tag }}
+{{ 'quantum-enhancements-phase1.css' | asset_url | stylesheet_tag }}
+{{ 'quantum-enhancements-phase2.css' | asset_url | stylesheet_tag }}
+{{ 'quantum-enhancements-phase3.css' | asset_url | stylesheet_tag }}
+{{ 'quantum-enhancements-phase4.css' | asset_url | stylesheet_tag }}
+{{ 'quantum-enhancements-phase5.css' | asset_url | stylesheet_tag }}
+{{ 'quantum-enhancements-phase6.css' | asset_url | stylesheet_tag }}
+{{ 'quantum-enhancements-phase7.css' | asset_url | stylesheet_tag }}
+{{ 'crowe-research-console.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'quantum-enhancements.js' | asset_url }}" defer></script>
+<script src="{{ 'quantum-enhancements-phase5.js' | asset_url }}" defer></script>
+<script src="{{ 'quantum-enhancements-phase6.js' | asset_url }}" defer></script>
+<script src="{{ 'quantum-enhancements-phase7.js' | asset_url }}" defer></script>
+
+<nav class="crowe-sidebar crowe-research-station" id="crowe-sidebar">
+  <div class="sidebar-header">
+    <!-- Size Controls -->
+    <div class="sidebar-size-controls">
+      <button class="size-option" data-size="mini" aria-label="Extra small size">XS</button>
+      <button class="size-option active" data-size="compact" aria-label="Small size">S</button>
+      <button class="size-option" data-size="standard" aria-label="Medium size">M</button>
+      <button class="size-option" data-size="large" aria-label="Large size">L</button>
+      <button class="size-option" data-size="full" aria-label="Extra large size">XL</button>
+    </div>
+    
+    <div class="sidebar-logo">
+      <img src="{{ 'southwest-mushrooms-logo.PNG' | asset_url }}" alt="Southwest Mushrooms" class="main-logo">
+    </div>
+    <h1 class="sidebar-brand">
+      <a href="{{ routes.root_url }}" class="sidebar-brand-link">
+        <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="crowe-logo white-logo-filter">
+        <span class="brand-text">Crowe Logic™</span>
+      </a>
+    </h1>
+    <button class="sidebar-toggle" aria-label="Close menu">
+      {% render 'icon-close' %}
+    </button>
+  </div>
+
+  <!-- Crowe Avatar Section -->
+  <div class="crowe-avatar-section quantum-fade-in">
+    <div class="avatar-container">
+      <img src="{{ 'crowe-avatar.png' | asset_url }}" alt="Crowe AI" class="crowe-avatar">
+      <div class="avatar-glow"></div>
+    </div>
+    <h2 class="avatar-title">Crowe Logic AI</h2>
+    <p class="avatar-status">Research Active</p>
+  </div>
+
+  <!-- Research Controls -->
+  <div class="research-controls quantum-scale-in">
+    <button class="control-button primary quantum-interactive-glass" id="croweVoiceBtn">
+      <span class="button-icon">🎤</span>
+      <span class="button-text">Voice</span>
+    </button>
+    
+    <button class="control-button secondary quantum-interactive-glass" id="croweChatBtn">
+      <span class="button-icon">💬</span>
+      <span class="button-text">Chat</span>
+    </button>
+    
+    <button class="control-button accent quantum-interactive-glass" id="croweResearchBtn">
+      <span class="button-icon">🔬</span>
+      <span class="button-text">Research</span>
+    </button>
+  </div>
+
+  <ul class="sidebar-nav quantum-fade-in">
+    <li class="nav-item quantum-scale-in">
+      <a href="{{ routes.root_url }}" class="nav-link quantum-interactive-glass">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+    </li>
+    
+    <li class="nav-item quantum-scale-in">
+      <a href="{{ routes.collections_url }}" class="nav-link quantum-interactive-glass">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2"/>
+            <polyline points="3.27,6.96 12,12.01 20.73,6.96" stroke="currentColor" stroke-width="2"/>
+            <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </span>
+        <span class="nav-text">Products</span>
+        <span class="cart-badge">{{ collections.all.products_count }}</span>
+      </a>
+    </li>
+    
+    <li class="nav-item quantum-scale-in">
+      <a href="/pages/audiobook" class="nav-link quantum-interactive-glass">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="currentColor" stroke-width="2"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor" stroke-width="2"/>
+            <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+            <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </span>
+        <span class="nav-text">Audiobook</span>
+      </a>
+    </li>
+    
+    <li class="nav-item quantum-scale-in">
+      <a href="https://research-assistant-ce196c.zapier.app" class="nav-link quantum-interactive-glass" target="_blank" rel="noopener noreferrer">
+        <span class="nav-icon">
+          <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="nav-avatar white-logo-filter">
+        </span>
+        <span class="nav-text">Crowe Logic AI</span>
+        <span class="external-link-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" stroke-width="2"/>
+            <polyline points="15,3 21,3 21,9" stroke="currentColor" stroke-width="2"/>
+            <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </span>
+      </a>
+    </li>
+    
+    <li class="nav-item quantum-scale-in">
+      <a href="/pages/about" class="nav-link quantum-interactive-glass">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="17" r="1" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="nav-text">About</span>
+      </a>
+    </li>
+    
+    <li class="nav-item quantum-scale-in">
+      <a href="/cart" class="nav-link quantum-interactive-glass">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="9" cy="21" r="1" stroke="currentColor" stroke-width="2"/>
+            <circle cx="20" cy="21" r="1" stroke="currentColor" stroke-width="2"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </span>
+        <span class="nav-text">Cart</span>
+        <span class="cart-badge">{{ cart.item_count }}</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="sidebar-footer">
+    <!-- Crowe Logic AI Chat Section -->
+    <div class="sidebar-chat-section" role="region" aria-label="Crowe Logic AI Chat">
+      <div class="chat-header quantum-interactive-glass" id="chat-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="chat-content">
+        <img src="{{ 'crowelogo.png' | asset_url }}" alt="Crowe Logic AI" class="chat-avatar white-logo-filter">
+        <div class="chat-info">
+          <h3 class="chat-title">Crowe Logic AI</h3>
+          <p class="chat-subtitle">Research Assistant</p>
+        </div>
+        <div class="chat-expand-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <!-- Zapier Chat Widget -->
+      <div class="chat-embed-container quantum-dissolve" id="chat-content">
+        <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+        <zapier-interfaces-chatbot-embed chatbot-id='cmbhp4x71002fqpzzx1cclqec'></zapier-interfaces-chatbot-embed>
+        
+        <!-- Fallback iframe if web component fails -->
+        <noscript>
+          <iframe 
+            src="https://research-assistant-ce196c.zapier.app" 
+            width="100%" 
+            height="300"
+            frameborder="0"
+            allow="microphone; camera; clipboard-write"
+            title="Crowe Logic AI Research Assistant"
+            style="border-radius: 12px; background: rgba(255, 255, 255, 0.05);">
+          </iframe>
+        </noscript>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Sidebar Toggle -->
+<button class="mobile-sidebar-toggle quantum-clickable quantum-glow-hover" id="mobile-sidebar-toggle" aria-label="Open navigation menu">
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+</button>
+
+<!-- Sidebar Overlay for Mobile -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- Combined JavaScript for All Features -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Sidebar elements
+  const sidebar = document.getElementById('crowe-sidebar');
+  const mobileToggle = document.getElementById('mobile-sidebar-toggle');
+  const sidebarToggle = document.querySelector('.sidebar-toggle');
+  const overlay = document.getElementById('sidebar-overlay');
+  
+  // Size controls
+  const sizeOptions = document.querySelectorAll('.size-option');
+  
+  // Chat elements
+  const chatToggle = document.getElementById('chat-toggle');
+  const chatContent = document.getElementById('chat-content');
+  const expandIcon = chatToggle?.querySelector('.chat-expand-icon svg path');
+  
+  // Control buttons
+  const voiceBtn = document.getElementById('croweVoiceBtn');
+  const chatBtn = document.getElementById('croweChatBtn');
+  const researchBtn = document.getElementById('croweResearchBtn');
+  
+  // Size control functionality
+  if (sizeOptions.length > 0) {
+    sizeOptions.forEach(option => {
+      option.addEventListener('click', function() {
+        const size = this.dataset.size;
+        
+        sizeOptions.forEach(opt => opt.classList.remove('active'));
+        this.classList.add('active');
+        
+        sidebar.classList.remove('size-mini', 'size-compact', 'size-standard', 'size-large', 'size-full');
+        sidebar.classList.add(`size-${size}`);
+        
+        localStorage.setItem('crowe-sidebar-size', size);
+        
+        // Trigger resize event for quantum effects
+        window.dispatchEvent(new Event('resize'));
+      });
+    });
+    
+    // Load saved size
+    const savedSize = localStorage.getItem('crowe-sidebar-size');
+    if (savedSize) {
+      const savedOption = document.querySelector(`[data-size="${savedSize}"]`);
+      if (savedOption) savedOption.click();
+    }
+  }
+  
+  // Mobile functionality
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+  
+  function toggleSidebar() {
+    sidebar.classList.toggle('sidebar-open');
+    overlay.classList.toggle('overlay-active');
+    document.body.classList.toggle('sidebar-is-open');
+  }
+  
+  function closeSidebar() {
+    sidebar.classList.remove('sidebar-open');
+    overlay.classList.remove('overlay-active');
+    document.body.classList.remove('sidebar-is-open');
+  }
+  
+  if (mobileToggle) {
+    mobileToggle.addEventListener('click', toggleSidebar);
+  }
+  
+  if (sidebarToggle) {
+    sidebarToggle.addEventListener('click', closeSidebar);
+  }
+  
+  if (overlay) {
+    overlay.addEventListener('click', closeSidebar);
+  }
+  
+  // Chat toggle functionality
+  if (chatToggle && chatContent) {
+    chatToggle.addEventListener('click', function() {
+      const isExpanded = chatContent.classList.contains('chat-expanded');
+      
+      if (isExpanded) {
+        chatContent.classList.remove('chat-expanded');
+        chatToggle.setAttribute('aria-expanded', 'false');
+        if (expandIcon) expandIcon.setAttribute('d', 'M6 9L12 15L18 9');
+      } else {
+        chatContent.classList.add('chat-expanded');
+        chatToggle.setAttribute('aria-expanded', 'true');
+        if (expandIcon) expandIcon.setAttribute('d', 'M18 15L12 9L6 15');
+      }
+    });
+    
+    chatToggle.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        chatToggle.click();
+      }
+    });
+  }
+  
+  // Control button handlers
+  if (voiceBtn) {
+    voiceBtn.addEventListener('click', function() {
+      console.log('🎤 Voice control activated');
+      // Add voice functionality here
+    });
+  }
+  
+  if (chatBtn) {
+    chatBtn.addEventListener('click', function() {
+      if (chatToggle) chatToggle.click();
+    });
+  }
+  
+  if (researchBtn) {
+    researchBtn.addEventListener('click', function() {
+      window.open('https://research-assistant-ce196c.zapier.app', '_blank');
+    });
+  }
+  
+  // Escape key handler
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeSidebar();
+    }
+  });
+  
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    if (!isMobile()) {
+      closeSidebar();
+    }
+  });
+  
+  // Initialize mobile state
+  if (isMobile()) {
+    sidebar.classList.add('mobile-sidebar');
+  }
+  
+  console.log('🚀 Crowe Research Station Quantum loaded');
+});
+</script>
