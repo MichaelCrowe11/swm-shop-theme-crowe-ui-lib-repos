@@ -65,28 +65,32 @@
 }
 
 .crowe-ai-avatar {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(212, 175, 55, 0.5);
+  border: 4px solid rgba(244, 229, 92, 0.6);
   box-shadow: 
-    0 0 30px rgba(212, 175, 55, 0.4),
-    inset 0 0 20px rgba(255, 255, 255, 0.1);
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(93, 173, 226, 0.1));
-  backdrop-filter: blur(10px);
+    0 0 40px rgba(244, 229, 92, 0.6),
+    0 0 80px rgba(212, 175, 55, 0.3),
+    inset 0 0 30px rgba(139, 69, 19, 0.2);
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.2), rgba(85, 107, 47, 0.2));
+  backdrop-filter: blur(15px);
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 5;
+  filter: brightness(1.1) contrast(1.2);
 }
 
 .crowe-ai-avatar:hover {
-  transform: scale(1.1) rotate(5deg);
-  border-color: rgba(212, 175, 55, 0.8);
+  transform: scale(1.15) rotate(8deg);
+  border-color: rgba(244, 229, 92, 0.9);
   box-shadow: 
-    0 0 50px rgba(212, 175, 55, 0.6),
-    inset 0 0 30px rgba(255, 255, 255, 0.2);
+    0 0 60px rgba(244, 229, 92, 0.8),
+    0 0 120px rgba(212, 175, 55, 0.5),
+    inset 0 0 40px rgba(255, 255, 255, 0.1);
+  filter: brightness(1.3) contrast(1.4);
 }
 
 /* Hologram overlay effect */
@@ -229,30 +233,40 @@
 }
 
 /* =====================================================
-   ENHANCED TYPOGRAPHY
+   ENHANCED TYPOGRAPHY WITH MYCELIUM THEME
    ===================================================== */
 
 .quantum-title-ultimate {
   grid-area: title;
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(4rem, 12vw, 8rem);
   font-weight: 900;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
   line-height: 0.9;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   position: relative;
   background: linear-gradient(45deg, 
-    #D4AF37 0%,
-    #FFD700 25%,
-    #FFF5DC 50%,
-    #FFD700 75%,
-    #D4AF37 100%);
-  background-size: 400% 400%;
+    #FFD700 0%,
+    #FFF8DC 20%,
+    #FFFFFF 40%,
+    #F4E55C 60%,
+    #D4AF37 80%,
+    #B8860B 100%);
+  background-size: 600% 600%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: quantum-ultimate-shimmer 4s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3));
+  animation: mycelium-title-shimmer 4s ease-in-out infinite;
+  filter: 
+    drop-shadow(0 0 60px rgba(255, 215, 0, 0.8)) 
+    drop-shadow(0 0 120px rgba(244, 229, 92, 0.6))
+    drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
   text-align: center;
+  text-shadow: 
+    0 0 30px rgba(255, 215, 0, 0.9),
+    0 0 60px rgba(244, 229, 92, 0.7),
+    0 0 90px rgba(255, 255, 255, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.8);
 }
 
 @media (min-width: 1024px) {
@@ -263,13 +277,22 @@
 
 .quantum-subtitle-ultimate {
   grid-area: subtitle;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: #FFF8DC;
   margin-bottom: 2rem;
-  font-weight: 300;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-  animation: quantum-text-glow 2s ease-in-out infinite alternate;
+  font-weight: 500;
+  font-style: italic;
+  text-shadow: 
+    0 0 40px rgba(255, 248, 220, 0.9),
+    0 0 80px rgba(244, 229, 92, 0.6),
+    0 0 120px rgba(212, 175, 55, 0.4),
+    0 3px 6px rgba(0, 0, 0, 0.9);
+  animation: mycelium-subtitle-glow 4s ease-in-out infinite alternate;
   text-align: center;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  filter: drop-shadow(0 0 40px rgba(255, 248, 220, 0.5));
 }
 
 @media (min-width: 1024px) {
@@ -443,6 +466,68 @@
 /* =====================================================
    ENHANCED ANIMATIONS
    ===================================================== */
+
+@keyframes mycelium-title-shimmer {
+  0% { 
+    background-position: 0% 50%;
+    filter: 
+      drop-shadow(0 0 60px rgba(255, 215, 0, 0.8)) 
+      drop-shadow(0 0 120px rgba(244, 229, 92, 0.6))
+      drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9))
+      hue-rotate(0deg);
+  }
+  25% { 
+    background-position: 100% 25%;
+    filter: 
+      drop-shadow(0 0 80px rgba(255, 248, 220, 0.9)) 
+      drop-shadow(0 0 140px rgba(255, 215, 0, 0.7))
+      drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9))
+      hue-rotate(10deg);
+  }
+  50% { 
+    background-position: 50% 100%;
+    filter: 
+      drop-shadow(0 0 100px rgba(255, 255, 255, 0.8)) 
+      drop-shadow(0 0 160px rgba(244, 229, 92, 0.8))
+      drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9))
+      hue-rotate(20deg);
+  }
+  75% { 
+    background-position: 0% 75%;
+    filter: 
+      drop-shadow(0 0 80px rgba(184, 134, 11, 0.7)) 
+      drop-shadow(0 0 140px rgba(212, 175, 55, 0.6))
+      drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9))
+      hue-rotate(10deg);
+  }
+  100% { 
+    background-position: 0% 50%;
+    filter: 
+      drop-shadow(0 0 60px rgba(255, 215, 0, 0.8)) 
+      drop-shadow(0 0 120px rgba(244, 229, 92, 0.6))
+      drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9))
+      hue-rotate(0deg);
+  }
+}
+
+@keyframes mycelium-subtitle-glow {
+  0% { 
+    text-shadow: 
+      0 0 40px rgba(255, 248, 220, 0.9),
+      0 0 80px rgba(244, 229, 92, 0.6),
+      0 0 120px rgba(212, 175, 55, 0.4),
+      0 3px 6px rgba(0, 0, 0, 0.9);
+    filter: drop-shadow(0 0 40px rgba(255, 248, 220, 0.5));
+  }
+  100% { 
+    text-shadow: 
+      0 0 60px rgba(255, 248, 220, 1.0),
+      0 0 100px rgba(244, 229, 92, 0.8),
+      0 0 140px rgba(212, 175, 55, 0.6),
+      0 3px 6px rgba(0, 0, 0, 0.9);
+    filter: drop-shadow(0 0 60px rgba(255, 248, 220, 0.7));
+  }
+}
 
 @keyframes quantum-ultimate-shimmer {
   0%, 100% { 
