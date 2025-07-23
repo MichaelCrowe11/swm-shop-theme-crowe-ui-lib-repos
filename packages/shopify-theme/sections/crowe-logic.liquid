@@ -17,7 +17,7 @@
             <div class="chat-message chat-message--assistant">
               <div class="message-content">
                 <div class="message-avatar">
-                  <img src="{{ 'CroweLogic_Avatar_Exact 2.svg' | asset_url }}" alt="Crowe Logic" class="avatar-image" width="40" height="40">
+                  <img src="{{ 'crowe-avatar.png' | asset_url }}" alt="Crowe Logic" class="avatar-image" width="40" height="40">
                 </div>
                 <div class="message-body">
                   <p>Welcome to Crowe Logic™! I'm your myco-intelligent assistant, here to help you with mushroom cultivation guidance, product recommendations, and growing techniques.</p>
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
     messageDiv.className = `chat-message chat-message--${sender}`;
     
     const avatar = sender === 'assistant' 
-      ? '<img src="{{ \'CroweLogic_Avatar_Exact 2.svg\' | asset_url }}" alt="Crowe Logic" class="avatar-image">'
+      ? '<img src="{{ "crowe-avatar.png" | asset_url }}" alt="Crowe Logic" class="avatar-image">'
       : '<span class="avatar-icon">👤</span>';
     
     messageDiv.innerHTML = `
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
     typingDiv.innerHTML = `
       <div class="message-content">
         <div class="message-avatar">
-          <img src="{{ 'CroweLogic_Avatar_Exact 2.svg' | asset_url }}" alt="Crowe Logic" class="avatar-image">
+          <img src="{{ 'crowe-avatar.png' | asset_url }}" alt="Crowe Logic" class="avatar-image">
         </div>
         <div class="message-body">
           <div class="typing-dots">
