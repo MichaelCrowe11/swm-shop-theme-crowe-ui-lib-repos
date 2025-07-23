@@ -2,8 +2,8 @@
 
 /* CSS Variables */
 :root {
-  --sidebar-width: 320px;
-  --sidebar-mobile-width: 280px;
+  --sidebar-width: 420px;
+  --sidebar-mobile-width: 100vw;
   /* Silver theme colors */
   --quantum-silver: #C0C0C0;
   --quantum-silver-dark: #A8A8A8;

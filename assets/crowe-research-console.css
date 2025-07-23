@@ -26,7 +26,9 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   margin: 10px 0;
   overflow: hidden;
-  min-height: 600px;
+  min-height: 650px;
+  width: 100%;
+  max-width: none;
   position: relative;
   transition: all 0.5s ease;
 }
@@ -287,8 +289,9 @@
 /* Main Content Area */
 .station-content {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  height: 550px;
+  grid-template-columns: 2fr 1fr;
+  height: 600px;
+  gap: 0;
   position: relative;
   z-index: 1;
 }
@@ -324,24 +327,30 @@
   pointer-events: none;
 }
 
-.chat-frame-container zapier-interfaces-chatbot-embed,
 .chat-frame-container iframe {
   width: 100%;
   height: 100%;
   border: none;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.1);
   flex: 1;
+  border-radius: 12px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Enhanced Chat Interface */
 .chat-interface-fallback {
-  display: none;
+  display: flex;
   flex: 1;
   padding: 20px;
   background: rgba(0, 0, 0, 0.1);
   color: rgba(255, 255, 255, 0.8);
   position: relative;
   overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 15px;
 }
 
 .chat-interface-fallback::before {
@@ -1291,18 +1300,19 @@
 @media (max-width: 1024px) {
   .station-content {
     grid-template-columns: 1fr;
-    grid-template-rows: 350px auto;
+    grid-template-rows: 400px auto;
     height: auto;
+    gap: 1px;
   }
   
   .chat-panel {
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    min-height: 350px;
+    min-height: 400px;
   }
   
   .control-panel {
-    max-height: 400px;
+    max-height: none;
     padding: 18px;
   }
   
@@ -1325,8 +1335,9 @@
 /* iPad and Medium Tablets */
 @media (max-width: 768px) {
   .crowe-research-station {
-    margin: 8px 0;
-    min-height: 500px;
+    margin: 5px;
+    min-height: 550px;
+    width: calc(100% - 10px);
   }
   
   .station-header {
@@ -1371,15 +1382,15 @@
 
   .station-content {
     grid-template-columns: 1fr;
-    grid-template-rows: 300px auto;
+    grid-template-rows: 350px auto;
     height: auto;
-    gap: 0;
+    gap: 1px;
   }
 
   .chat-panel {
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    min-height: 300px;
+    min-height: 350px;
   }
 
   .control-panel {
@@ -1455,9 +1466,10 @@
 /* Mobile Phones */
 @media (max-width: 480px) {
   .crowe-research-station {
-    margin: 5px 0;
-    min-height: 450px;
+    margin: 2px;
+    min-height: 500px;
     border-radius: 16px;
+    width: calc(100% - 4px);
   }
   
   .station-header {
@@ -1508,11 +1520,11 @@
   }
 
   .station-content {
-    grid-template-rows: 250px auto;
+    grid-template-rows: 280px auto;
   }
 
   .chat-panel {
-    min-height: 250px;
+    min-height: 280px;
   }
 
   .control-panel {

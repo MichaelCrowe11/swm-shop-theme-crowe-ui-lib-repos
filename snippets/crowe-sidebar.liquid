@@ -68,44 +68,40 @@
       <!-- Chat Panel (Main Interface) -->
       <div class="chat-panel">
         <div class="chat-frame-container">
-          <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
-          <zapier-interfaces-chatbot-embed chatbot-id='cmbhp4x71002fqpzzx1cclqec' id="zapierChatbot"></zapier-interfaces-chatbot-embed>
+          <!-- Primary Chat Interface -->
+          <iframe 
+            id="croweChat"
+            src="https://research-assistant-ce196c.zapier.app" 
+            width="100%" 
+            height="100%"
+            frameborder="0"
+            allow="microphone; camera; clipboard-write"
+            title="Crowe Logic AI Research Assistant"
+            style="border: none; background: transparent; border-radius: 12px;">
+          </iframe>
           
           <!-- Enhanced Fallback Interface -->
-          <div class="chat-interface-fallback" id="chatFallback">
+          <div class="chat-interface-fallback" id="chatFallback" style="display: none;">
             <div class="chat-status">
-              🤖 Crowe Logic AI Research Assistant Ready
+              🤖 Crowe Logic AI Research Assistant
             </div>
-            <p style="margin: 0; opacity: 0.8; max-width: 300px; line-height: 1.4;">I'm your intelligent cultivation companion. I can help you with mushroom growing techniques, substrate formulas, and product recommendations.</p>
+            <p style="margin: 0; opacity: 0.8; max-width: 400px; line-height: 1.4; font-size: 14px;">Your intelligent cultivation companion is ready to help with mushroom growing techniques, substrate formulas, and product recommendations.</p>
             <div class="chat-actions">
               <a href="https://research-assistant-ce196c.zapier.app" target="_blank" class="chat-action-btn">
-                🚀 Open Full Chat
+                🚀 Open Full Chat Interface
               </a>
               <button class="chat-action-btn" onclick="showQuickHelp()">
-                ❓ Quick Help
+                ❓ Quick Help Guide
               </button>
-              <button class="chat-action-btn" onclick="retryChat()">
-                🔄 Retry Connection
+              <button class="chat-action-btn" onclick="location.reload()">
+                🔄 Reload Console
               </button>
             </div>
           </div>
           
-          <!-- Fallback iframe -->
-          <noscript>
-            <iframe 
-              src="https://research-assistant-ce196c.zapier.app" 
-              width="100%" 
-              height="100%"
-              frameborder="0"
-              allow="microphone; camera; clipboard-write"
-              title="Crowe Logic AI Research Assistant"
-              style="border: none; background: transparent;">
-            </iframe>
-          </noscript>
-          
-          <div class="loading-overlay" id="loadingOverlay">
+          <div class="loading-overlay hidden" id="loadingOverlay">
             <div class="loading-spinner"></div>
-            <div class="loading-text">Initializing Crowe Logic AI...</div>
+            <div class="loading-text">Connecting to Crowe Logic AI...</div>
           </div>
         </div>
       </div>
@@ -610,46 +606,17 @@ let chatRetryCount = 0;
 const MAX_RETRIES = 3;
 
 function initializeChatInterface() {
-  const zapierChatbot = document.getElementById('zapierChatbot');
-  const fallbackInterface = document.getElementById('chatFallback');
-  const loadingOverlay = document.getElementById('loadingOverlay');
-  
-  if (!zapierChatbot || !fallbackInterface || !loadingOverlay) return;
-  
-  // Set loading timeout
-  chatLoadTimeout = setTimeout(() => {
-    console.log('⚠️ Chat interface load timeout, showing fallback');
-    showFallbackInterface();
-  }, 8000); // 8 second timeout
-  
-  // Check if Zapier embed loads successfully
-  const checkChatLoaded = setInterval(() => {
-    // Look for Zapier chat elements
-    const zapierElements = zapierChatbot.shadowRoot || 
-                          zapierChatbot.querySelector('iframe') ||
-                          document.querySelector('zapier-interfaces-chatbot-embed iframe');
-    
-    if (zapierElements) {
-      console.log('✅ Chat interface loaded successfully');
-      clearTimeout(chatLoadTimeout);
-      clearInterval(checkChatLoaded);
-      hideLoadingOverlay();
-    }
-  }, 1000);
-  
-  // Stop checking after 10 seconds
-  setTimeout(() => {
-    clearInterval(checkChatLoaded);
-  }, 10000);
+  // Simplified initialization - just ensure fallback is ready
+  console.log('🔧 Chat interface initialized');
 }
 
 function showFallbackInterface() {
-  const zapierChatbot = document.getElementById('zapierChatbot');
+  const iframe = document.getElementById('croweChat');
   const fallbackInterface = document.getElementById('chatFallback');
   const loadingOverlay = document.getElementById('loadingOverlay');
   
-  if (zapierChatbot) zapierChatbot.style.display = 'none';
-  if (fallbackInterface) fallbackInterface.classList.add('active');
+  if (iframe) iframe.style.display = 'none';
+  if (fallbackInterface) fallbackInterface.style.display = 'flex';
   if (loadingOverlay) loadingOverlay.classList.add('hidden');
 }
 
@@ -663,27 +630,14 @@ function hideLoadingOverlay() {
 }
 
 function retryChat() {
-  if (chatRetryCount >= MAX_RETRIES) {
-    alert('Maximum retry attempts reached. Please try refreshing the page or use the Full Chat link.');
-    return;
-  }
-  
-  chatRetryCount++;
-  const zapierChatbot = document.getElementById('zapierChatbot');
+  const iframe = document.getElementById('croweChat');
   const fallbackInterface = document.getElementById('chatFallback');
-  const loadingOverlay = document.getElementById('loadingOverlay');
   
-  // Reset interface
-  if (fallbackInterface) fallbackInterface.classList.remove('active');
-  if (loadingOverlay) loadingOverlay.classList.remove('hidden');
-  if (zapierChatbot) {
-    zapierChatbot.style.display = 'block';
-    // Force reload of the embed
-    zapierChatbot.innerHTML = zapierChatbot.innerHTML;
+  if (iframe && fallbackInterface) {
+    fallbackInterface.style.display = 'none';
+    iframe.style.display = 'block';
+    iframe.src = iframe.src; // Force reload
   }
-  
-  // Try initialization again
-  setTimeout(initializeChatInterface, 1000);
 }
 
 function showQuickHelp() {
@@ -872,8 +826,30 @@ document.addEventListener('DOMContentLoaded', function() {
   optimizeForDevice();
   monitorNetworkStatus();
   
-  // Delay chat initialization slightly to let other scripts load
-  setTimeout(initializeChatInterface, 2000);
+  // Simple iframe monitoring
+  const iframe = document.getElementById('croweChat');
+  const fallback = document.getElementById('chatFallback');
+  
+  if (iframe && fallback) {
+    iframe.onload = function() {
+      console.log('✅ Chat interface loaded successfully');
+    };
+    
+    iframe.onerror = function() {
+      console.log('❌ Chat interface failed to load, showing fallback');
+      iframe.style.display = 'none';
+      fallback.style.display = 'flex';
+    };
+    
+    // Fallback timeout
+    setTimeout(() => {
+      if (!iframe.contentDocument && !iframe.contentWindow) {
+        console.log('⚠️ Chat interface timeout, showing fallback');
+        iframe.style.display = 'none';
+        fallback.style.display = 'flex';
+      }
+    }, 10000);
+  }
   
   // Handle window resize
   window.addEventListener('resize', optimizeForDevice);
