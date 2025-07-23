@@ -43,6 +43,9 @@
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    
+    <!-- Living Mycelium Network Interactive System -->
+    <script src="{{ 'living-mycelium-network.js' | asset_url }}" defer="defer"></script>
 
     {{ content_for_header }}
 
@@ -262,6 +265,7 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'crowe-theme-quantum.css' | asset_url | stylesheet_tag }}
+    {{ 'living-mycelium-network.css' | asset_url | stylesheet_tag }}
     
     <!-- Clean Layout System -->
     <style>

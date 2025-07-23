@@ -1,0 +1,353 @@
+/**
+ * Living Mycelium Network System
+ * Organic, interconnected visual effects for Southwest Mushrooms theme
+ * Version: 1.0
+ */
+
+/* =================================
+   LIVING MYCELIUM NETWORK CORE
+   ================================= */
+
+:root {
+  /* Mycelium Color Palette */
+  --mycelium-primary: #8B4513;      /* Saddle Brown - mushroom caps */
+  --mycelium-secondary: #556B2F;    /* Dark Olive Green - forest floor */
+  --mycelium-accent: #FFD700;       /* Gold - bioluminescent spores */
+  --mycelium-glow: #D4AF37;         /* Darker gold - network connections */
+  --mycelium-earth: #2F4F4F;        /* Dark Slate Gray - rich soil */
+  --mycelium-deep: #1C2833;         /* Very dark blue-gray - underground */
+  
+  /* Network Animation Variables */
+  --network-speed: 8s;
+  --pulse-speed: 3s;
+  --growth-speed: 12s;
+  --spore-drift: 25s;
+}
+
+/* =================================
+   LIVING MYCELIUM CANVAS BACKGROUND
+   ================================= */
+
+.mycelium-network-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mycelium-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+}
+
+/* Enhanced SVG Pattern Overlays */
+.mycelium-network-layer {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  background-image: 
+    /* Primary network threads */
+    url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='thread1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%238B4513;stop-opacity:0.6'/%3E%3Cstop offset='50%25' style='stop-color:%23FFD700;stop-opacity:0.8'/%3E%3Cstop offset='100%25' style='stop-color:%23556B2F;stop-opacity:0.4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg stroke='url(%23thread1)' fill='none' stroke-width='1.5' opacity='0.7'%3E%3Cpath d='M20,20 Q50,10 80,30 Q120,50 160,20 Q180,10 190,40' stroke-width='2'/%3E%3Cpath d='M10,60 Q40,40 70,60 Q110,80 150,60 Q180,40 190,70' stroke-width='1.8'/%3E%3Cpath d='M30,100 Q60,80 90,100 Q130,120 170,100 Q190,80 200,110' stroke-width='2'/%3E%3Cpath d='M10,140 Q40,120 70,140 Q110,160 150,140 Q180,120 190,150' stroke-width='1.8'/%3E%3Cpath d='M20,180 Q50,160 80,180 Q120,200 160,180 Q180,160 200,190' stroke-width='2'/%3E%3Cpath d='M20,20 Q10,50 30,80 Q50,120 20,160 Q10,180 40,200' stroke-width='1.5'/%3E%3Cpath d='M60,10 Q50,40 70,70 Q90,110 60,150 Q50,170 80,190 Q100,200 90,210' stroke-width='1.8'/%3E%3Cpath d='M100,20 Q90,50 110,80 Q130,120 100,160 Q90,180 120,200' stroke-width='1.5'/%3E%3Cpath d='M140,10 Q130,40 150,70 Q170,110 140,150 Q130,170 160,190 Q180,200 170,210' stroke-width='1.8'/%3E%3Cpath d='M180,20 Q170,50 190,80 Q200,120 180,160 Q170,180 200,200' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E"),
+    /* Secondary branching network */
+    url("data:image/svg+xml,%3Csvg width='150' height='150' viewBox='0 0 150 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3CradialGradient id='branch1' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFD700;stop-opacity:0.8'/%3E%3Cstop offset='70%25' style='stop-color:%23D4AF37;stop-opacity:0.5'/%3E%3Cstop offset='100%25' style='stop-color:%23556B2F;stop-opacity:0.2'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg stroke='url(%23branch1)' fill='none' stroke-width='1' opacity='0.6'%3E%3Cpath d='M15,25 Q30,15 45,25 Q65,35 85,25 Q105,15 125,35 Q140,50 130,70' /%3E%3Cpath d='M10,45 Q25,35 40,45 Q60,55 80,45 Q100,35 120,55 Q135,70 125,85' /%3E%3Cpath d='M20,65 Q35,55 50,65 Q70,75 90,65 Q110,55 130,75 Q145,90 135,105' /%3E%3Cpath d='M10,85 Q25,75 40,85 Q60,95 80,85 Q100,75 120,95 Q135,110 125,125' /%3E%3Cpath d='M25,105 Q40,95 55,105 Q75,115 95,105 Q115,95 135,115 Q145,125 140,140' /%3E%3Cpath d='M15,25 Q10,40 20,55 Q30,75 15,95 Q10,110 25,125 Q35,140 30,150' /%3E%3Cpath d='M45,15 Q40,30 50,45 Q60,65 45,85 Q40,100 55,115 Q65,130 60,145' /%3E%3Cpath d='M75,25 Q70,40 80,55 Q90,75 75,95 Q70,110 85,125 Q95,140 90,150' /%3E%3Cpath d='M105,15 Q100,30 110,45 Q120,65 105,85 Q100,100 115,115 Q125,130 120,145' /%3E%3Cpath d='M135,25 Q130,40 140,55 Q150,75 135,95 Q130,110 145,125' /%3E%3C/g%3E%3C/svg%3E");
+  background-size: 400px 400px, 300px 300px;
+  background-position: 0 0, 100px 50px;
+  animation: mycelium-network-drift var(--network-speed) linear infinite;
+}
+
+/* Spore and Node Overlay */
+.mycelium-spores-layer {
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  top: -5%;
+  left: -5%;
+  background-image:
+    /* Bioluminescent spores */
+    url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3CradialGradient id='spore' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFD700;stop-opacity:1'/%3E%3Cstop offset='60%25' style='stop-color:%23D4AF37;stop-opacity:0.7'/%3E%3Cstop offset='100%25' style='stop-color:%23556B2F;stop-opacity:0.2'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg fill='url(%23spore)' opacity='0.8'%3E%3Ccircle cx='15' cy='20' r='3' /%3E%3Ccircle cx='40' cy='15' r='2.5' /%3E%3Ccircle cx='65' cy='25' r='3.5' /%3E%3Ccircle cx='85' cy='10' r='2' /%3E%3Ccircle cx='20' cy='45' r='2.5' /%3E%3Ccircle cx='50' cy='50' r='4' /%3E%3Ccircle cx='75' cy='45' r='2.5' /%3E%3Ccircle cx='90' cy='55' r='3' /%3E%3Ccircle cx='25' cy='75' r='3.5' /%3E%3Ccircle cx='55' cy='80' r='2' /%3E%3Ccircle cx='80' cy='75' r='3' /%3E%3Ccircle cx='10' cy='90' r='2.5' /%3E%3C/g%3E%3Cg fill='%23FFD700' opacity='0.4'%3E%3Ccircle cx='30' cy='5' r='1.5' /%3E%3Ccircle cx='70' cy='35' r='1' /%3E%3Ccircle cx='35' cy='60' r='1.8' /%3E%3Ccircle cx='60' cy='95' r='1.2' /%3E%3Ccircle cx='5' cy='65' r='1' /%3E%3Ccircle cx='95' cy='85' r='1.5' /%3E%3C/g%3E%3C/svg%3E"),
+    /* Network nodes */
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3CradialGradient id='node' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%238B4513;stop-opacity:0.9'/%3E%3Cstop offset='40%25' style='stop-color:%23D4AF37;stop-opacity:0.6'/%3E%3Cstop offset='100%25' style='stop-color:%232F4F4F;stop-opacity:0.3'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg fill='url(%23node)' opacity='0.7'%3E%3Ccircle cx='15' cy='15' r='4' /%3E%3Ccircle cx='65' cy='20' r='3' /%3E%3Ccircle cx='25' cy='40' r='5' /%3E%3Ccircle cx='70' cy='50' r='3.5' /%3E%3Ccircle cx='20' cy='65' r='4' /%3E%3Ccircle cx='60' cy='75' r='3' /%3E%3C/g%3E%3C/svg%3E");
+  background-size: 200px 200px, 160px 160px;
+  background-position: 50px 0, 0 80px;
+  animation: mycelium-spores-float var(--spore-drift) ease-in-out infinite;
+}
+
+/* Pulsing Growth Effects */
+.mycelium-pulse-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.4) 0%, transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(85, 107, 47, 0.3) 0%, transparent 25%),
+    radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.2) 0%, transparent 35%),
+    radial-gradient(circle at 70% 20%, rgba(212, 175, 55, 0.3) 0%, transparent 20%),
+    radial-gradient(circle at 30% 80%, rgba(47, 79, 79, 0.4) 0%, transparent 40%);
+  animation: mycelium-pulse var(--pulse-speed) ease-in-out infinite alternate;
+}
+
+/* =================================
+   MYCELIUM ANIMATIONS
+   ================================= */
+
+@keyframes mycelium-network-drift {
+  0% { 
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0.7;
+  }
+  25% { 
+    transform: translate(-50px, -25px) rotate(90deg) scale(1.05);
+    opacity: 0.9;
+  }
+  50% { 
+    transform: translate(-100px, -50px) rotate(180deg) scale(1);
+    opacity: 0.8;
+  }
+  75% { 
+    transform: translate(-150px, -75px) rotate(270deg) scale(0.95);
+    opacity: 0.9;
+  }
+  100% { 
+    transform: translate(-200px, -100px) rotate(360deg) scale(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes mycelium-spores-float {
+  0% { 
+    transform: translate(0, 0) scale(1);
+    opacity: 0.8;
+  }
+  20% { 
+    transform: translate(-30px, 20px) scale(1.1);
+    opacity: 1;
+  }
+  40% { 
+    transform: translate(-60px, 40px) scale(0.9);
+    opacity: 0.7;
+  }
+  60% { 
+    transform: translate(-90px, 60px) scale(1.05);
+    opacity: 0.9;
+  }
+  80% { 
+    transform: translate(-120px, 80px) scale(0.95);
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translate(-150px, 100px) scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes mycelium-pulse {
+  0% { 
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+  100% { 
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+
+@keyframes mycelium-growth {
+  0% { 
+    background-size: 300px 300px, 200px 200px;
+    opacity: 0.6;
+  }
+  50% { 
+    background-size: 450px 450px, 300px 300px;
+    opacity: 0.8;
+  }
+  100% { 
+    background-size: 400px 400px, 250px 250px;
+    opacity: 0.7;
+  }
+}
+
+/* =================================
+   HEADER INTEGRATION
+   ================================= */
+
+.header-with-mycelium {
+  position: relative;
+  background: 
+    linear-gradient(180deg, rgba(47, 79, 79, 0.9) 0%, rgba(28, 40, 51, 0.95) 100%),
+    var(--mycelium-earth);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.header-with-mycelium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='150' height='80' viewBox='0 0 150 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='headerThread' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFD700;stop-opacity:0.4'/%3E%3Cstop offset='100%25' style='stop-color:%23556B2F;stop-opacity:0.2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg stroke='url(%23headerThread)' fill='none' stroke-width='1' opacity='0.6'%3E%3Cpath d='M10,10 Q40,5 70,15 Q100,25 130,10 Q145,5 150,20' /%3E%3Cpath d='M5,30 Q35,25 65,35 Q95,45 125,30 Q140,25 150,40' /%3E%3Cpath d='M10,50 Q40,45 70,55 Q100,65 130,50 Q145,45 150,60' /%3E%3Cpath d='M5,70 Q35,65 65,75 Q95,80 125,70 Q140,65 150,80' /%3E%3C/g%3E%3Cg fill='%23FFD700' opacity='0.3'%3E%3Ccircle cx='20' cy='15' r='1.5' /%3E%3Ccircle cx='50' cy='10' r='1' /%3E%3Ccircle cx='80' cy='20' r='1.2' /%3E%3Ccircle cx='110' cy='15' r='1' /%3E%3Ccircle cx='30' cy='40' r='1.2' /%3E%3Ccircle cx='90' cy='50' r='1' /%3E%3Ccircle cx='120' cy='35' r='1.5' /%3E%3C/g%3E%3C/svg%3E");
+  background-size: 300px 80px;
+  animation: mycelium-header-flow 15s linear infinite;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+@keyframes mycelium-header-flow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-150px); }
+}
+
+/* =================================
+   HERO SECTION INTEGRATION
+   ================================= */
+
+.hero-with-mycelium {
+  position: relative;
+}
+
+.hero-with-mycelium .mycelium-network-container {
+  z-index: 1;
+}
+
+.hero-with-mycelium .hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* Enhanced spore particles for hero */
+.mycelium-floating-spores {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.floating-spore {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    rgba(255, 215, 0, 0.9) 0%, 
+    rgba(212, 175, 55, 0.6) 40%, 
+    transparent 70%);
+  animation: float-spore 8s ease-in-out infinite;
+  opacity: 0;
+}
+
+.floating-spore:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+.floating-spore:nth-child(2) { left: 80%; top: 30%; animation-delay: -2s; }
+.floating-spore:nth-child(3) { left: 60%; top: 70%; animation-delay: -4s; }
+.floating-spore:nth-child(4) { left: 30%; top: 80%; animation-delay: -6s; }
+.floating-spore:nth-child(5) { left: 90%; top: 60%; animation-delay: -1s; }
+.floating-spore:nth-child(6) { left: 20%; top: 50%; animation-delay: -3s; }
+.floating-spore:nth-child(7) { left: 70%; top: 10%; animation-delay: -5s; }
+.floating-spore:nth-child(8) { left: 40%; top: 40%; animation-delay: -7s; }
+
+@keyframes float-spore {
+  0%, 100% { 
+    transform: translateY(0px) scale(1);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  20% { 
+    transform: translateY(-30px) scale(1.2);
+    opacity: 1;
+  }
+  40% { 
+    transform: translateY(-60px) scale(0.8);
+    opacity: 0.9;
+  }
+  60% { 
+    transform: translateY(-90px) scale(1.1);
+    opacity: 0.7;
+  }
+  80% { 
+    transform: translateY(-120px) scale(0.9);
+    opacity: 0.5;
+  }
+  90% { opacity: 0.2; }
+}
+
+/* =================================
+   RESPONSIVE DESIGN
+   ================================= */
+
+@media (max-width: 768px) {
+  .mycelium-network-layer {
+    background-size: 300px 300px, 200px 200px;
+    animation-duration: calc(var(--network-speed) * 1.5);
+  }
+  
+  .mycelium-spores-layer {
+    background-size: 150px 150px, 100px 100px;
+    animation-duration: calc(var(--spore-drift) * 1.2);
+  }
+  
+  .floating-spore {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mycelium-network-layer,
+  .mycelium-spores-layer,
+  .mycelium-pulse-layer,
+  .floating-spore {
+    animation: none !important;
+  }
+  
+  .mycelium-pulse-layer {
+    opacity: 0.5;
+  }
+}
+
+/* =================================
+   INTERACTIVE ENHANCEMENTS
+   ================================= */
+
+.mycelium-interactive {
+  transition: all 0.3s ease;
+}
+
+.mycelium-interactive:hover .mycelium-pulse-layer {
+  animation-duration: calc(var(--pulse-speed) * 0.5);
+  opacity: 0.8;
+}
+
+.mycelium-interactive:hover .mycelium-spores-layer {
+  animation-duration: calc(var(--spore-drift) * 0.7);
+}
+
+.mycelium-interactive:hover .floating-spore {
+  animation-duration: 4s;
+}
+
+/* Dark theme adjustments */
+.dark-theme .mycelium-network-layer {
+  opacity: 0.9;
+}
+
+.dark-theme .mycelium-pulse-layer {
+  opacity: 0.6;
+}
