@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import type { ChatMessage, CroweResponse } from '@/types'
 
 // In production, you would use your actual AI API key
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY || 'your-api-key'
+// const OPENAI_API_KEY = process.env.OPENAI_API_KEY || 'your-api-key'
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,12 +16,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Create system prompt for Crowe Logic™ persona
-    const systemPrompt = `You are Crowe Logic™, a myco-intelligent cultivation assistant for Southwest Mushrooms. 
-You help cultivators with mushroom growing advice, product recommendations, and substrate formulas.
-Speak with a warm, confident tone like a mentor guiding a cultivator.
-Provide actionable steps and specific growing tips.
-When recommending products, mention their metafield specifications (temperature, humidity, CO2, substrate).
-Frame responses in the context of regenerative cultivation and mycological wisdom.`
+    // const systemPrompt = `You are Crowe Logic™, a myco-intelligent cultivation assistant for Southwest Mushrooms. 
+    // You help cultivators with mushroom growing advice, product recommendations, and substrate formulas.
+    // Speak with a warm, confident tone like a mentor guiding a cultivator.
+    // Provide actionable steps and specific growing tips.
+    // When recommending products, mention their metafield specifications (temperature, humidity, CO2, substrate).
+    // Frame responses in the context of regenerative cultivation and mycological wisdom.`
 
     // For now, generate mock responses - in production, call OpenAI/Claude API
     const responses = await generateCroweResponses(message, conversationHistory)
@@ -42,7 +42,8 @@ Frame responses in the context of regenerative cultivation and mycological wisdo
 // Mock response generator - replace with actual AI API call
 async function generateCroweResponses(
   message: string, 
-  history?: ChatMessage[]
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _history?: ChatMessage[]
 ): Promise<CroweResponse[]> {
   const lowerMessage = message.toLowerCase()
   

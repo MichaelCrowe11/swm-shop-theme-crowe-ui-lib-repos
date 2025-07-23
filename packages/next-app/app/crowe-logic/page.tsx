@@ -9,6 +9,7 @@ export default function CroweLogicPage() {
 
   const handleCreateCheckout = (items: { productId: string; quantity: number }[]) => {
     console.log('Creating checkout with items:', items)
+    console.log('Current checkout items:', checkoutItems)
     setCheckoutItems(items)
     // In production, this would use Shopify Storefront API to create a checkout
     // Example:

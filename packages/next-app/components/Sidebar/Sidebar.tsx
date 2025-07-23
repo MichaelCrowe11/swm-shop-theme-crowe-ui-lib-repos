@@ -36,7 +36,12 @@ const iconMap = {
   Mic,
 }
 
-export function Sidebar({ isOpen = true, onToggle, currentPath }: SidebarProps) {
+export function Sidebar({ 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  isOpen: _isOpen = true, 
+  onToggle, 
+  currentPath 
+}: SidebarProps) {
   const pathname = usePathname()
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const activePath = currentPath || pathname

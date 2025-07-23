@@ -7,37 +7,49 @@
   box-sizing: border-box;
 }
 
-/* Main Research Station - High-Tech Smartphone Design */
+/* Main Research Station - Reflective Glass Panel Design */
 .crowe-research-station {
   --neural-hue: 170;
   --neural-saturation: 100%;
   --neural-lightness: 50%;
   --neural-alpha: 0.8;
+  --glass-reflection: rgba(255, 255, 255, 0.15);
+  --glass-depth: rgba(0, 255, 170, 0.08);
   
-  /* Smartphone-like gradient background */
+  /* Multi-layered reflective glass background */
   background: 
-    linear-gradient(145deg, #000000 0%, #1a1a1a 30%, #000000 100%),
-    radial-gradient(circle at 20% 50%, rgba(0, 255, 170, 0.04) 0%, transparent 60%),
-    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 60%);
+    linear-gradient(145deg, rgba(0, 0, 0, 0.95) 0%, rgba(10, 10, 10, 0.9) 30%, rgba(0, 0, 0, 0.95) 100%),
+    linear-gradient(135deg, transparent 0%, var(--glass-reflection) 25%, transparent 50%, var(--glass-depth) 75%, transparent 100%),
+    radial-gradient(ellipse at 30% 20%, rgba(0, 255, 170, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse at 70% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
   
-  /* Enhanced backdrop blur for modern glass effect */
-  backdrop-filter: blur(30px) saturate(150%) brightness(1.1);
-  -webkit-backdrop-filter: blur(30px) saturate(150%) brightness(1.1);
+  /* Advanced multi-layer backdrop blur with glass refraction */
+  backdrop-filter: blur(40px) saturate(180%) brightness(1.2) contrast(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.2) contrast(1.1);
   
   /* Smartphone-style rounded corners */
   border-radius: 32px;
   
-  /* Premium device shadow with depth */
+  /* Premium glass panel shadow with holographic depth */
   box-shadow: 
-    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 0 1px var(--glass-reflection),
+    0 0 0 2px rgba(0, 255, 170, 0.2),
     0 8px 32px rgba(0, 0, 0, 0.9),
-    0 20px 60px rgba(0, 0, 0, 0.7),
-    0 4px 16px hsla(var(--neural-hue), var(--neural-saturation), var(--neural-lightness), 0.15),
-    inset 0 1px 2px rgba(255, 255, 255, 0.15),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.8);
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    0 4px 20px hsla(var(--neural-hue), var(--neural-saturation), var(--neural-lightness), 0.25),
+    inset 0 2px 4px var(--glass-reflection),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.6),
+    inset 20px 0 40px rgba(0, 255, 170, 0.03),
+    inset -20px 0 40px rgba(255, 255, 255, 0.02);
   
-  /* Subtle border for premium feel */
+  /* Holographic glass border with light refraction */
   border: 2px solid transparent;
+  border-image: linear-gradient(45deg, 
+    transparent 0%, 
+    var(--glass-reflection) 25%,
+    rgba(0, 255, 170, 0.3) 50%,
+    var(--glass-reflection) 75%,
+    transparent 100%) 1;
   background-clip: padding-box;
   
   /* Smartphone dimensions and spacing */
@@ -73,18 +85,112 @@
   z-index: 1;
 }
 
-/* Premium hover effect */
+/* Premium glass panel hover effect with holographic response */
 .crowe-research-station:hover {
-  transform: perspective(1200px) rotateX(0deg) translateY(-3px);
+  transform: perspective(1200px) rotateX(0deg) translateY(-3px) scale(1.01);
   box-shadow: 
-    0 0 0 1px rgba(0, 255, 170, 0.25),
-    0 12px 40px rgba(0, 0, 0, 0.9),
-    0 25px 80px rgba(0, 255, 170, 0.12),
-    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    0 0 0 1px rgba(0, 255, 170, 0.4),
+    0 0 0 3px rgba(255, 255, 255, 0.1),
+    0 15px 50px rgba(0, 0, 0, 0.9),
+    0 30px 100px rgba(0, 255, 170, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.25),
+    inset 0 0 20px rgba(0, 255, 170, 0.05);
 }
 
-/* Smartphone screen reflection effect */
-.crowe-research-station::before {
+/* Holographic Avatar Container - Top of Console */
+.crowe-avatar-hologram {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.crowe-avatar-hologram .avatar-frame {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 60%),
+    linear-gradient(145deg, rgba(0, 255, 170, 0.2) 0%, rgba(0, 255, 170, 0.05) 100%);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 2px solid rgba(0, 255, 170, 0.4);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 170, 0.6),
+    0 0 60px rgba(0, 255, 170, 0.3),
+    inset 0 2px 10px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: avatarFloat 4s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.crowe-avatar-hologram .avatar-image {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 170, 0.5));
+  animation: avatarGlow 3s ease-in-out infinite alternate;
+}
+
+.crowe-avatar-hologram .neural-connections {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.neural-connection {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 170, 0.6), transparent);
+  animation: neuralPulse 2s ease-in-out infinite;
+}
+
+.neural-connection:nth-child(1) {
+  height: 60px;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%) rotate(0deg);
+}
+
+.neural-connection:nth-child(2) {
+  height: 40px;
+  top: 20px;
+  right: -20px;
+  transform: rotate(45deg);
+  animation-delay: 0.3s;
+}
+
+.neural-connection:nth-child(3) {
+  height: 50px;
+  bottom: -25px;
+  left: 30%;
+  transform: rotate(-30deg);
+  animation-delay: 0.6s;
+}
+
+.neural-connection:nth-child(4) {
+  height: 35px;
+  top: 30%;
+  left: -15px;
+  transform: rotate(-45deg);
+  animation-delay: 0.9s;
+}
+
+/* Holographic Glass Reflection Layer 2 - Particle System */
+.crowe-research-station::after {
   content: '';
   position: absolute;
   top: 0;
@@ -92,16 +198,17 @@
   right: 0;
   bottom: 0;
   background-image: 
-    radial-gradient(2px 2px at 20px 30px, rgba(0, 255, 170, 0.2), transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(0, 255, 170, 0.1), transparent),
-    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.1), transparent),
-    radial-gradient(1px 1px at 130px 80px, rgba(0, 255, 170, 0.15), transparent),
-    radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.05), transparent);
+    radial-gradient(3px 3px at 25px 35px, rgba(0, 255, 170, 0.4), transparent),
+    radial-gradient(2px 2px at 45px 75px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 95px 45px, rgba(0, 255, 170, 0.2), transparent),
+    radial-gradient(2px 2px at 135px 85px, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(3px 3px at 165px 35px, rgba(0, 255, 170, 0.3), transparent);
   background-repeat: repeat;
-  background-size: 200px 100px;
-  animation: particleFloat 20s linear infinite;
+  background-size: 220px 120px;
+  animation: holographicParticles 25s linear infinite;
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
+  border-radius: 30px;
 }
 
 @keyframes particleFloat {
@@ -1989,6 +2096,72 @@
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+/* ===== HOLOGRAPHIC GLASS PANEL ANIMATIONS ===== */
+
+@keyframes holographicShimmer {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: brightness(1) hue-rotate(0deg);
+  }
+  25% { 
+    background-position: 100% 50%;
+    filter: brightness(1.1) hue-rotate(5deg);
+  }
+  50% { 
+    background-position: 50% 100%;
+    filter: brightness(1.2) hue-rotate(10deg);
+  }
+  75% { 
+    background-position: 0% 0%;
+    filter: brightness(1.1) hue-rotate(5deg);
+  }
+}
+
+@keyframes holographicParticles {
+  0% { transform: translateX(0) translateY(0) rotate(0deg); }
+  25% { transform: translateX(-20px) translateY(-15px) rotate(90deg); }
+  50% { transform: translateX(-40px) translateY(-30px) rotate(180deg); }
+  75% { transform: translateX(-60px) translateY(-45px) rotate(270deg); }
+  100% { transform: translateX(-80px) translateY(-60px) rotate(360deg); }
+}
+
+@keyframes avatarFloat {
+  0%, 100% { 
+    transform: translateX(-50%) translateY(0px) scale(1);
+    filter: drop-shadow(0 0 20px rgba(0, 255, 170, 0.6));
+  }
+  33% { 
+    transform: translateX(-50%) translateY(-8px) scale(1.02);
+    filter: drop-shadow(0 0 30px rgba(0, 255, 170, 0.8));
+  }
+  66% { 
+    transform: translateX(-50%) translateY(5px) scale(0.98);
+    filter: drop-shadow(0 0 25px rgba(0, 255, 170, 0.7));
+  }
+}
+
+@keyframes avatarGlow {
+  0% { 
+    filter: drop-shadow(0 0 10px rgba(0, 255, 170, 0.5)) brightness(1);
+  }
+  100% { 
+    filter: drop-shadow(0 0 20px rgba(0, 255, 170, 0.8)) brightness(1.1);
+  }
+}
+
+@keyframes neuralPulse {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scaleY(1);
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 170, 0.3), transparent);
+  }
+  50% { 
+    opacity: 1; 
+    transform: scaleY(1.2);
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 170, 0.8), transparent);
   }
 }
 

@@ -297,7 +297,28 @@ export function CroweLogicPanel({ onCreateCheckout, onProductClick }: CroweLogic
   }
 
   return (
-    <div className="flex flex-col h-full bg-crowe-dark rounded-xl border border-crowe-secondary/20">
+    <div className="flex flex-col h-full bg-crowe-dark rounded-xl border border-crowe-secondary/20 crowe-research-station">
+      {/* Holographic Avatar Container */}
+      <div className="crowe-avatar-hologram">
+        <div className="avatar-frame">
+          <img 
+            src="/assets/crowe-avatar.png" 
+            alt="Crowe Logic AI Avatar" 
+            className="avatar-image"
+            onError={(e) => {
+              // Fallback if image doesn't load
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
+          />
+          <div className="neural-connections">
+            <div className="neural-connection"></div>
+            <div className="neural-connection"></div>
+            <div className="neural-connection"></div>
+            <div className="neural-connection"></div>
+          </div>
+        </div>
+      </div>
+      
       {/* Header */}
       <div className="p-4 border-b border-crowe-secondary/20">
         <h2 className="text-xl font-bold text-crowe-accent flex items-center gap-2">

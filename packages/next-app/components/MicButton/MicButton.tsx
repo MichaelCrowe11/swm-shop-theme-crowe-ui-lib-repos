@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef, useCallback } from 'react'
+import React, { useState, useRef } from 'react'
 import { Mic, MicOff, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
