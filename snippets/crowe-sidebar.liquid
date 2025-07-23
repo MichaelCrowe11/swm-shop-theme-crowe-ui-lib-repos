@@ -1,5 +1,12 @@
 {{ 'section-sidebar.css' | asset_url | stylesheet_tag }}
 {{ 'crowe-research-console.css' | asset_url | stylesheet_tag }}
+
+<!-- Performance optimizations for Zapier -->
+<link rel="preconnect" href="https://interfaces.zapier.com" crossorigin>
+<link rel="dns-prefetch" href="https://interfaces.zapier.com">
+
+<!-- Load Zapier script early for better performance -->
+<script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
 {{ 'quantum-enhancements-phase1.css' | asset_url | stylesheet_tag }}
 {{ 'quantum-enhancements-phase2.css' | asset_url | stylesheet_tag }}
 {{ 'quantum-enhancements-phase3.css' | asset_url | stylesheet_tag }}
@@ -68,22 +75,7 @@
       <!-- Chat Panel (Main Interface) -->
       <div class="chat-panel">
         <div class="chat-frame-container">
-          <!-- Correct Zapier Interface -->
-          <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
           <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmbhp4x71002fqpzzx1cclqec'></zapier-interfaces-chatbot-embed>
-          
-          <!-- Fallback for loading issues -->
-          <div class="chat-interface-fallback" id="chatFallback" style="display: none;">
-            <div class="chat-status">
-              🤖 Crowe Logic AI Research Assistant
-            </div>
-            <p style="margin: 0; opacity: 0.8; max-width: 400px; line-height: 1.4; font-size: 14px;">Loading AI interface...</p>
-            <div class="chat-actions">
-              <a href="https://research-assistant-ce196c.zapier.app" target="_blank" class="chat-action-btn">
-                🚀 Open Direct Chat
-              </a>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -669,34 +661,16 @@ function monitorNetworkStatus() {
 document.addEventListener('DOMContentLoaded', function() {
   optimizeForDevice();
   monitorNetworkStatus();
-  autoStartChat();
+  
+  // Simple check that chat loaded
+  setTimeout(() => {
+    const zapierEmbed = document.querySelector('zapier-interfaces-chatbot-embed');
+    if (zapierEmbed) {
+      console.log('🤖 Crowe Logic AI Research Assistant loaded successfully');
+    }
+  }, 1000);
   
   // Handle window resize
   window.addEventListener('resize', optimizeForDevice);
 });
-
-function autoStartChat() {
-  // Wait for Zapier embed to load and auto-open it
-  setTimeout(() => {
-    const zapierEmbed = document.querySelector('zapier-interfaces-chatbot-embed');
-    if (zapierEmbed) {
-      console.log('🤖 Crowe Logic AI chat interface loaded and ready');
-      
-      // Try to trigger the chat to open automatically
-      try {
-        // Look for any clickable elements within the embed to auto-open
-        const shadowRoot = zapierEmbed.shadowRoot;
-        if (shadowRoot) {
-          const chatButton = shadowRoot.querySelector('button, [role="button"]');
-          if (chatButton) {
-            chatButton.click();
-            console.log('✅ Chat auto-started successfully');
-          }
-        }
-      } catch (error) {
-        console.log('💡 Chat ready for manual interaction');
-      }
-    }
-  }, 2000);
-}
 </script>

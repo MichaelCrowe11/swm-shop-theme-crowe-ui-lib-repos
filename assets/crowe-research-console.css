@@ -313,6 +313,7 @@
   height: 100%;
   position: relative;
   background: linear-gradient(135deg, rgba(0, 255, 170, 0.02) 0%, transparent 100%);
+  isolation: isolate;
 }
 
 .chat-frame-container::before {
@@ -332,8 +333,8 @@
   height: 100%;
   border-radius: 12px;
   display: block;
-  --chatbot-height: 100%;
-  --chatbot-width: 100%;
+  contain: layout style paint;
+  transform: translateZ(0);
 }
 
 .chat-frame-container iframe {
