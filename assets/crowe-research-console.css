@@ -134,24 +134,50 @@
   50% { opacity: 0.1; }
 }
 
-/* Header Bar */
+/* Smartphone Status Bar Header */
 .station-header {
-  background: linear-gradient(180deg, rgba(42, 42, 42, 0.8) 0%, rgba(26, 26, 26, 0.85) 100%);
-  backdrop-filter: blur(15px) saturate(110%);
-  -webkit-backdrop-filter: blur(15px) saturate(110%);
-  padding: 15px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  /* iPhone-style status bar background */
+  background: linear-gradient(180deg, 
+    rgba(0, 0, 0, 0.85) 0%, 
+    rgba(20, 20, 20, 0.8) 50%,
+    rgba(10, 10, 10, 0.9) 100%);
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  
+  /* Smartphone dimensions */
+  padding: 12px 20px 15px 20px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+  
+  /* Flex layout like phone status bar */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 70px;
-  flex-wrap: wrap;
-  gap: 10px;
+  min-height: 60px;
+  
+  /* Smartphone status bar styling */
   position: relative;
-  z-index: 2;
+  z-index: 10;
 }
 
-/* Dynamic Neural Glow Effects */
+/* Add smartphone notch effect */
+.station-header::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.15) 20%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    rgba(255, 255, 255, 0.15) 80%, 
+    transparent 100%);
+  border-radius: 0 0 6px 6px;
+}
+
+/* Station Title - App Style */
 .station-header::before {
   content: '';
   position: absolute;
@@ -184,30 +210,63 @@
 .station-title {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex: 1;
-  min-width: 200px;
+  min-width: 180px;
 }
 
+/* App Icon Style Logo */
 .station-logo {
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle, rgba(0, 255, 170, 0.8) 0%, rgba(0, 255, 170, 0.2) 100%);
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background: 
+    linear-gradient(145deg, 
+      rgba(0, 255, 170, 0.9) 0%, 
+      rgba(0, 200, 140, 0.8) 50%,
+      rgba(0, 255, 170, 0.7) 100%);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 20px rgba(0, 255, 170, 0.5);
-  animation: pulse 2s ease-in-out infinite;
-  overflow: hidden;
+  box-shadow: 
+    0 4px 12px rgba(0, 255, 170, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.8),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.4);
   position: relative;
-  flex-shrink: 0;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* App icon shimmer effect */
+.station-logo::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 70%
+  );
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  50% { transform: translateX(-50%) translateY(-50%) rotate(45deg); }
+  100% { transform: translateX(0%) translateY(0%) rotate(45deg); }
+}
+
+/* App Icon Avatar */
 .station-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   object-fit: cover;
   object-position: center;
   position: absolute;
@@ -281,39 +340,51 @@
   height: 100%;
 }
 
+/* Smartphone App Title */
 .station-name {
-  font-size: 16px;
-  font-weight: 300;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  background: linear-gradient(90deg, #fff 0%, rgba(0, 255, 170, 0.8) 100%);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  line-height: 1.2;
+  
+  /* Modern iOS-style text */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Subtle gradient accent */
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 1) 0%, 
+    rgba(0, 255, 170, 0.9) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin: 0;
 }
 
+/* Smartphone Status Bar Indicators */
 .status-indicators {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   align-items: center;
 }
 
 .status-item {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.6);
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* Smartphone Status Dots */
 .status-dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  animation: blink 1s ease-in-out infinite;
+  animation: blink 1.5s ease-in-out infinite;
 }
 
 .status-dot.neural-active {
@@ -336,20 +407,24 @@
   50% { opacity: 0.3; }
 }
 
-/* Main Content Area */
+/* Smartphone Screen Content Area */
 .station-content {
   display: block;
-  height: 600px;
+  height: 580px;
   position: relative;
   z-index: 1;
+  padding: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.1);
 }
 
-/* Chat Panel */
+/* Chat Panel - Full Screen App Style */
 .chat-panel {
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(12px) saturate(105%);
-  -webkit-backdrop-filter: blur(12px) saturate(105%);
-  border-radius: 12px;
+  background: 
+    linear-gradient(145deg, rgba(0, 0, 0, 0.1) 0%, rgba(10, 10, 10, 0.2) 100%);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  border-radius: 0;
   position: relative;
   overflow: hidden;
   display: block;
@@ -363,12 +438,16 @@
   width: 100%;
   height: 100%;
   position: relative;
-  background: linear-gradient(135deg, rgba(0, 255, 170, 0.02) 0%, transparent 100%);
+  background: 
+    linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, transparent 100%);
   isolation: isolate;
-  padding: 0;
+  padding: 8px;
   margin: 0;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 0;
+  
+  /* Smartphone screen effect */
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.03);
 }
 
 /* Removed gradient overlay that interferes with chat */
@@ -1922,4 +2001,104 @@
 .crowe-research-station *::-moz-selection {
   background: rgba(0, 255, 170, 0.3);
   color: white;
+}
+
+/* =================================
+   SMARTPHONE-SPECIFIC ENHANCEMENTS
+   ================================= */
+
+/* iPhone-style safe area handling */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .crowe-research-station {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* High-DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .station-avatar {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  .station-logo {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+}
+
+/* Dark mode compatibility */
+@media (prefers-color-scheme: dark) {
+  .crowe-research-station {
+    background: 
+      linear-gradient(145deg, #000000 0%, #111111 30%, #000000 100%),
+      radial-gradient(circle at 20% 50%, rgba(0, 255, 170, 0.05) 0%, transparent 60%);
+  }
+  
+  .station-header {
+    background: linear-gradient(180deg, 
+      rgba(0, 0, 0, 0.9) 0%, 
+      rgba(15, 15, 15, 0.85) 100%);
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .station-logo {
+    transform: scale(1.1);
+  }
+  
+  .status-item {
+    padding: 4px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+  
+  .chat-frame-container {
+    padding: 12px;
+  }
+}
+
+/* Ultra-wide smartphone support */
+@media (max-width: 430px) and (min-height: 800px) {
+  .crowe-research-station {
+    max-width: 100%;
+    margin: 8px;
+    border-radius: 28px;
+  }
+  
+  .station-content {
+    height: calc(100vh - 200px);
+    min-height: 500px;
+  }
+}
+
+/* Landscape mode for smartphones */
+@media (max-height: 500px) and (orientation: landscape) {
+  .crowe-research-station {
+    min-height: 400px;
+    max-width: none;
+    margin: 5px;
+  }
+  
+  .station-header {
+    min-height: 50px;
+    padding: 8px 15px;
+  }
+  
+  .station-content {
+    height: 320px;
+  }
+}
+
+/* Premium smartphone glow effect */
+@media (hover: hover) {
+  .crowe-research-station:hover {
+    box-shadow: 
+      0 0 0 1px rgba(0, 255, 170, 0.3),
+      0 15px 50px rgba(0, 0, 0, 0.9),
+      0 30px 90px rgba(0, 255, 170, 0.15),
+      inset 0 1px 2px rgba(255, 255, 255, 0.25);
+  }
 }

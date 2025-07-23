@@ -52,7 +52,7 @@
                onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'color: rgba(0, 255, 170, 0.8); font-size: 18px; font-weight: bold; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;\'>AI</div>';"
                loading="lazy">
         </div>
-        <h2 class="station-name">Crowe Logic AI Research Station</h2>
+        <h2 class="station-name">Crowe Logic AI</h2>
       </div>
       <div class="status-indicators">
         <div class="status-item">
@@ -75,7 +75,11 @@
       <!-- Chat Panel (Main Interface) -->
       <div class="chat-panel">
         <div class="chat-frame-container">
-          <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmbhp4x71002fqpzzx1cclqec'></zapier-interfaces-chatbot-embed>
+          <zapier-interfaces-chatbot-embed 
+            is-popup='false' 
+            chatbot-id='cmbhp4x71002fqpzzx1cclqec'
+            style="width: 100%; height: 100%; border: none; border-radius: 8px;">
+          </zapier-interfaces-chatbot-embed>
         </div>
       </div>
 
