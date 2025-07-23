@@ -1,0 +1,106 @@
+{{ 'crowe-research-console.css' | asset_url | stylesheet_tag }}
+
+<!-- Crowe Research Station - Simplified Version -->
+<div class="crowe-research-station" id="crowe-sidebar">
+  <!-- Header -->  
+  <div class="station-header">
+    <div class="station-title">
+      <div class="station-logo">
+        <div class="neural-core"></div>
+      </div>
+      <h1 class="station-brand">Crowe Research</h1>
+    </div>
+    
+    <!-- Size Controls -->
+    <div class="sidebar-size-controls">
+      <button class="size-option" data-size="mini">XS</button>
+      <button class="size-option active" data-size="compact">S</button>
+      <button class="size-option" data-size="standard">M</button>
+      <button class="size-option" data-size="large">L</button>
+      <button class="size-option" data-size="full">XL</button>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="station-content">
+    <div class="crowe-research-console">
+      <!-- Avatar -->
+      <div class="crowe-avatar-section">
+        <div class="avatar-container">
+          <img src="{{ 'crowe-avatar.png' | asset_url }}" alt="Crowe AI" class="crowe-avatar">
+          <div class="avatar-glow"></div>
+        </div>
+        <h2 class="avatar-title">Crowe Logic AI</h2>
+        <p class="avatar-status">Research Active</p>
+      </div>
+
+      <!-- Controls -->
+      <div class="research-controls">
+        <button class="control-button primary" id="croweVoiceBtn">
+          <span class="button-icon">🎤</span>
+          <span class="button-text">Voice</span>
+        </button>
+        
+        <button class="control-button secondary" id="croweChatBtn">
+          <span class="button-icon">💬</span>
+          <span class="button-text">Chat</span>
+        </button>
+        
+        <button class="control-button accent" id="croweResearchBtn">
+          <span class="button-icon">🔬</span>
+          <span class="button-text">Research</span>
+        </button>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="quick-actions">
+        <a href="{{ routes.root_url }}" class="action-link">
+          <span class="action-icon">🌿</span>
+          <span class="action-text">Dashboard</span>
+        </a>
+        
+        <a href="{{ routes.collections_url }}" class="action-link">
+          <span class="action-icon">📦</span>
+          <span class="action-text">Products</span>
+        </a>
+        
+        <a href="{{ routes.cart_url }}" class="action-link">
+          <span class="action-icon">🛒</span>
+          <span class="action-text">Cart</span>
+          <span class="cart-badge">{{ cart.item_count }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Simplified JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sizeOptions = document.querySelectorAll('.size-option');
+  const researchStation = document.querySelector('.crowe-research-station');
+  
+  sizeOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      const size = this.dataset.size;
+      
+      sizeOptions.forEach(opt => opt.classList.remove('active'));
+      this.classList.add('active');
+      
+      researchStation.classList.remove('size-mini', 'size-compact', 'size-standard', 'size-large', 'size-full');
+      researchStation.classList.add(`size-${size}`);
+      
+      localStorage.setItem('crowe-sidebar-size', size);
+    });
+  });
+  
+  // Load saved size
+  const savedSize = localStorage.getItem('crowe-sidebar-size');
+  if (savedSize) {
+    const savedOption = document.querySelector(`[data-size="${savedSize}"]`);
+    if (savedOption) savedOption.click();
+  }
+  
+  console.log('🚀 Crowe Research Station loaded');
+});
+</script>
