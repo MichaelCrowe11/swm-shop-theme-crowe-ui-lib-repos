@@ -41,10 +41,40 @@ class CroweResearchStation {
     this.initializeToggles();
     this.initializeVUMeter();
     this.initializeNeuralActivity();
+    this.createFloatingElements();
     this.hideLoadingOverlay();
     this.isInitialized = true;
 
     console.log('🧠 Crowe Logic Research Station Initialized');
+  }
+
+  createFloatingElements() {
+    const station = document.querySelector('.crowe-research-station');
+    if (!station) return;
+
+    // Create floating data visualization
+    const dataViz = document.createElement('div');
+    dataViz.className = 'data-visualization';
+    dataViz.innerHTML = `
+      <div class="data-stream">
+        <div class="data-line"></div>
+        <div class="data-line"></div>
+        <div class="data-line"></div>
+        <div class="data-line"></div>
+      </div>
+    `;
+    station.appendChild(dataViz);
+
+    // Create neural nodes
+    const neuralNodes = document.createElement('div');
+    neuralNodes.className = 'neural-nodes';
+    neuralNodes.innerHTML = `
+      <div class="neural-node"></div>
+      <div class="neural-node"></div>
+      <div class="neural-node"></div>
+      <div class="neural-node"></div>
+    `;
+    station.appendChild(neuralNodes);
   }
 
   initializeKnobs() {
@@ -190,7 +220,41 @@ class CroweResearchStation {
     const knobElement = knob.querySelector('.knob');
     if (knobElement) {
       knobElement.style.transform = `rotate(${rotation}deg)`;
+      
+      // Haptic feedback simulation
+      this.simulateHapticFeedback(knob, value);
     }
+  }
+
+  simulateHapticFeedback(knob, value) {
+    // Create ripple effect for haptic feedback
+    const ripple = document.createElement('div');
+    ripple.classList.add('haptic-ripple');
+    knob.appendChild(ripple);
+    
+    // Position ripple at center
+    const rect = knob.getBoundingClientRect();
+    ripple.style.left = '50%';
+    ripple.style.top = '50%';
+    
+    // Trigger vibration on supported devices
+    if (navigator.vibrate) {
+      const intensity = Math.floor(value / 10); // 0-10 intensity
+      navigator.vibrate(intensity * 2); // 0-20ms vibration
+    }
+    
+    // Remove ripple after animation
+    setTimeout(() => {
+      if (ripple.parentNode) {
+        ripple.parentNode.removeChild(ripple);
+      }
+    }, 600);
+    
+    // Add temporary glow effect
+    knob.classList.add('knob-feedback');
+    setTimeout(() => {
+      knob.classList.remove('knob-feedback');
+    }, 200);
   }
 
   updateKnobValue(knob, value) {
@@ -365,6 +429,37 @@ class CroweResearchStation {
     const processingActivity = activeProcessing * 0.15;
     
     this.neuralActivity = Math.min(1.0, parameterActivity * 0.6 + processingActivity + 0.2);
+    
+    // Update adaptive color theming
+    this.updateAdaptiveTheming();
+  }
+
+  updateAdaptiveTheming() {
+    const station = document.querySelector('.crowe-research-station');
+    if (!station) return;
+
+    // Calculate color intensity based on activity
+    const intensity = this.neuralActivity;
+    const hue = Math.floor(170 + (intensity * 30)); // 170-200 range (teal to blue)
+    const saturation = Math.floor(70 + (intensity * 30)); // 70-100% saturation
+    const lightness = Math.floor(20 + (intensity * 15)); // 20-35% lightness
+
+    // Apply dynamic CSS custom properties
+    station.style.setProperty('--neural-hue', hue);
+    station.style.setProperty('--neural-saturation', `${saturation}%`);
+    station.style.setProperty('--neural-lightness', `${lightness}%`);
+    station.style.setProperty('--neural-alpha', intensity);
+
+    // Update activity class for more dramatic changes
+    station.classList.remove('low-activity', 'medium-activity', 'high-activity');
+    
+    if (intensity < 0.3) {
+      station.classList.add('low-activity');
+    } else if (intensity < 0.7) {
+      station.classList.add('medium-activity');  
+    } else {
+      station.classList.add('high-activity');
+    }
   }
 
   hideLoadingOverlay() {

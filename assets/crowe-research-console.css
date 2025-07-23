@@ -9,20 +9,77 @@
 
 /* Main Research Station */
 .crowe-research-station {
+  --neural-hue: 170;
+  --neural-saturation: 70%;
+  --neural-lightness: 20%;
+  --neural-alpha: 0.4;
+  
   background: linear-gradient(145deg, rgba(26, 26, 26, 0.85) 0%, rgba(13, 13, 13, 0.9) 100%);
   backdrop-filter: blur(20px) saturate(120%);
   -webkit-backdrop-filter: blur(20px) saturate(120%);
   border-radius: 24px;
   box-shadow: 
     0 20px 60px rgba(0, 0, 0, 0.8),
-    0 8px 32px rgba(0, 255, 170, 0.05),
+    0 8px 32px hsla(var(--neural-hue), var(--neural-saturation), var(--neural-lightness), calc(var(--neural-alpha) * 0.1)),
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(0, 255, 170, 0.03);
+    inset 0 -1px 0 hsla(var(--neural-hue), var(--neural-saturation), var(--neural-lightness), calc(var(--neural-alpha) * 0.05));
   border: 1px solid rgba(255, 255, 255, 0.08);
   margin: 10px 0;
   overflow: hidden;
   min-height: 600px;
   position: relative;
+  transition: all 0.5s ease;
+}
+
+/* Animated Background Particles */
+.crowe-research-station::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(0, 255, 170, 0.2), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(0, 255, 170, 0.1), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.1), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(0, 255, 170, 0.15), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.05), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: particleFloat 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-10px) translateX(5px); }
+  50% { transform: translateY(0px) translateX(-5px); }
+  75% { transform: translateY(10px) translateX(3px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+/* Neural Grid Pattern */
+.crowe-research-station::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 255, 170, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 170, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: neuralGrid 30s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes neuralGrid {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.1; }
 }
 
 /* Header Bar */
@@ -39,6 +96,37 @@
   flex-wrap: wrap;
   gap: 10px;
   position: relative;
+  z-index: 2;
+}
+
+/* Dynamic Neural Glow Effects */
+.station-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 255, 170, 0.1) 0%,
+    rgba(0, 255, 170, 0.05) 30%,
+    transparent 70%
+  );
+  animation: neuralPulse 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes neuralPulse {
+  0%, 100% { 
+    transform: scale(0.8) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.7;
+  }
 }
 
 .station-title {
@@ -252,6 +340,39 @@
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   position: relative;
+  z-index: 1;
+}
+
+/* Control Panel Neural Glow */
+.control-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 255, 170, 0.05) 0%,
+    transparent 25%,
+    rgba(0, 255, 170, 0.02) 50%,
+    transparent 75%,
+    rgba(0, 255, 170, 0.05) 100%
+  );
+  animation: controlPanelGlow 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes controlPanelGlow {
+  0%, 100% { 
+    transform: translateX(-100%);
+    opacity: 0.5;
+  }
+  50% { 
+    transform: translateX(100%);
+    opacity: 1;
+  }
 }
 
 .control-panel::-webkit-scrollbar {
@@ -390,7 +511,76 @@
     0 8px 16px rgba(0, 0, 0, 0.8),
     inset 0 -2px 6px rgba(0, 0, 0, 0.9),
     inset 0 2px 6px rgba(255, 255, 255, 0.1);
-  transition: transform 0.1s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.knob:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.9),
+    0 0 15px rgba(0, 255, 170, 0.2),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.9),
+    inset 0 2px 6px rgba(255, 255, 255, 0.15);
+}
+
+.knob-container:active .knob {
+  transform: scale(0.98);
+  transition: transform 0.05s ease;
+}
+
+/* Haptic Feedback Effects */
+.haptic-ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 170, 0.6) 0%,
+    rgba(0, 255, 170, 0.3) 50%,
+    transparent 100%
+  );
+  transform: translate(-50%, -50%) scale(0);
+  animation: hapticRipple 0.6s ease-out;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes hapticRipple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+.knob-feedback {
+  animation: knobFeedbackGlow 0.2s ease-out;
+}
+
+@keyframes knobFeedbackGlow {
+  0% {
+    box-shadow: 
+      0 8px 16px rgba(0, 0, 0, 0.8),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.9),
+      inset 0 2px 6px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 8px 16px rgba(0, 0, 0, 0.8),
+      0 0 20px rgba(0, 255, 170, 0.4),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.9),
+      inset 0 2px 6px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    box-shadow: 
+      0 8px 16px rgba(0, 0, 0, 0.8),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.9),
+      inset 0 2px 6px rgba(255, 255, 255, 0.1);
+  }
 }
 
 .knob::before {
@@ -449,9 +639,10 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  transform: translateZ(0);
 }
 
 .mode-button::before {
@@ -470,20 +661,41 @@
 }
 
 .mode-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px) translateZ(0) scale(1.02);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(0, 255, 170, 0.1);
+  border-color: rgba(0, 255, 170, 0.2);
 }
 
 .mode-button.active {
   background: linear-gradient(145deg, 
-    rgba(0, 255, 170, 0.1) 0%, 
-    rgba(0, 255, 170, 0.05) 100%
+    rgba(0, 255, 170, 0.15) 0%, 
+    rgba(0, 255, 170, 0.08) 100%
   );
   color: rgba(0, 255, 170, 1);
-  border-color: rgba(0, 255, 170, 0.3);
+  border-color: rgba(0, 255, 170, 0.4);
   box-shadow: 
-    0 0 15px rgba(0, 255, 170, 0.3),
+    0 0 20px rgba(0, 255, 170, 0.4),
+    0 4px 15px rgba(0, 255, 170, 0.2),
     inset 0 0 15px rgba(0, 255, 170, 0.1);
+  transform: translateY(-1px) scale(1.05);
+  animation: activeButtonPulse 2s ease-in-out infinite;
+}
+
+@keyframes activeButtonPulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px rgba(0, 255, 170, 0.4),
+      0 4px 15px rgba(0, 255, 170, 0.2),
+      inset 0 0 15px rgba(0, 255, 170, 0.1);
+  }
+  50% { 
+    box-shadow: 
+      0 0 25px rgba(0, 255, 170, 0.6),
+      0 6px 20px rgba(0, 255, 170, 0.3),
+      inset 0 0 20px rgba(0, 255, 170, 0.15);
+  }
 }
 
 .mode-button.active::before {
@@ -660,6 +872,199 @@
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+/* Floating Data Visualization Elements */
+.data-visualization {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 120px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px) saturate(110%);
+  -webkit-backdrop-filter: blur(12px) saturate(110%);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 170, 0.2);
+  padding: 8px;
+  z-index: 5;
+  animation: floatData 6s ease-in-out infinite;
+}
+
+@keyframes floatData {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateY(-5px) rotate(1deg);
+    opacity: 1;
+  }
+}
+
+.data-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: 100%;
+}
+
+.data-line {
+  height: 2px;
+  border-radius: 1px;
+  animation: dataFlow 2s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+.data-line:nth-child(1) {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 255, 170, 0.8) 50%, 
+    transparent 100%
+  );
+  width: 80%;
+  animation-delay: 0s;
+}
+
+.data-line:nth-child(2) {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 170, 255, 0.6) 50%, 
+    transparent 100%
+  );
+  width: 60%;
+  animation-delay: 0.3s;
+}
+
+.data-line:nth-child(3) {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 170, 0, 0.7) 50%, 
+    transparent 100%
+  );
+  width: 90%;
+  animation-delay: 0.6s;
+}
+
+.data-line:nth-child(4) {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(170, 0, 255, 0.5) 50%, 
+    transparent 100%
+  );
+  width: 70%;
+  animation-delay: 0.9s;
+}
+
+@keyframes dataFlow {
+  0%, 100% { 
+    transform: scaleX(0.3);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Floating Neural Nodes */
+.neural-nodes {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  width: 60px;
+  height: 60px;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+.neural-node {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(0, 255, 170, 0.8);
+  border-radius: 50%;
+  animation: neuralPulse 3s ease-in-out infinite;
+  box-shadow: 0 0 8px rgba(0, 255, 170, 0.6);
+}
+
+.neural-node:nth-child(1) {
+  top: 10px;
+  left: 20px;
+  animation-delay: 0s;
+}
+
+.neural-node:nth-child(2) {
+  top: 30px;
+  left: 40px;
+  animation-delay: 0.5s;
+}
+
+.neural-node:nth-child(3) {
+  top: 50px;
+  left: 15px;
+  animation-delay: 1s;
+}
+
+.neural-node:nth-child(4) {
+  top: 25px;
+  left: 5px;
+  animation-delay: 1.5s;
+}
+
+@keyframes neuralNodePulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% { 
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+/* Adaptive Activity States */
+.crowe-research-station.low-activity {
+  --neural-hue: 240;
+  --neural-saturation: 30%;
+  --neural-lightness: 15%;
+}
+
+.crowe-research-station.low-activity .station-logo {
+  animation-duration: 3s;
+  box-shadow: 0 0 15px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.3);
+}
+
+.crowe-research-station.medium-activity {
+  --neural-hue: 170;
+  --neural-saturation: 60%;
+  --neural-lightness: 25%;
+}
+
+.crowe-research-station.medium-activity .station-logo {
+  animation-duration: 2s;
+  box-shadow: 0 0 20px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.5);
+}
+
+.crowe-research-station.high-activity {
+  --neural-hue: 120;
+  --neural-saturation: 80%;
+  --neural-lightness: 30%;
+}
+
+.crowe-research-station.high-activity .station-logo {
+  animation-duration: 1s;
+  box-shadow: 0 0 30px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.8);
+}
+
+.crowe-research-station.high-activity .neural-node {
+  animation-duration: 1.5s;
+  box-shadow: 0 0 12px hsla(var(--neural-hue), var(--neural-saturation), 50%, 0.9);
+}
+
+/* Dynamic Theme Transitions */
+.crowe-research-station * {
+  transition: color 0.5s ease, background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 /* Mobile Responsiveness */
